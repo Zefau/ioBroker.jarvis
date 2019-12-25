@@ -1,0 +1,14 @@
+{
+  "name": "iobroker.jarvis",
+  "version": "0.0.1",
+  "description": "jarvis - just another remarkable vis",
+  "main": "jarvis.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
