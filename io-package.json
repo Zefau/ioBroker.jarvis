@@ -33,11 +33,56 @@
     ]
   },
   "native": {
-	"device": {}
-	"settings": {}
-	"notifications": {}
+	"devices": {},
+	"settings": {},
+	"notifications": {},
 	"addNotification": ""
   },
   "objects": [],
-  "instanceObjects": []
+  "instanceObjects": [
+	{
+		"_id": "devices",
+		"type": "state",
+		"common": {
+			"name": "List of devices",
+			"role": "json",
+			"type": "string",
+			"read":  true,
+			"write": false
+		}
+	},
+	{
+		"_id": "settings",
+		"type": "state",
+		"common": {
+			"name": "Settings",
+			"role": "json",
+			"type": "string",
+			"read":  true,
+			"write": false
+		}
+	},
+	{
+		"_id": "notifications",
+		"type": "state",
+		"common": {
+			"name": "Notifications",
+			"role": "json",
+			"type": "string",
+			"read":  true,
+			"write": false
+		}
+	},
+	{
+		"_id": "addNotification",
+		"type": "state",
+		"common": {
+			"name": "Add new notification",
+			"role": "text",
+			"type": "string",
+			"read":  true,
+			"write": true
+		}
+	}
+  ]
 }
