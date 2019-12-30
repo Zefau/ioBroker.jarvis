@@ -1,0 +1,49 @@
+{
+  "name": "jarvis",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/jarvis",
+  "dependencies": {
+    "@material-ui/core": "^4.8.2",
+    "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.37",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "classnames": "^2.2.6",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "leaflet": "^1.6.0",
+    "moment": "^2.24.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.8.0",
+    "react-leaflet": "^2.6.1",
+    "react-scripts": "3.3.0",
+    "socket.io-client": "^2.3.0",
+    "why-did-you-update": "^1.0.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rmdir \"../www\" /s /q && react-scripts build && copy build \"../www\"",
+    "deploy": "node development deploy",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
