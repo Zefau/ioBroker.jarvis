@@ -13,10 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
 	card: {
-		margin: theme.spacing(),
-		marginLeft: 0,
+		margin: theme.spacing(1, 1, 0, 0),
 		[theme.breakpoints.down('md')]: {
-			margin: theme.spacing(0.5)
+			margin: theme.spacing(0.4, 0.4, 0, 0)
 		}
 	},
 	cardHeaderNoContents: {

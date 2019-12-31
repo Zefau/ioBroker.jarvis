@@ -10,7 +10,7 @@ const theme = createMuiTheme({
 		primary: {
 			main: primary 
 		},
-		secondary: pink,
+		secondary: secondary,
 	},
 	components: {
 		icon: {

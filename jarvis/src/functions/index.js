@@ -1,9 +1,7 @@
-import defaults from './defaults';
-import light from './light';
-import heating from './heating';
 
 export default {
-	defaults,
-	light,
-	heating
+	defaults: require('./defaults').default,
+	light: require('./light').default,
+	heating: require('./heating').default,
+	door: require('./door').default
 }

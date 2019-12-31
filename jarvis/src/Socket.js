@@ -22,8 +22,7 @@ export default class Socket extends EventEmitter {
 		
 		// socket connection
 		this.socket = io(url, { ...options, query: 'ws=true' });
-		this.statesSubscribes = {}; // subscribe for states
-		
+		this.statesSubscribes = {}; // subscribed states
 		
 		/*
 		 * API events
@@ -56,6 +55,12 @@ export default class Socket extends EventEmitter {
 		
 		// error
 		this.socket.on('error', error => this.emit('error', { 'type': 'error', 'event': 'error', 'error': error }));
+		
+		/*
+		 * ioBroker events
+		 *
+		 */
+		this.socket.on('stateChange', (id, state) => setTimeout(() => this.stateChange(id, state), 0));
 	}
 	
 	/**
@@ -63,6 +68,7 @@ export default class Socket extends EventEmitter {
 	 *
 	 */
 	subscribeState(id, cb) {
+		
 		if (!this.statesSubscribes[id]) {
 			let reg = id
 				.replace(/\./g, '\\.')
@@ -78,16 +84,12 @@ export default class Socket extends EventEmitter {
 			
 			this.statesSubscribes[id] = { reg: new RegExp(reg), cbs: [cb] };
 			
-			if (this.connected) {
+			if (this.socket.connected) {
 				this.socket.emit('subscribe', id);
 			}
 		}
 		else {
 			this.statesSubscribes[id].cbs.indexOf(cb) === -1 && this.statesSubscribes[id].cbs.push(cb);
-		}
-		
-		if (typeof cb === 'function') {
-			this.socket.emit('getForeignStates', id, (err, states) => states && Object.keys(states).forEach(id => cb(id, states[id])));
 		}
 	}
 	
@@ -96,6 +98,7 @@ export default class Socket extends EventEmitter {
 	 *
 	 */
 	stateChange(id, state) {
+		
 		id = id ? id.replace(/[\s'"]/g, '_') : '';
 		for (const task in this.statesSubscribes) {
 			if (this.statesSubscribes.hasOwnProperty(task) && this.statesSubscribes[task].reg.test(id)) {
@@ -109,6 +112,7 @@ export default class Socket extends EventEmitter {
 	 *
 	 */
 	getState(id, cb) {
+		
 		if (!cb) {
 			return new Promise((resolve, reject) => this.getState(id, (err, state) => err ? reject(err) : resolve(state)));
 		} else {
@@ -121,6 +125,7 @@ export default class Socket extends EventEmitter {
 	 *
 	 */
 	setState(id, val, cb) {
+		
 		if (!cb) {
 			return new Promise((resolve, reject) => this.setState(id, val, err => err ? reject(err) : resolve()));
 		} else {

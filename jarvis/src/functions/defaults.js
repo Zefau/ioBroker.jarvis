@@ -1,12 +1,178 @@
+import React, { useState, useEffect } from 'react';
+
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import Switch from '@material-ui/core/Switch';
+
+
+/*
+ * STYLES
+ */
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles(theme => ({
+	component: {
+		padding: theme.spacing(2, 8, 2, 2)
+	},
+	sliderMarkLabel: {
+		[theme.breakpoints.down('md')]: {
+			display: 'none',
+			'&:nth-child(5)': { display: 'block' },
+			'&:nth-child(15)': { display: 'block' },
+			'&:nth-child(25)': { display: 'block' }
+		}
+	}
+}));
+
+
+/*
+ * ACTIONS
+ *
+ */
+function PowerAction(props) {
+	const { device, state } = props;
+	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
+	
+	const [checked, setChecked] = useState((state.state && state.state.value && state.state.value.val) || false);
+	
+	useEffect(() => {
+		device.on('stateChange', (stateKey, s) => {
+			if (stateKey === state.stateKey) {
+				setChecked(s.val);
+			}
+		});
+	});
+	
+	return (
+
+<Switch
+	checked={checked}
+	onChange={onChange}
+	value="true"
+	color="primary"
+/>
+
+	);
+}
+
+
+/*
+ * COMPONENTS
+ *
+ */
+function Label(props) {
+	const { label, br } = props;
+	const linebreak = br || false;
+	
+	return (
+	
+<React.Fragment>
+	<Typography>{label}</Typography>
+	{linebreak && <br />}
+</React.Fragment>
+	
+	);
+}
+
+function Component(props) {
+	const { title, children } = props;
+	const classes = useStyles();
+	
+	return (
+
+<React.Fragment>
+	<Label label={title} />
+	<div className={classes.component}>
+		{children}
+	
+	</div>
+</React.Fragment>
+
+	);
+}
+
+function LevelComponent(props) {
+	let { device, state, title, min, max, step, markSteps } = props;
+	const classes = useStyles();
+	
+	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
+	
+	// default settings
+	min = min || 0;
+	max = max || 100;
+	step = step || 1;
+	markSteps = markSteps || 11; // 0 to 10
+	let markStep = ((max-min)/(markSteps-1)) || 10;
+	return (
+
+<Component title={title || state.stateKey }>
+	<Slider
+		classes={{ markLabel: classes.sliderMarkLabel }}
+		//onChange
+		onChangeCommitted={onChange}
+		defaultValue={(state.state && state.state.value && state.state.value.val) || 0}
+		valueLabelDisplay="auto"
+		marks={[...Array(markSteps).keys()].map(number => ({ 'value': min+number*markStep, 'label': min+number*markStep }))}
+		min={min}
+		max={max}
+		step={step}
+	/>
+
+</Component>
+
+	);
+}
+
+
+
 export default {
 	configurations: {
-		power: {
-			value: (val) => val.toString()
+		_any: {
+			//value
+			//unit
+			//icon
+			//state
 		},
-		battery: { unit: ' %' },
-		humidity: { unit: ' %' },
-		level: { unit: ' %' },
-		temperature: { unit: ' °C' },
-		wind: { unit: ' km/h' }
+		battery: {
+			unit: ' %'
+		},
+		humidity: {
+			unit: ' %'
+		},
+		level: {
+			unit: ' %'
+		},
+		power: {
+			value: (val) => val.toString(),
+			state: {
+				true: 'on',
+				false: 'off'
+			}
+		},
+		temperature: {
+			unit: ' °C'
+		},
+		wind: {
+			unit: ' km/h'
+		}
+	},
+	components: {
+		Label,
+		Component,
+		LevelComponent
+	},
+	actions: {
+		PowerAction
+	},
+	styles: {
+		icon: {},
+		state: {
+			true: {
+				'color': '#090',
+				'fontWeight': 'bold'
+			},
+			false: {
+				'color': '#999'
+			}
+		}
 	}
 }

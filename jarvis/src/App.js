@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from './i18n';
 import Socket from './Socket';
 import Device from './Device';
 import Jarvis from './Jarvis';
@@ -9,15 +10,6 @@ import Jarvis from './Jarvis';
  */
 const NODE_SETTINGS = 'jarvis.0.settings';
 const NODE_DEVICES = 'jarvis.0.devices';
-
-const DEAULTS_STATES = { true: 'an', false: 'aus', 0: 'aus' };
-const DEFAULT_STYLES = {
-	'state': {
-		true: { 'color': '#090', 'fontWeight': 'bold' },
-		false: { 'color': '#999' },
-		0: { 'color': '#999' }
-	}
-};
 
 
 class App extends React.Component {
@@ -38,10 +30,10 @@ class App extends React.Component {
 		let url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : null;
 		this.socket = new Socket(url);
 		
-		this.socket.on('error', error => {
+		this.socket.on('error', err => {
 			this.setState({
 				error: true,
-				errorMessage: error
+				errorMessage: err.error
 			});
 		});
 		
@@ -109,6 +101,12 @@ class App extends React.Component {
 	 *
 	 */
 	useSettings() {
+		
+		// language
+		window.language = (this.settings.language || navigator.language || navigator.userLanguage || 'en').substr(0, 2);
+		i18n.setLanguage(window.language);
+		i18n.loadTranslations(['en', 'de']);
+		
 		// page title
 		if (this.settings.title) {
 			document.title = this.settings.title;
@@ -150,7 +148,7 @@ class App extends React.Component {
 		
 		let device = null;
 		try {
-			device = new Device(deviceProperties, this.socket, { 'states': DEAULTS_STATES, 'styles': DEFAULT_STYLES });
+			device = new Device(deviceProperties, this.socket, window.language);
 			
 			// request primary state value
 			device.requestDeviceState(null, true).catch(err => console.error(err));
@@ -229,7 +227,7 @@ class App extends React.Component {
 	
     render() {
 		if (this.state.error) {
-			alert(this.state.errorMessage);
+			
 		}
 		
 		if (this.state.loaded.length < 2) {

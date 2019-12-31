@@ -21,22 +21,34 @@ export default class Function extends EventEmitter {
 		}
 		
 		this.functionId = this.function.toLowerCase();
-		this.icon = (functions[this.functionId] && functions[this.functionId].icons) || {};
-		this.component = (functions[this.functionId] && functions[this.functionId].components) || {};
-		this.action = (functions[this.functionId] && functions[this.functionId].actions) || {};
-		this.configuration = (functions[this.functionId] && functions[this.functionId].configurations) || functions['defaults'].configurations;
+		
+		// configuration
+		this.defaults = functions['defaults'].configurations;
+		this.configurations = (functions[this.functionId] && functions[this.functionId].configurations) || {};
+		
+		// styles
+		this.styles = { ...functions['defaults'].styles, ...(functions[this.functionId] && functions[this.functionId].styles) || {} };
+		
+		// components and actions
+		this.components = (functions[this.functionId] && functions[this.functionId].components) || {};
+		this.actions = (functions[this.functionId] && functions[this.functionId].actions) || {};
 	}
 	
 	/**
 	 *
 	 *
+	 * @return	{Object}
+	 * @private
 	 */
-	setStateValue(stateKey, state) {
+	_setObjectStructure(obj, defaultValue = null) {
 		
-		['value', 'unit'].forEach(key => {
-			state[key] = (this.configuration[stateKey] && this.configuration[stateKey][key] && ((typeof this.configuration[stateKey][key] === 'function' && this.configuration[stateKey][key](state.val)) || (typeof this.configuration[stateKey][key] !== 'function' && this.configuration[stateKey][key]))) || state[key] || '';
-		});
+		if (!obj || typeof obj != 'object') {
+			obj = { 'default': obj || defaultValue };
+		}
+		else if (typeof obj == 'object' && !obj.default) {
+			obj.default = defaultValue;
+		}
 		
-		return state;
+		return obj;
 	}
 }

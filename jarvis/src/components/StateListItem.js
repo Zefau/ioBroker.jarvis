@@ -13,6 +13,15 @@ import Typography from '@material-ui/core/Typography';
  */
 import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
+	defaultListDivider: {
+		margin: '5px 0 0 0'
+	},
+	defaultListDividerText: {
+		margin: '5px 0 0 0',
+		[theme.breakpoints.down('md')]: {
+			margin: '5px 0 0 10px',
+		}
+	},
 	defaultListIcon: props => ({
 		...theme.components.icon,
 		...props.styles
@@ -29,7 +38,7 @@ const styles = theme => ({
 		display: 'inline-block',
 		textAlign: 'center',
 		paddingRight: '16px',
-		minWidth: '150px',
+		width: '150px',
 		marginTop: '10px'
 	},
 	horizontalListItemIcon: {
@@ -44,27 +53,32 @@ const styles = theme => ({
 	},
 	verticalListItemAction: {
 		textAlign: 'right'
-	}
+	},
 });
 
 
-const ListDivider = ({ title }) => (
-	<React.Fragment>
-		<ListItem divider style={{margin: '5px 0 0 0'}} />
-		<li>
-			<Typography
-				style={{margin: '5px 0 0 0px'}}
-				display="block"
-				variant="caption"
-			>
-			{title}
-			</Typography>
-		</li>
-    </React.Fragment>
-);
+const ListDivider = withStyles(styles)(props => {
+	const { classes, title } = props;
+	return (
+	
+<React.Fragment>
+	<ListItem divider className={classes.defaultListDivider} />
+	<li>
+		<Typography
+			className={classes.defaultListDividerText}
+			display="block"
+			variant="caption"
+		>
+		{title}
+		</Typography>
+	</li>
+</React.Fragment>
+	
+	);
+});
 
 const ListItemIconElement = withStyles(styles)(props => {
-	const { customClassNames, children, classes, styles } = props;
+	const { customClassNames, children, classes } = props;
 	
 	let classNames = Array.isArray(customClassNames) ? customClassNames : [customClassNames];
 	classNames = classNames.map(className => (classes[className] ? classes[className] : className));
@@ -90,7 +104,6 @@ class StateListItem extends React.Component {
 	componentDidMount() {
 		
 		this.props.device.on('stateChange', (stateKey, state) => {
-			
 			if (stateKey === this.props.device.primaryStateKey || stateKey === this.props.device.secondaryStateKey) {
 				this.setState({ [stateKey]: state });
 			}
@@ -104,18 +117,12 @@ class StateListItem extends React.Component {
 	render() {
 		const { classes, horizontal, prevSubgroup, device } = this.props;
 		
-		console.log(device);
-		
-		
-		
-		
-		
 		let options = device.get('options');
 		let icon = null, primary = null, secondary = null, action = null;
 		secondary = this.state[device.secondaryStateKey] && <ListItemAction key={'secondary_' + device.id} customClassNames="defaultListItemActionSecondary" styles={{...device.getStyle('state', this.state[device.secondaryStateKey].val), ...device.getStyle('secondaryState', this.state[device.secondaryStateKey].val)}}>{this.state[device.secondaryStateKey].value} {this.state[device.secondaryStateKey].unit}</ListItemAction>
 		
 		if (this.state[device.primaryStateKey]) {
-			icon = device.getOption('icon', this.state[device.primaryStateKey].val);
+			icon = device.getIcon(device.primaryStateKey, this.state[device.primaryStateKey].val);
 			primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={{...device.getStyle('state', this.state[device.primaryStateKey].val), ...device.getStyle('primaryState', this.state[device.primaryStateKey].val)}}>{this.state[device.primaryStateKey].value} {this.state[device.primaryStateKey].unit}</ListItemAction>
 			action = device.getOption('action') || (!secondary ? primary : [primary, <br key={'br_' + device.id} />, secondary]);
 		}

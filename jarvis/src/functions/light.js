@@ -1,88 +1,162 @@
 import React, { useState, useEffect } from 'react';
+import { HuePicker, SketchPicker as ColorPicker } from 'react-color';
 
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Switch from '@material-ui/core/Switch';
+import defaults from './defaults';
 
 
 /*
- * STYLES
+ * HELPER FUNCTIONS
+ *
  */
-import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles(theme => ({
-	slider: {
-		padding: theme.spacing(2, 30, 2, 2)
-	},
-}));
+function HslToRgb(h, s = 1, l = 0.5) {
+	if (Array.isArray(h)) {
+		l = h[2];
+		s = h[1];
+		h = h[0];
+	}
+	else if (typeof h === 'string' && h.indexOf(',')) {
+		[h, s, l] = h.split(',');
+	}
+	
+	let r, g, b;
 
-
-function Label(props) {
-	const { title } = props;
-	return (<Typography>{title}</Typography>);
+	if (s == 0) {
+		r = g = b = l; // achromatic
+	}
+	else {
+		function hue2rgb(p, q, t) {
+			if (t < 0) t += 1;
+			if (t > 1) t -= 1;
+			if (t < 1 / 6) return p + (q - p) * 6 * t;
+			if (t < 1 / 2) return q;
+			if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+			return p;
+		}
+		
+		let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+		let p = 2 * l - q;
+		
+		h = h > 1 ? h/360 : h;
+		r = hue2rgb(p, q, h + 1 / 3);
+		g = hue2rgb(p, q, h);
+		b = hue2rgb(p, q, h - 1 / 3);
+	}
+	
+	return [
+		Math.max(0, Math.min(Math.round(r * 255), 255)),
+		Math.max(0, Math.min(Math.round(g * 255), 255)),
+		Math.max(0, Math.min(Math.round(b * 255), 255)) 
+	];
 }
 
-function Power(props) {
-	let { device, state } = props;
+function RgbToHex(r, g, b) {
+	if (Array.isArray(r)) {
+		b = r[2];
+		g = r[1];
+		r = r[0];
+	}
+	else if (typeof r === 'string' && r.indexOf(',')) {
+		[r, g, b] = r.split(',');
+	}
+	
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+	
+	if (r.length == 1) r = '0' + r;
+	if (g.length == 1) g = '0' + g;
+	if (b.length == 1) b = '0' + b;
+	
+	return "#" + r + g + b;
+}
+
+
+/*
+ * ACTIONS
+ *
+ */
+function LightColorAction(props) {
+	const { state } = props;
 	
 	const [checked, setChecked] = useState((state.state && state.state.value && state.state.value.val) || false);
-	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
 	
 	useEffect(() => {
-		device.on('stateChange', (stateKey, state) => {
-			if (stateKey === 'power') {
-				setChecked(state.val);
+		device.on('stateChange', (stateKey, s) => {
+			if (stateKey === state.stateKey) {
+				setChecked(s.val);
 			}
 		});
 	});
 	
-	return (
-
-<Switch
-	checked={checked}
-	onChange={onChange}
-	value="true"
-	color="primary"
-/>
-
-	);
+	let colors, labels = {};
+	if (state.stateKey === 'rgb' && state.state.value && state.state.value.val) {
+		colors = state.state.value.val.split(',');
+		labels = { Red: colors[0], Green: colors[1], Blue: colors[2] };
+		
+	}
+	else if (state.stateKey === 'hsv' && state.state.value && state.state.value.val) {
+		colors = state.state.value.val.split(',');
+		labels = { Hue: colors[0], Saturation: colors[1], Brightness: colors[2] };
+	}
+	
+	const Label = defaults.components.Label;
+	let label = [];
+	for (let key in labels) {
+		label.push(<Label key={key} label={key + ' ' + labels[key]} br={true} />);
+	}
+	
+	return label;
 }
 
-function Level(props) {
-	let { device, state, title, min, max, step, markSteps } = props;
-	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
-	const classes = useStyles();
-	
-	// default settings
-	min = min || 0;
-	max = max || 100;
-	step = step || 1;
-	markSteps = markSteps || 11; // 0 to 10
-	let markStep = ((max-min)/(markSteps-1)) || 10;
-	return (
 
-<React.Fragment>
-	<Label title={title || state.stateKey } />
-	<div classes={classes.slider}>
-		<Slider
-			//onChange
-			onChangeCommitted={onChange}
-			defaultValue={(state.state && state.state.value && state.state.value.val) || 0}
-			valueLabelDisplay="auto"
-			marks={[...Array(markSteps).keys()].map(number => ({ 'value': min+number*markStep, 'label': min+number*markStep }))}
-			min={min}
-			max={max}
-			step={step}
-		/>
-	
-	</div>
-</React.Fragment>
-
-	);
-}
-
-function ColorTemperature(props) {
+/*
+ * COMPONENTS
+ *
+ */
+function LightColorTemperatureComponent(props) {
+	const Level = defaults.components.LevelComponent;
 	return (
 		<Level min={2000} max={6500} step={10} {...props} />
+	);
+}
+
+function LightHueComponent(props) {
+	const { device, state, title } = props;
+	const onChangeComplete = (color, e) => device.setDeviceState(state.stateKey, Math.round(color.hsl.h));
+	
+	const Component = defaults.components.Component;
+	const color = RgbToHex(HslToRgb((state.state && state.state.value && state.state.value.val) || 0));
+	return (
+
+<Component title={title || state.stateKey }>
+	<HuePicker
+		color={color}
+		width={'100%'}
+		onChangeComplete={onChangeComplete}
+		/>
+		
+</Component>
+
+	);
+}
+
+function LightColorComponent(props) {
+	const { device, state, title } = props;
+	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
+	
+	const Component = defaults.components.Component;
+	const color = (state.state && state.state.value && state.state.value.val) || '#fff';
+	return (
+
+<Component title={title || state.stateKey }>
+	<ColorPicker
+		color={color}
+		width={'100%'}
+		onChangeComplete={null}
+		/>
+		
+</Component>
+
 	);
 }
 
@@ -90,26 +164,73 @@ function ColorTemperature(props) {
 
 export default {
 	configurations: {
+		power: {
+			icon: {
+				_widget: 'light-switch',
+				true: 'lightbulb-on',
+				false: 'lightbulb-off-outline'
+			},
+		},
 		level: {
 			value: (val) => val > 0 && val <= 1 ? val * 100 : val,
-			unit: (val) => val > 0 ? ' %' : ''
+			unit: (val) => val > 0 ? ' %' : '',
+			icon: {
+				_widget: 'brightness-percent',
+				0: 'lightbulb-off-outline'
+			},
+			state: {
+				'default': 'lightbulb-on',
+				0: 'off'
+			},
 		},
-		colorTemperature: { unit: ' °K' },
-		hue: { unit: ' °' }
-	},
-	icons: {
-		defaultOn: '',
-		defaultOff: '',
-		
-		power: 'light-switch',
-		level: 'brightness-percent',
-		colorTemperature: 'thermometer'
+		colorTemperature: {
+			icon: {
+				_widget: 'thermometer',
+			},
+			unit: ' °K'
+		},
+		hue: {
+			icon: {
+				_widget: 'palette',
+			},
+			unit: ' °'
+		},
+		rgb: {
+			icon: {
+				_widget: 'palette',
+			},
+		},
+		hsv: {
+			icon: {
+				_widget: 'palette',
+			},
+		},
+		hex: {
+			icon: {
+				_widget: 'palette',
+			},
+		}
 	},
 	components: {
-		level: Level,
-		colorTemperature: ColorTemperature
+		level: defaults.components.LevelComponent,
+		colorTemperature: LightColorTemperatureComponent,
+		rgb: LightColorComponent,
+		hsv: LightColorComponent,
+		hex: LightColorComponent,
+		hue: LightHueComponent
 	},
 	actions: {
-		power: Power
+		power: defaults.actions.PowerAction,
+		rgb: LightColorAction,
+		hsv: LightColorAction,
+		hex: LightColorAction
+	},
+	styles: {
+		icon: {},
+		state: {
+			0: {
+				'color': '#999'
+			}
+		}
 	}
 }

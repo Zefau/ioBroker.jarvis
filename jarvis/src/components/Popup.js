@@ -50,6 +50,9 @@ const DialogTitle = withStyles(styles)(props => {
 const DialogContent = withStyles(theme => ({
 	root: {
 		padding: theme.spacing(2),
+		[theme.breakpoints.down('md')]: {
+			paddingLeft: theme.spacing(1)
+		}
 	},
 }))(MuiDialogContent);
 
@@ -93,24 +96,36 @@ export default class Popup extends React.Component {
 							'states': { [stateKey]: device.states[stateKey] },
 							'options': {
 								'primary': stateKey,
-								'icon': { 'default': device.getIcon(stateKey) || 'tune' },
-								'label': device.getComponent(stateKey),
-								'action': device.getAction(stateKey),
+								'icon': { 'default': device.getIcon(stateKey, '_widget') },
 								'divider': children.length !== 0,
 								'subgroup': null,
 								'subtitle': null
 							}
 							
 						},
-						device.socket
+						device.socket,
+						window.language
 					);
 				
-				responses.push(child.requestDeviceState(null, true));
+				// retrieve state
+				responses.push(new Promise(resolve => {
+					child.requestDeviceState(null, true).then(res => {
+						child.setAction(device.getAction(stateKey));
+						child.setComponent(device.getComponent(stateKey));
+						
+						resolve(true);
+					});
+				}));
+				
 				children.push(child);
 				
 			}
 			
-			Promise.allSettled(responses).then(() => this.setState({ 'children': children }, () => this.forceUpdate()));
+			Promise.allSettled(responses).then(() => {
+				
+				console.log(responses);
+				this.setState({ 'children': children }, () => this.forceUpdate());
+			});
 		}
 	}
 	
@@ -120,7 +135,7 @@ export default class Popup extends React.Component {
 	
 	render() {
 		const { open, closeDialog, contents } = this.props;
-		const { ts, device } = contents;
+		const { device } = contents;
 		
 		return (
 

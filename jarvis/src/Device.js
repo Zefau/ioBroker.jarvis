@@ -1,6 +1,7 @@
 import React from 'react';
+import i18n from './i18n';
 import Function from './Function';
-import moment from 'moment';
+import * as moment from 'moment/min/moment-with-locales.min.js';
 
 
 /**
@@ -20,7 +21,7 @@ import moment from 'moment';
  */
 export default class Device extends Function {
 	
-	constructor(deviceProperties, socket, defaults = { 'states': {}, 'styles': {} }) {
+	constructor(deviceProperties, socket, language = window.sysLang || 'en') {
 		try {
 			super(deviceProperties.function);
 		}
@@ -52,9 +53,10 @@ export default class Device extends Function {
 			throw new Error('No socket given!');
 		}
 		
-		this.defaults = defaults;
 		this._setProperties();
 		this.stateSubscriptions = [];
+		
+		moment.locale(language);
 	}
 	
 	/**
@@ -63,7 +65,7 @@ export default class Device extends Function {
 	 * @return	{Object|String}
 	 * @private
 	 */
-	_getStateFromKey(stateKey = null) {
+	_getStateFromKey(stateKey = null, stateType = 'state') {
 		
 		// already a state object
 		if (stateKey && typeof stateKey === 'object') {
@@ -73,35 +75,18 @@ export default class Device extends Function {
 		// get state object
 		let s = this.states[stateKey || this.primaryStateKey];
 		
-		if (!s || !s.state) {
+		if (!s || !s[stateType]) {
 			return 'Incorrect or non-defined state key for device ' + this.name + '!';
 		}
-		else if (typeof s.state == 'string') {
-			s.state = { 'node': s.state };
+		else if (typeof s[stateType] == 'string') {
+			this.states[stateKey || this.primaryStateKey][stateType] = { 'node': s[stateType] };
+			s = this.states[stateKey || this.primaryStateKey];
 		}
-		else if (typeof s.state == 'object' && !s.state.node) {
-			return 'No state specified to retrieve for device ' + this.name + '!';
+		else if (typeof s[stateType] == 'object' && !s[stateType].node) {
+			return 'No ' + stateType + ' specified for device ' + this.name + '!';
 		}
 		
 		return s;
-	}
-	
-	/**
-	 *
-	 *
-	 * @return	{Object}
-	 * @private
-	 */
-	_setObjectStructure(obj, defaultValue = null) {
-		
-		if (!obj || typeof obj != 'object') {
-			obj = { 'default': obj || defaultValue };
-		}
-		else if (typeof obj == 'object' && !obj.default) {
-			obj.default = defaultValue;
-		}
-		
-		return obj;
 	}
 	
 	/**
@@ -118,17 +103,21 @@ export default class Device extends Function {
 		this.primaryStateKey = this.options.primary || Object.keys(this.states)[0];
 		this.secondaryStateKey = this.options.secondary || null;
 		
+		// icon
+		this.options.icon = !this.options.icon ? {} : super._setObjectStructure((this.options.icon[this.primaryStateKey] !== undefined && typeof this.options.icon[this.primaryStateKey] == 'object' ? this.options.icon[this.primaryStateKey] : { [this.primaryStateKey]: this.options.icon }));
+		
+		// states
+		this.options.mapping = super._setObjectStructure({ ...super.state, ...this.options.secondaryStateMapping, ...this.options.primaryStateMapping });
+		
 		// styles
-		this.options.styles =  { ...this.defaults.styles, ...this.options.styles || {} };
+		this.options.styles =  { ...super.style, ...this.options.styles || {} };
 		
 		// all options
 		this.options.groups = Array.isArray(this.options.group) ? this.options.group : [this.options.group];
 		this.options.sort = this.options.sort || 999;
 		
 		this.options.label = (this.options.label && (typeof this.options.label === 'string' && this.options.label.replace(/%name%/g, this.name))) || this.options.label || this.name;
-		this.options.icon = this._setObjectStructure(this.options.icon, 'square-medium');
-		this.options.mapping = this._setObjectStructure({ ...this.defaults.states, ...this.options.secondaryStateMapping, ...this.options.primaryStateMapping });
-		this.options.subtitle = this.options.subtitle;
+		//this.options.subtitle = this.options.subtitle;
 		this.options.divider = this.options.divider || false;
 	}
 	
@@ -142,8 +131,15 @@ export default class Device extends Function {
 	_updateDeviceState(stateKey, state) {
 		
 		state.timeChanged = moment(state.lc-2000).fromNow();
-		state.value = this.options.mapping[stateKey + '#' + state.val] || this.options.mapping[state.val] || state.val;
-		return super.setStateValue(stateKey, state);
+		state.value = this.options.mapping[stateKey + '#' + state.val] || this.options.mapping[state.val] || this.options.mapping['default'] || state.val;
+		
+		
+		['value', 'unit'].forEach(key => {
+			//state[key] = (this.configuration[stateKey] && this.configuration[stateKey][key] && ((typeof this.configuration[stateKey][key] === 'function' && this.configuration[stateKey][key](state.val)) || (typeof this.configuration[stateKey][key] !== 'function' && this.configuration[stateKey][key]))) || state[key] || '';
+		});
+		
+		
+		return state;
 	}
 	
 	/**
@@ -159,8 +155,8 @@ export default class Device extends Function {
 	 *
 	 */
 	getAction(stateKey) {
-		const Action = this.action[stateKey];
-		return (Action && <Action device={this} state={{...this.states[stateKey], 'stateKey': stateKey}} />) || null;
+		const Action = this.actions[stateKey];
+		return (Action && <Action device={this} state={{ ...this.states[stateKey], 'stateKey': stateKey }} />) || null;
 	}
 	
 	/**
@@ -168,8 +164,8 @@ export default class Device extends Function {
 	 *
 	 */
 	getComponent(stateKey) {
-		const Component = this.component[stateKey];
-		return (Component && <Component device={this} state={{...this.states[stateKey], 'stateKey': stateKey}} />) || stateKey;
+		const Component = this.components[stateKey];
+		return (Component && <Component title={i18n.t(this.function + '#' + stateKey)} device={this} state={{ ...this.states[stateKey], 'stateKey': stateKey }} />) || i18n.t(this.function + '#' + stateKey);
 	}
 	
 	/**
@@ -195,8 +191,13 @@ export default class Device extends Function {
 	 *
 	 *
 	 */
-	getIcon(stateKey) {
-		return this.icon[stateKey];
+	getIcon(stateKey, stateVal = 'default', defaultIcon = null) {
+		
+		let userIcon = this.options.icon[stateKey] && (this.options.icon[stateKey][stateVal] || this.options.icon[stateKey]['default']);
+		let functionIcon = this.configurations[stateKey] && this.configurations[stateKey].icon && (this.configurations[stateKey].icon[stateVal] || this.configurations[stateKey].icon['default']);
+		let globalDefaultIcon = this.defaults[stateKey] && this.defaults[stateKey].icon && (this.defaults[stateKey].icon[stateVal] || this.defaults[stateKey].icon['default']);
+		
+		return userIcon || functionIcon || globalDefaultIcon || defaultIcon;
 	}
 	
 	/**
@@ -254,6 +255,11 @@ export default class Device extends Function {
 			return Promise.reject({ 'success': false, 'stateKey': stateKey, 'error': s });
 		}
 		
+		if (!s.state) {
+			console.log(this.name);
+		console.log(s);
+		}
+		
 		return new Promise((resolve, reject) => {
 			
 			// send cached value if present and subscrbe (means always updated)
@@ -294,6 +300,24 @@ export default class Device extends Function {
 	 *
 	 *
 	 */
+	setAction(action) {
+		this.options.action = action;
+		
+	}
+	
+	/**
+	 *
+	 *
+	 */
+	setComponent(component) {
+		this.options.label = component;
+		
+	}
+	
+	/**
+	 *
+	 *
+	 */
 	setDeviceState(stateKey = null, value) {
 		
 		stateKey = stateKey || this.primaryStateKey;
@@ -303,7 +327,7 @@ export default class Device extends Function {
 		}
 		
 		return new Promise(resolve => {
-			this.socket.setState(s.state.node, value).then(res => {
+			this.socket.setState(s.action.node, value).then(res => {
 				
 				// get state value if not subscribed
 				if (this.stateSubscriptions.indexOf(stateKey) === -1) {

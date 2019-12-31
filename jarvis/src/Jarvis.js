@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import Drawer from '@material-ui/core/Drawer';
+//import Drawer from '@material-ui/core/Drawer';
 //import Tabs from './components/Tabs';
 
 import Popup from './components/Popup';
@@ -17,10 +17,9 @@ import { ThemeProvider, withStyles } from '@material-ui/core/styles';
 import theme from './theme';
 const styles = theme => ({
 	'gridContainer': {
-		paddingLeft: theme.spacing(),
+		paddingLeft: theme.spacing(1),
 		[theme.breakpoints.down('md')]: {
-			paddingLeft: theme.spacing(0),
-			backgroundColor: '#f00'
+			paddingLeft: theme.spacing(0.4)
 		}
 	}
 });

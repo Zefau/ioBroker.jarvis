@@ -1,12 +1,30 @@
-import React, { useState, useEffect } from 'react';
-
 
 export default {
 	configurations: {
 	},
-	mapping: {
+	icons: {
+		"true":"door-open",
+		"false":"door-closed"
 		
 	},
-	icons: {
+	components: {
+	},
+	actions: {
+	},
+	states: {
+		"true":"offen",
+		"false":"geschlossen"
+	},
+	styles: {
+		'icon': {},
+		'state': {
+			true: {
+				'color': '#090',
+				'fontWeight': 'bold'
+			},
+			false: {
+				'color': '#999'
+			}
+		}
 	}
 }
