@@ -95,6 +95,15 @@ function LevelComponent(props) {
 	const classes = useStyles();
 	
 	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
+	const [level, setLevel] = useState((state.state && state.state.value && state.state.value.val) || 0);
+	
+	useEffect(() => {
+		device.on('stateChange', (stateKey, s) => {
+			if (stateKey === state.stateKey) {
+				setLevel(s.val);
+			}
+		});
+	});
 	
 	// default settings
 	min = min || 0;
@@ -109,7 +118,7 @@ function LevelComponent(props) {
 		classes={{ markLabel: classes.sliderMarkLabel }}
 		//onChange
 		onChangeCommitted={onChange}
-		defaultValue={(state.state && state.state.value && state.state.value.val) || 0}
+		defaultValue={level}
 		valueLabelDisplay="auto"
 		marks={[...Array(markSteps).keys()].map(number => ({ 'value': min+number*markStep, 'label': min+number*markStep }))}
 		min={min}
@@ -133,10 +142,12 @@ export default {
 			//state
 		},
 		battery: {
-			unit: ' %'
+			unit: ' %',
+			icon: 'battery-medium'
 		},
 		humidity: {
-			unit: ' %'
+			unit: ' %',
+			icon: 'water-percent'
 		},
 		level: {
 			unit: ' %'
@@ -145,13 +156,16 @@ export default {
 			state: {
 				'true': 'on',
 				'false': 'off'
-			}
+			},
+			icon: 'power'
 		},
 		temperature: {
-			unit: ' °C'
+			unit: ' °C',
+			icon: 'thermometer'
 		},
 		wind: {
-			unit: ' km/h'
+			unit: ' km/h',
+			icon: 'weather-windy'
 		}
 	},
 	components: {

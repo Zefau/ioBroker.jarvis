@@ -8,44 +8,73 @@ import defaults from './defaults';
  * HELPER FUNCTIONS
  *
  */
-function HslToRgb(h, s = 1, l = 0.5) {
+function HsvToRgb(h, s = 1, v = 1) {
 	if (Array.isArray(h)) {
-		l = h[2];
+		v = h[2];
 		s = h[1];
 		h = h[0];
 	}
 	else if (typeof h === 'string' && h.indexOf(',')) {
-		[h, s, l] = h.split(',');
+		[h, s, v] = h.split(',');
 	}
 	
-	let r, g, b;
-
-	if (s === 0) {
-		r = g = b = l; // achromatic
+	if (h > 1) {
+		h = h/360;
 	}
-	else {
-		function hue2rgb(p, q, t) {
-			if (t < 0) t += 1;
-			if (t > 1) t -= 1;
-			if (t < 1 / 6) return p + (q - p) * 6 * t;
-			if (t < 1 / 2) return q;
-			if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-			return p;
-		}
+	
+	let r, g, b, i, f, p, q, t;
+	
+	i = Math.floor(h * 6);
+	f = h * 6 - i;
+	p = v * (1 - s);
+	q = v * (1 - f * s);
+	t = v * (1 - (1 - f) * s);
+	
+	switch (i % 6) {
+		case 0:
+			r = v;
+			g = t;
+			b = p;
+			break;
+			
+		case 1:
+			r = q;
+			g = v;
+			b = p;
+			break;
 		
-		let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-		let p = 2 * l - q;
+		case 2:
+			r = p;
+			g = v;
+			b = t;
+			break;
 		
-		h = h > 1 ? h/360 : h;
-		r = hue2rgb(p, q, h + 1 / 3);
-		g = hue2rgb(p, q, h);
-		b = hue2rgb(p, q, h - 1 / 3);
+		case 3:
+			r = p;
+			g = q;
+			b = v;
+			break;
+		
+		case 4:
+			r = t;
+			g = p;
+			b = v;
+			break;
+		
+		case 5:
+			r = v;
+			g = p;
+			b = q;
+			break;
+		
+		default: // for webpack
+			break;
 	}
 	
 	return [
-		Math.max(0, Math.min(Math.round(r * 255), 255)),
-		Math.max(0, Math.min(Math.round(g * 255), 255)),
-		Math.max(0, Math.min(Math.round(b * 255), 255)) 
+		Math.round(r * 255),
+		Math.round(g * 255),
+		Math.round(b * 255)
 	];
 }
 
@@ -59,9 +88,13 @@ function RgbToHex(r, g, b) {
 		[r, g, b] = r.split(',');
 	}
 	
-	r = r.toString(16);
-	g = g.toString(16);
-	b = b.toString(16);
+	r = r > 1 ? r / 255 : r;
+	g = g > 1 ? g / 255 : g;
+	b = b > 1 ? b / 255 : b;
+	
+	r = Math.round(r.toString(16)*100);
+	g = Math.round(g.toString(16)*100);
+	b = Math.round(b.toString(16)*100);
 	
 	if (r.length === 1) r = '0' + r;
 	if (g.length === 1) g = '0' + g;
@@ -122,10 +155,20 @@ function LightColorTemperatureComponent(props) {
 
 function LightHueComponent(props) {
 	const { device, state, title } = props;
+	
 	const onChangeComplete = (color, e) => device.setDeviceState(state.stateKey, Math.round(color.hsl.h));
+	const [hue, setHue] = useState((state.state && state.state.value && state.state.value.val) || 0);
+	
+	useEffect(() => {
+		device.on('stateChange', (stateKey, s) => {
+			if (stateKey === state.stateKey) {
+				setHue(s.val);
+			}
+		});
+	});
 	
 	const Component = defaults.components.Component;
-	const color = RgbToHex(HslToRgb((state.state && state.state.value && state.state.value.val) || 0));
+	const color = RgbToHex(HsvToRgb(hue));
 	return (
 
 <Component title={title || state.stateKey }>
@@ -142,15 +185,60 @@ function LightHueComponent(props) {
 
 function LightColorComponent(props) {
 	const { device, state, title } = props;
-	const onChangeComplete = (color, e) => device.setDeviceState(state.stateKey, color.rgb.toString());
+	
+	const onChangeComplete = (color, e) => {
+		color = color[state.stateKey];
+		
+		// RGB
+		if (state.stateKey === 'rgb') {
+			color = [color.r, color.g, color.b].join(',');
+		}
+		// HSV
+		else if (state.stateKey === 'hsv') {
+			color = [color.h, color.s, color.v].join(',');
+		}
+		
+		console.log(color);
+		device.setDeviceState(state.stateKey, color);
+	};
+	
+	let initialColor = (state.state && state.state.value && state.state.value.val) || '#ffffff';
+	
+	// RGB
+	if (state.stateKey === 'rgb') {
+		initialColor = RgbToHex(initialColor);
+	}
+	// HSV
+	else if (state.stateKey === 'hsv') {
+		initialColor = RgbToHex(HsvToRgb(initialColor));
+	}
+	
+	const [colorSpace, setColorSpace] = useState(initialColor);
+	
+	useEffect(() => {
+		device.on('stateChange', (stateKey, s) => {
+			
+			// RGB
+			if (stateKey === 'rgb') {
+				setColorSpace(RgbToHex(s.val));
+			}
+			// HSV
+			else if (stateKey === 'hsv') {
+				setColorSpace(RgbToHex(HsvToRgb(s.val)));
+			}
+			// HEX
+			else if (stateKey === 'hex') {
+				setColorSpace(s.val);
+			}
+		});
+	});
 	
 	const Component = defaults.components.Component;
-	const color = (state.state && state.state.value && state.state.value.val) || '#fff';
 	return (
 
 <Component title={title || state.stateKey }>
 	<ColorPicker
-		color={color}
+		color={colorSpace}
 		width={'100%'}
 		onChangeComplete={onChangeComplete}
 		/>

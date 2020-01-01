@@ -165,6 +165,15 @@ export default class Device extends Function {
 		
 		let states = Object.keys(this.states);
 		
+		// delete ignored states
+		if (this.options.ignoredStates) {
+			this.options.ignoredStates.forEach(ignoredState => {
+				if (this.states[ignoredState]) {
+					delete this.states[ignoredState];
+				}
+			});
+		}
+		
 		// properties
 		this.primaryStateKey = this.options.primary || states[0];
 		this.secondaryStateKey = this.options.secondary || null;

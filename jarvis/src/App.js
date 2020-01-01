@@ -81,7 +81,8 @@ class App extends React.Component {
 		this.socket.on('error', err => {
 			this.setState({
 				error: true,
-				errorMessage: err.message || 'Unknown error!'
+				//errorMessage: err.message || 'Unknown error!'
+				errorMessage: i18n.t('Connection lost! Trying to reconnect') + '..'
 			});
 		});
 		
@@ -124,8 +125,10 @@ class App extends React.Component {
 				
 				try {
 					this.devices = state && JSON.parse(state.val);
-					this.groups = this.processDevices(this.devices);
-					this.setState({ loaded: [...this.state.loaded, 'groups'] });
+					this.processDevices(this.devices).then(groups => {
+						this.groups = groups;
+						this.setState({ loaded: [...this.state.loaded, 'groups'] });
+					});
 				}
 				catch(err) {
 					console.error('GET_DEVICES: ' + err.message);
@@ -203,16 +206,17 @@ class App extends React.Component {
 	 */
 	processDevice(deviceProperties) {
 		
+		let promises = [];
 		let device = null;
 		try {
 			device = new Device(deviceProperties, this.socket, window.language);
 			
 			// request primary state value
-			device.requestDeviceState(null, true).catch(err => console.error(err));
+			promises.push(device.requestDeviceState(null, true));
 			
 			// request secondary state value
 			if (device.secondaryStateKey) {
-				device.requestDeviceState(device.secondaryStateKey, true).catch(err => console.error(err));
+				promises.push(device.requestDeviceState(device.secondaryStateKey, true));
 			}
 			
 		}
@@ -220,7 +224,18 @@ class App extends React.Component {
 			console.warn(err.message);
 		}
 		
-		return device;
+		return new Promise(resolve => {
+			Promise.allSettled(promises).then(results => {
+				
+				results.forEach(result => {
+					if (result.status === 'rejected') {
+						console.error(result);
+					}
+				});
+				
+				resolve(device);
+			});
+		});
 	}
 	
 	/**
@@ -230,52 +245,72 @@ class App extends React.Component {
 	processDevices(deviceList) {
 		
 		// loop through all devices of in the device list
+		let promises = [];
 		let groups = {};
 		
-		let devices = 0, groupedDevices = 0, device, deviceProperties;
+		let devices = 0, groupedDevices = 0;
 		for (let deviceId in deviceList) {
 			devices++;
 			
 			deviceList[deviceId].options = deviceList[deviceId].jarvis;
 			delete deviceList[deviceId].jarvis;
 			
-			deviceProperties = { ...deviceList[deviceId], 'id': deviceId };
-			device = this.processDevice(deviceProperties);
-			
-			if (device !== null) {
-				groupedDevices++;
-				groups = this.groupDevice(groups, device);
-			}
-			
-			// check states for own device settings
-			let state;
-			for (let stateKey in deviceProperties.states) {
+			let deviceProperties = { ...deviceList[deviceId], 'id': deviceId };
+			promises.push(new Promise((resolve, reject) => {
 				
-				state = deviceProperties.states[stateKey];
-				if (state && state.jarvis !== undefined) {
-					device = this.processDevice({ ...deviceProperties, 'id': deviceId + '#' + stateKey, 'states': { [stateKey]: state }, 'options': state.jarvis });
-					
+				this.processDevice(deviceProperties).then(device => {
+			
 					if (device !== null) {
 						groupedDevices++;
 						groups = this.groupDevice(groups, device);
+						resolve(deviceId);
 					}
+					
+					reject(deviceId);
+				});
+			}));
+			
+			// check states for own device settings
+			for (let stateKey in deviceProperties.states) {
+				
+				let state = deviceProperties.states[stateKey];
+				if (state && state.jarvis !== undefined) {
+					
+					promises.push(new Promise((resolve, reject) => {
+						
+						this.processDevice({ ...deviceProperties, 'id': deviceId + '#' + stateKey, 'states': { [stateKey]: state }, 'options': state.jarvis }).then(device => {
+					
+							if (device !== null) {
+								groupedDevices++;
+								groups = this.groupDevice(groups, device);
+								resolve(deviceId);
+							}
+							
+							reject(deviceId);
+						});
+					}));
+					
 				}
 			}
 		}
 		
-		// sort groups
-		for (let groupId in groups) {
-			groups[groupId].devices.sort((item1, item2) => {
-				if (item1.options.sort > item2.options.sort) return 1;
-				else if (item2.options.sort > item1.options.sort) return -1;
-				else return 0;
-			});
-		}
+		return new Promise(resolve => Promise.allSettled(promises).then(res => {
+			console.debug(res);
+			
+			// sort groups
+			for (let groupId in groups) {
+				groups[groupId].devices.sort((item1, item2) => {
+					if (item1.options.sort > item2.options.sort) return 1;
+					else if (item2.options.sort > item1.options.sort) return -1;
+					else return 0;
+				});
+			}
 		
-		// return
-		console.info('Processed ' + devices + ' devices. Added ' + groupedDevices + ' devices in ' + Object.keys(groups).length + ' groups.');
-		console.debug(groups);
-		return groups;
+			// return
+			console.info('Processed ' + devices + ' devices. Added ' + groupedDevices + ' devices in ' + Object.keys(groups).length + ' groups.');
+			console.debug(groups);
+			resolve(groups);
+		}));
 	};
 	
 	renderError() {

@@ -3,8 +3,8 @@ export default {
 	configurations: {
 		open: {
 			icon: {
-				'>90': 'blinds-open',
-				'<=90': 'blinds-closed'
+				'>90': 'window-shutter-open',
+				'<=90': 'window-shutter'
 			},
 			state: {
 				'>90': 'open',

@@ -31,8 +31,8 @@ const COMPONENTS = {
 /*
  *
  */
-const getGridContents = (columns, contents, groups, action = null) => {
-	console.log("getGridColumn()");
+const getGridContents = (columns = 3, contents, groups, action = null) => {
+	//console.log("getGridColumn()");
 	
 	let gridContents = {};
 	for (let column = 1; column <= columns; column++) {

@@ -124,13 +124,14 @@ class StateListItem extends React.Component {
 		if (this.state[device.primaryStateKey]) {
 			icon = device.getIcon(device.primaryStateKey, this.state[device.primaryStateKey].val);
 			primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={device.getStyle('state', device.primaryStateKey, this.state[device.primaryStateKey].val)}>{this.state[device.primaryStateKey].value} {this.state[device.primaryStateKey].unit}</ListItemAction>
-			action = device.getOption('action') || (!secondary ? primary : [primary, <br key={'br_' + device.id} />, secondary]);
+			action = device.getOption('action') || (!secondary ? primary : [ primary, <br key={'br_' + device.id} />, secondary ]);
 		}
 		
 		return (
 
 <React.Fragment>
-	{options.divider && <ListItem divider style={{margin: '5px 0'}} />}
+	
+	{options.divider && options.divider !== 'after' && <ListItem divider style={{margin: '5px 0'}} />}
 	{prevSubgroup !== null && options.subgroup !== null && options.subgroup !== prevSubgroup && <ListDivider title={options.subgroup} />}
 	
 	<ListItem
@@ -154,6 +155,8 @@ class StateListItem extends React.Component {
 			{action}
 		</ListItemSecondaryAction>
 	</ListItem>
+	
+	{options.divider && options.divider === 'after' && <ListItem divider style={{margin: '5px 0'}} />}
 	
 </React.Fragment>
 
