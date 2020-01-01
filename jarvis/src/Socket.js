@@ -21,7 +21,7 @@ export default class Socket extends EventEmitter {
 		super();
 		
 		// socket connection
-		this.socket = io(url, { ...options, query: 'ws=true' });
+		this.socket = io(url, { timeout: 10000, ...options, query: 'ws=true' });
 		this.statesSubscribes = {}; // subscribed states
 		
 		/*
@@ -33,28 +33,28 @@ export default class Socket extends EventEmitter {
 		this.socket.on('connect', () => this.emit('connect'));
 		
 		// reconnect_attempt: Fired upon an attempt to reconnect.
-		this.socket.on('reconnect_attempt', attempt => this.emit('reconnect', attempt));
+		//this.socket.on('reconnect_attempt', attempt => this.emit('reconnect', attempt));
 		
 		// reconnect: Fired upon a successful reconnection.
 		this.socket.on('reconnect', attempts => this.emit('reconnect', attempts));
 		
 		// reconnect_error: Fired upon a reconnection attempt error.
-		this.socket.on('reconnect_error', error => this.emit('error', { 'type': 'reconnect', 'event': 'reconnect_error', 'error': error }));
+		this.socket.on('reconnect_error', error => this.emit('error', { 'type': 'reconnect', 'event': 'reconnect_error', 'message': error.message }));
 		
 		// reconnect_failed: Fired upon a reconnection attempt error.
-		this.socket.on('reconnect_failed', () => this.emit('error', { 'type': 'reconnect', 'event': 'reconnect_failed', 'error': null }));
+		this.socket.on('reconnect_failed', () => this.emit('error', { 'type': 'reconnect', 'event': 'reconnect_failed', 'message': 'Reconnection failed!' }));
 		
 		// discconect
 		this.socket.on('disconnect', reason => this.emit('disconnect', reason));
 		
 		// connect_error
-		this.socket.on('connect_error', error => this.emit('error', { 'type': 'connect', 'event': 'connect_error', 'error': error }));
+		this.socket.on('connect_error', error => this.emit('error', { 'type': 'connect', 'event': 'connect_error', 'message': error.message }));
 		
 		// connect_timeout
-		this.socket.on('connect_timeout', error => this.emit('error', { 'type': 'connect', 'event': 'connect_timeout', 'error': error }));
+		this.socket.on('connect_timeout', () => this.emit('error', { 'type': 'connect', 'event': 'connect_timeout', 'message': 'Connect ran into timeout!' }));
 		
 		// error
-		this.socket.on('error', error => this.emit('error', { 'type': 'error', 'event': 'error', 'error': error }));
+		this.socket.on('error', error => this.emit('error', { 'type': 'error', 'event': 'error', 'message': error.message }));
 		
 		/*
 		 * ioBroker events

@@ -3,12 +3,12 @@ export default {
 	configurations: {
 		open: {
 			icon: {
-				'true': 'door-open',
-				'false': 'door-closed'
+				'>90': 'blinds-open',
+				'<=90': 'blinds-closed'
 			},
 			state: {
-				'true': 'open',
-				'false': 'closed'
+				'>90': 'open',
+				'<=90': 'closed'
 			},
 		}
 	},

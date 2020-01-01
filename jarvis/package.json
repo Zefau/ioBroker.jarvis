@@ -10,7 +10,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "classnames": "^2.2.6",
+    "clsx": "^1.0.4",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "leaflet": "^1.6.0",

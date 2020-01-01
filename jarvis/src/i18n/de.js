@@ -1,9 +1,17 @@
 export default {
 	/*
+	 * LOADING SCREEN
+	 */
+	"Retrieving settings": "Einstellungen werden geladen",
+	
+	/*
 	 * GENERAL
 	 */
 	"on": "an",
 	"off": "aus",
+	
+	"open": "offen",
+	"closed": "geschlossen",
 	
 	"power": "Gerät an",
 	"brightness": "Helligkeit",
@@ -34,7 +42,6 @@ export default {
 	 * DOOR
 	 */
 	"bell": "Klingel",
-	"open": "Öffnen",
 	"lock": "Schloß",
 	"presence": "Präsenz",
 	
@@ -42,6 +49,6 @@ export default {
 	/*
 	 * HOUSEHOLD
 	 */
-	"running": "läuft",
+	"running": "Gerät läuft",
 	"consumption": "Verbrauch"
 }

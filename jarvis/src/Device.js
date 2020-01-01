@@ -92,6 +92,70 @@ export default class Device extends Function {
 	/**
 	 *
 	 *
+	 * @private
+	 */
+	_getConfigurationSetting(config, stateKey, attribute, stateVal) {
+		
+		if (this[config][stateKey]) {
+			
+			// 1. if stateKey (e.g. level, power) is available, try to replace an attribute (e.g. icon, unit or for styles state, icon) based on current state (e.g. true, false)
+			if (typeof this[config][stateKey][attribute] === 'object') {
+				return super._isValue(this[config][stateKey][attribute][stateVal]) ? this[config][stateKey][attribute][stateVal] : this[config][stateKey][attribute]['default'];
+			}
+			
+			// 2. if #1 is a function, apply it
+			else if (super._isFunction(this[config][stateKey][attribute])) {
+				return this[config][stateKey][attribute](stateVal);
+			}
+			
+			// 3. fallback to stateKey with attribute, if defined but neither an object (thus stateless) nor a function
+			else if (typeof this[config][stateKey][attribute] === 'string') {
+				return this[config][stateKey][attribute];
+			}
+		}
+		else if (this[config]['_any']) {
+			
+			// 4. fallback to _any if no stateKey (e.g. level, power) is given, but consider attribute to be stateful (e.g. true, false)
+			if (typeof this[config]['_any'][attribute] === 'object') {
+				return super._isValue(this[config]['_any'][attribute][stateVal]) ? this[config]['_any'][attribute][stateVal] : this[config]['_any'][attribute]['default'];
+			}
+			
+			// 5. if #4 is a function, apply it
+			else if (super._isFunction(this[config]['_any'][attribute])) {
+				return this[config]['_any'][attribute](stateVal);
+			}
+		}
+		
+		// nothing, return undefined (not null, because this would mean take an empty value)
+		return undefined;
+	}
+	
+	/**
+	 *
+	 *
+	 * @private
+	 */
+	_getUserSetting(stateKey, attribute, stateVal) {
+		
+		if (this.options[attribute][stateKey]) {
+			
+			if (typeof this.options[attribute][stateKey] === 'object') {
+				return super._isValue(this.options[attribute][stateKey][stateVal]) ? this.options[attribute][stateKey][stateVal] : this.options[attribute][stateKey]['default'];
+			}
+			else if (super._isFunction(this.options[attribute][stateKey])) {
+				return this.options[attribute][stateKey](stateVal);
+			}
+			else {
+				return this.options[attribute][stateKey];
+			}
+		}
+		
+		return undefined;
+	}
+	
+	/**
+	 *
+	 *
 	 *
 	 * @return void
 	 * @private
@@ -99,18 +163,18 @@ export default class Device extends Function {
 	 */
 	_setProperties() {
 		
+		let states = Object.keys(this.states);
+		
 		// properties
-		this.primaryStateKey = this.options.primary || Object.keys(this.states)[0];
+		this.primaryStateKey = this.options.primary || states[0];
 		this.secondaryStateKey = this.options.secondary || null;
 		
-		// icon
-		this.options.icon = !this.options.icon ? {} : super._setObjectStructure((this.options.icon[this.primaryStateKey] !== undefined && typeof this.options.icon[this.primaryStateKey] == 'object' ? this.options.icon[this.primaryStateKey] : { [this.primaryStateKey]: this.options.icon }));
-		
-		// states
-		this.options.mapping = super._setObjectStructure({ ...super.state, ...this.options.secondaryStateMapping, ...this.options.primaryStateMapping });
-		
-		// styles
-		this.options.styles =  { ...super.style, ...this.options.styles || {} };
+		// bring user settings for value, state, unit, icon and styles in structure
+		['value', 'state', 'unit', 'icon', 'styles'].forEach(key => {
+			
+			let stateOrAttribute = this.options[key] && Object.keys(this.options[key])[0];
+			this.options[key] = !this.options[key] ? {} : super._setObjectStructure(stateOrAttribute && states.indexOf(stateOrAttribute) > -1 ? this.options[key] : { [this.primaryStateKey]: this.options[key] });
+		});
 		
 		// all options
 		this.options.groups = Array.isArray(this.options.group) ? this.options.group : [this.options.group];
@@ -130,15 +194,34 @@ export default class Device extends Function {
 	 */
 	_updateDeviceState(stateKey, state) {
 		
+		// add time changed
 		state.timeChanged = moment(state.lc-2000).fromNow();
-		state.value = this.options.mapping[stateKey + '#' + state.val] || this.options.mapping[state.val] || this.options.mapping['default'] || state.val;
 		
+		// add unit
+		state.unit = '';
 		
-		['value', 'unit'].forEach(key => {
-			//state[key] = (this.configuration[stateKey] && this.configuration[stateKey][key] && ((typeof this.configuration[stateKey][key] === 'function' && this.configuration[stateKey][key](state.val)) || (typeof this.configuration[stateKey][key] !== 'function' && this.configuration[stateKey][key]))) || state[key] || '';
+		// assign value
+		state.value = state.val;
+		
+		// mapping of value to state values
+		[{ 'value': 'value' }, { 'state': 'value' }, { 'unit': 'unit' }].forEach(pair => {
+			let attribute = Object.keys(pair).toString();
+			let option = Object.values(pair).toString();
+			let settings = {};
+			
+			// get user setting
+			settings['options'] = this._getUserSetting(stateKey, attribute, state.value);
+			
+			// get function setting or fallback to defaults
+			['configurations', 'defaults'].forEach(config => {
+				settings[config] = this._getConfigurationSetting(config, stateKey, attribute, state.value);
+			});
+			
+			state[option] = super._getValueFromSetings(settings, state[option]);
+			
 		});
 		
-		
+		state.value = i18n.t(state.value);
 		return state;
 	}
 	
@@ -192,12 +275,17 @@ export default class Device extends Function {
 	 *
 	 */
 	getIcon(stateKey, stateVal = 'default', defaultIcon = null) {
+		let settings = {};
 		
-		let userIcon = this.options.icon[stateKey] && (this.options.icon[stateKey][stateVal] || this.options.icon[stateKey]['default']);
-		let functionIcon = this.configurations[stateKey] && this.configurations[stateKey].icon && (this.configurations[stateKey].icon[stateVal] || this.configurations[stateKey].icon['default']);
-		let globalDefaultIcon = this.defaults[stateKey] && this.defaults[stateKey].icon && (this.defaults[stateKey].icon[stateVal] || this.defaults[stateKey].icon['default']);
+		// get user setting
+		settings['options'] = this._getUserSetting(stateKey, 'icon', stateVal);
 		
-		return userIcon || functionIcon || globalDefaultIcon || defaultIcon;
+		// get function setting or fallback to defaults
+		['configurations', 'defaults'].forEach(config => {
+			settings[config] = this._getConfigurationSetting(config, stateKey, 'icon', stateVal);
+		});
+		
+		return super._getValueFromSetings(settings, defaultIcon);
 	}
 	
 	/**
@@ -212,8 +300,18 @@ export default class Device extends Function {
 	 *
 	 *
 	 */
-	getStyle(attribute, stateVal = 'default') {
-		return (this.options.styles[attribute] && (this.options.styles[attribute][stateVal] || this.options.styles[attribute]['default'])) || {};
+	getStyle(attribute, stateKey, stateVal = 'default') {
+		let settings = {};
+		
+		// get user setting
+		settings['options'] = this._getUserSetting(stateKey, attribute, stateVal);
+		
+		// get function setting or fallback to defaults
+		['styles', 'defaultStyles'].forEach(config => {
+			settings[config] = this._getConfigurationSetting(config, stateKey, attribute, stateVal);
+		});
+		
+		return super._getValueFromSetings(settings, {});
 	}
 	
 	/**
@@ -255,11 +353,6 @@ export default class Device extends Function {
 			return Promise.reject({ 'success': false, 'stateKey': stateKey, 'error': s });
 		}
 		
-		if (!s.state) {
-			console.log(this.name);
-		console.log(s);
-		}
-		
 		return new Promise((resolve, reject) => {
 			
 			// send cached value if present and subscrbe (means always updated)
@@ -276,6 +369,11 @@ export default class Device extends Function {
 			else {
 				this.socket.getState(s.state.node)
 					.then(state => {
+						
+						// state does not exist
+						if (state === null) {
+							reject({ 'success': false, 'stateKey': stateKey, 'error': 'State ' + s.state.node + ' not found!' });
+						}
 						
 						// set result
 						s.state.value = this._updateDeviceState(stateKey, state);

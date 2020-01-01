@@ -92,7 +92,7 @@ export default class i18n {
 	*/
 	static setTranslation(language, translation) {
 		if (language && translation) {
-			i18n.translations[language] = translation;
+			i18n.translations[language] = { ...i18n.translations[language] || {}, ...translation };
 			console.log('i18n: Set translations for language ' + language + '.');
 			return true;
 		}
@@ -122,6 +122,7 @@ export default class i18n {
 	*/
 	static t(word, options = {}, placeholders = {}, language = i18n.language) {
 		
+		word = word.toString();
 		if (i18n.translations[language]) {
 			
 			// check if word is concatenated

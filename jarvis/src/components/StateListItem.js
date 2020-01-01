@@ -1,5 +1,5 @@
 import React from 'react';
-import multipleClassNames from 'classnames';
+import clsx from 'clsx';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -83,7 +83,7 @@ const ListItemIconElement = withStyles(styles)(props => {
 	let classNames = Array.isArray(customClassNames) ? customClassNames : [customClassNames];
 	classNames = classNames.map(className => (classes[className] ? classes[className] : className));
 	
-	return (<span className={multipleClassNames(classNames)}>{children}</span>);
+	return (<span className={clsx(classNames)}>{children}</span>);
 });
 const ListItemAction = ListItemIconElement;
 
@@ -119,11 +119,11 @@ class StateListItem extends React.Component {
 		
 		let options = device.get('options');
 		let icon = null, primary = null, secondary = null, action = null;
-		secondary = this.state[device.secondaryStateKey] && <ListItemAction key={'secondary_' + device.id} customClassNames="defaultListItemActionSecondary" styles={{...device.getStyle('state', this.state[device.secondaryStateKey].val), ...device.getStyle('secondaryState', this.state[device.secondaryStateKey].val)}}>{this.state[device.secondaryStateKey].value} {this.state[device.secondaryStateKey].unit}</ListItemAction>
+		secondary = this.state[device.secondaryStateKey] && <ListItemAction key={'secondary_' + device.id} customClassNames="defaultListItemActionSecondary" styles={device.getStyle('state', device.secondaryStateKey, this.state[device.secondaryStateKey].val)}>{this.state[device.secondaryStateKey].value} {this.state[device.secondaryStateKey].unit}</ListItemAction>
 		
 		if (this.state[device.primaryStateKey]) {
 			icon = device.getIcon(device.primaryStateKey, this.state[device.primaryStateKey].val);
-			primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={{...device.getStyle('state', this.state[device.primaryStateKey].val), ...device.getStyle('primaryState', this.state[device.primaryStateKey].val)}}>{this.state[device.primaryStateKey].value} {this.state[device.primaryStateKey].unit}</ListItemAction>
+			primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={device.getStyle('state', device.primaryStateKey, this.state[device.primaryStateKey].val)}>{this.state[device.primaryStateKey].value} {this.state[device.primaryStateKey].unit}</ListItemAction>
 			action = device.getOption('action') || (!secondary ? primary : [primary, <br key={'br_' + device.id} />, secondary]);
 		}
 		
@@ -134,14 +134,14 @@ class StateListItem extends React.Component {
 	{prevSubgroup !== null && options.subgroup !== null && options.subgroup !== prevSubgroup && <ListDivider title={options.subgroup} />}
 	
 	<ListItem
-		className={multipleClassNames(this.props.openDialog && classes.finger, horizontal && classes.horizontalListItem)}
+		className={clsx(this.props.openDialog && classes.finger, horizontal && classes.horizontalListItem)}
 		button={this.props.openDialog !== null}
 		onClick={this.props.openDialog && this.openDialog.bind(this)}
 		>
 		
 		{icon !== null &&
 		<ListItemIcon className={ horizontal && classes.horizontalListItemIcon }>
-			<ListItemIconElement customClassNames={['defaultListIcon','mdi mdi-' + icon]} styles={device.getStyle('icon', this.state[device.primaryStateKey].val)} />
+			<ListItemIconElement customClassNames={['defaultListIcon','mdi mdi-' + icon]} styles={device.getStyle('icon', device.primaryStateKey, this.state[device.primaryStateKey].val)} />
 		</ListItemIcon>
 		}
 		

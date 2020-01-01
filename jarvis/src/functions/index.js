@@ -1,7 +1,11 @@
 
 export default {
 	defaults: require('./defaults').default,
-	light: require('./light').default,
+	
+	blind: require('./blind').default,
+	door: require('./door').default,
 	heating: require('./heating').default,
-	door: require('./door').default
+	jalousie: require('./blind').default,
+	light: require('./light').default,
+	window: require('./door').default
 }

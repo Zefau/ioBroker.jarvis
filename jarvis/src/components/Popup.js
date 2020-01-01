@@ -109,12 +109,14 @@ export default class Popup extends React.Component {
 				
 				// retrieve state
 				responses.push(new Promise(resolve => {
-					child.requestDeviceState(null, true).then(res => {
-						child.setAction(device.getAction(stateKey));
-						child.setComponent(device.getComponent(stateKey));
-						
-						resolve(true);
-					});
+					child.requestDeviceState(null, true)
+						.then(res => {
+							child.setAction(device.getAction(stateKey));
+							child.setComponent(device.getComponent(stateKey));
+							
+							resolve(true);
+						})
+						.catch(err => console.error(err));
 				}));
 				
 				children.push(child);

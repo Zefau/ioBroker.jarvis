@@ -1,11 +1,38 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
+
+import GridContainer from './components/GridContainer';
+import StatusSnackbar from './components/StatusSnackbar';
+
 import i18n from './i18n';
 import Socket from './Socket';
 import Device from './Device';
 import Jarvis from './Jarvis';
 
+
 /*
- *
+ * STYLES
+ */
+import { withStyles } from '@material-ui/core/styles';
+const styles = theme => ({
+	loading: {
+		margin: '10px 0 0 0',
+		color: '#999'
+	},
+	gridItem: {
+		margin: theme.spacing(1, 1, 0, 0),
+		[theme.breakpoints.down('md')]: {
+			marginRight: theme.spacing(0.4, 0.4, 0, 0)
+		}
+	}
+});
+
+
+/*
+ * CONSTANTS
  *
  */
 const NODE_SETTINGS = 'jarvis.0.settings';
@@ -30,10 +57,31 @@ class App extends React.Component {
 		let url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : null;
 		this.socket = new Socket(url);
 		
+		this.socket.on('connect', () => {
+			this.setState({
+				error: false,
+				errorMessage: ''
+			});
+		});
+		
+		this.socket.on('reconnect', () => {
+			this.setState({
+				error: false,
+				errorMessage: ''
+			});
+		});
+		
+		this.socket.on('disconnect', reason => {
+			this.setState({
+				error: false,
+				errorMessage: reason
+			});
+		});
+		
 		this.socket.on('error', err => {
 			this.setState({
 				error: true,
-				errorMessage: err.error
+				errorMessage: err.message || 'Unknown error!'
 			});
 		});
 		
@@ -115,6 +163,15 @@ class App extends React.Component {
 		// favicon
 		if (this.settings.favicon && this.settings.favicon.substr(0, 5) === 'data:') {
 			document.getElementById('favicon').href = this.settings.favicon;
+		}
+		
+		// translations
+		if (this.settings.translations) {
+			
+			let translations = this.settings.translations;
+			for (let language in translations) {
+				i18n.setTranslation(language, translations[language]);
+			}
 		}
 	}
 	
@@ -221,21 +278,83 @@ class App extends React.Component {
 		return groups;
 	};
 	
-	renderLoading() {
-		return null;
+	renderError() {
+		console.error(JSON.stringify(this.state.errorMessage));
+		return (
+
+<StatusSnackbar
+	key={'StatusSnackbar'}
+	variant="error"
+	closeButton={false}
+	message={this.state.errorMessage.toString()}
+	/>
+
+		);
+	}
+	
+	renderLoadingProgress() {
+		const { classes } = this.props;
+		return (
+
+<Grid
+	key="loadingProcess" 
+	container
+	spacing={0}
+	direction="column"
+	justify="center"
+	alignItems="center"
+	style={{ minHeight: "100vh" }}
+	>
+
+	<CircularProgress />
+	<Typography className={classes.loading}>{i18n.t('Retrieving settings')}...</Typography>
+
+</Grid>
+
+		);
 	};
+	
+	renderLoadingSkeleton(props) {
+		const { classes, columns = 3 } = this.props;
+		
+		const SkeletonLoader = (props) => <Skeleton variant="rect" className={classes.gridItem} height={props.height} />;
+		
+		let gridContents = {}
+		for (let column = 1; column <= columns; column++) {
+			gridContents[column] = gridContents[column] || [];
+			
+			let loaders = Math.random() * (5 - 2) + 2;
+			for (let loader = 1; loader <= loaders; loader++) {
+				gridContents[column].push(<SkeletonLoader key={column + '#' + loader} height={(Math.random() * (400 - 100) + 100)} />);
+			}
+		}
+		
+		return (
+
+<GridContainer key="loadingSkeleton" contents={gridContents} />
+
+		);
+	}
 	
     render() {
-		if (this.state.error) {
-			
+		
+		// error message
+		const error = this.state.error ? this.renderError() : null;
+		
+		// loading screens
+		if (this.state.error && this.state.loaded.length < 2) {
+			return error;
+		}
+		else if (this.state.loaded.indexOf('settings') === -1) {
+			return this.renderLoadingProgress();
+		}
+		else if (this.state.loaded.indexOf('groups') === -1) {
+			return this.renderLoadingSkeleton(this.settings.columns && this.settings.columns.number);
 		}
 		
-		if (this.state.loaded.length < 2) {
-			return this.renderLoading();
-		}
-		
-        return <Jarvis settings={this.settings} groups={this.groups} />
+		// App
+		return [ error, <Jarvis key="jarvis" settings={this.settings} groups={this.groups} /> ];
 	};
 }
-	
-export default App;
+
+export default withStyles(styles)(App);

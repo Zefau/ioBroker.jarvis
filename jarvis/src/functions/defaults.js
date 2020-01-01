@@ -127,7 +127,7 @@ function LevelComponent(props) {
 export default {
 	configurations: {
 		_any: {
-			//value
+			value: (val) => val.toString(),
 			//unit
 			//icon
 			//state
@@ -142,10 +142,9 @@ export default {
 			unit: ' %'
 		},
 		power: {
-			value: (val) => val.toString(),
 			state: {
-				true: 'on',
-				false: 'off'
+				'true': 'on',
+				'false': 'off'
 			}
 		},
 		temperature: {
@@ -164,14 +163,16 @@ export default {
 		PowerAction
 	},
 	styles: {
-		icon: {},
-		state: {
-			true: {
-				'color': '#090',
-				'fontWeight': 'bold'
-			},
-			false: {
-				'color': '#999'
+		_any: {
+			//icon: {},
+			state: {
+				'true': {
+					'color': '#090',
+					'fontWeight': 'bold'
+				},
+				'false': {
+					'color': '#999'
+				}
 			}
 		}
 	}

@@ -20,7 +20,7 @@ function HslToRgb(h, s = 1, l = 0.5) {
 	
 	let r, g, b;
 
-	if (s == 0) {
+	if (s === 0) {
 		r = g = b = l; // achromatic
 	}
 	else {
@@ -63,9 +63,9 @@ function RgbToHex(r, g, b) {
 	g = g.toString(16);
 	b = b.toString(16);
 	
-	if (r.length == 1) r = '0' + r;
-	if (g.length == 1) g = '0' + g;
-	if (b.length == 1) b = '0' + b;
+	if (r.length === 1) r = '0' + r;
+	if (g.length === 1) g = '0' + g;
+	if (b.length === 1) b = '0' + b;
 	
 	return "#" + r + g + b;
 }
@@ -76,26 +76,26 @@ function RgbToHex(r, g, b) {
  *
  */
 function LightColorAction(props) {
-	const { state } = props;
+	const { device, state } = props;
 	
-	const [checked, setChecked] = useState((state.state && state.state.value && state.state.value.val) || false);
+	const [colorSpace, setColorSpace] = useState((state.state && state.state.value && state.state.value.val) || false);
 	
 	useEffect(() => {
 		device.on('stateChange', (stateKey, s) => {
 			if (stateKey === state.stateKey) {
-				setChecked(s.val);
+				setColorSpace(s.val);
 			}
 		});
 	});
 	
 	let colors, labels = {};
-	if (state.stateKey === 'rgb' && state.state.value && state.state.value.val) {
-		colors = state.state.value.val.split(',');
+	if (state.stateKey === 'rgb' && colorSpace) {
+		colors = colorSpace.split(',');
 		labels = { Red: colors[0], Green: colors[1], Blue: colors[2] };
 		
 	}
-	else if (state.stateKey === 'hsv' && state.state.value && state.state.value.val) {
-		colors = state.state.value.val.split(',');
+	else if (state.stateKey === 'hsv' && colorSpace) {
+		colors = colorSpace.split(',');
 		labels = { Hue: colors[0], Saturation: colors[1], Brightness: colors[2] };
 	}
 	
@@ -142,7 +142,7 @@ function LightHueComponent(props) {
 
 function LightColorComponent(props) {
 	const { device, state, title } = props;
-	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
+	const onChangeComplete = (color, e) => device.setDeviceState(state.stateKey, color.rgb.toString());
 	
 	const Component = defaults.components.Component;
 	const color = (state.state && state.state.value && state.state.value.val) || '#fff';
@@ -152,7 +152,7 @@ function LightColorComponent(props) {
 	<ColorPicker
 		color={color}
 		width={'100%'}
-		onChangeComplete={null}
+		onChangeComplete={onChangeComplete}
 		/>
 		
 </Component>
@@ -167,20 +167,20 @@ export default {
 		power: {
 			icon: {
 				_widget: 'light-switch',
-				true: 'lightbulb-on',
-				false: 'lightbulb-off-outline'
+				'true': 'lightbulb-on',
+				'false': 'lightbulb-off-outline'
 			},
 		},
 		level: {
 			value: (val) => val > 0 && val <= 1 ? val * 100 : val,
-			unit: (val) => val > 0 ? ' %' : '',
+			unit: (value) => value !== 'off' ? ' %' : null,
 			icon: {
 				_widget: 'brightness-percent',
-				0: 'lightbulb-off-outline'
+				'default': 'lightbulb-on',
+				'0': 'lightbulb-off-outline'
 			},
 			state: {
-				'default': 'lightbulb-on',
-				0: 'off'
+				'0': 'off'
 			},
 		},
 		colorTemperature: {
@@ -226,10 +226,12 @@ export default {
 		hex: LightColorAction
 	},
 	styles: {
-		icon: {},
-		state: {
-			0: {
-				'color': '#999'
+		_any: {
+			//icon: {},
+			state: {
+				'0': {
+					'color': '#999'
+				}
 			}
 		}
 	}

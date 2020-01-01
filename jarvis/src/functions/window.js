@@ -3,8 +3,8 @@ export default {
 	configurations: {
 		open: {
 			icon: {
-				'true': 'door-open',
-				'false': 'door-closed'
+				'true': 'window-open-variant',
+				'false': 'window-closed-variant'
 			},
 			state: {
 				'true': 'open',
