@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Box(props) {
+export default function Widget(props) {
 	const { title, icon, iconStyle } = props;
 	const classes = useStyles(iconStyle);
 	

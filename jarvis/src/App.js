@@ -53,7 +53,7 @@ class App extends React.Component {
 	
 	componentDidMount() {
 		
-		// data connection
+		// open data connection
 		let url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : null;
 		this.socket = new Socket(url);
 		
@@ -145,8 +145,8 @@ class App extends React.Component {
 					errorMessage: err
 				});
 			});
-    };
-	
+    }
+
 	/**
 	 *
 	 *
@@ -159,13 +159,13 @@ class App extends React.Component {
 		i18n.loadTranslations(['en', 'de']);
 		
 		// page title
-		if (this.settings.title) {
-			document.title = this.settings.title;
+		if (this.settings.pageTitle) {
+			document.title = this.settings.pageTitle;
 		}
 		
 		// favicon
-		if (this.settings.favicon && this.settings.favicon.substr(0, 5) === 'data:') {
-			document.getElementById('favicon').href = this.settings.favicon;
+		if (this.settings.pageFavicon && this.settings.pageFavicon.substr(0, 5) === 'data:') {
+			document.getElementById('favicon').href = this.settings.pageFavicon;
 		}
 		
 		// translations
@@ -295,7 +295,6 @@ class App extends React.Component {
 		}
 		
 		return new Promise(resolve => Promise.allSettled(promises).then(res => {
-			console.debug(res);
 			
 			// sort groups
 			for (let groupId in groups) {
@@ -307,8 +306,7 @@ class App extends React.Component {
 			}
 		
 			// return
-			console.info('Processed ' + devices + ' devices. Added ' + groupedDevices + ' devices in ' + Object.keys(groups).length + ' groups.');
-			console.debug(groups);
+			console.info('Processed ' + devices + ' devices. Added ' + groupedDevices + ' devices in ' + Object.keys(groups).length + ' groups.', res, groups);
 			resolve(groups);
 		}));
 	};
@@ -350,12 +348,13 @@ class App extends React.Component {
 	};
 	
 	renderLoadingSkeleton(props) {
-		const { classes, columns = 3 } = this.props;
+		const { classes } = this.props;
+		const { topBar, tabBar, gridColumns } = props;
 		
 		const SkeletonLoader = (props) => <Skeleton variant="rect" className={classes.gridItem} height={props.height} />;
 		
 		let gridContents = {}
-		for (let column = 1; column <= columns; column++) {
+		for (let column = 1; column <= gridColumns; column++) {
 			gridContents[column] = gridContents[column] || [];
 			
 			let loaders = Math.random() * (5 - 2) + 2;
@@ -366,7 +365,11 @@ class App extends React.Component {
 		
 		return (
 
-<GridContainer key="loadingSkeleton" contents={gridContents} />
+<React.Fragment>
+	{topBar && <Skeleton variant="rect"  height={64} />}
+	{tabBar && <Skeleton variant="rect"  height={48} />}
+	<GridContainer key="loadingSkeleton" contents={gridContents} />
+</React.Fragment>
 
 		);
 	}
@@ -384,7 +387,8 @@ class App extends React.Component {
 			return this.renderLoadingProgress();
 		}
 		else if (this.state.loaded.indexOf('groups') === -1) {
-			return this.renderLoadingSkeleton(this.settings.columns && this.settings.columns.number);
+			const tab = Object.keys(this.settings.layout)[0];
+			return this.renderLoadingSkeleton({ topBar: true, tabBar: tab !== 1, gridColumns: (tab !== 1 ? Object.keys(this.settings.layout[tab]).length : tab.length) });
 		}
 		
 		// App

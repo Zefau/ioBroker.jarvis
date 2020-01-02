@@ -83,7 +83,7 @@ const ListItemIconElement = withStyles(styles)(props => {
 	let classNames = Array.isArray(customClassNames) ? customClassNames : [customClassNames];
 	classNames = classNames.map(className => (classes[className] ? classes[className] : className));
 	
-	return (<span className={clsx(classNames)}>{children}</span>);
+	return <span className={clsx(classNames)}>{children}</span>
 });
 const ListItemAction = ListItemIconElement;
 

@@ -18,6 +18,8 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function GridContainer(props) {
+	console.log('RENDER COMPONENT: GridContainer');
+	
 	const { contents = {} } = props;
 	
 	const classes = useStyles();
@@ -27,7 +29,7 @@ export default function GridContainer(props) {
 	for (let column = 1; column <= columns; column++) {
 		
 		if (!contents[column]) {
-			console.error('No content for column #' + column + '!');
+			console.warn('No content for column #' + column + '!');
 			continue;
 		}
 		

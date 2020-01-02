@@ -16,6 +16,7 @@ class LeafletMap extends React.Component {
 	render() {
 		const position = [61.595961,5.0889158];
 		
+		/*
 		const myIcon = L.icon({
 			iconUrl: require('../marker.png'),
 			iconSize: [64,64],
@@ -25,9 +26,10 @@ class LeafletMap extends React.Component {
 			shadowSize: null,
 			shadowAnchor: null
 		});
+		*/
 		
 		const markers = (
-<Marker position={[61.5959486,5.0889303]} icon={myIcon}>
+<Marker position={[61.5959486,5.0889303]}>
 	<Tooltip direction="bottom">
 		A pretty CSS3 popup. <br/> Easily customizable.
 	</Tooltip>
@@ -37,7 +39,7 @@ class LeafletMap extends React.Component {
 
 		return (
 
-<Map center={position} zoom={this.state.zoom} style={{ width: '100%', height: '500px' }} >
+<Map center={position} zoom={this.state.zoom} style={{ width: '100%', height: '100%' }} >
 	<TileLayer
 		attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
