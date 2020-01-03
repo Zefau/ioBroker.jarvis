@@ -32,7 +32,7 @@ const COMPONENTS = {
 /*
  *
  */
-const getGroup = (groupId, group, action) => {
+const getGroup = (groupId, group, props = {}) => {
 	
 	// group empty
 	if (!group) {
@@ -48,14 +48,14 @@ const getGroup = (groupId, group, action) => {
 		return null;
 	}
 	
-	return <Tag key={'Tag' + groupId} devices={group.devices} openDialog={action} />
+	return <Tag key={'Tag' + groupId} devices={group.devices} openDialog={props.action ? props.action : null} {...props} {...group.settings} />
 }
 
 
 /*
  *
  */
-const getGridContents = (contents, groups, action = null) => {
+const getGridContents = (contents, groups, props = {}) => {
 	console.log("RENDER COMPONENT: getGridColumn()");
 	
 	let gridContents = {};
@@ -77,7 +77,7 @@ const getGridContents = (contents, groups, action = null) => {
 				let groupId = columnContents[index];
 				let group = groups[groupId];
 				
-				let content = getGroup(groupId, group, action);
+				let content = getGroup(groupId, group, props);
 				if (content) {
 					gridContents[column].push(
 						<Widget key={'Box-' + groupId + '-' + index} title={group.settings.title !== null ? (group.settings.title || group.name) : null} icon={group.settings.icon} iconStyle={group.settings.iconStyle}>
@@ -128,6 +128,9 @@ export default class Jarvis extends React.Component {
 			this.layout = { 'Home': this.layout };
 			this.tabs.push('1');
 		}
+		
+		// widget props
+		this.widgetProps = {}
 	}
 	
 	getTabPanels() {
@@ -139,12 +142,12 @@ export default class Jarvis extends React.Component {
 			
 			// fullscreen in component
 			if (!this.gridContents[tabLabel] && typeof contents === 'string') {
-				this.gridContents[tabLabel] = getGroup(contents, this.props.groups[contents], this.openDialog);
+				this.gridContents[tabLabel] = getGroup(contents, this.props.groups[contents], { action: this.openDialog, ...this.widgetProps });
 			}
 			
 			// grid layout
 			else if (!this.gridContents[tabLabel]) {
-				this.gridContents[tabLabel] = <GridContainer contents={getGridContents(contents, this.props.groups, this.openDialog)} />
+				this.gridContents[tabLabel] = <GridContainer contents={getGridContents(contents, this.props.groups, { action: this.openDialog, ...this.widgetProps })} />
 			}
 			
 			let tabPanel = (

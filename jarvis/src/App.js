@@ -1,4 +1,7 @@
 import React from 'react';
+import LogRocket from 'logrocket';
+import uuid from 'uuid/v3';
+
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
@@ -152,6 +155,19 @@ class App extends React.Component {
 	 *
 	 */
 	useSettings() {
+		
+		// LogRocket
+		if (this.settings.debug && this.settings.debug.name && this.settings.debug.email && this.settings.debug.email.indexOf('@') > -1) {
+			LogRocket.init('36n1xl/jarvis');
+			
+			let id = uuid(this.settings.debug.name + '#' + this.settings.debug.email, 'e63359dc-bc1c-476e-81cd-8f580d09a557');
+			LogRocket.identify(id, {
+				name: this.settings.debug.name,
+				email: this.settings.debug.email
+			});
+			
+			console.info('Opt-In for providing debugging details to the developer. Your ID is: ' + id);
+		}
 		
 		// language
 		window.language = (this.settings.language || navigator.language || navigator.userLanguage || 'en').substr(0, 2);

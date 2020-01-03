@@ -50,7 +50,7 @@ export default function TopBar(props) {
 	const [ icon, label ] = title.indexOf('|') > -1 ? title.split('|') : [ null, title ];
 	return (
 
-<AppBar position="static" className={classes.appBar}>
+<AppBar id="appBar" position="static" className={classes.appBar}>
 
 	<Toolbar className={classes.toolbar}>
 		<Typography variant="h6" className={classes.title}>

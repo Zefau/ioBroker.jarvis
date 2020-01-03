@@ -152,6 +152,9 @@ export default {
 		level: {
 			unit: ' %'
 		},
+		position: {
+			icon: 'map-marker'
+		},
 		power: {
 			state: {
 				'true': 'on',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import clsx from 'clsx';
 
 import useWindowDimensions from '../helpers/useWindowDimensions';
@@ -29,8 +29,7 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: theme.palette.primary.main,
 		paddingLeft: theme.spacing(),
 		color: '#fff',
-		width: '100%',
-		/*width: 'calc(100% - ' + theme.spacing() + ')',*/
+		width: 'calc(100% - ' + theme.spacing() + 'px)',
 		zIndex: 101,
 		borderBottom: '5px solid #eee'
 	},
@@ -44,6 +43,9 @@ const useStyles = makeStyles(theme => ({
 	fullscreen: {
 		marginLeft: -theme.spacing(),
 		marginTop: '-5px',
+	},
+	grid: {
+		paddingBottom: '30px'
 	}
 }));
 
@@ -51,25 +53,24 @@ const useStyles = makeStyles(theme => ({
 export default function TabBar(props) {
 	let { tabs, selectTab } = props;
 	const classes = useStyles();
-	;
+	let tabBarProps = useRef({});
 	
 	// tab
 	const [tab, setTab] = useState(0);
 	const handleChange = (event, selectedTab) => {
 		selectTab(selectedTab, tabs[selectedTab]);
-		setTab(tab);
+		setTab(selectedTab);
 	}
 	
 	// scroll
-	let tabBarProps = 0
 	const [fixed, setFixed] = useState(false);
 	const handleScroll = useCallback(() => {
-		let threshold = (tabBarProps.top + tabBarProps.height - 53);
+		const threshold = (tabBarProps.current.top + tabBarProps.current.height - 53);
 		const fixed = window.scrollY >= threshold;
 		
 		setFixed(prevFixed => {
 			if (prevFixed !== fixed) {
-				document.getElementById('root').style.paddingTop = fixed ? (threshold-10) + 'px' : 0;
+				document.getElementById('root').style.paddingTop = fixed ? (threshold-5-8) + 'px' : 0;
 				return fixed;
 			}
 			
@@ -79,7 +80,7 @@ export default function TabBar(props) {
 	}, [tabBarProps]);
 
 	useEffect(() => {
-		tabBarProps = {
+		tabBarProps.current = {
 			top: document.getElementById('tabBar').offsetTop,
 			height: document.getElementById('tabBar').offsetHeight
 		}
@@ -117,16 +118,39 @@ export default function TabBar(props) {
 export function TabPanel(props) {
 	const { children, selectedTab, renderedTab, fullscreen } = props;
 	const classes = useStyles();
+	
+	
+	// get map height based on viewport
 	const { height } = useWindowDimensions();
+	const [mapHeight, setMapHeight] = useState(height);
+	let topBarHeight = useRef({});
+	
+	useEffect(() => {
+		topBarHeight.current = document.getElementById('appBar').offsetHeight;
+		setMapHeight(height-topBarHeight.current+5);
+		
+	}, [height], []);
+	
+	/*
+	 * Some components need to be visible upon loading, so proper initialise.
+	 * Due to the 'hidden' attribute though, they might be hidden.
+	 * This is a workaround to initially show everything for a short period of time and then hide according to tab settings.
+	 *
+	 */
+	const [hidden, setHidden] = useState(null);
+	useEffect(() => {
+		setTimeout(() => setHidden(selectedTab !== renderedTab), 10);
+		
+	}, [selectedTab, renderedTab], [selectedTab]);
 	
 	return (
 
 <Box
 	role="tabpanel"
-	hidden={selectedTab !== renderedTab}
+	hidden={hidden}
 	id={'tabpanel-' + renderedTab}
-	className={clsx(fullscreen && classes.fullscreen)}
-	style={{ height: height+'px' }}
+	className={clsx(fullscreen ? classes.fullscreen : classes.grid)}
+	style={{ height: mapHeight + 'px' }}
 	>
 	
 	{children}

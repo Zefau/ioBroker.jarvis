@@ -167,9 +167,23 @@ export default class Device extends Function {
 		
 		// delete ignored states
 		if (this.options.ignoredStates) {
+			this.options.ignoredStates = Array.isArray(this.options.ignoredStates) ? this.options.ignoredStates : [this.options.ignoredStates];
+			
 			this.options.ignoredStates.forEach(ignoredState => {
 				if (this.states[ignoredState]) {
 					delete this.states[ignoredState];
+				}
+			});
+		}
+		
+		// delete ignored states
+		this.options.hiddenStates = [];
+		if (this.options.hideStates) {
+			this.options.hideStates = Array.isArray(this.options.hideStates) ? this.options.hideStates : [this.options.hideStates];
+			
+			this.options.hideStates.forEach(hideState => {
+				if (this.states[hideState]) {
+					this.options.hiddenStates.push(hideState);
 				}
 			});
 		}

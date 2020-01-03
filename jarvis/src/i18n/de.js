@@ -10,6 +10,9 @@ export default {
 	"on": "an",
 	"off": "aus",
 	
+	"user": "User",
+	"users": "Users",
+	
 	"open": "offen",
 	"closed": "geschlossen",
 	

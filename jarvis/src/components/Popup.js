@@ -85,7 +85,7 @@ export default class Popup extends React.Component {
 			
 			for (let stateKey in device.states) {
 				
-				if (device.states[stateKey].state === undefined) {
+				if (device.states[stateKey].state === undefined || device.options.hiddenStates.indexOf(stateKey) > -1) {
 					continue;
 				}
 					
@@ -125,7 +125,7 @@ export default class Popup extends React.Component {
 			
 			Promise.allSettled(responses).then(() => {
 				
-				console.log(responses);
+				console.info('Retrieved ' + Object.keys(children).length + ' states for device ' + device.name + '.', responses);
 				this.setState({ 'children': children }, () => this.forceUpdate());
 			});
 		}
