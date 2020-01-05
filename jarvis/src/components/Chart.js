@@ -39,9 +39,24 @@ export default function Chart(props) {
 			});
 			
 			// listen for updates
-			device.on('historyChange', (stateKey, state) => {
-				console.log(stateKey);
-				console.log(state);
+			device.on('historyChange', (stateKey, history) => {
+				
+				let temp = {};
+				if (!charts[stateKey]) {
+					
+					temp[stateKey] = {
+						labels: [],
+						data: []
+					};
+					
+					history.forEach(entry => {
+						temp[stateKey].labels.push(entry.ts);
+						temp[stateKey].data.push(entry.val);
+					});
+					
+					setCharts(prevCharts => ({ ...prevCharts, [stateKey]: temp[stateKey] }));
+				}
+				
 				/*
 				if (stateKey === device.primaryKey) {
 					
@@ -58,7 +73,7 @@ export default function Chart(props) {
 			});
 		});
 	
-	}, [devices], []);
+	}, [devices]);
 	
 	// INDEX: { ts: 1577796089456, val: 3971.88 }
 /*
@@ -83,5 +98,46 @@ export default function Chart(props) {
 });
 */
 
-	return null
+let data = {};
+
+console.log(charts);
+
+if (charts && charts['brightness']) {
+data = {
+  labels: charts['brightness'].labels,
+  datasets: [
+    {
+      label: 'My First dataset',
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: 'rgba(75,192,192,0.4)',
+      borderColor: 'rgba(75,192,192,1)',
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(75,192,192,1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: charts['brightness'].data
+    }
+  ]
+};
+
+} 
+
+
+	return (
+
+<div className={'chart-container'} style={{ position: 'relative' }}>
+	<Line data={data} />
+</div>
+
+	);
 }

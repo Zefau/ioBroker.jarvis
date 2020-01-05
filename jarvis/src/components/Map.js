@@ -134,7 +134,7 @@ export default function Map(props) {
 			});
 		});
 	
-	}, [devices], []);
+	}, [devices]);
 	
 	// add markers
 	let mapMarkers = [], mapOverview = [];

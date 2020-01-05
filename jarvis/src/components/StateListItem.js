@@ -1,11 +1,11 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from 'react'
+import clsx from 'clsx'
 
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
 
 
 /*
@@ -14,9 +14,12 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
 	defaultListDivider: {
+		margin: '0 0 5px 0'
+	},
+	defaultListSectionDivider: {
 		margin: '5px 0 0 0'
 	},
-	defaultListDividerText: {
+	defaultListSectionText: {
 		margin: '5px 0 0 0',
 		[theme.breakpoints.down('md')]: {
 			margin: '5px 0 0 10px',
@@ -24,14 +27,6 @@ const styles = theme => ({
 	},
 	defaultListIcon: props => ({
 		...theme.components.icon,
-		...props.styles
-	}),
-	defaultListItemActionPrimary: props => ({
-		...props.styles
-	}),
-	defaultListItemActionSecondary: props => ({
-		color: '#999',
-		fontSize: '14px',
 		...props.styles
 	}),
 	horizontalListItem: {
@@ -62,10 +57,10 @@ const ListDivider = withStyles(styles)(props => {
 	return (
 	
 <React.Fragment>
-	<ListItem divider className={classes.defaultListDivider} />
+	<ListItem divider className={classes.defaultListSectionDivider} />
 	<li>
 		<Typography
-			className={classes.defaultListDividerText}
+			className={classes.defaultListSectionText}
 			display="block"
 			variant="caption"
 		>
@@ -85,7 +80,6 @@ const ListItemIconElement = withStyles(styles)(props => {
 	
 	return <span className={clsx(classNames)}>{children}</span>
 });
-const ListItemAction = ListItemIconElement;
 
 
 class StateListItem extends React.Component {
@@ -117,32 +111,18 @@ class StateListItem extends React.Component {
 	render() {
 		const { classes, horizontal, prevSubgroup, device, component, action } = this.props;
 		
-		const stateVal = this.state[device.primaryStateKey];
+		const state = this.state[device.primaryStateKey];
 		const options = device.get('options');
-		let icon = null, primary = null, secondary = null;
 		
-		
-			let ActionState = null;
-		if (stateVal) {
-			icon = device.getIcon(device.primaryStateKey, stateVal.val);
-			
-			const ActionElement = device.getAction();
-			
-			if (action && ActionElement) {
-				ActionState = <ActionElement device={device} stateKey={device.primaryStateKey} stateVal={stateVal.val} />
-			}
-			else {
-				primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={device.getStyle('state', device.primaryStateKey, stateVal.val)}>{stateVal.value} {stateVal.unit}</ListItemAction>
-				secondary = this.state[device.secondaryStateKey] && <ListItemAction key={'secondary_' + device.id} customClassNames="defaultListItemActionSecondary" styles={device.getStyle('state', device.secondaryStateKey, this.state[device.secondaryStateKey].val)}>{this.state[device.secondaryStateKey].value} {this.state[device.secondaryStateKey].unit}</ListItemAction>
-				ActionState = (!secondary ? primary : [ primary, <br key={'br_' + device.id} />, secondary ]);
-			}
-		}
+		let icon = device.getIcon(device.primaryStateKey, state.val);
+		let primary = device.getAction();
+		let secondary = action && this.state[device.secondaryStateKey] ? device.getAction(device.secondaryStateKey) : null;
 		
 		return (
 
 <React.Fragment>
 	
-	{options.divider && options.divider !== 'after' && <ListItem divider style={{margin: '5px 0'}} />}
+	{options.divider && options.divider !== 'after' && <ListItem divider className={classes.defaultListDivider} />}
 	{prevSubgroup !== null && options.subgroup !== null && options.subgroup !== prevSubgroup && <ListDivider title={options.subgroup} />}
 	
 	<ListItem
@@ -151,19 +131,19 @@ class StateListItem extends React.Component {
 		onClick={this.props.openDialog && this.openDialog.bind(this)}
 		>
 		
-		{icon !== null &&
-		<ListItemIcon className={ horizontal && classes.horizontalListItemIcon }>
-			<ListItemIconElement customClassNames={['defaultListIcon','mdi mdi-' + icon]} styles={device.getStyle('icon', device.primaryStateKey, stateVal.val)} />
-		</ListItemIcon>
+		<ListItemIcon className={clsx(horizontal && classes.horizontalListItemIcon)}>
+		{icon === null ? <React.Fragment /> :
+			<ListItemIconElement customClassNames={['defaultListIcon','mdi mdi-' + icon]} styles={device.getStyle('icon', device.primaryStateKey, state.val)} />
 		}
+		</ListItemIcon>
 		
 		<ListItemText
 			primary={(component && device.getComponent()) || device.getOption('label')}
-			secondary={(options.subtitle !== null ? (options.subtitle || (stateVal && stateVal.timeChanged) || null) : null)}
+			secondary={(options.subtitle !== null ? (options.subtitle || (state && state.timeChanged) || null) : null)}
 			/>
 		
 		<ListItemSecondaryAction className={ horizontal ? classes.horizontalListItemAction : classes.verticalListItemAction }>
-			{ActionState}
+			{!secondary ? primary : [ primary, <br key={'br_' + device.id} />, secondary ]}
 		</ListItemSecondaryAction>
 	</ListItem>
 	

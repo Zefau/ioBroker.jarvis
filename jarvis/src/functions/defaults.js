@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import clsx from 'clsx'
 
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Switch from '@material-ui/core/Switch';
+import Typography from '@material-ui/core/Typography'
+import Slider from '@material-ui/core/Slider'
+import Switch from '@material-ui/core/Switch'
 
 
 /*
  * STYLES
  */
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+const styles = theme => ({
+	primaryAction: props => ({
+		...props.styles
+	}),
+	secondaryAction: props => ({
+		color: '#999',
+		fontSize: '14px',
+		...props.styles
+	}),
+});
+
 const useStyles = makeStyles(theme => ({
 	component: {
 		padding: theme.spacing(2, 8, 2, 2)
@@ -28,13 +40,22 @@ const useStyles = makeStyles(theme => ({
  * ACTIONS
  *
  */
-function Action(props) {
+const Action = withStyles(styles)(props => {
+//function Action(props) {
+	const { classes, device, state, stateKey } = props;
+	//const classes = useStyles();
 	
+	return (
 	
-}
+<span className={clsx((stateKey === device.primaryStateKey && classes.primaryAction) || (stateKey === device.secondaryStateKey && classes.secondaryAction))}>
+	{state.value} {state.unit}
+</span>
+
+	);
+});
 
 function PowerAction(props) {
-	const { device, stateKey, stateVal } = props;
+	const { device, stateKey, stateVal, onChange: parentOnChange } = props;
 	
 	const onChange = (e) => {
 		setChecked(e.target.checked);
@@ -49,12 +70,11 @@ function PowerAction(props) {
 <React.Fragment>
 <Switch
 	checked={checked}
-	onChange={onChange}
+	onChange={parentOnChange || onChange}
 	value={checked !== true}
 	color="primary"
 	/>
 
-{JSON.stringify(checked)}
 </React.Fragment>
 
 	);
@@ -148,6 +168,16 @@ export default {
 			unit: ' %',
 			icon: 'battery-medium'
 		},
+		door: {
+			icon: {
+				'true': 'door-open',
+				'false': 'door-closed'
+			},
+			state: {
+				'true': 'open',
+				'false': 'closed'
+			},
+		},
 		humidity: {
 			unit: ' %',
 			icon: 'water-percent'
@@ -177,11 +207,15 @@ export default {
 	components: {
 		Label,
 		Component,
-		LevelComponent
+		LevelComponent,
+		
+		level: LevelComponent
 	},
 	actions: {
 		Action,
-		PowerAction
+		PowerAction,
+		
+		power: PowerAction
 	},
 	styles: {
 		_any: {

@@ -9,8 +9,27 @@ import defaults from './defaults'
  * ACTIONS
  *
  */
-function LightColorAction(props) {
+function LightLevelAction(props) {
 	const { device, stateKey, stateVal } = props;
+	
+	const onChange = (e) => {
+		setChecked(e.target.checked);
+		device.setDeviceState(stateKey, e.target.checked ? 100 : 0).catch(err => console.error(err));
+	}
+	
+	const [checked, setChecked] = useState(stateVal > 0);
+	useEffect(() => setChecked(stateVal > 0), [stateVal]);
+	
+	// only show percentage if device has a switch itself
+	if (device.parent && device.parent.states.power) {
+		return <defaults.actions.Action device={device} stateKey={stateKey} stateVal={checked} onChange={onChange} />;
+	}
+	
+	return <defaults.actions.PowerAction device={device} stateKey={stateKey} stateVal={checked} onChange={onChange} />
+}
+
+function LightColorAction(props) {
+	const { stateKey, stateVal } = props;
 	
 	const [colorSpace, setColorSpace] = useState(stateVal);
 	useEffect(() => setColorSpace(stateVal), [stateVal]);
@@ -118,7 +137,7 @@ function LightColorComponent(props) {
 		else if (stateKey === 'hex') {
 			setColorSpace(stateVal);
 		}
-	}, [stateVal]);
+	}, [stateKey, stateVal]);
 	
 	const Component = defaults.components.Component;
 	return (
@@ -136,12 +155,17 @@ function LightColorComponent(props) {
 }
 
 
+const color = {
+	icon: {
+		'default': 'palette',
+	},
+	unit: ' °'
+}
 
 export default {
 	configurations: {
 		power: {
 			icon: {
-				_widget: 'light-switch',
 				'true': 'lightbulb-on',
 				'false': 'lightbulb-off-outline'
 			},
@@ -150,7 +174,6 @@ export default {
 			value: (val) => val > 0 && val <= 1 ? val * 100 : val,
 			unit: (value) => value !== 'off' ? ' %' : null,
 			icon: {
-				_widget: 'brightness-percent',
 				'default': 'lightbulb-on',
 				'0': 'lightbulb-off-outline'
 			},
@@ -160,31 +183,14 @@ export default {
 		},
 		colorTemperature: {
 			icon: {
-				_widget: 'thermometer',
+				'default': 'thermometer',
 			},
 			unit: ' °K'
 		},
-		hue: {
-			icon: {
-				_widget: 'palette',
-			},
-			unit: ' °'
-		},
-		rgb: {
-			icon: {
-				_widget: 'palette',
-			},
-		},
-		hsv: {
-			icon: {
-				_widget: 'palette',
-			},
-		},
-		hex: {
-			icon: {
-				_widget: 'palette',
-			},
-		}
+		hue: color,
+		rgb: color,
+		hsv: color,
+		hex: color
 	},
 	components: {
 		level: defaults.components.LevelComponent,
@@ -196,6 +202,7 @@ export default {
 	},
 	actions: {
 		power: defaults.actions.PowerAction,
+		level: LightLevelAction,
 		rgb: LightColorAction,
 		hsv: LightColorAction,
 		hex: LightColorAction

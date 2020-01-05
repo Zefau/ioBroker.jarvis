@@ -18,8 +18,6 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function GridContainer(props) {
-	console.log('RENDER COMPONENT: GridContainer');
-	
 	const { contents = {} } = props;
 	
 	const classes = useStyles();

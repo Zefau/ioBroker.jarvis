@@ -1,7 +1,7 @@
-import React from 'react';
-import i18n from './i18n';
-import Function from './Function';
-import * as moment from 'moment/min/moment-with-locales.min.js';
+import React from 'react'
+import i18n from './i18n'
+import Function from './Function'
+import * as moment from 'moment/min/moment-with-locales.min.js'
 
 
 /**
@@ -32,7 +32,6 @@ export default class Device extends Function {
 		// initialise class data
 		this.id = deviceProperties.id;
 		this.name = deviceProperties.name;
-		this.children = [];
 		
 		this.room = deviceProperties.room || null;
 		
@@ -55,6 +54,10 @@ export default class Device extends Function {
 		else if (!this.socket) {	
 			throw new Error('No socket given!');
 		}
+		
+		// hierarchy
+		this.children = deviceProperties.children || [];
+		this.parent = deviceProperties.parent || null;
 		
 		// do some stuff
 		this._setProperties();
@@ -249,7 +252,7 @@ export default class Device extends Function {
 				settings[config] = this._getConfigurationSetting(config, stateKey, attribute, state.value);
 			});
 			
-			state[option] = super._getValueFromSetings(settings, state[option]);
+			state[option] = super._getValueFromSettings(settings, state[option]);
 			
 		});
 		
@@ -272,7 +275,13 @@ export default class Device extends Function {
 	 * @return	{React.Component}
 	 */
 	getAction(stateKey = null) {
-		return this.actions[stateKey || this.primaryStateKey] || null;
+		stateKey = stateKey || this.primaryStateKey;
+		
+		const state = this.states[stateKey].state.value;
+		const stateVal = state.val;
+		
+		const Action = this.actions[stateKey] || this.actions.Action;
+		return <Action key={'action-' + this.id + '-' + stateKey} device={this} state={state} stateKey={stateKey} stateVal={stateVal} styles={this.getStyle('state', stateKey, stateVal)} />
 	}
 	
 	/**
@@ -312,16 +321,17 @@ export default class Device extends Function {
 	}
 	
 	/**
-	 *
+	 * Get an icon based on the current device state (or falls back to a default).
 	 *
 	 * @param	{String}	[stateKey=this.primaryStateKey]
 	 * @param	{String}	[stateVal=default]
 	 * @param	{String}	[defaultIcon=null]
 	 * @return	{String}
 	 */
-	getIcon(stateKey, stateVal = 'default', defaultIcon = null) {
+	getIcon(stateKey, stateVal = '', defaultIcon = '?') {
 		
 		stateKey = stateKey || this.primaryStateKey;
+		
 		let settings = {};
 		
 		// get user setting
@@ -332,7 +342,7 @@ export default class Device extends Function {
 			settings[config] = this._getConfigurationSetting(config, stateKey, 'icon', stateVal);
 		});
 		
-		return super._getValueFromSetings(settings, defaultIcon);
+		return super._getValueFromSettings(settings, defaultIcon);
 	}
 	
 	/**
@@ -351,14 +361,14 @@ export default class Device extends Function {
 		let settings = {};
 		
 		// get user setting
-		settings['options'] = this._getUserSetting(stateKey, attribute, stateVal);
+		settings['options'] = this._getUserSetting(stateKey, 'styles', attribute, stateVal);
 		
 		// get function setting or fallback to defaults
 		['styles', 'defaultStyles'].forEach(config => {
 			settings[config] = this._getConfigurationSetting(config, stateKey, attribute, stateVal);
 		});
 		
-		return super._getValueFromSetings(settings, {});
+		return super._getValueFromSettings(settings, {});
 	}
 	
 	/**

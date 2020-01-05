@@ -129,7 +129,7 @@ export function TabPanel(props) {
 		topBarHeight.current = document.getElementById('appBar').offsetHeight;
 		setMapHeight(height-topBarHeight.current+5);
 		
-	}, [height], []);
+	}, [height]);
 	
 	/*
 	 * Some components need to be visible upon loading, so proper initialise.
@@ -141,7 +141,7 @@ export function TabPanel(props) {
 	useEffect(() => {
 		setTimeout(() => setHidden(selectedTab !== renderedTab), 10);
 		
-	}, [selectedTab, renderedTab], [selectedTab]);
+	}, [selectedTab, renderedTab]);
 	
 	return (
 

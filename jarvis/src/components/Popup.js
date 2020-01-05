@@ -77,8 +77,8 @@ export default class Popup extends React.Component {
 	
 	componentDidUpdate(prevProps, prevState) {
 		
-		if (this.props.contents && this.props.contents.device && this.props.contents.ts !== prevProps.contents.ts) {
-			let device = this.props.contents && this.props.contents.device;
+		let device = this.props.contents && this.props.contents.device;
+		if (device.id && this.props.contents.ts !== prevProps.contents.ts) {
 			
 			// loop through states and request status
 			let responses = [];
@@ -91,13 +91,13 @@ export default class Popup extends React.Component {
 				}
 				
 				let child = new Device({
+							'parent': device,
 							'id': device.id + '#' + stateKey,
 							'name': device.name,
 							'function': device.function,
 							'states': { [stateKey]: device.states[stateKey] },
 							'options': {
 								'primary': stateKey,
-								'icon': { 'default': device.getIcon(stateKey, '_widget') },
 								'divider': children.length !== 0,
 								'subgroup': null,
 								'subtitle': null
@@ -120,6 +120,9 @@ export default class Popup extends React.Component {
 				console.info('Retrieved ' + Object.keys(children).length + ' states for device ' + device.name + '.', responses);
 				this.setState({ 'children': children }, () => this.forceUpdate());
 			});
+		}
+		else if (!device.id && this.props.contents.ts !== prevProps.contents.ts) {
+			this.setState({ 'children': [] }, () => this.forceUpdate());
 		}
 	}
 	

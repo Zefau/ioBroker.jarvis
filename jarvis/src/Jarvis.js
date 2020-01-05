@@ -44,10 +44,10 @@ const getGroup = (groupId, group, props = {}) => {
  *
  */
 const getGridContents = (contents, groups, props = {}) => {
-	console.log("RENDER COMPONENT: getGridColumn()");
 	
 	let gridContents = {};
 	const columns = Object.keys(contents).length;
+	
 	for (let column = 1; column <= columns; column++) {
 		
 		let columnContents = contents[column];
@@ -170,7 +170,6 @@ export default class Jarvis extends React.Component {
 	*/
 	
     render() {
-		console.log('RENDER COMPONENT: Jarvis');
         return (
 
 <ThemeProvider theme={theme}>

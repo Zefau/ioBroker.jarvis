@@ -31,8 +31,8 @@ export default class Function extends EventEmitter {
 		this.styles = (functions[this.functionId] && functions[this.functionId].styles) || {};
 		
 		// components and actions
-		this.components = (functions[this.functionId] && functions[this.functionId].components) || {};
-		this.actions = (functions[this.functionId] && functions[this.functionId].actions) || {};
+		this.components = { ...functions['defaults'].components, ...(functions[this.functionId] && functions[this.functionId].components) || {} };
+		this.actions = { ...functions['defaults'].actions, ...(functions[this.functionId] && functions[this.functionId].actions) || {} };
 	}
 	
 	/**
@@ -48,18 +48,18 @@ export default class Function extends EventEmitter {
 	/**
 	 *
 	 *
-	 * @return	{Boolean}
+	 * @return	{String}
 	 * @private
 	 */
-	_getValueFromSetings(settings, defaultVal = '') {
+	_getValueFromSettings(settings, defaults = '') {
 		
-		for (let setting in settings) {
-			if (settings[setting] !== undefined) {
-				return settings[setting];
+		for (let key in settings) {
+			if (settings[key] !== undefined) {
+				return settings[key];
 			}
 		}
 		
-		return defaultVal;
+		return defaults;
 	}
 	
 	/**

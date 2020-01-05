@@ -13,6 +13,9 @@ export default {
 	"user": "User",
 	"users": "Users",
 	
+	"door": "Tür",
+	"window": "Fenster",
+	
 	"open": "offen",
 	"closed": "geschlossen",
 	
@@ -20,6 +23,13 @@ export default {
 	"brightness": "Helligkeit",
 	"wind": "Wind",
 	"battery": "Batterie",
+	
+	
+	/*
+	 * BLINDS
+	 */
+	"blind#level": "Behanghöhe",
+	"blind#level2": "Lamellenposition",
 	
 	
 	/*
