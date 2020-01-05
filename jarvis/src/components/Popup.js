@@ -1,4 +1,5 @@
 import React from 'react';
+import Connection from '../Connection';
 import Device from '../Device';
 
 import Button from '@material-ui/core/Button';
@@ -88,7 +89,7 @@ export default class Popup extends React.Component {
 				if (device.states[stateKey].state === undefined || device.options.hiddenStates.indexOf(stateKey) > -1) {
 					continue;
 				}
-					
+				
 				let child = new Device({
 							'id': device.id + '#' + stateKey,
 							'name': device.name,
@@ -103,28 +104,19 @@ export default class Popup extends React.Component {
 							}
 							
 						},
-						device.socket,
+						Connection.getConnection,
 						window.language
 					);
 				
+				// add child to parent
+				device.children.push(child);
+				
 				// retrieve state
-				responses.push(new Promise(resolve => {
-					child.requestDeviceState(null, true)
-						.then(res => {
-							child.setAction(device.getAction(stateKey));
-							child.setComponent(device.getComponent(stateKey));
-							
-							resolve(true);
-						})
-						.catch(err => console.error(err));
-				}));
-				
+				responses.push(child.requestDeviceState(null, true));
 				children.push(child);
-				
 			}
 			
 			Promise.allSettled(responses).then(() => {
-				
 				console.info('Retrieved ' + Object.keys(children).length + ' states for device ' + device.name + '.', responses);
 				this.setState({ 'children': children }, () => this.forceUpdate());
 			});
@@ -147,7 +139,7 @@ export default class Popup extends React.Component {
 	</DialogTitle>
 	<DialogContent dividers style={{ padding: 0 }}>
 		
-		<StateList openDialog={null} devices={this.state.children} />	
+		<StateList openDialog={null} devices={this.state.children} component={true} action={true} />	
 		
 	</DialogContent>
 	<DialogActions>

@@ -7,9 +7,7 @@ import TabBar, { TabPanel } from './components/TabBar';
 import GridContainer from './components/GridContainer';
 import Popup from './components/Popup';
 import Widget from './components/Widget';
-import StateList from './components/StateList';
-import StateListHorizontal from './components/StateListHorizontal';
-import Map from './components/Map';
+import COMPONENTS from './components';
 
 
 /*
@@ -17,16 +15,6 @@ import Map from './components/Map';
  */
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
-
-
-/*
- * COMPONENTS
- */
-const COMPONENTS = {
-	StateList,
-	StateListHorizontal,
-	Map
-}
 
 
 /*
@@ -48,7 +36,7 @@ const getGroup = (groupId, group, props = {}) => {
 		return null;
 	}
 	
-	return <Tag key={'Tag' + groupId} devices={group.devices} openDialog={props.action ? props.action : null} {...props} {...group.settings} />
+	return <Tag key={'Tag' + groupId} devices={group.devices} openDialog={props.action ? props.action : null} settings={{ ...group.settings, ...props }} />
 }
 
 

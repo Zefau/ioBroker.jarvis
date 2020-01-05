@@ -86,16 +86,16 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Map(props) {
-	const { component, devices } = props;
+	const { settings, devices } = props;
 	const classes = useStyles();
 	
-	const [zoom,] = useState(component.defaultZoom);
-	const [position,] = useState(Array.isArray(component.defaultPosition) ? component.defaultPosition : component.defaultPosition.split(','));
+	const [zoom,] = useState(settings.component.defaultZoom);
+	const [position,] = useState(Array.isArray(settings.component.defaultPosition) ? settings.component.defaultPosition : settings.component.defaultPosition.split(','));
 	const [markers, setMarkers] = useState({});
 	
 	// map instance
 	const map = useRef();
-	const memoizedMapInitialised = useCallback(function() {map.current = this});
+	const memoizedMapInitialised = useCallback(function() {map.current = this}, [],);
 	
 	// Marker click in overview
 	const memoizedHandleClick = useCallback(flyTo => map.current.flyTo(flyTo.split(',')), [],);
@@ -143,7 +143,7 @@ export default function Map(props) {
 		for (let key in markers) {
 			let device = markers[key];
 			if (device !== null) {
-				let marker = <Marker key={'marker-' + device.id} position={device.options.position} device={device} settings={component} />
+				let marker = <Marker key={'marker-' + device.id} position={device.options.position} device={device} settings={settings.component} />
 				mapMarkers.push(marker);
 				
 				let item = null;
@@ -210,12 +210,11 @@ function Marker(props) {
 	}
 	
 	// Marker MouseOver / MouseOut (bring tooltip to front if markers overlay)
-	const memoizedHandleMouseOver = useCallback(function() {this.closeTooltip().openTooltip()}, [],); // .setZIndexOffset(1001)
-	const memoizedHandleMouseOut = null; // useCallback(function() {this.setZIndexOffset(101)}, [],);
+	const memoizedHandleMouseEvent = useCallback(function() {this.closeTooltip().openTooltip()}, [],);
 
 	return (
 
-<LeafletMarker riseOnHover={true} position={Array.isArray(position) ? position : position.split(',')} icon={markerIcon} onMouseOver={memoizedHandleMouseOver}>
+<LeafletMarker riseOnHover={true} position={Array.isArray(position) ? position : position.split(',')} icon={markerIcon} onMouseOver={memoizedHandleMouseEvent}>
 	<LeafletTooltip className={classes.mapTooltip} direction={settings.tooltipDirection || 'bottom'} permanent={settings.tooltipPermanent || true} offset={[0,offset]}>
 		{device.name}
 	</LeafletTooltip>

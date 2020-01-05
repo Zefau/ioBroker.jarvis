@@ -29,8 +29,10 @@ export default class Device extends Function {
 			throw new Error('No function given for device ' + deviceProperties.name + '!');
 		}
 		
+		// initialise class data
 		this.id = deviceProperties.id;
 		this.name = deviceProperties.name;
+		this.children = [];
 		
 		this.room = deviceProperties.room || null;
 		
@@ -40,6 +42,7 @@ export default class Device extends Function {
 		
 		this.socket = socket;
 		
+		// verify data
 		if (!this.options || typeof this.options !== 'object' || Object.keys(this.options).length === 0) {
 			throw new Error('Device' + (deviceProperties.id || deviceProperties.name ? ' ' + (deviceProperties.name || deviceProperties.id) : '') + ' not defined for jarvis!');
 		}
@@ -53,10 +56,16 @@ export default class Device extends Function {
 			throw new Error('No socket given!');
 		}
 		
+		// do some stuff
 		this._setProperties();
 		this.stateSubscriptions = [];
+		this.historySubscriptions = [];
 		
+		// set some stuff
 		moment.locale(language);
+		
+		// listen for errors of the device
+		this.on('error', err => console.error('Device error occured!', err));
 	}
 	
 	/**
@@ -259,24 +268,33 @@ export default class Device extends Function {
 	/**
 	 *
 	 *
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @return	{React.Component}
 	 */
-	getAction(stateKey) {
-		const Action = this.actions[stateKey];
-		return (Action && <Action device={this} state={{ ...this.states[stateKey], 'stateKey': stateKey }} />) || null;
+	getAction(stateKey = null) {
+		return this.actions[stateKey || this.primaryStateKey] || null;
 	}
 	
 	/**
 	 *
 	 *
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @return	{React.Component}
 	 */
 	getComponent(stateKey) {
+		stateKey = stateKey || this.primaryStateKey;
+		const stateVal = this.states[stateKey].state.value.val;
+		
 		const Component = this.components[stateKey];
-		return (Component && <Component title={i18n.t(this.function + '#' + stateKey)} device={this} state={{ ...this.states[stateKey], 'stateKey': stateKey }} />) || i18n.t(this.function + '#' + stateKey);
+		return (Component && <Component title={i18n.t(this.function + '#' + stateKey)} device={this} stateKey={stateKey} stateVal={stateVal} />) || i18n.t(this.function + '#' + stateKey);
 	}
 	
 	/**
 	 *
 	 *
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @param	{String}	[stateProperty=null]
+	 * @return	{String}
 	 */
 	getDeviceState(stateKey = null, stateProperty = null) {
 		const s = this.states[stateKey || this.primaryStateKey];
@@ -296,8 +314,14 @@ export default class Device extends Function {
 	/**
 	 *
 	 *
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @param	{String}	[stateVal=default]
+	 * @param	{String}	[defaultIcon=null]
+	 * @return	{String}
 	 */
 	getIcon(stateKey, stateVal = 'default', defaultIcon = null) {
+		
+		stateKey = stateKey || this.primaryStateKey;
 		let settings = {};
 		
 		// get user setting
@@ -338,12 +362,6 @@ export default class Device extends Function {
 	}
 	
 	/**
-	 *
-	 *
-	 */
-	render() { return null }
-	
-	/**
 	 * Requests all state values from the backend.
 	 *
 	 * @param	{Boolean}	[subscribe=false]
@@ -363,7 +381,7 @@ export default class Device extends Function {
 	/**
 	 * Requests a state value from the backend.
 	 *
-	 * @param	{String}	stateKey
+	 * @param	{String}	[stateKey=this.primaryStateKey]
 	 * @param	{Boolean}	[subscribe=false]
 	 * @return	{Promise}
 	 *
@@ -406,13 +424,72 @@ export default class Device extends Function {
 						
 						// subscribe to state
 						if (subscribe) {
-							this.subscribeDeviceState(stateKey);
+							this.subscribeDeviceState(stateKey).catch(err => reject(err));
 						}
 						
 						// resolve
 						resolve({ 'success': true, 'stateKey': stateKey, 'cached': false });
 					})
-					.catch(err => reject({ 'success': false, 'stateKey': stateKey, 'error': err.message }));
+					.catch(err => reject({ 'success': false, 'stateKey': stateKey, 'error': err }));
+			}
+		});
+	}
+	
+	/**
+	 * Requests a state value from the backend.
+	 *
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @param	{Boolean}	[subscribe=false]
+	 * @return	{Promise}
+	 *
+	 */
+	requestDeviceStateHistory(stateKey = null, subscribe = false) {
+		
+		stateKey = stateKey || this.primaryStateKey;
+		let s = this._getStateFromKey(stateKey);
+		if (typeof s == 'string') {
+			return Promise.reject({ 'success': false, 'stateKey': stateKey, 'error': s });
+		}
+		
+		return new Promise((resolve, reject) => {
+			
+			// send cached value if present and subscrbe (means always updated)
+			if (s.state.history !== undefined && this.historySubscriptions.indexOf(stateKey) > -1) {
+				
+				// publish state
+				this.emit('historyChange', stateKey, s.state.history);
+				
+				// resolve
+				resolve({ 'success': true, 'stateKey': stateKey, 'cached': true });
+			}
+			
+			// request from backend
+			else {
+				this.socket.getStateHistory(s.state.node)
+					.then(history => {
+						
+						// state does not exist
+						if (history === null) {
+							reject({ 'success': false, 'stateKey': stateKey, 'error': 'State ' + s.state.node + ' not found!' });
+						}
+						
+						// set result
+						s.state.history = history; // this._updateDeviceState(stateKey, state);			// callback(err, data, step, sessionId);
+						
+						// publish state change
+						this.emit('historyChange', stateKey, s.state.history);
+						
+						// subscribe to state
+						/*
+						if (subscribe) {
+							this.subscribeDeviceState(stateKey).catch(err => reject(err));
+						}
+						*/
+						
+						// resolve
+						resolve({ 'success': true, 'stateKey': stateKey, 'cached': false });
+					})
+					.catch(err => reject({ 'success': false, 'stateKey': stateKey, 'error': err }));
 			}
 		});
 	}
@@ -438,32 +515,39 @@ export default class Device extends Function {
 	/**
 	 *
 	 *
+	 * @param	{String}	value
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @return	void
 	 */
 	setDeviceState(stateKey = null, value) {
 		
 		stateKey = stateKey || this.primaryStateKey;
-		let s = this._getStateFromKey(stateKey);
+		let s = this._getStateFromKey(stateKey, 'action');
 		if (typeof s == 'string') {
 			return Promise.reject({ 'success': false, 'stateKey': stateKey, 'error': s });
 		}
 		
-		return new Promise(resolve => {
-			this.socket.setState(s.action.node, value).then(res => {
+		return new Promise((resolve, reject) => {
+			this.socket.setState(s.action.node, value)
+				.then(res => {
 				
-				// get state value if not subscribed
-				if (this.stateSubscriptions.indexOf(stateKey) === -1) {
-					this.requestDeviceState(stateKey);
-				}
-				
-				// resolve
-				resolve({ 'success': true, 'stateKey': stateKey });
-			});
+					// get state value if not subscribed
+					if (this.stateSubscriptions.indexOf(stateKey) === -1) {
+						this.requestDeviceState(stateKey);
+					}
+					
+					// resolve
+					resolve({ 'success': true, 'stateKey': stateKey });
+				})
+				.catch(err => reject({ 'success': false, 'stateKey': stateKey, 'error': err }));
 		});
 	}
 	
 	/**
 	 *
 	 *
+	 * @param	{String}	[stateKey=this.primaryStateKey]
+	 * @return	void
 	 */
 	subscribeDeviceState(stateKey = null) {
 		
@@ -476,17 +560,24 @@ export default class Device extends Function {
 		// add subscription	
 		this.stateSubscriptions.push(stateKey);
 		
-		// subscrbe
-		this.socket.subscribeState(s.state.node, (id, state) => {
+		// subscribe
+		return new Promise(resolve => {
+			this.socket.subscribeState(s.state.node, (id, state, params) => {
+				
+				if (state && state.val !== this.getDeviceState(stateKey, 'val')) {
+					
+					// format value
+					s.state.value = this._updateDeviceState(stateKey, state);
+					
+					// publish state change
+					this.emit('stateChange', stateKey, s.state.value);
+					
+					// publish to children as well
+					this.children.forEach(child => child.emit('stateChange', stateKey, s.state.value));
+				}
+			});
 			
-			if (state && state.val !== this.getDeviceState(stateKey, 'val')) {
-				
-				// format value
-				s.state.value = this._updateDeviceState(stateKey, state);
-				
-				// publish state change
-				this.emit('stateChange', stateKey, s.state.value);
-			}
+			resolve({ 'success': true, 'stateKey': stateKey });
 		});
 	}
 }

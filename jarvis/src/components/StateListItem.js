@@ -115,16 +115,27 @@ class StateListItem extends React.Component {
 	}
 	
 	render() {
-		const { classes, horizontal, prevSubgroup, device } = this.props;
+		const { classes, horizontal, prevSubgroup, device, component, action } = this.props;
 		
-		let options = device.get('options');
-		let icon = null, primary = null, secondary = null, action = null;
-		secondary = this.state[device.secondaryStateKey] && <ListItemAction key={'secondary_' + device.id} customClassNames="defaultListItemActionSecondary" styles={device.getStyle('state', device.secondaryStateKey, this.state[device.secondaryStateKey].val)}>{this.state[device.secondaryStateKey].value} {this.state[device.secondaryStateKey].unit}</ListItemAction>
+		const stateVal = this.state[device.primaryStateKey];
+		const options = device.get('options');
+		let icon = null, primary = null, secondary = null;
 		
-		if (this.state[device.primaryStateKey]) {
-			icon = device.getIcon(device.primaryStateKey, this.state[device.primaryStateKey].val);
-			primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={device.getStyle('state', device.primaryStateKey, this.state[device.primaryStateKey].val)}>{this.state[device.primaryStateKey].value} {this.state[device.primaryStateKey].unit}</ListItemAction>
-			action = device.getOption('action') || (!secondary ? primary : [ primary, <br key={'br_' + device.id} />, secondary ]);
+		
+			let ActionState = null;
+		if (stateVal) {
+			icon = device.getIcon(device.primaryStateKey, stateVal.val);
+			
+			const ActionElement = device.getAction();
+			
+			if (action && ActionElement) {
+				ActionState = <ActionElement device={device} stateKey={device.primaryStateKey} stateVal={stateVal.val} />
+			}
+			else {
+				primary = <ListItemAction key={'primary_' + device.id} customClassNames="defaultListItemActionPrimary" styles={device.getStyle('state', device.primaryStateKey, stateVal.val)}>{stateVal.value} {stateVal.unit}</ListItemAction>
+				secondary = this.state[device.secondaryStateKey] && <ListItemAction key={'secondary_' + device.id} customClassNames="defaultListItemActionSecondary" styles={device.getStyle('state', device.secondaryStateKey, this.state[device.secondaryStateKey].val)}>{this.state[device.secondaryStateKey].value} {this.state[device.secondaryStateKey].unit}</ListItemAction>
+				ActionState = (!secondary ? primary : [ primary, <br key={'br_' + device.id} />, secondary ]);
+			}
 		}
 		
 		return (
@@ -142,17 +153,17 @@ class StateListItem extends React.Component {
 		
 		{icon !== null &&
 		<ListItemIcon className={ horizontal && classes.horizontalListItemIcon }>
-			<ListItemIconElement customClassNames={['defaultListIcon','mdi mdi-' + icon]} styles={device.getStyle('icon', device.primaryStateKey, this.state[device.primaryStateKey].val)} />
+			<ListItemIconElement customClassNames={['defaultListIcon','mdi mdi-' + icon]} styles={device.getStyle('icon', device.primaryStateKey, stateVal.val)} />
 		</ListItemIcon>
 		}
 		
 		<ListItemText
-			primary={device.getOption('label')}
-			secondary={(options.subtitle !== null ? (options.subtitle || (this.state[device.primaryStateKey] && this.state[device.primaryStateKey].timeChanged) || null) : null)}
+			primary={(component && device.getComponent()) || device.getOption('label')}
+			secondary={(options.subtitle !== null ? (options.subtitle || (stateVal && stateVal.timeChanged) || null) : null)}
 			/>
 		
 		<ListItemSecondaryAction className={ horizontal ? classes.horizontalListItemAction : classes.verticalListItemAction }>
-			{action}
+			{ActionState}
 		</ListItemSecondaryAction>
 	</ListItem>
 	

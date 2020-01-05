@@ -32,9 +32,6 @@ export default class Socket extends EventEmitter {
 		// connect
 		this.socket.on('connect', () => this.emit('connect'));
 		
-		// reconnect_attempt: Fired upon an attempt to reconnect.
-		//this.socket.on('reconnect_attempt', attempt => this.emit('reconnect', attempt));
-		
 		// reconnect: Fired upon a successful reconnection.
 		this.socket.on('reconnect', attempts => this.emit('reconnect', attempts));
 		
@@ -117,6 +114,24 @@ export default class Socket extends EventEmitter {
 			return new Promise((resolve, reject) => this.getState(id, (err, state) => err ? reject(err) : resolve(state)));
 		} else {
 			this.socket.emit('getState', id, cb);
+		}
+	}
+	
+	/**
+	 * Gets the state history.
+	 *
+	 */
+	getStateHistory(id, options, cb) {
+		
+		if (typeof options === 'function') {
+			cb = options;
+			options = {};
+		}
+		
+		if (!cb) {
+			return new Promise((resolve, reject) => this.getStateHistory(id, options, (err, state) => err ? reject(err) : resolve(state)));
+		} else {
+			this.socket.emit('getHistory', id, options, cb);
 		}
 	}
 	

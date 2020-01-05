@@ -6,29 +6,25 @@
  * MIT License
  *
  *
- *
- * @param	{String}		functionType
- * @return	{Function}
- *
  */
 export default class i18n {
 
 	/*
-	* holds the translations
-	*/
+	 * holds the translations
+	 */
 	static translations = {};
 
 	/*
-	* default language
-	*/
+	 * default language
+	 */
 	static language = navigator.language || navigator.userLanguage || 'en';
 
 	/**
-	* Override default language.
-	*
-	* @param	{String}	language
-	* @return	{Boolean}
-	*/
+	 * Override default language.
+	 *
+	 * @param	{String}	language
+	 * @return	{Boolean}
+	 */
 	static setLanguage(language) {
 		if (language) {
 			i18n.language = language;
@@ -40,11 +36,11 @@ export default class i18n {
 	}
 	
 	/**
-	* Loads multiple translations.
-	*
-	* @param	{String|Array}	languages
-	* @return	{Boolean}
-	*/
+	 * Loads multiple translations.
+	 *
+	 * @param	{String|Array}	languages
+	 * @return	{Boolean}
+	 */
 	static loadTranslations(languages) {
 		
 		if (languages) {
@@ -58,11 +54,11 @@ export default class i18n {
 	}
 	
 	/**
-	* Loads a translation.
-	*
-	* @param	{String}	language
-	* @return	{Boolean}
-	*/
+	 * Loads a translation.
+	 *
+	 * @param	{String}	language
+	 * @return	{Boolean}
+	 */
 	static loadTranslation(language) {
 		
 		if (language) {
@@ -84,12 +80,12 @@ export default class i18n {
 	}
 	
 	/**
-	* Set a translation for language.
-	*
-	* @param	{String}	language
-	* @param	{Object}	translation
-	* @return	{Boolean}
-	*/
+	 * Set a translation for language.
+	 *
+	 * @param	{String}	language
+	 * @param	{Object}	translation
+	 * @return	{Boolean}
+	 */
 	static setTranslation(language, translation) {
 		if (language && translation) {
 			i18n.translations[language] = { ...i18n.translations[language] || {}, ...translation };
@@ -101,25 +97,25 @@ export default class i18n {
 	}
 	
 	/**
-	* Get current set language.
-	*
-	* @param	void
-	* @return	{String}
-	*/
+	 * Get current set language.
+	 *
+	 * @param	void
+	 * @return	{String}
+	 */
 	static getLanguage() {
 		return i18n.lang;
 	}
 	
 	/**
-	* Get current set language.
-	*
-	* @param	{String}	word
-	* @param	{Object}	[options={}]
-	* @param	{Boolean}	[options.ucFirst=false]
-	* @param	{Object}	[placeholders={}]
-	* @param	{String}	[language=i18n.language]
-	* @return	{String}
-	*/
+	 * Get current set language.
+	 *
+	 * @param	{String}	word
+	 * @param	{Object}	[options={}]
+	 * @param	{Boolean}	[options.ucFirst=false]
+	 * @param	{Object}	[placeholders={}]
+	 * @param	{String}	[language=i18n.language]
+	 * @return	{String}
+	 */
 	static t(word, options = {}, placeholders = {}, language = i18n.language) {
 		
 		word = word.toString();

@@ -1,107 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { HuePicker, SketchPicker as ColorPicker } from 'react-color';
+import React, { useState, useEffect } from 'react'
+import { HuePicker, SketchPicker as ColorPicker } from 'react-color'
 
-import defaults from './defaults';
-
-
-/*
- * HELPER FUNCTIONS
- *
- */
-function HsvToRgb(h, s = 1, v = 1) {
-	if (Array.isArray(h)) {
-		v = h[2];
-		s = h[1];
-		h = h[0];
-	}
-	else if (typeof h === 'string' && h.indexOf(',')) {
-		[h, s, v] = h.split(',');
-	}
-	
-	if (h > 1) {
-		h = h/360;
-	}
-	
-	let r, g, b, i, f, p, q, t;
-	
-	i = Math.floor(h * 6);
-	f = h * 6 - i;
-	p = v * (1 - s);
-	q = v * (1 - f * s);
-	t = v * (1 - (1 - f) * s);
-	
-	switch (i % 6) {
-		case 0:
-			r = v;
-			g = t;
-			b = p;
-			break;
-			
-		case 1:
-			r = q;
-			g = v;
-			b = p;
-			break;
-		
-		case 2:
-			r = p;
-			g = v;
-			b = t;
-			break;
-		
-		case 3:
-			r = p;
-			g = q;
-			b = v;
-			break;
-		
-		case 4:
-			r = t;
-			g = p;
-			b = v;
-			break;
-		
-		case 5:
-			r = v;
-			g = p;
-			b = q;
-			break;
-		
-		default: // for webpack
-			break;
-	}
-	
-	return [
-		Math.round(r * 255),
-		Math.round(g * 255),
-		Math.round(b * 255)
-	];
-}
-
-function RgbToHex(r, g, b) {
-	if (Array.isArray(r)) {
-		b = r[2];
-		g = r[1];
-		r = r[0];
-	}
-	else if (typeof r === 'string' && r.indexOf(',')) {
-		[r, g, b] = r.split(',');
-	}
-	
-	r = r > 1 ? r / 255 : r;
-	g = g > 1 ? g / 255 : g;
-	b = b > 1 ? b / 255 : b;
-	
-	r = Math.round(r.toString(16)*100);
-	g = Math.round(g.toString(16)*100);
-	b = Math.round(b.toString(16)*100);
-	
-	if (r.length === 1) r = '0' + r;
-	if (g.length === 1) g = '0' + g;
-	if (b.length === 1) b = '0' + b;
-	
-	return "#" + r + g + b;
-}
+import helpers from '../helpers/colorConverters'
+import defaults from './defaults'
 
 
 /*
@@ -109,25 +10,18 @@ function RgbToHex(r, g, b) {
  *
  */
 function LightColorAction(props) {
-	const { device, state } = props;
+	const { device, stateKey, stateVal } = props;
 	
-	const [colorSpace, setColorSpace] = useState((state.state && state.state.value && state.state.value.val) || false);
-	
-	useEffect(() => {
-		device.on('stateChange', (stateKey, s) => {
-			if (stateKey === state.stateKey) {
-				setColorSpace(s.val);
-			}
-		});
-	});
+	const [colorSpace, setColorSpace] = useState(stateVal);
+	useEffect(() => setColorSpace(stateVal));
 	
 	let colors, labels = {};
-	if (state.stateKey === 'rgb' && colorSpace) {
+	if (stateKey === 'rgb' && colorSpace) {
 		colors = colorSpace.split(',');
 		labels = { Red: colors[0], Green: colors[1], Blue: colors[2] };
 		
 	}
-	else if (state.stateKey === 'hsv' && colorSpace) {
+	else if (stateKey === 'hsv' && colorSpace) {
 		colors = colorSpace.split(',');
 		labels = { Hue: colors[0], Saturation: colors[1], Brightness: colors[2] };
 	}
@@ -154,24 +48,21 @@ function LightColorTemperatureComponent(props) {
 }
 
 function LightHueComponent(props) {
-	const { device, state, title } = props;
+	const { device, stateKey, stateVal, title } = props;
 	
-	const onChangeComplete = (color, e) => device.setDeviceState(state.stateKey, Math.round(color.hsl.h));
-	const [hue, setHue] = useState((state.state && state.state.value && state.state.value.val) || 0);
+	const onChangeComplete = (color, e) => {
+		setHue(Math.round(color.hsl.h));
+		device.setDeviceState(stateKey, Math.round(color.hsl.h)).catch(err => console.error(err));
+	}
 	
-	useEffect(() => {
-		device.on('stateChange', (stateKey, s) => {
-			if (stateKey === state.stateKey) {
-				setHue(s.val);
-			}
-		});
-	});
+	const [hue, setHue] = useState(stateVal);
+	useEffect(() => setHue(stateVal));
 	
 	const Component = defaults.components.Component;
-	const color = RgbToHex(HsvToRgb(hue));
+	const color = helpers.RgbToHex(helpers.HsvToRgb(hue));
 	return (
 
-<Component title={title || state.stateKey }>
+<Component title={title || stateKey }>
 	<HuePicker
 		color={color}
 		width={'100%'}
@@ -184,59 +75,55 @@ function LightHueComponent(props) {
 }
 
 function LightColorComponent(props) {
-	const { device, state, title } = props;
+	const { device, stateKey, stateVal, title } = props;
 	
 	const onChangeComplete = (color, e) => {
-		color = color[state.stateKey];
+		color = color[stateKey];
 		
 		// RGB
-		if (state.stateKey === 'rgb') {
+		if (stateKey === 'rgb') {
 			color = [color.r, color.g, color.b].join(',');
 		}
 		// HSV
-		else if (state.stateKey === 'hsv') {
+		else if (stateKey === 'hsv') {
 			color = [color.h, color.s, color.v].join(',');
 		}
 		
 		console.log(color);
-		device.setDeviceState(state.stateKey, color);
+		device.setDeviceState(stateKey, color).catch(err => console.error(err));
 	};
 	
-	let initialColor = (state.state && state.state.value && state.state.value.val) || '#ffffff';
+	let initialColor = stateVal || '#ffffff';
 	
 	// RGB
-	if (state.stateKey === 'rgb') {
-		initialColor = RgbToHex(initialColor);
+	if (stateKey === 'rgb') {
+		initialColor = helpers.RgbToHex(initialColor);
 	}
 	// HSV
-	else if (state.stateKey === 'hsv') {
-		initialColor = RgbToHex(HsvToRgb(initialColor));
+	else if (stateKey === 'hsv') {
+		initialColor = helpers.RgbToHex(helpers.HsvToRgb(initialColor));
 	}
 	
 	const [colorSpace, setColorSpace] = useState(initialColor);
-	
 	useEffect(() => {
-		device.on('stateChange', (stateKey, s) => {
-			
-			// RGB
-			if (stateKey === 'rgb') {
-				setColorSpace(RgbToHex(s.val));
-			}
-			// HSV
-			else if (stateKey === 'hsv') {
-				setColorSpace(RgbToHex(HsvToRgb(s.val)));
-			}
-			// HEX
-			else if (stateKey === 'hex') {
-				setColorSpace(s.val);
-			}
-		});
+		// RGB
+		if (stateKey === 'rgb') {
+			setColorSpace(helpers.RgbToHex(stateVal));
+		}
+		// HSV
+		else if (stateKey === 'hsv') {
+			setColorSpace(helpers.RgbToHex(helpers.HsvToRgb(stateVal)));
+		}
+		// HEX
+		else if (stateKey === 'hex') {
+			setColorSpace(stateVal);
+		}
 	});
 	
 	const Component = defaults.components.Component;
 	return (
 
-<Component title={title || state.stateKey }>
+<Component title={title || stateKey }>
 	<ColorPicker
 		color={colorSpace}
 		width={'100%'}

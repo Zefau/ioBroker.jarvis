@@ -28,28 +28,34 @@ const useStyles = makeStyles(theme => ({
  * ACTIONS
  *
  */
+function Action(props) {
+	
+	
+}
+
 function PowerAction(props) {
-	const { device, state } = props;
-	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
+	const { device, stateKey, stateVal } = props;
 	
-	const [checked, setChecked] = useState((state.state && state.state.value && state.state.value.val) || false);
+	const onChange = (e) => {
+		setChecked(e.target.checked);
+		device.setDeviceState(stateKey, e.target.checked).catch(err => console.error(err));
+	}
 	
-	useEffect(() => {
-		device.on('stateChange', (stateKey, s) => {
-			if (stateKey === state.stateKey) {
-				setChecked(s.val);
-			}
-		});
-	});
+	const [checked, setChecked] = useState(stateVal);
+	useEffect(() => setChecked(stateVal), [stateVal]);
 	
 	return (
 
+<React.Fragment>
 <Switch
 	checked={checked}
 	onChange={onChange}
-	value="true"
+	value={checked !== true}
 	color="primary"
-/>
+	/>
+
+{JSON.stringify(checked)}
+</React.Fragment>
 
 	);
 }
@@ -91,19 +97,16 @@ function Component(props) {
 }
 
 function LevelComponent(props) {
-	let { device, state, title, min, max, step, markSteps } = props;
+	let { device, stateKey, stateVal, title, min, max, step, markSteps } = props;
 	const classes = useStyles();
 	
-	const onChange = (e, val) => device.setDeviceState(state.stateKey, val);
-	const [level, setLevel] = useState((state.state && state.state.value && state.state.value.val) || 0);
+	const onChange = (e, val) => {
+		setLevel(val);
+		device.setDeviceState(stateKey, val).catch(err => console.error(err));
+	}
 	
-	useEffect(() => {
-		device.on('stateChange', (stateKey, s) => {
-			if (stateKey === state.stateKey) {
-				setLevel(s.val);
-			}
-		});
-	});
+	const [level, setLevel] = useState(stateVal);
+	useEffect(() => setLevel(stateVal), [stateVal]);
 	
 	// default settings
 	min = min || 0;
@@ -113,7 +116,7 @@ function LevelComponent(props) {
 	let markStep = ((max-min)/(markSteps-1)) || 10;
 	return (
 
-<Component title={title || state.stateKey }>
+<Component title={title || stateKey }>
 	<Slider
 		classes={{ markLabel: classes.sliderMarkLabel }}
 		//onChange
@@ -177,6 +180,7 @@ export default {
 		LevelComponent
 	},
 	actions: {
+		Action,
 		PowerAction
 	},
 	styles: {

@@ -11,7 +11,7 @@ import GridContainer from './components/GridContainer';
 import StatusSnackbar from './components/StatusSnackbar';
 
 import i18n from './i18n';
-import Socket from './Socket';
+import Connection from './Connection';
 import Device from './Device';
 import Jarvis from './Jarvis';
 
@@ -56,43 +56,21 @@ class App extends React.Component {
 	
 	componentDidMount() {
 		
-		// open data connection
-		let url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : null;
-		this.socket = new Socket(url);
+		// connect and get connection
+		const noErrorFunction = () => this.setState({ error: false, errorMessage: '' });
+		const url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : null;
+		const listeners = [
+			{ 'event': 'connect', 'callback': noErrorFunction },
+			{ 'event': 'reconnect', 'callback': noErrorFunction },
+			{ 'event': 'disconnect', 'callback': noErrorFunction },
+			{ 'event': 'error', 'callback': err => this.setState({ error: true, errorMessage: i18n.t('Connection lost! Trying to reconnect') + '..' }) }
+		];
 		
-		this.socket.on('connect', () => {
-			this.setState({
-				error: false,
-				errorMessage: ''
-			});
-		});
-		
-		this.socket.on('reconnect', () => {
-			this.setState({
-				error: false,
-				errorMessage: ''
-			});
-		});
-		
-		this.socket.on('disconnect', reason => {
-			this.setState({
-				error: false,
-				errorMessage: reason
-			});
-		});
-		
-		this.socket.on('error', err => {
-			this.setState({
-				error: true,
-				//errorMessage: err.message || 'Unknown error!'
-				errorMessage: i18n.t('Connection lost! Trying to reconnect') + '..'
-			});
-		});
+		this.socket = Connection.connect(url, listeners);
 		
 		
-		// get settings
+		// retrieve settings
 		this.settings = {};
-		
 		this.socket.getState(NODE_SETTINGS)
 			.then(state => {
 				
@@ -119,7 +97,7 @@ class App extends React.Component {
 			});
 		
 		
-		// get devices
+		// retrieve devices
 		this.devices = {};
 		this.groups = {};
 		

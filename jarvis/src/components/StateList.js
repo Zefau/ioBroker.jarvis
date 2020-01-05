@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function StateList(props) {
-	const { horizontal, openDialog, devices } = props;
+	const { horizontal, openDialog, devices, component, action } = props;
 	const classes = useStyles();
 	let subgroup;
 	
@@ -26,7 +26,16 @@ export default function StateList(props) {
 
 <List dense={true} className={horizontal && classes.horizontalList}>
 	{devices.map(device => {
-		const listItem = <StateListItem horizontal={horizontal} openDialog={openDialog} prevSubgroup={subgroup} key={device.get('id')} device={device} />;
+		const listItem = <StateListItem
+							key={device.get('id')}
+							horizontal={horizontal}
+							openDialog={openDialog}
+							prevSubgroup={subgroup}
+							device={device}
+							component={component || false}
+							action={action || true}
+							/>
+		
 		subgroup = device.getOption('subgroup');
 		return listItem;
 	})}
