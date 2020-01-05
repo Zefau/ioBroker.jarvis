@@ -13,7 +13,7 @@ function LightColorAction(props) {
 	const { device, stateKey, stateVal } = props;
 	
 	const [colorSpace, setColorSpace] = useState(stateVal);
-	useEffect(() => setColorSpace(stateVal));
+	useEffect(() => setColorSpace(stateVal), [stateVal]);
 	
 	let colors, labels = {};
 	if (stateKey === 'rgb' && colorSpace) {
@@ -56,7 +56,7 @@ function LightHueComponent(props) {
 	}
 	
 	const [hue, setHue] = useState(stateVal);
-	useEffect(() => setHue(stateVal));
+	useEffect(() => setHue(stateVal), [stateVal]);
 	
 	const Component = defaults.components.Component;
 	const color = helpers.RgbToHex(helpers.HsvToRgb(hue));
@@ -118,7 +118,7 @@ function LightColorComponent(props) {
 		else if (stateKey === 'hex') {
 			setColorSpace(stateVal);
 		}
-	});
+	}, [stateVal]);
 	
 	const Component = defaults.components.Component;
 	return (
