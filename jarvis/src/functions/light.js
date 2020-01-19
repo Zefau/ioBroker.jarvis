@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { HuePicker, SketchPicker as ColorPicker } from 'react-color'
 
-import helpers from '../helpers/colorConverters'
+import helpers from '../helpers/colorConverter'
 import defaults from './defaults'
 
 
@@ -22,10 +22,10 @@ function LightLevelAction(props) {
 	
 	// only show percentage if device has a switch itself
 	if (device.parent && device.parent.states.power) {
-		return <defaults.actions.Action device={device} stateKey={stateKey} stateVal={checked} onChange={onChange} />;
+		return <defaults.actions.Action {...props} stateVal={checked} onChange={onChange} />;
 	}
 	
-	return <defaults.actions.PowerAction device={device} stateKey={stateKey} stateVal={checked} onChange={onChange} />
+	return <defaults.actions.PowerAction {...props} stateVal={checked} onChange={onChange} />
 }
 
 function LightColorAction(props) {
@@ -108,7 +108,6 @@ function LightColorComponent(props) {
 			color = [color.h, color.s, color.v].join(',');
 		}
 		
-		console.log(color);
 		device.setDeviceState(stateKey, color).catch(err => console.error(err));
 	};
 	

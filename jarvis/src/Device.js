@@ -1,7 +1,8 @@
 import React from 'react'
 import i18n from './i18n'
 import Function from './Function'
-import * as moment from 'moment/min/moment-with-locales.min.js'
+import { formatDistanceToNow } from 'date-fns'
+import { de } from 'date-fns/locale'
 
 
 /**
@@ -64,9 +65,6 @@ export default class Device extends Function {
 		this.stateSubscriptions = [];
 		this.historySubscriptions = [];
 		
-		// set some stuff
-		moment.locale(language);
-		
 		// listen for errors of the device
 		this.on('error', err => console.error('Device error occured!', err));
 	}
@@ -87,12 +85,19 @@ export default class Device extends Function {
 		// get state object
 		let s = this.states[stateKey || this.primaryStateKey];
 		
-		if (!s || !s[stateType]) {
-			return 'Incorrect or non-defined state key for device ' + this.name + '!';
+		// state not an object so far
+		if (typeof s === 'string') {
+			this.states[stateKey || this.primaryStateKey] = { [stateType]: { 'node': s }};
+			s = this.states[stateKey || this.primaryStateKey];
 		}
-		else if (typeof s[stateType] == 'string') {
+		else if (typeof s[stateType] === 'string') {
 			this.states[stateKey || this.primaryStateKey][stateType] = { 'node': s[stateType] };
 			s = this.states[stateKey || this.primaryStateKey];
+		}
+		
+		// state not valid
+		if (!s || !s[stateType]) {
+			return 'Incorrect or non-defined state key for device ' + this.name + '!';
 		}
 		else if (typeof s[stateType] == 'object' && !s[stateType].node) {
 			return 'No ' + stateType + ' specified for device ' + this.name + '!';
@@ -230,7 +235,7 @@ export default class Device extends Function {
 	_updateDeviceState(stateKey, state) {
 		
 		// add time changed
-		state.timeChanged = moment(state.lc-2000).fromNow();
+		state.timeChanged = formatDistanceToNow(new Date(state.lc-5*1000), { locale: de, includeSeconds: true, addSuffix: true })
 		
 		// add unit
 		state.unit = '';
@@ -274,13 +279,13 @@ export default class Device extends Function {
 	 * @param	{String}	[stateKey=this.primaryStateKey]
 	 * @return	{React.Component}
 	 */
-	getAction(stateKey = null) {
+	getAction(stateKey = null, forceDefault = false) {
 		stateKey = stateKey || this.primaryStateKey;
 		
 		const state = this.states[stateKey].state.value;
 		const stateVal = state.val;
 		
-		const Action = this.actions[stateKey] || this.actions.Action;
+		const Action = (!forceDefault && this.actions[stateKey]) || this.actions.Action;
 		return <Action key={'action-' + this.id + '-' + stateKey} device={this} state={state} stateKey={stateKey} stateVal={stateVal} styles={this.getStyle('state', stateKey, stateVal)} />
 	}
 	
@@ -450,10 +455,12 @@ export default class Device extends Function {
 	 *
 	 * @param	{String}	[stateKey=this.primaryStateKey]
 	 * @param	{Boolean}	[subscribe=false]
+	 * @param	{Object}	[options={}]
 	 * @return	{Promise}
+	 * @see https://github.com/ioBroker/ioBroker.history#access-values-from-javascript-adapter
 	 *
 	 */
-	requestDeviceStateHistory(stateKey = null, subscribe = false) {
+	requestDeviceStateHistory(stateKey = null, subscribe = false, options = {}) {
 		
 		stateKey = stateKey || this.primaryStateKey;
 		let s = this._getStateFromKey(stateKey);
@@ -475,7 +482,7 @@ export default class Device extends Function {
 			
 			// request from backend
 			else {
-				this.socket.getStateHistory(s.state.node)
+				this.socket.getStateHistory(s.state.node, options)
 					.then(history => {
 						
 						// state does not exist

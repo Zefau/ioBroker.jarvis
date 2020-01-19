@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 
-import Typography from '@material-ui/core/Typography'
+import i18n from '../i18n'
+
 import Slider from '@material-ui/core/Slider'
 import Switch from '@material-ui/core/Switch'
+import Button from '@material-ui/core/Button'
 
 
 /*
@@ -41,12 +43,9 @@ const useStyles = makeStyles(theme => ({
  *
  */
 const Action = withStyles(styles)(props => {
-//function Action(props) {
 	const { classes, device, state, stateKey } = props;
-	//const classes = useStyles();
-	
 	return (
-	
+
 <span className={clsx((stateKey === device.primaryStateKey && classes.primaryAction) || (stateKey === device.secondaryStateKey && classes.secondaryAction))}>
 	{state.value} {state.unit}
 </span>
@@ -67,7 +66,6 @@ function PowerAction(props) {
 	
 	return (
 
-<React.Fragment>
 <Switch
 	checked={checked}
 	onChange={parentOnChange || onChange}
@@ -75,7 +73,34 @@ function PowerAction(props) {
 	color="primary"
 	/>
 
-</React.Fragment>
+	);
+}
+
+function TriggerAction(props) {
+	const { device, stateKey, stateVal } = props;
+	
+	const onClick = () => {
+		device.setDeviceState(stateKey, true).catch(err => console.error(err));
+	}
+	
+	//
+	if (stateVal === true || stateVal > 0) {
+		return <Action {...props} onChange={null} />;
+	}
+	
+	const icon = 'power';
+	return (
+
+<Button
+	variant="outlined"
+	color="primary"
+	size="small"
+	startIcon={<span className={'mdi mdi-' + icon}></span>}
+	onClick={onClick}
+	>
+	
+	{i18n.t('turn on')}
+</Button>
 
 	);
 }
@@ -92,7 +117,7 @@ function Label(props) {
 	return (
 	
 <React.Fragment>
-	<Typography>{label}</Typography>
+	{label}
 	{linebreak && <br />}
 </React.Fragment>
 	
@@ -199,6 +224,13 @@ export default {
 			unit: ' °C',
 			icon: 'thermometer'
 		},
+		trigger: {
+			state: {
+				'true': 'on',
+				'false': 'off'
+			},
+			icon: 'power'
+		},
 		wind: {
 			unit: ' km/h',
 			icon: 'weather-windy'
@@ -214,8 +246,10 @@ export default {
 	actions: {
 		Action,
 		PowerAction,
+		TriggerAction,
 		
-		power: PowerAction
+		power: PowerAction,
+		trigger: TriggerAction
 	},
 	styles: {
 		_any: {

@@ -19,11 +19,16 @@ export default {
 	"open": "offen",
 	"closed": "geschlossen",
 	
-	"power": "Gerät an",
+	"turn on": "anschalten",
+	"power": "Geräte Status",
+	"trigger": "Geräte Status",
+	
 	"brightness": "Helligkeit",
 	"wind": "Wind",
 	"battery": "Batterie",
 	
+	"%DateTime": "%DateTime Uhr",
+	"boost": "Boost",
 	
 	/*
 	 * BLINDS

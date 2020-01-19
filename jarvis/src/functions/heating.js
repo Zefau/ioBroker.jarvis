@@ -28,12 +28,16 @@ export default {
 		},
 		humidity: {
 			unit: ' %'
+		},
+		boost: {
+			icon: 'radiator'
 		}
 	},
 	components: {
 		setTemperature: HeatingSetTemperatureComponent
 	},
 	actions: {
+		boost: defaults.actions.PowerAction
 	},
 	styles: {
 	}

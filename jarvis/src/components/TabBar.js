@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import clsx from 'clsx';
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import clsx from 'clsx'
 
-import useWindowDimensions from '../helpers/useWindowDimensions';
+import useWindowDimensions from '../helpers/useWindowDimensions'
 
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Box from '@material-ui/core/Box'
 
 
 /*

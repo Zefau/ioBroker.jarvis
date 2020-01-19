@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
-import functions from './functions';
+import EventEmitter from 'events'
+import functions from './functions'
 
 
 /**

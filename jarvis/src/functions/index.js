@@ -9,5 +9,5 @@ export default {
 	light: require('./light').default,
 	location: require('./location').default,
 	user: require('./user').default,
-	window: require('./door').default
+	window: require('./window').default
 }

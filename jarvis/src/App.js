@@ -1,19 +1,19 @@
-import React from 'react';
-import LogRocket from 'logrocket';
-import uuid from 'uuid/v3';
+import React from 'react'
+import LogRocket from 'logrocket'
+import uuid from 'uuid/v3'
 
-import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
+import Grid from '@material-ui/core/Grid'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Typography from '@material-ui/core/Typography'
+import Skeleton from '@material-ui/lab/Skeleton'
 
-import GridContainer from './components/GridContainer';
-import StatusSnackbar from './components/StatusSnackbar';
+import GridContainer from './components/GridContainer'
+import StatusSnackbar from './components/StatusSnackbar'
 
-import i18n from './i18n';
-import Connection from './Connection';
-import Device from './Device';
-import Jarvis from './Jarvis';
+import i18n from './i18n'
+import Connection from './Connection'
+import Device from './Device'
+import Jarvis from './Jarvis'
 
 
 /*
@@ -58,7 +58,7 @@ class App extends React.Component {
 		
 		// connect and get connection
 		const noErrorFunction = () => this.setState({ error: false, errorMessage: '' });
-		const url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : null;
+		const url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : (window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : ''));
 		const listeners = [
 			{ 'event': 'connect', 'callback': noErrorFunction },
 			{ 'event': 'reconnect', 'callback': noErrorFunction },
@@ -67,7 +67,6 @@ class App extends React.Component {
 		];
 		
 		this.socket = Connection.connect(url, listeners);
-		
 		
 		// retrieve settings
 		this.settings = {};
@@ -105,7 +104,7 @@ class App extends React.Component {
 			.then(state => {
 				
 				try {
-					this.devices = state && JSON.parse(state.val);
+					this.devices = JSON.parse(state.val);
 					this.processDevices(this.devices).then(groups => {
 						this.groups = groups;
 						this.setState({ loaded: [...this.state.loaded, 'groups'] });
@@ -123,7 +122,7 @@ class App extends React.Component {
 				console.error('GET_DEVICES: ' + err.message);
 				this.setState({
 					error: true,
-					errorMessage: err
+					errorMessage: 'Socket failed while getting devices!'
 				});
 			});
     }
@@ -184,7 +183,7 @@ class App extends React.Component {
 			
 			let groupId = group.toLowerCase().replace(/ /g, '');
 			if (!groups[groupId]) {
-				groups[groupId] = { 'id': groupId, 'name': group, 'settings': (this.settings.groups && this.settings.groups[groupId]) || {}, 'devices': [device] };
+				groups[groupId] = { 'id': groupId, 'name': group, 'devices': [device] };
 			}
 			else {
 				groups[groupId].devices.push(device);
@@ -345,7 +344,7 @@ class App extends React.Component {
 		const { classes } = this.props;
 		const { topBar, tabBar, gridColumns } = props;
 		
-		const SkeletonLoader = (props) => <Skeleton variant="rect" className={classes.gridItem} height={props.height} />;
+		const SkeletonLoader = (props) => <Skeleton animation="wave" variant="rect" className={classes.gridItem} height={props.height} />;
 		
 		let gridContents = {}
 		for (let column = 1; column <= gridColumns; column++) {
@@ -360,8 +359,8 @@ class App extends React.Component {
 		return (
 
 <React.Fragment>
-	{topBar && <Skeleton variant="rect"  height={64} />}
-	{tabBar && <Skeleton variant="rect"  height={48} />}
+	{topBar && <Skeleton animation="wave" variant="rect" height={64} />}
+	{tabBar && <Skeleton animation="wave" variant="rect" height={48} />}
 	<GridContainer key="loadingSkeleton" contents={gridContents} />
 </React.Fragment>
 

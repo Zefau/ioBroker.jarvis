@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-//import Drawer from '@material-ui/core/Drawer';
+//import Drawer from '@material-ui/core/Drawer'
 
-import TopBar from './components/TopBar';
-import TabBar, { TabPanel } from './components/TabBar';
-import GridContainer from './components/GridContainer';
-import Popup from './components/Popup';
-import Widget from './components/Widget';
-import COMPONENTS from './components';
+import TopBar from './components/TopBar'
+import TabBar, { TabPanel } from './components/TabBar'
+import GridContainer from './components/GridContainer'
+import Popup from './components/Popup'
+import Widget from './components/Widget'
+import Modules, { ModuleSettings } from './modules'
 
 
 /*
@@ -23,16 +23,18 @@ import theme from './theme';
 const getGroup = (groupId, group, props = {}) => {
 	
 	// group empty
-	if (!group) {
+	if (!group && ModuleSettings[group.settings.component.module].noDevicesAllowed !== true) {
 		console.error('Group ' + groupId + ' defined in columns but not assigned to any devices!');
 		return null;
 	}
 	
 	// get module for component
-	group.settings.component = typeof group.settings.component === 'string' ? { 'module': group.settings.component } : (group.settings.component || {})
-	const Tag = COMPONENTS[group.settings.component.module || 'StateList'];
+	group.settings.component = typeof group.settings.component === 'string' ? { 'module': group.settings.component } : (group.settings.component || {});
+	const Tag = Modules[group.settings.component.module || 'StateList'];
+	
+	// get tag
 	if (Tag === undefined) {
-		console.error('Undefined component "' + group.settings.component + '" used!');
+		console.error('Undefined component "' + group.settings.component.module + '" used!');
 		return null;
 	}
 	
@@ -54,21 +56,22 @@ const getGridContents = (contents, groups, props = {}) => {
 		gridContents[column] = gridContents[column] || [];
 		
 		// no contents, thus add placeholder
-		if (!columnContents || columnContents.length === 0) {
+		if (!columnContents || !Object.keys(columnContents).length) {
 			gridContents[column].push(null);
 		}
 		
 		// add contents
 		else {
-			for (let index in columnContents) {
+			for (let groupId in columnContents) {
 				
-				let groupId = columnContents[index];
-				let group = groups[groupId];
+				let group = groups[groupId] || {};
+				group.settings = columnContents[groupId] || {};
+				group.settings.component = typeof group.settings.component === 'string' ? { 'module': group.settings.component } : (group.settings.component || {});
 				
 				let content = getGroup(groupId, group, props);
 				if (content) {
 					gridContents[column].push(
-						<Widget key={'Box-' + groupId + '-' + index} title={group.settings.title !== null ? (group.settings.title || group.name) : null} icon={group.settings.icon} iconStyle={group.settings.iconStyle}>
+						<Widget key={'Box-' + groupId} title={group.settings.title === null ? null : (group.settings.title || group.name || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].title))} icon={group.settings.icon === null ? null : (group.settings.icon || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].icon))} iconStyle={group.settings.iconStyle}>
 							{content}
 						</Widget>
 					);
@@ -129,8 +132,11 @@ export default class Jarvis extends React.Component {
 			const contents = this.layout[tabLabel];
 			
 			// fullscreen in component
-			if (!this.gridContents[tabLabel] && typeof contents === 'string') {
-				this.gridContents[tabLabel] = getGroup(contents, this.props.groups[contents], { action: this.openDialog, ...this.widgetProps });
+			let groupId = Object.keys(contents)[0];
+			let fullscreen = Number.isNaN(parseInt(groupId));
+			
+			if (!this.gridContents[tabLabel] && fullscreen) {
+				this.gridContents[tabLabel] = getGroup(contents, { ...this.props.groups[groupId], settings: contents[groupId] }, { action: this.openDialog, ...this.widgetProps });
 			}
 			
 			// grid layout
@@ -139,7 +145,7 @@ export default class Jarvis extends React.Component {
 			}
 			
 			let tabPanel = (
-				<TabPanel key={'tabPanel-' + tab} renderedTab={tab} selectedTab={this.state.selectedTab} fullscreen={typeof contents === 'string'}>
+				<TabPanel key={'tabPanel-' + tab} renderedTab={tab} selectedTab={this.state.selectedTab} fullscreen={fullscreen}>
 					{this.gridContents[tabLabel]}
 				</TabPanel>
 			);

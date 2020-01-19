@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
-import io from 'socket.io-client';
+import EventEmitter from 'events'
+import io from 'socket.io-client'
 
 
 /**
@@ -12,7 +12,7 @@ import io from 'socket.io-client';
  * @param	{String}		url
  * @param	{Object}		options
  * @return	{Socket}
- * @see https://github.com/ioBroker/adapter-react/blob/master/src/Connection.js
+ * @see https://github.com/ioBroker/ioBroker.socketio/blob/master/lib/socket.js https://github.com/ioBroker/ioBroker.js-controller/blob/master/lib/adapter.js#L635
  *
  */
 export default class Socket extends EventEmitter {
@@ -61,6 +61,15 @@ export default class Socket extends EventEmitter {
 	}
 	
 	/**
+	 * Subscribes to multiple states by setting a callback.
+	 *
+	 */
+	subscribeStates(ids, cb) {
+		ids = Array.isArray(ids) ? ids : [ids];
+		ids.forEach(id => this.subscribeState(id, cb));
+	}
+	
+	/**
 	 * Subscribes to a state by setting a callback.
 	 *
 	 */
@@ -105,6 +114,46 @@ export default class Socket extends EventEmitter {
 	}
 	
 	/**
+	 * Gets an object view.
+	 *
+	 */
+	getAdapterInstances(adapter, cb) {
+		
+		if (typeof adapter === 'function') {
+			cb = adapter;
+			adapter = null;
+		}
+		
+		return this.getObjectView('system', 'instance', { 'startkey': 'system.adapter.' + (adapter ? adapter + '.' : ''), 'endkey': 'system.adapter.' + (adapter ? adapter + '.999' : 'zzz') }, cb);
+	}
+	
+	/**
+	 * Gets an object view.
+	 *
+	 */
+	getObjectView(design, search, params, cb) {
+		
+		if (!cb) {
+			return new Promise((resolve, reject) => this.getObjectView(design, search, params, err => err ? reject(err) : resolve()));
+		} else {
+			this.socket.emit('getObjectView', design, search, params, cb);
+		}
+	}
+	
+	/**
+	 * Gets a remote ressource.
+	 *
+	 */
+	getRemoteResource(url, cb) {
+		
+		if (!cb) {
+			return new Promise((resolve, reject) => this.getRemoteResource(url, (err, state) => err ? reject(err) : resolve(state)));
+		} else {
+			this.socket.emit('httpGet', url, cb);
+		}
+	}
+	
+	/**
 	 * Gets a state.
 	 *
 	 */
@@ -114,6 +163,19 @@ export default class Socket extends EventEmitter {
 			return new Promise((resolve, reject) => this.getState(id, (err, state) => err ? reject(err) : resolve(state)));
 		} else {
 			this.socket.emit('getState', id, cb);
+		}
+	}
+	
+	/**
+	 * Gets multiple states at once.
+	 *
+	 */
+	getStates(pattern, cb) {
+		
+		if (!cb) {
+			return new Promise((resolve, reject) => this.getStates(pattern, (err, state) => err ? reject(err) : resolve(state)));
+		} else {
+			this.socket.emit('getStates', pattern, cb);
 		}
 	}
 	

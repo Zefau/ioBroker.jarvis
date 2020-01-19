@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-import StateList from './StateList';
+import Modules from '../modules';
 
 
 /*
@@ -80,17 +80,25 @@ export default class Popup extends React.Component {
 		let device = this.props.contents && this.props.contents.device;
 		if (device.id && this.props.contents.ts !== prevProps.contents.ts) {
 			
-			// loop through states and request status
-			let responses = [];
-			let children = [];
+			// get from cache
+			if (device.children.length) {
+				console.info('Got ' + Object.keys(device.children).length + ' states for device ' + device.name + ' from cache.');
+				this.setState({ 'children': device.children }, () => this.forceUpdate());
+			}
 			
-			for (let stateKey in device.states) {
+			// retrieve new
+			else {
+				// loop through states and request status
+				let responses = [];
+				let children = [];
 				
-				if (device.states[stateKey].state === undefined || device.options.hiddenStates.indexOf(stateKey) > -1) {
-					continue;
-				}
-				
-				let child = new Device({
+				for (let stateKey in device.states) {
+					
+					if (device.states[stateKey].state === undefined || device.options.hiddenStates.indexOf(stateKey) > -1) {
+						continue;
+					}
+					
+					let child = new Device({
 							'parent': device,
 							'id': device.id + '#' + stateKey,
 							'name': device.name,
@@ -107,19 +115,20 @@ export default class Popup extends React.Component {
 						Connection.getConnection,
 						window.language
 					);
+					
+					// add child to parent
+					device.children.push(child);
+					
+					// retrieve state
+					responses.push(child.requestDeviceState(null, true));
+					children.push(child);
+				}
 				
-				// add child to parent
-				device.children.push(child);
-				
-				// retrieve state
-				responses.push(child.requestDeviceState(null, true));
-				children.push(child);
+				Promise.allSettled(responses).then(() => {
+					console.info('Retrieved ' + Object.keys(children).length + ' states for device ' + device.name + '.', responses);
+					this.setState({ 'children': children }, () => this.forceUpdate());
+				});
 			}
-			
-			Promise.allSettled(responses).then(() => {
-				console.info('Retrieved ' + Object.keys(children).length + ' states for device ' + device.name + '.', responses);
-				this.setState({ 'children': children }, () => this.forceUpdate());
-			});
 		}
 		else if (!device.id && this.props.contents.ts !== prevProps.contents.ts) {
 			this.setState({ 'children': [] }, () => this.forceUpdate());
@@ -142,7 +151,7 @@ export default class Popup extends React.Component {
 	</DialogTitle>
 	<DialogContent dividers style={{ padding: 0 }}>
 		
-		<StateList openDialog={null} devices={this.state.children} component={true} action={true} />	
+		<Modules.StateList openDialog={null} devices={this.state.children} component={true} action={true} />	
 		
 	</DialogContent>
 	<DialogActions>
