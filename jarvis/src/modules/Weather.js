@@ -42,7 +42,7 @@ export default function Weather(props) {
 	}, [settings.url]);
 	
 	let weatherForecast = [];
-	console.log(data);
+	//console.log(data);
 	
 	if (!data) {
 		return null;

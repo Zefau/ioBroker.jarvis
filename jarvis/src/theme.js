@@ -23,5 +23,5 @@ const theme = createMuiTheme({
 	}
 });
 
-console.debug(theme);
+//console.debug(theme);
 export default theme;

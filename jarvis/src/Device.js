@@ -1,6 +1,8 @@
 import React from 'react'
 import i18n from './i18n'
 import Function from './Function'
+import Adapters from './Adapters'
+
 import { formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
 
@@ -63,7 +65,6 @@ export default class Device extends Function {
 		// do some stuff
 		this._setProperties();
 		this.stateSubscriptions = [];
-		this.historySubscriptions = [];
 		
 		// listen for errors of the device
 		this.on('error', err => console.error('Device error occured!', err));
@@ -193,7 +194,7 @@ export default class Device extends Function {
 			});
 		}
 		
-		// delete ignored states
+		// get hidden states
 		this.options.hiddenStates = [];
 		if (this.options.hideStates) {
 			this.options.hideStates = Array.isArray(this.options.hideStates) ? this.options.hideStates : [this.options.hideStates];
@@ -215,6 +216,10 @@ export default class Device extends Function {
 			let stateOrAttribute = this.options[key] && Object.keys(this.options[key])[0];
 			this.options[key] = !this.options[key] ? {} : super._setObjectStructure(stateOrAttribute && states.indexOf(stateOrAttribute) > -1 ? this.options[key] : { [this.primaryStateKey]: this.options[key] });
 		});
+		
+		// manufacturer
+		this.states[this.primaryStateKey] = this._getStateFromKey(this.primaryStateKey);
+		this.options.manufacturer = (this.primaryStateKey && Adapters[this.states[this.primaryStateKey].state.node.substr(0, this.states[this.primaryStateKey].state.node.indexOf('.'))]) || 'unknown';
 		
 		// all options
 		this.options.groups = Array.isArray(this.options.group) ? this.options.group : [this.options.group];
@@ -469,12 +474,13 @@ export default class Device extends Function {
 		}
 		
 		return new Promise((resolve, reject) => {
+			s.state.historyCache = s.state.historyCache || {};
 			
 			// send cached value if present and subscrbe (means always updated)
-			if (s.state.history !== undefined && this.historySubscriptions.indexOf(stateKey) > -1) {
+			if (options.start && options.end && options.step && s.state.historyCache[options.start + '#' + options.end + '#' + options.step] !== undefined) {
 				
 				// publish state
-				this.emit('historyChange', stateKey, s.state.history);
+				this.emit('historyChange', stateKey, s.state.historyCache[options.start + '#' + options.end + '#' + options.step], s.state);
 				
 				// resolve
 				resolve({ 'success': true, 'stateKey': stateKey, 'cached': true });
@@ -490,18 +496,21 @@ export default class Device extends Function {
 							reject({ 'success': false, 'stateKey': stateKey, 'error': 'State ' + s.state.node + ' not found!' });
 						}
 						
+						// cache result
+						if (options.start && options.end && options.step) {
+							s.state.historyCache[options.start + '#' + options.end + '#' + options.step] = history;
+						}
+						
 						// set result
-						s.state.history = history; // this._updateDeviceState(stateKey, state);			// callback(err, data, step, sessionId);
+						s.state.history = history;
 						
 						// publish state change
-						this.emit('historyChange', stateKey, s.state.history);
+						this.emit('historyChange', stateKey, s.state.history, s.state);
 						
 						// subscribe to state
-						/*
 						if (subscribe) {
 							this.subscribeDeviceState(stateKey).catch(err => reject(err));
 						}
-						*/
 						
 						// resolve
 						resolve({ 'success': true, 'stateKey': stateKey, 'cached': false });
@@ -517,7 +526,6 @@ export default class Device extends Function {
 	 */
 	setAction(action) {
 		this.options.action = action;
-		
 	}
 	
 	/**
@@ -526,7 +534,6 @@ export default class Device extends Function {
 	 */
 	setComponent(component) {
 		this.options.label = component;
-		
 	}
 	
 	/**

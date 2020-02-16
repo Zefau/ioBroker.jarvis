@@ -126,6 +126,7 @@ class AdapterStatus extends React.Component {
 					
 					// get state updates
 					this.socket.subscribeStates(states, (id, aliveStatus) => {
+						
 						if (aliveStatus && (!this.state.adapterAliveStatus[id] || (aliveStatus.val !== this.state.adapterAliveStatus[id].val))) {
 							this.setState(prevState => ({ adapterAliveStatus: { ...prevState.adapterAliveStatus, [id]: aliveStatus } }));
 						}

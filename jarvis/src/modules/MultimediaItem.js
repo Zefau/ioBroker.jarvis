@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import helpers from '../helpers/timeConverter'
 
 import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
+//import IconButton from '@material-ui/core/IconButton'
 import Fab from '@material-ui/core/Fab'
 import PlayIcon from '@material-ui/icons/PlayArrow'
 import PauseIcon from '@material-ui/icons/Pause'
@@ -168,9 +168,9 @@ class Multimedia extends React.Component {
 		}
 		
 		const playIconElements = this.state.isRunning && this.state.isRunning.val ? [<PauseIcon onClick={this.setDeviceState.bind(this, 'pause', true)} />, <StopIcon />] : [<PlayIcon onClick={this.setDeviceState.bind(this, 'play', true)} />];
-		const repeatIcon = 'repeat'; // repeat, repeat-off, repeat-once
-		const shuffleIcon = 'shuffle-variant'; // shuffle-variant, shuffle-disabled
-		const volumeIcon = 'volume-high'; // volume-variant-off
+		//const repeatIcon = 'repeat'; // repeat, repeat-off, repeat-once
+		//const shuffleIcon = 'shuffle-variant'; // shuffle-variant, shuffle-disabled
+		//const volumeIcon = 'volume-high'; // volume-variant-off
 		
 		return (
 

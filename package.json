@@ -6,9 +6,30 @@
   "directories": {
     "lib": "lib"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "contributors": [
+    {
+      "name": "zefau",
+      "email": "zefau@mailbox.org"
+    }
+  ],
+  "author": {
+    "name": "zefau",
+    "email": "zefau@mailbox.org"
   },
-  "author": "",
-  "license": "ISC"
+  "bugs": {
+    "url": "https://github.com/Zefau/ioBroker.jarvis/issues"
+  },
+  "scripts": {
+    "test": "npm run test:package && npm run test:unit",
+    "test:integration": "mocha test/integration --exit",
+    "test:package": "mocha test/package --exit",
+    "test:unit": "mocha test/unit --exit",
+    "translate": "gulp translateAndUpdateWordsJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zefau/ioBroker.jarvis.git"
+  },
+  "homepage": "https://github.com/Zefau/ioBroker.jarvis",
+  "license": "MIT"
 }

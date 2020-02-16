@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemText from '@material-ui/core/ListItemText'
-import Typography from '@material-ui/core/Typography'
 
 
 /*
@@ -15,18 +14,6 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
 	defaultListDivider: {
 		margin: '0 0 5px 0'
-	},
-	defaultListSectionDivider: {
-		margin: '5px 0 0 0'
-	},
-	defaultListSectionDividerItem: {
-		padding: '0 16px !important'
-	},
-	defaultListSectionText: {
-		margin: '5px 0 0 0',
-		[theme.breakpoints.down('md')]: {
-			margin: '5px 0 0 10px',
-		}
 	},
 	defaultListIcon: props => ({
 		...theme.components.icon,
@@ -54,27 +41,6 @@ const styles = theme => ({
 	},
 });
 
-
-const ListDivider = withStyles(styles)(props => {
-	const { classes, title } = props;
-	return (
-	
-<React.Fragment>
-	<ListItem divider className={classes.defaultListSectionDivider} />
-	<ListItem className={classes.defaultListSectionDividerItem}>
-		<ListItemText
-			className={classes.defaultListSectionText}
-			primary={title}
-			/>
-		
-		<ListItemSecondaryAction>
-			{null}
-		</ListItemSecondaryAction>
-	</ListItem>
-</React.Fragment>
-	
-	);
-});
 
 const ListItemIconElement = withStyles(styles)(props => {
 	const { customClassNames, children, classes } = props;
@@ -113,7 +79,7 @@ class StateListItem extends React.Component {
 	}
 	
 	render() {
-		const { classes, horizontal, prevSubgroup, device, component, action } = this.props;
+		const { classes, horizontal, device, component, action } = this.props;
 		
 		const state = this.state[device.primaryStateKey];
 		const options = device.get('options');
@@ -127,7 +93,6 @@ class StateListItem extends React.Component {
 <React.Fragment>
 	
 	{options.divider && options.divider !== 'after' && <ListItem divider className={classes.defaultListDivider} />}
-	{prevSubgroup !== null && options.subgroup !== null && options.subgroup !== prevSubgroup && <ListDivider title={options.subgroup} />}
 	
 	<ListItem
 		className={clsx(this.props.openDialog && classes.finger, horizontal && classes.horizontalListItem)}
