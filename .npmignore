@@ -1,0 +1,10 @@
+Gruntfile.js
+tasks
+node_modules
+.idea
+.git
+/node_modules
+test
+tmp
+.travis.yml
+appveyor.yml
