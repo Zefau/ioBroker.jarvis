@@ -31,5 +31,12 @@
     "url": "git+https://github.com/Zefau/ioBroker.jarvis.git"
   },
   "homepage": "https://github.com/Zefau/ioBroker.jarvis",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@iobroker/testing": "^2.0.2",
+    "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "gulp": "^4.0.2",
+    "mocha": "^7.0.1"
+  }
 }
