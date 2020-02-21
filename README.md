@@ -2,13 +2,13 @@
 # ioBroker.jarvis
 jarvis - just another remarkable vis
 
-[![Paypal Donation](https://img.shields.io/badge/paypal-donate%20|%20spenden-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S45U45EHXGQHN&source=url)
+[![Paypal Donation](https://img.shields.io/badge/paypal-donate%20|%20spenden-blue.svg)](https://paypal.me/chvoelkel)
 
 ![Number of Installations](http://iobroker.live/badges/jarvis-installed.svg)
 ![Stable Version](http://iobroker.live/badges/jarvis-stable.svg)
 [![NPM Version](http://img.shields.io/npm/v/iobroker.jarvis.svg)](https://www.npmjs.com/package/iobroker.jarvis)
 [![Commits since last release](https://img.shields.io/github/commits-since/Zefau/ioBroker.jarvis/latest.svg)](https://github.com/Zefau/ioBroker.jarvis/releases/latest)
-[![Travis CI](https://travis-ci.org/Zefau/ioBroker.jarvis.svg?branch=master)](https://travis-ci.org/Zefau/ioBroker.jarvis)
+[![Travis CI](https://travis-ci.com/Zefau/ioBroker.jarvis.svg?branch=master)](https://travis-ci.com/Zefau/ioBroker.jarvis)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.jarvis.svg)](https://www.npmjs.com/package/iobroker.jarvis)
 
 [![NPM](https://nodei.co/npm/iobroker.jarvis.png?downloads=true)](https://nodei.co/npm/iobroker.jarvis/) 
@@ -23,7 +23,7 @@ tbd
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
-### 0.0.1 (2020-01-xx)
+### 0.0.1 (2020-02-21)
 - (Zefau) initial version
 
 
