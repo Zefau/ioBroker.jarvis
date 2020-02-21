@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Settings Dokumentation</title>
+	<script>
+	<!--
+
+const settings = [{
+	parameter: 'language',
+	description: 'Spracheinstellung von jarvis',
+	values: '`de` oder `en`',
+	default: '*Sprache des Browsers*'
+},{
+	parameter: 'pageTitle',
+	description: 'Titel im Browser',
+	values: 'beliebiger Wert',
+	default: '`jarvis - just another remarkable vis`'
+},{
+	parameter: 'pageFavicon',
+	description: 'Favicon im Browser',
+	values: 'base64 Wert der Grafik',
+	default: '*jarvis Standard Icon*'
+},{
+	parameter: 'translations',
+	description: 'benutzerspezifische Übersetzungen',
+	values: '',
+	default: ''
+},{
+	parameter: 'layout',
+	description: 'Layout von jarvis',
+	values: '[siehe Layout-Einstellungen](https://github.com/Zefau/ioBroker.jarvis/wiki/Einstellungen:-Layout)',
+	default: 'n/a'
+}];
+
+function getDocumentation() {
+	var list = '## verfügbare Einstellungen\n';
+	
+	list += '| Parameter | Beschreibung | mögliche Werte | Standard |\n';
+	list += '| - | - | - | - |\n';
+	
+	settings.forEach(setting => {
+		list += '| ' + setting.parameter + ' | ' + setting.description + ' | ' + setting.values + ' | ' + setting.default + ' |\n';
+	});
+	
+	document.getElementById('documentation').innerHTML = list;
+}
+
+	// -->
+	</script>
+</head>
+<body onload="getDocumentation()">
+
+
+<pre id="documentation"></pre>
+
+
+</body>
+</html>

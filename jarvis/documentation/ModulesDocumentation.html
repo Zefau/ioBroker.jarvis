@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Module Dokumentation</title>
+	<script>
+	<!--
+
+const defaults = {
+	true: '`true`',
+	false: '`false`',
+	trueOrFalse: '`true` oder `false`',
+	anyValue: 'beliebiger Wert',
+	anyNumber: 'beliebiger numerischer Wert'
+}
+
+const modules = [{
+	name: 'AdapterStatus',
+	description: 'Zeigt alle installierten Adapter mit ihren Instanzen und dem jeweiligen Status (active & alive, active & not connected, inactive) an.',
+	settings: [{
+		parameter: 'updates',
+		description: 'Zeigt aktuelles Updates der Adapter an',
+		values: defaults.trueOrFalse,
+		default: defaults.true
+	},
+	{
+		parameter: 'list',
+		description: 'Zeigt nur die in `list` aufgeführten Adapter an',
+		values: 'Namen der Adapter mit Komma separiert',
+		default: '*alle Adapter*'
+	},
+	{
+		parameter: 'blacklist',
+		description: 'Schließt die in `blacklist` aufgeführten Adapter aus der Liste aus',
+		values: 'Namen der Adapter mit Komma separiert',
+		default: ''
+	}]
+},
+{
+	name: 'Chart',
+	description: 'Stellt historische Werte (z.B. aus ioBroker.history) grafisch als Chart mittels [Chart.js](https://www.chartjs.org/) dar.',
+	settings: [
+	{
+		parameter: 'chartHeight',
+		description: 'Höhe des Charts',
+		values: defaults.anyValue,
+		default: '`500px`'
+	},{
+		parameter: 'chartFilter',
+		description: 'Filter die auf das Chart angewandt werden',
+		values: '',
+		default: ''
+	},{
+		parameter: 'chartFilter.selectedTimeRangeValue',
+		description: '',
+		values: '',
+		default: ''
+	},{
+		parameter: 'chartFilter.selectedTimeRangeUnit',
+		description: '',
+		values: '',
+		default: ''
+	},{
+		parameter: 'chartFilter.selectedDateTime',
+		description: '',
+		values: '',
+		default: '`new Date()`'
+	},
+	{
+		parameter: 'chartConfig',
+		description: '',
+		values: '',
+		default: ''
+	},
+	{
+		parameter: 'chartConfig.yAxes',
+		description: '',
+		values: '',
+		default: ''
+	},
+	{
+		parameter: 'chartConfig.yLeftAxisUnitBefore',
+		description: '',
+		values: '',
+		default: ''
+	},
+	{
+		parameter: 'chartConfig.yLeftAxisUnitAfter',
+		description: '',
+		values: '',
+		default: ''
+	},
+	{
+		parameter: 'liveUpdates',
+		description: 'Lädt und zeigt Aktualisierungen des Charts direkt an (dynamisches Chart)',
+		values: defaults.trueOrFalse,
+		default: defaults.true
+	}]
+},
+{
+	name: 'DateTime',
+	description: 'Das Modul dient der Anzeige des aktuellen Datums und Zeit.',
+	settings: [{
+		parameter: 'style',
+		description: 'Style des Textes',
+		values: '*[CSS-Anweisungen](https://www.w3schools.com/cssref/default.asp) in Javascript Syntax*',
+		default: '`{ fontSize: \'1.5rem\', textAlign: \'center\' }`'
+	},
+	{
+		parameter: 'format',
+		description: 'Format des Datums bzw. der Uhrzeit',
+		values: '[siehe mögliche Werte](https://date-fns.org/v2.9.0/docs/format)',
+		default: '`dd.MM.yyyy HH:mm:ss`'
+	}]
+},
+{
+	name: 'Map',
+	description: 'Zeigt eine Karte von [OpenStreetMap](https://www.openstreetmap.de/).',
+	settings: [{
+		parameter: 'defaultZoom',
+		description: 'initialer Zoom der Karte',
+		values: defaults.anyNumber,
+		default: ''
+	},
+	{
+		parameter: 'defaultPosition',
+		description: 'initiale Position der Karte',
+		values: 'Latitude und Longitude mit Komma separiert (z.B. `53.550383, 9.992376`)',
+		default: ''
+	},
+	{
+		parameter: 'tooltipDirection',
+		description: 'Richtung in die der Tooltip öffnet',
+		values: '`auto`, `center`, `top`, `left`, `right` or `bottom`',
+		default: '`bottom`'
+	},
+	{
+		parameter: 'tooltipPermanent',
+		description: 'Angabe ob der Tooltip permanent ist (`true`) oder nur beim rüberfahren mit der Maus gezeigt wird (`false`)',
+		values: defaults.trueOrFalse,
+		default: defaults.true
+	}]
+},
+{
+	name: 'Multimedia',
+	description: 'Zeigt ein Multimedia-Player an (z.B. Spotify)',
+	settings: [/*{
+		parameter: 'style',
+		description: 'Style des Textes',
+		values: '*[CSS-Anweisungen](https://www.w3schools.com/cssref/default.asp) in Javascript Syntax*',
+		default: '`{ fontSize: \'1.5rem\', textAlign: \'center\' }`'
+	}
+	*/
+	]
+},
+{
+	name: 'StateList *(Standard)*',
+	description: 'Zeigt eine Liste von States an',
+	settings: [/*{
+		parameter: 'style',
+		description: 'Style des Textes',
+		values: '*[CSS-Anweisungen](https://www.w3schools.com/cssref/default.asp) in Javascript Syntax*',
+		default: '`{ fontSize: \'1.5rem\', textAlign: \'center\' }`'
+	}
+	*/
+	]
+},
+{
+	name: 'StateListHorizontal',
+	description: 'Zeigt eine Liste von States horizontal an',
+	settings: 'siehe Modul `StateList`'
+}];
+
+function getDocumentation() {
+	var list = '## Liste der Module\n%toc%';
+	var toc = [];
+	
+	modules.forEach(module => {
+		console.log(module);
+		toc.push(module.name);
+		
+		list += '### Modul: ' + module.name + '\n';
+		list += '#### Kurzbeschreibung\n' + module.description + '\n\n';
+		list += '#### Einstellungen (Settings)\n';
+		
+		if (Array.isArray(module.settings)) {
+			list += '| Parameter | Beschreibung | mögliche Werte | Standard |\n';
+			list += '| - | - | - | - |\n';
+			
+			module.settings.forEach(setting => {
+				list += '| ' + setting.parameter + ' | ' + setting.description + ' | ' + setting.values + ' | ' + setting.default + ' |\n';
+			});
+		}
+		else
+		{
+			list += module.settings;
+		}
+		
+		list += '\n***\n';
+	});
+	
+	list = list.replace('%toc%', toc.map(header => '- [' + header + '](#modul-' + header.toLowerCase().replace(/ /g, '') + ')').join('\n') + '\n\n');
+	document.getElementById('documentation').innerHTML = list;
+}
+
+	// -->
+	</script>
+</head>
+<body onload="getDocumentation()">
+
+
+<pre id="documentation"></pre>
+
+
+</body>
+</html>
