@@ -112,6 +112,12 @@ const modules = [{
 		description: 'Format des Datums bzw. der Uhrzeit',
 		values: '[siehe mögliche Werte](https://date-fns.org/v2.9.0/docs/format)',
 		default: '`dd.MM.yyyy HH:mm:ss`'
+	},
+	{
+		parameter: 'sun',
+		description: 'Zeigt die Zeiten für Sonnenauf- und -untergang an.',
+		values: defaults.trueOrFalse,
+		default: defaults.true
 	}]
 },
 {

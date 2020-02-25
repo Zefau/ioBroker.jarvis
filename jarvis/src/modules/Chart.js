@@ -1,5 +1,5 @@
 import React from 'react'
-//import clsx from 'clsx'
+import clsx from 'clsx'
 
 import { Line } from 'react-chartjs-2'
 // eslint-disable-next-line
@@ -29,9 +29,10 @@ import CalendarIcon from '@material-ui/icons/Event'
 import CalendarTodayIcon from '@material-ui/icons/EventAvailable'
 import HistoryIcon from '@material-ui/icons/History'
 import FastRewindIcon from '@material-ui/icons/FastRewind'
-import DisablePan from '@material-ui/icons/SelectAll'
-import DisableZoom from '@material-ui/icons/LocationDisabled'
+//import DisablePan from '@material-ui/icons/SelectAll'
+//import DisableZoom from '@material-ui/icons/LocationDisabled'
 import ResetZoom from '@material-ui/icons/ZoomOutMap'
+import LiveUpdates from '@material-ui/icons/Update'
 
 
 
@@ -63,13 +64,12 @@ const styles = theme => ({
 	},
 	options: {
 		display: 'flex',
-		alignItems: 'center'
+		justifyContent: 'center',
 	},
 	datePicker: {
 		padding: '2px 4px',
 		display: 'flex',
 		alignItems: 'center',
-		width: '50%',
 		margin: 2
 	},
 	input: {
@@ -91,6 +91,15 @@ const styles = theme => ({
 	dividerVertical: {
 		height: 28,
 		margin: 4,
+	},
+	button: {
+		backgroundColor: theme.palette.primary.main,
+		color: '#fff !important',
+		margin: '4px'
+	},
+	buttonDisabled: {
+		backgroundColor: '#eee',
+		margin: '4px'
 	}
 });
 
@@ -123,6 +132,7 @@ class Chart extends React.Component {
 			selectedTimeRangeValue: (this.chartFilter && this.chartFilter.selectedTimeRangeValue) || 1,
 			selectedTimeRangeUnit: (this.chartFilter && this.chartFilter.selectedTimeRangeUnit) || 'days',
 			selectedDateTime: (this.chartFilter && this.chartFilter.selectedDateTime && new Date(this.chartFilter.selectedDateTime)) || new Date(),
+			dateNow: this.chartFilter && this.chartFilter.selectedDateTime ? false : true,
 			
 			chartLabels: [],
 			chartData: {
@@ -202,7 +212,7 @@ class Chart extends React.Component {
 			});
 			
 			// add listeners for data updates
-			if (this.props.settings.liveUpdates !== null && this.props.settings.liveUpdates !== false) {
+			if (this.props.settings.liveUpdates !== null && this.props.settings.liveUpdates !== false && this.state.dateNow) {
 				
 				device.on('stateChange', (stateKey, val, state) => this.updateChartGraph(device, val, { ...options, axis: this.getAxis(options.end, new Date()) } ));
 			}
@@ -364,8 +374,8 @@ class Chart extends React.Component {
 		// process data
 		const data = this.groupChartData(this.chartUpdates[chartIndex], options.axis);
 		
-		console.log(value);
-		console.log(options, options.axis, data);
+		//console.log(value);
+		//console.log(options, options.axis, data);
 		
 		// update chart
 		this.chartRef.current.chartInstance.data.labels = [ ...this.state.chartData.labels, ...Object.values(options.axis) ];
@@ -491,7 +501,7 @@ class Chart extends React.Component {
 				<DateTimePicker
 					className={classes.input}
 					value={this.state.selectedDateTime}
-					onChange={selectedDateTime => this.setState({ selectedDateTime })}
+					onChange={selectedDateTime => this.setState({ selectedDateTime: selectedDateTime, dateNow: false })}
 					
 					open={this.state.datePicker}
 					onOpen={() => this.setState({ datePicker: true })}
@@ -514,11 +524,17 @@ class Chart extends React.Component {
 			</Tooltip>
 			<Divider className={classes.dividerVertical} orientation="vertical" />
 			<Tooltip title={i18n.t('Select today as end date')}>
-				<IconButton className={classes.iconButton} onClick={() => this.setState({ selectedDateTime: new Date() })}>
+				<IconButton className={classes.iconButton} onClick={() => this.setState({ selectedDateTime: new Date(), dateNow: true })}>
 					<CalendarTodayIcon />
 				</IconButton>
 			</Tooltip>
 		</Paper>
+	
+		<Button className={clsx(classes.datePicker, this.props.settings.liveUpdates !== null && this.props.settings.liveUpdates !== false && this.state.dateNow ? classes.button : classes.buttonDisabled)} disabled={true}>
+			<Tooltip title={i18n.t('Indicates whether live updates are turn on or off.')}>
+					<LiveUpdates />
+			</Tooltip>
+		</Button>
 		
 	</div>
 	<Divider className={classes.divider} />

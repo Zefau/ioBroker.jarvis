@@ -128,6 +128,19 @@ export default class Socket extends EventEmitter {
 	}
 	
 	/**
+	 * Gets an object.
+	 *
+	 */
+	getObject(id, cb) {
+		
+		if (!cb) {
+			return new Promise((resolve, reject) => this.getObject(id, (err, obj) => err ? reject(err) : resolve(obj)));
+		} else {
+			this.socket.emit('getObject', id, cb);
+		}
+	}
+	
+	/**
 	 * Gets an object view.
 	 *
 	 */

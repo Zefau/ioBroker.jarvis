@@ -18,6 +18,11 @@ jarvis - just another remarkable vis
 tbd
 
 
+## Installation
+
+For installation instructions please see the [Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki)!
+
+
 ## Changelog
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
