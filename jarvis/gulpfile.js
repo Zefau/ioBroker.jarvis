@@ -11,11 +11,11 @@ const fs         = require('fs');
 
 const dir = __dirname + '/src/i18n/';
 gulp.task('i18n=>flat', done => {
-    const files = fs.readdirSync(dir).filter(name => name.match(/\.json$/));
+    const files = fs.readdirSync(dir).filter(name => name.match(/\.js$/));
     const index = {};
     const langs = [];
     files.forEach(file => {
-        const lang = file.replace(/\.json$/, '');
+        const lang = file.replace(/\.js$/, '');
         langs.push(lang);
         const text = require(dir + file);
 

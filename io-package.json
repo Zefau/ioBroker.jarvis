@@ -49,7 +49,8 @@
 			"role": "json",
 			"type": "string",
 			"read": true,
-			"write": true
+			"write": true,
+			"def": "{}"
 		}
 	},
 	{
@@ -60,7 +61,8 @@
 			"role": "json",
 			"type": "string",
 			"read": true,
-			"write": true
+			"write": true,
+			"def": "{\"layout\": {}}"
 		}
 	},
 	{

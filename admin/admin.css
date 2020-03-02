@@ -1,0 +1,48 @@
+/**
+ * Admin styles.
+ *
+ * @author Zefau <zefau@mailbox.org>
+ * @version 0.3.4
+ * @date 2019-10-12
+ *
+ */
+.m select {display: block !important}
+.hidden {display: none}
+.box {
+	padding: 10px 5px 15px 5px !important;
+	margin: 0 !important;
+	background-color: #fff; /*#acd8fa*/
+}
+
+#log {
+	background-color: #fff;
+	padding: 0 20px;
+}
+.log.error {color: #a00}
+.log.success {color: #0a0}
+.log.info {color: #00a}
+
+img {margin: 5px}
+a.active {font-weight: bold}
+p.title {margin-bottom: 0}
+p.subtitle {padding: 0 .75rem}
+p.errorMessage {
+	padding: 0 5px;
+	margin: 0;
+	color: #c00;
+}
+
+.table-button-add {margin: 15px 5px 10px 5px}
+
+.modalMessage {
+	line-height: 20px;
+}
+
+pre {display: inline}
+
+.m [type="checkbox"] + span:not(.lever) {
+	margin-bottom: 3px;
+}
+
+.m .row {margin-bottom: 0 !important}
+.m label {color: #000}

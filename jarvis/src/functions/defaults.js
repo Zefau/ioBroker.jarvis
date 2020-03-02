@@ -47,7 +47,7 @@ const Action = withStyles(styles)(props => {
 	return (
 
 <span className={clsx((stateKey === device.primaryStateKey && classes.primaryAction) || (stateKey === device.secondaryStateKey && classes.secondaryAction))}>
-	{state.value} {state.unit}
+	{state && state.value} {state && state.unit}
 </span>
 
 	);
@@ -255,11 +255,11 @@ export default {
 		_any: {
 			//icon: {},
 			state: {
-				'true': {
+				true: {
 					'color': '#090',
 					'fontWeight': 'bold'
 				},
-				'false': {
+				false: {
 					'color': '#999'
 				}
 			}

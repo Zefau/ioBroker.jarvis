@@ -6,7 +6,7 @@ const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 /*
  * internal libraries
  */
-const Library = require(__dirname + '/lib/library.js');
+const Library = require('./lib/library.js');
 
 
 /*
@@ -116,13 +116,13 @@ function startAdapter(options)
 		}
 	});
 
-	return adapter;	
+	return adapter;
 };
 
 
 /*
  * COMPACT MODE
- * If started as allInOne/compact mode => returnfunction to create instance
+ * If started as allInOne/compact mode => return function to create instance
  *
  */
 if (module && module.parent)

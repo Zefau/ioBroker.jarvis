@@ -10,6 +10,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import GridContainer from './components/GridContainer'
 import StatusSnackbar from './components/StatusSnackbar'
 
+import config from './config/config.dev.js'
 import i18n from './i18n'
 import Connection from './Connection'
 import Device from './Device'
@@ -59,11 +60,13 @@ class App extends React.Component {
 		
 		// connect and get connection
 		const errorHandler = err => {
-			this.setState({ connected: false, error: true, errorMessage: err + '..' });
+			this.setState({ connected: false, error: true, errorMessage: (typeof err === 'string' ? err : err.message) + '..' });
 			setTimeout(() => Connection.reconnect, 10*1000);
 		};
 		
-		const url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : (window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : ''));
+		const url = window.location.port === '3000' ? config.iobrokerWebAdapterUrl :
+			window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+		
 		const listeners = [
 			{ 'event': 'connect', 'callback': () => this.setState({ connected: true, error: false, errorMessage: '' }) },
 			{ 'event': 'reconnect', 'callback': () => this.setState({ connected: 'pending', error: false, errorMessage: '' }) },
@@ -71,6 +74,7 @@ class App extends React.Component {
 			{ 'event': 'error', 'callback': errorHandler }
 		];
 		
+		console.log('Connect to ' + url + '...');
 		this.socket = Connection.connect(url, listeners);
 		
 		// retrieve settings
@@ -84,13 +88,22 @@ class App extends React.Component {
 						this.useSettings();
 					}
 					
-					this.setState({ loaded: [ ...this.state.loaded, 'settings' ] });
+					const tab = Object.keys(this.settings.layout)[0];
+					if (tab === undefined) {
+						this.setState({
+							error: true,
+							errorMessage: i18n.t('Please create the configuration. See documentation.')
+						});
+					}
+					else {
+						this.setState({ loaded: [ ...this.state.loaded, 'settings' ] });
+					}
 				}
 				catch(err) {
 					console.error('GET_SETTINGS: ' + err.message);
 					this.setState({
 						error: true,
-						errorMessage: 'Error parsing settings!'
+						errorMessage: i18n.t('Error parsing settings') + '!'
 					});
 				}
 				
@@ -99,7 +112,7 @@ class App extends React.Component {
 				console.error('GET_SETTINGS: ' + err.message);
 				this.setState({
 					error: true,
-					errorMessage: err
+					errorMessage: typeof err === 'string' ? i18n.t(err) : i18n.t(err.message)
 				});
 			});
 		
@@ -129,7 +142,7 @@ class App extends React.Component {
 					console.error('GET_DEVICES: ' + err.message);
 					this.setState({
 						error: true,
-						errorMessage: 'Error parsing devices!'
+						errorMessage: i18n.t('Error parsing devices') + '!'
 					});
 				}
 			})
@@ -137,7 +150,7 @@ class App extends React.Component {
 				console.error('GET_DEVICES: ' + err.message);
 				this.setState({
 					error: true,
-					errorMessage: 'Socket failed while getting devices!'
+					errorMessage: i18n.t('Socket failed while getting devices') + '!'
 				});
 			});
     }
@@ -319,15 +332,16 @@ class App extends React.Component {
 		}));
 	};
 	
-	renderError() {
-		console.error(JSON.stringify(this.state.errorMessage));
+	renderError(error) {
+		error = error || this.state.errorMessage;
+		console.error(JSON.stringify(error));
 		return (
 
 <StatusSnackbar
 	key={'StatusSnackbar'}
 	variant="error"
 	closeButton={false}
-	message={this.state.errorMessage.toString()}
+	message={error.toString()}
 	/>
 
 		);
@@ -338,7 +352,7 @@ class App extends React.Component {
 		return (
 
 <Grid
-	key="loadingProcess" 
+	key="loadingProcess"
 	container
 	spacing={0}
 	direction="column"
@@ -396,7 +410,7 @@ class App extends React.Component {
 		}
 		else if (this.state.loaded.indexOf('groups') === -1) {
 			const tab = Object.keys(this.settings.layout)[0];
-			return this.renderLoadingSkeleton({ topBar: true, tabBar: tab !== 1, gridColumns: (tab !== 1 ? Object.keys(this.settings.layout[tab]).length : tab.length) });
+			return tab === undefined ? null : this.renderLoadingSkeleton({ topBar: true, tabBar: tab !== 1, gridColumns: (tab !== 1 ? Object.keys(this.settings.layout[tab]).length : tab.length) });
 		}
 		
 		// App

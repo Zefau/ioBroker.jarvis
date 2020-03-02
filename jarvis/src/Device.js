@@ -296,7 +296,7 @@ export default class Device extends Function {
 		stateKey = stateKey || this.primaryStateKey;
 		
 		const state = this.states[stateKey].state.value;
-		const stateVal = state.val;
+		const stateVal = (state && state.val) || null;
 		
 		const Action = (!forceDefault && this.actions[stateKey]) || this.actions.Action;
 		return <Action key={'action-' + this.id + '-' + stateKey} device={this} state={state} stateKey={stateKey} stateVal={stateVal} styles={this.getStyle('state', stateKey, stateVal)} />
