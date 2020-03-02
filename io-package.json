@@ -48,8 +48,8 @@
 			"name": "List of devices",
 			"role": "json",
 			"type": "string",
-			"read":  true,
-			"write": false
+			"read": true,
+			"write": true
 		}
 	},
 	{
@@ -59,8 +59,8 @@
 			"name": "Settings",
 			"role": "json",
 			"type": "string",
-			"read":  true,
-			"write": false
+			"read": true,
+			"write": true
 		}
 	},
 	{
@@ -70,7 +70,7 @@
 			"name": "Notifications",
 			"role": "json",
 			"type": "string",
-			"read":  true,
+			"read": true,
 			"write": false
 		}
 	},
@@ -81,7 +81,7 @@
 			"name": "Add new notification",
 			"role": "text",
 			"type": "string",
-			"read":  true,
+			"read": true,
 			"write": true
 		}
 	}

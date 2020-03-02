@@ -15,7 +15,7 @@ const Library = require(__dirname + '/lib/library.js');
 let adapter;
 let library;
 let unloaded;
-let NOTIFICATIONS = {};
+let NOTIFICATIONS = [];
 
 
 /*
@@ -38,13 +38,18 @@ function startAdapter(options)
 		
 		// Check Node.js Version
 		let version = parseInt(process.version.substr(1, process.version.indexOf('.')-1));
-		if (version <= 6)
+		if (version <= 6) {
 			return library.terminate('This Adapter is not compatible with your Node.js Version ' + process.version + ' (must be >= Node.js v7).', true);
+		}
 		
 		// all ok
 		library.set(Library.CONNECTION, true);
 		
 		// listen for new notifications to add
+		adapter.getState('notifications', (err, state) => {
+			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+		});
+		
 		adapter.subscribeStates('addNotification');
 	});
 
@@ -55,17 +60,39 @@ function startAdapter(options)
 	adapter.on('stateChange', function(id, state)
 	{
 		adapter.log.debug('State ' + id + ' has changed: ' + JSON.stringify(state));
+		adapter.setState(id, '');
 		
-	});
-	
-	/*
-	 * HANDLE MESSAGES
-	 *
-	 */
-	adapter.on('message', function(msg)
-	{
-		adapter.log.debug('Message: ' + JSON.stringify(msg));
-		
+		if (id.indexOf('.addNotification') > -1 && state && state.val) {
+			let notification = {};
+			
+			// try to parse object
+			try {
+				notification = JSON.parse(state.val);
+			}
+			catch(err) {
+				
+				// not an object, so handle a string
+				if (state.val.length < 15) {
+					notification.title = state.val;
+				}
+				else {
+					notification.content = state.val;
+				}
+			}
+			
+			// assemble notification
+			notification = {
+				title: '',
+				content: '',
+				timestamp: new Date().getTime(),
+				priority: 'normal', // low, normal, high, critical,
+				unread: true, // true, false
+				...notification
+			}
+			
+			NOTIFICATIONS.push(notification);
+			adapter.setState('notifications', JSON.stringify(NOTIFICATIONS));
+		}
 	});
 	
 	/*

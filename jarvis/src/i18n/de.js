@@ -7,6 +7,12 @@ export default {
 	/*
 	 * GENERAL
 	 */
+	"last update": "letzte Aktualisierung",
+	"Updates available": "Aktualisierung verfügbar",
+	
+	/*
+	 * STATES
+	 */
 	"on": "an",
 	"off": "aus",
 	

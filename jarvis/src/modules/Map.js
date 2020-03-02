@@ -36,29 +36,6 @@ const useStyles = makeStyles(theme => ({
 			cursor: 'pointer',
 		},
 	},
-	/*
-	 * MARKER WITH ICON
-	 *
-	mapIconContainer: {
-		backgroundImage: 'url("https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon-2x.png")',
-		backgroundSize: '100% 100%'
-	},
-	mapIconParent: {
-		backgroundColor: '#fff',
-		borderRadius: '10px',
-		height: '20px',
-		width: '20px',
-		margin: '3px auto',
-		textAlign: 'center'
-	},
-	mapIcon: {
-		fontSize: '1.2rem',
-		display: 'block',
-		margin: '-4px 0 0 1px',
-		color: '#f00',
-		position: 'absolute'
-	}
-	*/
 	mapIconContainer: {
 	},
 	mapIconParent: {
@@ -90,7 +67,7 @@ export default function Map(props) {
 	const classes = useStyles();
 	
 	const [zoom,] = useState(settings.component.defaultZoom);
-	const [position,] = useState(Array.isArray(settings.component.defaultPosition) ? settings.component.defaultPosition : settings.component.defaultPosition.split(','));
+	const [position,] = useState(settings.component.defaultPosition ? (Array.isArray(settings.component.defaultPosition) ? settings.component.defaultPosition : settings.component.defaultPosition.split(',')) : [ settings._global.iobroker.latitude, settings._global.iobroker.longitude ]);
 	const [markers, setMarkers] = useState({});
 	
 	// map instance
@@ -151,8 +128,13 @@ export default function Map(props) {
 					item = <Avatar key={'overview-' + device.id} alt={device.name} src={device.attributes.avatar} onClick={() => memoizedHandleClick(device.options.position)} />
 				}
 				else {
-					const icon = device.getIcon('position');
-					item = <Avatar key={'overview-' + device.id} alt={device.name} onClick={() => memoizedHandleClick(device.options.position)}><span className={clsx('mdi mdi-' + icon)}></span></Avatar>
+					let state = device.getDeviceState();
+					const icon = device.getIcon(null, state && state.val !== undefined ? state.val : null);
+					const styles = device.getStyle('icon', null, state && state.val !== undefined ? state.val : null);
+					console.log(state && state.val !== undefined ? state.val : null);
+					console.log(styles);
+					
+					item = <Avatar style={styles} key={'overview-' + device.id} alt={device.name} onClick={() => memoizedHandleClick(device.options.position)}><span className={clsx('mdi mdi-' + icon)}></span></Avatar>
 				}
 				
 				mapOverview.push(<Tooltip key={'tooltip-' + device.id} title={device.name} aria-label={device.name} arrow>{item}</Tooltip>);
@@ -200,11 +182,17 @@ function Marker(props) {
 	// Marker with Icon
 	else {
 		offset = 30;
-		const icon = device.getIcon('position');
+		let state = device.getDeviceState();
+		const icon = device.getIcon(null, state && state.val !== undefined ? state.val : null);
+		const styles = device.getStyle('icon', null, state && state.val !== undefined ? state.val : null);
+		
+		console.log(styles); 
+		const useStyles = makeStyles({root: styles}, {name:'testi'});
+		console.log(useStyles.root); 
 		
 		markerIcon = L.divIcon({
 			className: classes.mapIconContainer,
-			html: '<div class="' + classes.mapIconParent + '"><span class="' + clsx(classes.mapIcon, 'mdi mdi-' + icon) + '"></span></div>',
+			html: '<div class="' + clsx(classes.mapIconParent) + '"><span class="' + clsx(classes.mapIcon, 'mdi mdi-' + icon) + '"></span></div>',
 			iconSize: [ 40, 40 ]
 		});
 	}

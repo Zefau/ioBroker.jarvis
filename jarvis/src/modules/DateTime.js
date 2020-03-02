@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Connection from '../Connection'
 
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
@@ -27,34 +26,35 @@ export default function DateTime(props) {
 		clearTimeout(refTimer.current);
 		refTimer.current = setTimeout(() => setDateTime(format(new Date(), settings.format, { locale: de })), settings.refresh);
 		
-		// get coordinates
-		Connection.getConnection.getObject('system.config', (err, data) => {
-			
-			if (!city && data && data.common) {
-				if (data.common.latitude && data.common.longitude) {
-					setSunrise(getSunrise(data.common.latitude, data.common.longitude));
-					setSunset(getSunset(data.common.latitude, data.common.longitude));
-				}
-				
-				if (data.common.city) {
-					setCity(data.common.city);
-				}
-			}
-		});
+		//
+		if (settings._global.iobroker.latitude && settings._global.iobroker.longitude) {
+			setSunrise(getSunrise(settings._global.iobroker.latitude, settings._global.iobroker.longitude));
+			setSunset(getSunset(settings._global.iobroker.latitude, settings._global.iobroker.longitude));
+		}
 		
-	}, [city]);
+		if (settings._global.iobroker.city) {
+			setCity(settings._global.iobroker.city);
+		}
+		
+	}, [settings]);
 	
 	return (
 
 <div style={settings.style}>
 	{i18n.t('%DateTime').replace(/%DateTime/, DateTime)}
 	
-	{settings.sun !== false && <p style={{ margin: '5px 0', fontSize: '1.2rem' }}>
+	{settings.sun !== false && <div style={{ margin: '5px 0', fontSize: '1.2rem' }}>
+		
+		<span className="mdi mdi-city-variant-outline"></span> {city ? city : <CircularProgress size="1.2rem" />}
+		<span style={{ margin: '0 10px' }}></span>
+		
 		<span className="mdi mdi-weather-sunset-up"></span> {sunrise ? format(sunrise, 'HH:mm') : <CircularProgress size="1.2rem" />}
 		<span style={{ margin: '0 10px' }}></span>
+		
 		<span className="mdi mdi-weather-sunset-down"></span> {sunset ? format(sunset, 'HH:mm') : <CircularProgress size="1.2rem" />}
-	</p>
+	</div>
 	}
+	
 </div>
 
 	);

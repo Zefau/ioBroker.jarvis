@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Functions Dokumentation</title>
+	<script src="FunctionsDocumentation.json"></script>
+	<script>
+	<!--
+
+const functions = [{
+	name: 'defaults',
+	description: 'Standard-Einstellungen für alle Gewerke'
+},
+{
+	name: 'blind',
+	description: 'Rollos oder Jalousien'
+},
+{
+	name: 'door',
+	description: 'Türen'
+},
+{
+	name: 'heating',
+	description: 'Heizung'
+},
+{
+	name: 'light',
+	description: 'Licht'
+},
+{
+	name: 'location',
+	description: 'Orte'
+},
+{
+	name: 'user',
+	description: 'Benutzer'
+},
+{
+	name: 'window',
+	description: 'Fenster'
+}];
+
+function getDocumentation() {
+	var list = '## Liste der Gewerke\n%toc%';
+	var toc = [];
+	
+	functions.forEach(func => {
+		console.log(func);
+		toc.push(func.description + ' (' + func.name + ')');
+		
+		list += '### ' + (func.name != 'defaults' ? 'Gewerk / Function: ' : '') + func.description + ' (' + func.name + ')' + '\n';
+		list += '```' + FUNCTIONS[func.name] + '\n```\n\n';
+		
+	});
+	
+	list = list.replace('%toc%', toc.map(header => '- [' + header + '](#' + (header.indexOf('defaults') === -1 ? 'gewerk--function-' : '') + header.toLowerCase().replace(/ /g, '-').replace(/\(/g, '').replace(/\)/g, '') + ')').join('\n') + '\n\n');
+	document.getElementById('documentation').innerHTML = list;
+}
+
+	// -->
+	</script>
+</head>
+<body onload="getDocumentation()">
+
+
+<pre id="documentation"></pre>
+
+
+</body>
+</html>

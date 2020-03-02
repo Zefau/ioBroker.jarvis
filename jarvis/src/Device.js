@@ -153,18 +153,26 @@ export default class Device extends Function {
 	 *
 	 * @private
 	 */
-	_getUserSetting(stateKey, attribute, stateVal) {
+	_getUserSetting(stateKey, attribute, stateVal, styles = false) {
 		
-		if (this.options[attribute][stateKey]) {
-			
-			if (typeof this.options[attribute][stateKey] === 'object') {
-				return super._isValue(this.options[attribute][stateKey][stateVal]) ? this.options[attribute][stateKey][stateVal] : this.options[attribute][stateKey]['default'];
+		let options = this.options;
+		
+		if (styles) {
+			options = this.options['styles'];
+			let tmp = attribute;
+			attribute = stateKey;
+			stateKey = tmp;
+		}
+		
+		if (options[attribute] && options[attribute][stateKey]) {
+			if (typeof options[attribute][stateKey] === 'object') {
+				return super._isValue(options[attribute][stateKey][stateVal]) ? options[attribute][stateKey][stateVal] : options[attribute][stateKey]['default'];
 			}
-			else if (super._isFunction(this.options[attribute][stateKey])) {
-				return this.options[attribute][stateKey](stateVal);
+			else if (super._isFunction(options[attribute][stateKey])) {
+				return options[attribute][stateKey](stateVal);
 			}
 			else {
-				return this.options[attribute][stateKey];
+				return options[attribute][stateKey];
 			}
 		}
 		
@@ -367,11 +375,12 @@ export default class Device extends Function {
 	 *
 	 *
 	 */
-	getStyle(attribute, stateKey, stateVal = 'default') {
+	getStyle(attribute, stateKey = null, stateVal = 'default') {
 		let settings = {};
+		stateKey = stateKey || this.primaryStateKey;
 		
 		// get user setting
-		settings['options'] = this._getUserSetting(stateKey, 'styles', attribute, stateVal);
+		settings['options'] = this._getUserSetting(stateKey, attribute, stateVal, true);
 		
 		// get function setting or fallback to defaults
 		['styles', 'defaultStyles'].forEach(config => {

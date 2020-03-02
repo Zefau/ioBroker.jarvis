@@ -49,6 +49,7 @@ class App extends React.Component {
 		
 		this.state = {
 			loaded: [],
+			connected: false,
 			error: false,
 			errorMessage: ''
 		}
@@ -57,13 +58,17 @@ class App extends React.Component {
 	componentDidMount() {
 		
 		// connect and get connection
-		const noErrorFunction = () => this.setState({ error: false, errorMessage: '' });
+		const errorHandler = err => {
+			this.setState({ connected: false, error: true, errorMessage: err + '..' });
+			setTimeout(() => Connection.reconnect, 10*1000);
+		};
+		
 		const url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : (window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : ''));
 		const listeners = [
-			{ 'event': 'connect', 'callback': noErrorFunction },
-			{ 'event': 'reconnect', 'callback': noErrorFunction },
-			{ 'event': 'disconnect', 'callback': noErrorFunction },
-			{ 'event': 'error', 'callback': err => this.setState({ error: true, errorMessage: i18n.t('Connection lost! Trying to reconnect') + '..' }) }
+			{ 'event': 'connect', 'callback': () => this.setState({ connected: true, error: false, errorMessage: '' }) },
+			{ 'event': 'reconnect', 'callback': () => this.setState({ connected: 'pending', error: false, errorMessage: '' }) },
+			{ 'event': 'disconnect', 'callback': errorHandler },
+			{ 'event': 'error', 'callback': errorHandler }
 		];
 		
 		this.socket = Connection.connect(url, listeners);
@@ -74,9 +79,12 @@ class App extends React.Component {
 			.then(state => {
 				
 				try {
-					this.settings = state && JSON.parse(state.val);
-					this.useSettings();
-					this.setState({ loaded: [...this.state.loaded, 'settings'] });
+					if (state) {
+						this.settings = { ...this.settings, ...JSON.parse(state.val) || {} };
+						this.useSettings();
+					}
+					
+					this.setState({ loaded: [ ...this.state.loaded, 'settings' ] });
 				}
 				catch(err) {
 					console.error('GET_SETTINGS: ' + err.message);
@@ -95,6 +103,13 @@ class App extends React.Component {
 				});
 			});
 		
+		// retrieve ioBroker config
+		this.settings.iobroker = {};
+		this.socket.getObject('system.config', (err, data) => {
+			if (data && data.common) {
+				this.settings.iobroker = data.common;
+			}
+		});
 		
 		// retrieve devices
 		this.devices = {};
@@ -107,7 +122,7 @@ class App extends React.Component {
 					this.devices = JSON.parse(state.val);
 					this.processDevices(this.devices).then(groups => {
 						this.groups = groups;
-						this.setState({ loaded: [...this.state.loaded, 'groups'] });
+						this.setState({ loaded: [ ...this.state.loaded, 'groups' ] });
 					});
 				}
 				catch(err) {
@@ -385,7 +400,7 @@ class App extends React.Component {
 		}
 		
 		// App
-		return [ error, <Jarvis key="jarvis" settings={this.settings} groups={this.groups} /> ];
+		return [ error, <Jarvis key="jarvis" connectionStatus={this.state.connected} settings={this.settings} groups={this.groups} /> ];
 	};
 }
 

@@ -161,16 +161,22 @@ const modules = [{
 	]
 },
 {
-	name: 'StateList *(Standard)*',
+	name: 'StateList',
+	note: '*Standard Modul*',
+	examples: 4,
 	description: 'Zeigt eine Liste von States an',
-	settings: [/*{
-		parameter: 'style',
-		description: 'Style des Textes',
-		values: '*[CSS-Anweisungen](https://www.w3schools.com/cssref/default.asp) in Javascript Syntax*',
-		default: '`{ fontSize: \'1.5rem\', textAlign: \'center\' }`'
-	}
-	*/
-	]
+	settings: [{
+		parameter: 'subgroup',
+		description: 'Untergruppierung von Geräten innerhalb einer Gruppe (Geräte mit derselben `group`).',
+		values: defaults.anyValue,
+		default: ''
+	},
+	{
+		parameter: 'subgroupActions',
+		description: 'Blendet für die Untergruppe die Aktionen bzw. Buttons `an` / `aus` ein.',
+		values: defaults.trueOrFalse,
+		default: defaults.true
+	}]
 },
 {
 	name: 'StateListHorizontal',
@@ -183,11 +189,22 @@ function getDocumentation() {
 	var toc = [];
 	
 	modules.forEach(module => {
+		module.examples = module.examples || 1;
 		console.log(module);
-		toc.push(module.name);
+		toc.push(module.name + (module.note ? ' ' + module.note : ''));
 		
-		list += '### Modul: ' + module.name + '\n';
+		list += '### Modul: ' + module.name + (module.note ? ' (' + module.note + ')' : '') + '\n';
 		list += '#### Kurzbeschreibung\n' + module.description + '\n\n';
+		
+		// SCREENSHOTS
+		list += '#### Beispiel Screenshots\n';
+		for (let example = 1; example <= module.examples; example++) {
+			list += '##### Screenshot ' + example + '\n';
+			list += '&lt;kbd&gt;![Screenshot des Moduls ' + module.name + ' konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/jarvis/documentation/Modules/' + module.name.replace(/ /g, '') + example + '.png)&lt;/kbd&gt;\n';
+		}
+		list += '\n';
+		
+		// SETTINGS
 		list += '#### Einstellungen (Settings)\n';
 		
 		if (Array.isArray(module.settings)) {
@@ -195,7 +212,7 @@ function getDocumentation() {
 			list += '| - | - | - | - |\n';
 			
 			module.settings.forEach(setting => {
-				list += '| ' + setting.parameter + ' | ' + setting.description + ' | ' + setting.values + ' | ' + setting.default + ' |\n';
+				list += '| `' + setting.parameter + '` | ' + setting.description + ' | ' + setting.values + ' | ' + setting.default + ' |\n';
 			});
 		}
 		else

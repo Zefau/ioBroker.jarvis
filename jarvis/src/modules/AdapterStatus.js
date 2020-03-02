@@ -1,6 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 
+import { format } from 'date-fns'
+import { de } from 'date-fns/locale'
+
 import Connection from '../Connection'
 import i18n from '../i18n'
 
@@ -20,6 +23,11 @@ import StarIcon from '@material-ui/icons/Star';
  */
 import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
+	noUpdates: {
+		fontStyle: 'italic',
+		textAlign: 'right',
+		color: 'rgba(0, 0, 0, 0.54)'
+	},
 	UpdateAvailable: {
 		color: '#CCAA00',
 	},
@@ -70,7 +78,9 @@ class AdapterStatus extends React.Component {
 		this.state = {
 			adapterInformation: [],
 			adapterAliveStatus: {},
-			adapterUpdates: {}
+			newUpdates: false,
+			updatesJson: '',
+			lastUpdateCheck: ''
 		}
 		
 		this.socket = Connection.getConnection;
@@ -82,11 +92,24 @@ class AdapterStatus extends React.Component {
 		
 		// retrieve updates
 		if (this.props.settings.updates !== false) {
-			this.socket.getState('admin.0.info.updatesJson', (id, adapterUpdates) => {
-				this.setState({ adapterUpdates });
+			
+			let updateStates = ['admin.0.info.newUpdates', 'admin.0.info.lastUpdateCheck', 'admin.0.info.updatesJson'];
+			this.socket.getStates(updateStates, (err, states) => {
+				
+				this.setState({
+					newUpdates: states['admin.0.info.newUpdates'].val,
+					lastUpdateCheck: states['admin.0.info.lastUpdateCheck'].val,
+					updatesJson: states['admin.0.info.updatesJson'].val
+				});
 				
 				// get state updates
-				this.socket.subscribeState('admin.0.info.updatesJson', (err, adapterUpdates) => this.setState({ adapterUpdates }));
+				this.socket.subscribeStates(updateStates, (id, update) => {
+					
+					id = id.substr(id.lastIndexOf('.')+1);
+					if (this.state[id] !== update.val) {
+						this.setState({ [id]: update.val });
+					}
+				});
 			});
 		}
 		
@@ -121,7 +144,7 @@ class AdapterStatus extends React.Component {
 				});
 				
 				// retrieve intial states
-				this.socket.getStates(states, (id, adapterAliveStatus) => {
+				this.socket.getStates(states, (err, adapterAliveStatus) => {
 					this.setState({ adapterAliveStatus });
 					
 					// get state updates
@@ -140,7 +163,7 @@ class AdapterStatus extends React.Component {
 		const { classes } = this.props;
 		
 		// adapter updates
-		const updateList = (this.state.adapterUpdates && this.state.adapterUpdates.val && JSON.parse(this.state.adapterUpdates.val)) || {};
+		const updateList = (this.state.updatesJson && JSON.parse(this.state.updatesJson)) || {};
 		const updates = Object.keys(updateList).length
 		
 		// adapter instances
@@ -187,7 +210,14 @@ class AdapterStatus extends React.Component {
 		return (
 
 <List dense>
-	{updates > 0 &&
+	{this.state.newUpdates === false ? (this.state.lastUpdateCheck && 
+	<ListItem key="updates" classes={{ root: classes.noUpdates }}>
+		<ListItemText
+			primary={i18n.t('last update') + ': ' + format(new Date(this.state.lastUpdateCheck), 'dd.MM.yyyy HH:mm:ss', { locale: de })}
+			/>
+		
+	</ListItem>)
+	:
 	<ListItem key="updates" classes={{ container: classes.UpdatesListItem }}>
 		<ListItemAvatar>
 			<StarIcon />

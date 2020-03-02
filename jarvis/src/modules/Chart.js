@@ -529,12 +529,14 @@ class Chart extends React.Component {
 				</IconButton>
 			</Tooltip>
 		</Paper>
-	
-		<Button className={clsx(classes.datePicker, this.props.settings.liveUpdates !== null && this.props.settings.liveUpdates !== false && this.state.dateNow ? classes.button : classes.buttonDisabled)} disabled={true}>
-			<Tooltip title={i18n.t('Indicates whether live updates are turn on or off.')}>
+		
+		<Tooltip title={i18n.t('Live updates are ' + (this.props.settings.liveUpdates !== null && this.props.settings.liveUpdates !== false && this.state.dateNow ? 'on' : 'off'))} placement="top" style={{ display: 'flex' }}>
+			<span>
+				<Button disabled={true} className={clsx(classes.datePicker, this.props.settings.liveUpdates !== null && this.props.settings.liveUpdates !== false && this.state.dateNow ? classes.button : classes.buttonDisabled)}>
 					<LiveUpdates />
-			</Tooltip>
-		</Button>
+				</Button>
+			</span>
+		</Tooltip>
 		
 	</div>
 	<Divider className={classes.divider} />

@@ -64,6 +64,16 @@ export default class Connection {
 	}
 	
 	/**
+	 * Reconnect to the Socket.
+	 *
+	 * @param	void
+	 * @return	{String}	URL
+	 */
+	static get reconnect() {
+		return Connection.connect;
+	}
+	
+	/**
 	 * Sets an event listener.
 	 *
 	 * @param	{Object}			listener

@@ -1,9 +1,11 @@
 import React from 'react'
 
-//import Drawer from '@material-ui/core/Drawer'
+import Connection from './Connection'
 
 import TopBar from './components/TopBar'
 import TabBar, { TabPanel } from './components/TabBar'
+import Sidebar from './components/Sidebar'
+import Notifications from './components/Notifications'
 import GridContainer from './components/GridContainer'
 import Popup from './components/Popup'
 import Widget from './components/Widget'
@@ -29,6 +31,7 @@ const getGroup = (groupId, group, props = {}) => {
 	}
 	
 	// get module for component
+	group.settings._global = props.settings;
 	group.settings.component = typeof group.settings.component === 'string' ? { 'module': group.settings.component } : (group.settings.component || {});
 	const Tag = Modules[group.settings.component.module || 'StateList'];
 	
@@ -66,12 +69,18 @@ const getGridContents = (contents, groups, props = {}) => {
 				
 				let group = groups[groupId] || {};
 				group.settings = columnContents[groupId] || {};
+				group.settings._global = props.settings;
 				group.settings.component = typeof group.settings.component === 'string' ? { 'module': group.settings.component } : (group.settings.component || {});
 				
 				let content = getGroup(groupId, group, props);
 				if (content) {
 					gridContents[column].push(
-						<Widget key={'Box-' + groupId} title={group.settings.title === null ? null : (group.settings.title || group.name || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].title))} icon={group.settings.icon === null ? null : (group.settings.icon || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].icon))} iconStyle={group.settings.iconStyle}>
+						<Widget key={'Box-' + groupId}
+							title={group.settings.title === null ? null : (group.settings.title || group.name || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].title))}
+							icon={group.settings.icon === null ? null : (group.settings.icon || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].icon))}
+							iconStyle={group.settings.iconStyle}
+							>
+							
 							{content}
 						</Widget>
 					);
@@ -90,10 +99,16 @@ export default class Jarvis extends React.Component {
 		super(props);
 		
 		this.state = {
+			connectionStatus: this.props.connectionStatus || false,
+			
 			selectedTab: 0,
 			tabTitle: '',
 			
+			sidebarDrawer: false,
 			notificationDrawer: false,
+			notifications: [],
+			notificationsUnread: 0,
+			
 			dialog: false,
 			dialogContents: {
 				'ts': 0,
@@ -105,7 +120,10 @@ export default class Jarvis extends React.Component {
 		this.closeDialog = this.closeDialog.bind(this);
 		this.openDialog = this.openDialog.bind(this);
 		this.selectTab = this.selectTab.bind(this);
-		//this.toggleDrawer = this.toggleDrawer.bind(this);
+		this.toggleDrawer = this.toggleDrawer.bind(this);
+		
+		//
+		this.socket = Connection.getConnection;
 		
 		// initialise
 		this.gridContents = {};
@@ -124,6 +142,20 @@ export default class Jarvis extends React.Component {
 		this.widgetProps = {}
 	}
 	
+	componentDidMount() {
+		
+		this.socket.getState('jarvis.0.notifications').then(notifications => {
+			notifications = (notifications && notifications.val && JSON.parse(notifications.val)) || [];
+			
+			this.setState({
+				notificationsUnread: notifications.filter(notification => !notification.unread || notification.unread !== false).length,
+				notifications: notifications
+			});
+		});
+		
+		this.socket.subscribeState('jarvis.0.notifications', notifications => console.log(notifications));
+	}
+	
 	getTabPanels() {
 		
 		let tab = 0;
@@ -136,12 +168,12 @@ export default class Jarvis extends React.Component {
 			let fullscreen = Number.isNaN(parseInt(groupId));
 			
 			if (!this.gridContents[tabLabel] && fullscreen) {
-				this.gridContents[tabLabel] = getGroup(contents, { ...this.props.groups[groupId], settings: contents[groupId] }, { action: this.openDialog, ...this.widgetProps });
+				this.gridContents[tabLabel] = getGroup(contents, { ...this.props.groups[groupId], settings: contents[groupId] }, { settings: this.props.settings, action: this.openDialog, ...this.widgetProps });
 			}
 			
 			// grid layout
 			else if (!this.gridContents[tabLabel]) {
-				this.gridContents[tabLabel] = <GridContainer contents={getGridContents(contents, this.props.groups, { action: this.openDialog, ...this.widgetProps })} />
+				this.gridContents[tabLabel] = <GridContainer contents={getGridContents(contents, this.props.groups, { settings: this.props.settings, action: this.openDialog, ...this.widgetProps })} />
 			}
 			
 			let tabPanel = (
@@ -169,26 +201,41 @@ export default class Jarvis extends React.Component {
 		this.setState({ selectedTab: tab, tabTitle: title });
 	}
 	
-	/*
 	toggleDrawer(drawer, open) {
 		this.setState({ [drawer]: open });
 	};
-	*/
 	
     render() {
         return (
 
 <ThemeProvider theme={theme}>
-	<TopBar title={this.props.settings.topBarTitle || (this.tabsEnabled && this.state.tabTitle) || 'jarvis'}>
+	<TopBar
+		title={this.props.settings.topBarTitle || (this.tabsEnabled && this.state.tabTitle) || 'jarvis'}
+		connectionStatus={this.state.connectionStatus}
+		toggleDrawer={this.toggleDrawer}
+		notifications={this.state.notificationsUnread}
+		>
+		
 		{this.tabsEnabled && <TabBar tabs={this.tabs} selectTab={this.selectTab} />}
 	</TopBar>
 	
-	{/*
-	<Drawer anchor="right" open={this.state.notificationDrawer} onClose={this.toggleDrawer('notificationDrawer', false)}>
-		
-	</Drawer>
-	*/}
-
+	
+	{/* DRAWER: SIDEBAR */}
+	<Sidebar
+		open={this.state.sidebarDrawer}
+		toggleDrawer={this.toggleDrawer}
+		/>
+	
+	
+	{/* DRAWER: NOTIFICATIONS */}
+	<Notifications
+		open={this.state.notificationDrawer}
+		toggleDrawer={this.toggleDrawer}
+		notifications={this.state.notifications}
+		/>
+	
+	
+	{/* POPUP */}
 	<Popup open={this.state.dialog} contents={this.state.dialogContents} closeDialog={this.closeDialog} />
 	{this.getTabPanels()}
 	
