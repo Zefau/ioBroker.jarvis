@@ -24,6 +24,7 @@
     "enabled": true,
 	"localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html",
     "messagebox": true,
+	"noConfig": true,
     "subscribe": "messagebox",
     "type": "visualization",
     "authors": [
@@ -49,7 +50,8 @@
 			"role": "json",
 			"type": "string",
 			"read":  true,
-			"write": false
+			"write": true,
+			"def": "{}"
 		}
 	},
 	{
@@ -60,7 +62,8 @@
 			"role": "json",
 			"type": "string",
 			"read":  true,
-			"write": false
+			"write": true,
+			"def": "{\"layout\": {}}"
 		}
 	},
 	{

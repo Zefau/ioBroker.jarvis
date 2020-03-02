@@ -43,66 +43,74 @@ const NODE_DEVICES = 'jarvis.0.devices';
 
 
 class App extends React.Component {
-	
+
     constructor(props) {
 		super(props);
-		
+
 		this.state = {
 			loaded: [],
 			error: false,
 			errorMessage: ''
 		}
 	};
-	
+
 	componentDidMount() {
-		
+
 		// connect and get connection
 		const noErrorFunction = () => this.setState({ error: false, errorMessage: '' });
-		const url = window.location.hostname === 'localhost' ? 'https://192.168.178.29:8082' : (window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : ''));
+		const url = window.location.port === '3000' ? window.location.protocol + '//' + window.location.hostname + ':8082' :
+			window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
 		const listeners = [
 			{ 'event': 'connect', 'callback': noErrorFunction },
 			{ 'event': 'reconnect', 'callback': noErrorFunction },
 			{ 'event': 'disconnect', 'callback': noErrorFunction },
 			{ 'event': 'error', 'callback': err => this.setState({ error: true, errorMessage: i18n.t('Connection lost! Trying to reconnect') + '..' }) }
 		];
-		
+
 		this.socket = Connection.connect(url, listeners);
-		
+
 		// retrieve settings
 		this.settings = {};
 		this.socket.getState(NODE_SETTINGS)
 			.then(state => {
-				
+
 				try {
 					this.settings = state && JSON.parse(state.val);
 					this.useSettings();
 					this.setState({ loaded: [...this.state.loaded, 'settings'] });
+					const tab = Object.keys(this.settings.layout)[0];
+					if (tab === undefined) {
+						this.setState({
+							error: true,
+							errorMessage: i18n.t('Please create the configuration. See documentation.')
+						});
+					}
 				}
 				catch(err) {
 					console.error('GET_SETTINGS: ' + err.message);
 					this.setState({
 						error: true,
-						errorMessage: 'Error parsing settings!'
+						errorMessage: i18n.t('Error parsing settings!')
 					});
 				}
-				
+
 			})
 			.catch(err => {
 				console.error('GET_SETTINGS: ' + err.message);
 				this.setState({
 					error: true,
-					errorMessage: err
+					errorMessage: i18n.t(err)
 				});
 			});
-		
-		
+
+
 		// retrieve devices
 		this.devices = {};
 		this.groups = {};
-		
+
 		this.socket.getState(NODE_DEVICES)
 			.then(state => {
-				
+
 				try {
 					this.devices = JSON.parse(state.val);
 					this.processDevices(this.devices).then(groups => {
@@ -114,7 +122,7 @@ class App extends React.Component {
 					console.error('GET_DEVICES: ' + err.message);
 					this.setState({
 						error: true,
-						errorMessage: 'Error parsing devices!'
+						errorMessage: i18n.t('Error parsing devices!')
 					});
 				}
 			})
@@ -122,7 +130,7 @@ class App extends React.Component {
 				console.error('GET_DEVICES: ' + err.message);
 				this.setState({
 					error: true,
-					errorMessage: 'Socket failed while getting devices!'
+					errorMessage: i18n.t('Socket failed while getting devices!')
 				});
 			});
     }
@@ -132,55 +140,55 @@ class App extends React.Component {
 	 *
 	 */
 	useSettings() {
-		
+
 		// LogRocket
 		if (this.settings.debug && this.settings.debug.name && this.settings.debug.email && this.settings.debug.email.indexOf('@') > -1) {
 			LogRocket.init('36n1xl/jarvis');
-			
+
 			let id = uuid(this.settings.debug.name + '#' + this.settings.debug.email, 'e63359dc-bc1c-476e-81cd-8f580d09a557');
 			LogRocket.identify(id, {
 				name: this.settings.debug.name,
 				email: this.settings.debug.email
 			});
-			
+
 			console.info('Opt-In for providing debugging details to the developer. Your ID is: ' + id);
 		}
-		
+
 		// language
 		window.language = (this.settings.language || navigator.language || navigator.userLanguage || 'en').substr(0, 2);
 		i18n.setLanguage(window.language);
 		i18n.loadTranslations(['en', 'de']);
-		
+
 		// page title
 		if (this.settings.pageTitle) {
 			document.title = this.settings.pageTitle;
 		}
-		
+
 		// favicon
 		if (this.settings.pageFavicon && this.settings.pageFavicon.substr(0, 5) === 'data:') {
 			document.getElementById('favicon').href = this.settings.pageFavicon;
 		}
-		
+
 		// translations
 		if (this.settings.translations) {
-			
+
 			let translations = this.settings.translations;
 			for (let language in translations) {
 				i18n.setTranslation(language, translations[language]);
 			}
 		}
 	}
-	
+
 	/**
 	 *
 	 *
 	 */
 	groupDevice(groups, device) {
-		
+
 		// add device to group(s)
 		let options = device.get('options');
 		options.groups.forEach(group => {
-			
+
 			let groupId = group.toLowerCase().replace(/ /g, '');
 			if (!groups[groupId]) {
 				groups[groupId] = { 'id': groupId, 'name': group, 'devices': [device] };
@@ -189,106 +197,106 @@ class App extends React.Component {
 				groups[groupId].devices.push(device);
 			}
 		});
-		
+
 		return groups;
 	}
-	
+
 	/**
 	 *
 	 *
 	 */
 	processDevice(deviceProperties) {
-		
+
 		let promises = [];
 		let device = null;
 		try {
 			device = new Device(deviceProperties, this.socket, window.language);
-			
+
 			// request primary state value
 			promises.push(device.requestDeviceState(null, true));
-			
+
 			// request secondary state value
 			if (device.secondaryStateKey) {
 				promises.push(device.requestDeviceState(device.secondaryStateKey, true));
 			}
-			
+
 		}
 		catch(err) {
 			console.warn(err.message);
 		}
-		
+
 		return new Promise(resolve => {
 			Promise.allSettled(promises).then(results => {
-				
+
 				results.forEach(result => {
 					if (result.status === 'rejected') {
 						console.error(result);
 					}
 				});
-				
+
 				resolve(device);
 			});
 		});
 	}
-	
+
 	/**
 	 *
 	 *
 	 */
 	processDevices(deviceList) {
-		
+
 		// loop through all devices of in the device list
 		let promises = [];
 		let groups = {};
-		
+
 		let devices = 0, groupedDevices = 0;
 		for (let deviceId in deviceList) {
 			devices++;
-			
+
 			deviceList[deviceId].options = deviceList[deviceId].jarvis;
 			delete deviceList[deviceId].jarvis;
-			
+
 			let deviceProperties = { ...deviceList[deviceId], 'id': deviceId };
 			promises.push(new Promise((resolve, reject) => {
-				
+
 				this.processDevice(deviceProperties).then(device => {
-			
+
 					if (device !== null) {
 						groupedDevices++;
 						groups = this.groupDevice(groups, device);
 						resolve(deviceId);
 					}
-					
+
 					reject(deviceId);
 				});
 			}));
-			
+
 			// check states for own device settings
 			for (let stateKey in deviceProperties.states) {
-				
+
 				let state = deviceProperties.states[stateKey];
 				if (state && state.jarvis !== undefined) {
-					
+
 					promises.push(new Promise((resolve, reject) => {
-						
+
 						this.processDevice({ ...deviceProperties, 'id': deviceId + '#' + stateKey, 'states': { [stateKey]: state }, 'options': state.jarvis }).then(device => {
-					
+
 							if (device !== null) {
 								groupedDevices++;
 								groups = this.groupDevice(groups, device);
 								resolve(deviceId);
 							}
-							
+
 							reject(deviceId);
 						});
 					}));
-					
+
 				}
 			}
 		}
-		
+
 		return new Promise(resolve => Promise.allSettled(promises).then(res => {
-			
+
 			// sort groups
 			for (let groupId in groups) {
 				groups[groupId].devices.sort((item1, item2) => {
@@ -297,33 +305,34 @@ class App extends React.Component {
 					else return 0;
 				});
 			}
-		
+
 			// return
 			console.info('Processed ' + devices + ' devices. Added ' + groupedDevices + ' devices in ' + Object.keys(groups).length + ' groups.', res, groups);
 			resolve(groups);
 		}));
 	};
-	
-	renderError() {
-		console.error(JSON.stringify(this.state.errorMessage));
+
+	renderError(error) {
+		error = error || this.state.errorMessage;
+		console.error(error);
 		return (
 
 <StatusSnackbar
 	key={'StatusSnackbar'}
 	variant="error"
 	closeButton={false}
-	message={this.state.errorMessage.toString()}
+	message={error.toString()}
 	/>
 
 		);
 	}
-	
+
 	renderLoadingProgress() {
 		const { classes } = this.props;
 		return (
 
 <Grid
-	key="loadingProcess" 
+	key="loadingProcess"
 	container
 	spacing={0}
 	direction="column"
@@ -339,23 +348,23 @@ class App extends React.Component {
 
 		);
 	};
-	
+
 	renderLoadingSkeleton(props) {
 		const { classes } = this.props;
 		const { topBar, tabBar, gridColumns } = props;
-		
+
 		const SkeletonLoader = (props) => <Skeleton animation="wave" variant="rect" className={classes.gridItem} height={props.height} />;
-		
+
 		let gridContents = {}
 		for (let column = 1; column <= gridColumns; column++) {
 			gridContents[column] = gridContents[column] || [];
-			
+
 			let loaders = Math.random() * (5 - 2) + 2;
 			for (let loader = 1; loader <= loaders; loader++) {
 				gridContents[column].push(<SkeletonLoader key={column + '#' + loader} height={(Math.random() * (400 - 100) + 100)} />);
 			}
 		}
-		
+
 		return (
 
 <React.Fragment>
@@ -366,12 +375,12 @@ class App extends React.Component {
 
 		);
 	}
-	
+
     render() {
-		
+
 		// error message
 		const error = this.state.error ? this.renderError() : null;
-		
+
 		// loading screens
 		if (this.state.error && this.state.loaded.length < 2) {
 			return error;
@@ -381,9 +390,13 @@ class App extends React.Component {
 		}
 		else if (this.state.loaded.indexOf('groups') === -1) {
 			const tab = Object.keys(this.settings.layout)[0];
-			return this.renderLoadingSkeleton({ topBar: true, tabBar: tab !== 1, gridColumns: (tab !== 1 ? Object.keys(this.settings.layout[tab]).length : tab.length) });
+			if (tab !== undefined) {
+				return this.renderLoadingSkeleton({ topBar: true, tabBar: tab !== 1, gridColumns: (tab !== 1 ? Object.keys(this.settings.layout[tab]).length : tab.length) });
+			} else {
+				return null;
+			}
 		}
-		
+
 		// App
 		return [ error, <Jarvis key="jarvis" settings={this.settings} groups={this.groups} /> ];
 	};
