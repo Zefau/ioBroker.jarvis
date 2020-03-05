@@ -24,7 +24,8 @@
     "test:integration": "mocha test/integration --exit",
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
-    "translate": "gulp translateAndUpdateWordsJS"
+    "translate": "gulp translateAndUpdateWordsJS",
+    "build": "node jarvis/documentation/FunctionsDocumentation.js && react-scripts build",
   },
   "repository": {
     "type": "git",

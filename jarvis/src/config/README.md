@@ -1,3 +1,3 @@
-Copy `config.dev.default.json` to `config.dev.json` to use in your development environment.
+Copy `config.dev.default.js` to `config.dev.js` to use in your development environment.
 
-The configuration file `config.dev.json` is ignore via `.gitignore`.
+The configuration file `config.dev.js` is ignore via `.gitignore`.
