@@ -4,7 +4,6 @@ import Connection from './Connection'
 
 import TopBar from './components/TopBar'
 import TabBar, { TabPanel } from './components/TabBar'
-import Sidebar from './components/Sidebar'
 import Notifications from './components/Notifications'
 import GridContainer from './components/GridContainer'
 import Popup from './components/Popup'
@@ -68,16 +67,18 @@ const getGridContents = (contents, groups, props = {}) => {
 			for (let groupId in columnContents) {
 				
 				let group = groups[groupId] || {};
+				group.devices = group.devices || [];
 				group.settings = columnContents[groupId] || {};
 				group.settings._global = props.settings;
 				group.settings.component = typeof group.settings.component === 'string' ? { 'module': group.settings.component } : (group.settings.component || {});
+				group.settings.module = ModuleSettings[group.settings.component.module] || {};
 				
 				let content = getGroup(groupId, group, props);
-				if (content) {
+				if ((group.devices.length > 0 || group.settings.module.noDevicesAllowed) && content) {
 					gridContents[column].push(
 						<Widget key={'Box-' + groupId}
-							title={group.settings.title === null ? null : (group.settings.title || group.name || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].title))}
-							icon={group.settings.icon === null ? null : (group.settings.icon || (ModuleSettings[group.settings.component.module] && ModuleSettings[group.settings.component.module].icon))}
+							title={group.settings.title === null ? null : (group.settings.title || group.name || group.settings.module.title)}
+							icon={group.settings.icon === null ? null : (group.settings.icon || group.settings.module.icon)}
 							iconStyle={group.settings.iconStyle}
 							>
 							
@@ -104,7 +105,8 @@ export default class Jarvis extends React.Component {
 			selectedTab: 0,
 			tabTitle: '',
 			
-			sidebarDrawer: false,
+			page: null,
+			
 			notificationDrawer: false,
 			notifications: [],
 			notificationsUnread: 0,
@@ -121,6 +123,7 @@ export default class Jarvis extends React.Component {
 		this.openDialog = this.openDialog.bind(this);
 		this.selectTab = this.selectTab.bind(this);
 		this.toggleDrawer = this.toggleDrawer.bind(this);
+		this.navigate = this.navigate.bind(this);
 		
 		//
 		this.socket = Connection.getConnection;
@@ -203,7 +206,11 @@ export default class Jarvis extends React.Component {
 	
 	toggleDrawer(drawer, open) {
 		this.setState({ [drawer]: open });
-	};
+	}
+	
+	navigate(page) {
+		this.setState({ page });
+	}
 	
     render() {
         return (
@@ -213,18 +220,12 @@ export default class Jarvis extends React.Component {
 		title={this.props.settings.topBarTitle || (this.tabsEnabled && this.state.tabTitle) || 'jarvis'}
 		connectionStatus={this.state.connectionStatus}
 		toggleDrawer={this.toggleDrawer}
+		navigate={this.navigate}
 		notifications={this.state.notificationsUnread}
 		>
 		
 		{this.tabsEnabled && <TabBar tabs={this.tabs} selectTab={this.selectTab} />}
 	</TopBar>
-	
-	
-	{/* DRAWER: SIDEBAR */}
-	<Sidebar
-		open={this.state.sidebarDrawer}
-		toggleDrawer={this.toggleDrawer}
-		/>
 	
 	
 	{/* DRAWER: NOTIFICATIONS */}

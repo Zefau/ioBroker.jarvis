@@ -1,7 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
 
-import Connection from '../Connection'
 import i18n from '../i18n'
 
 import Drawer from '@material-ui/core/Drawer'
@@ -10,7 +9,6 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import SettingsIcon from '@material-ui/icons/Settings'
 
 
 /*
@@ -19,13 +17,12 @@ import SettingsIcon from '@material-ui/icons/Settings'
 import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
 	drawer: {
-		width: 240,
-		justifyContent: 'flex-end'
+		width: 400
 	}
 });
 
 
-class Sidebar extends React.Component {
+class Settings extends React.Component {
 	
 	constructor(props) {
 		super(props);
@@ -35,30 +32,23 @@ class Sidebar extends React.Component {
 	}
 	
 	render() {
-		const { classes } = this.props;
+		const { classes, notifications } = this.props;
 		
 		return (
 
 <Drawer
-	anchor="left"
+	anchor="right"
 	open={this.props.open}
-	onClose={() => this.props.toggleDrawer('sidebarDrawer', false)}
+	onClose={() => this.props.toggleDrawer('notificationDrawer', false)}
 	classes={{
 		paper: classes.drawer
 	}}
 	>
 	
-	<Divider />
-	<List>
-		<ListItem button key="settings">
-			<ListItemIcon><SettingsIcon /></ListItemIcon>
-			<ListItemText primary={i18n.t('Settings')} />
-		</ListItem>
-	</List>
 </Drawer>
 
 		);
 	}
 }
 
-export default withStyles(styles)(Sidebar);
+export default withStyles(styles)(Notifications);

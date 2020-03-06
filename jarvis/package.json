@@ -18,6 +18,7 @@
     "clsx": "^1.1.0",
     "date-fns": "^2.10.0",
     "del": "^5.1.0",
+    "eslint": "^6.8.0",
     "gulp": "^4.0.2",
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
@@ -38,7 +39,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "node documentation/FunctionsDocumentation.js && rmdir \"../www\" /s /q && react-scripts build && Xcopy /E /I build \"../www\"",
+    "build": "node documentation/FunctionsDocumentation.js && rm -rf \"../www\" && npm i && react-scripts build && mv build ../www",
     "deploy": "node documentation/FunctionsDocumentation.js && node development deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

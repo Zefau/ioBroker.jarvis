@@ -11,6 +11,7 @@ import Tooltip from '@material-ui/core/tooltip'
 import Badge from '@material-ui/core/Badge'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MenuIcon from '@material-ui/icons/Menu'
+import SettingsIcon from '@material-ui/icons/Settings'
 
 
 /*
@@ -74,6 +75,9 @@ export default function TopBar(props) {
 			<Tooltip title={i18n.t(connectionStatusTooltip)}>
 				<span className={"mdi mdi-" + connectionStatusIcon}></span>
 			</Tooltip>
+		</IconButton>
+		<IconButton color="inherit" onClick={() => this.props.navigate('settings')}>
+			<SettingsIcon />
 		</IconButton>
 		<IconButton color="inherit" onClick={() => toggleDrawer('notificationDrawer', true)}>
 			<Badge badgeContent={notifications} color="secondary">
