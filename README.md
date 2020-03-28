@@ -14,19 +14,62 @@ jarvis - just another remarkable vis
 [![NPM](https://nodei.co/npm/iobroker.jarvis.png?downloads=true)](https://nodei.co/npm/iobroker.jarvis/) 
 
 
-## Features
-tbd
+## Was ist jarvis?
+jarvis ist eine Material Design Visualisierung, die auf [Material UI](https://material-ui.com/) basiert. jarvis gibt eine Struktur und Module vor, die zur Visualisierung genutzt werden, aber sehr flexibel konfiguriert werden können.
+
+jarvis ist [*responsive*](https://de.wikipedia.org/wiki/Responsive_Webdesign) und passt sich der Größe des Screens an.
+
+Das Layout ist flexibel konfigurierbar. Es können optional (beliebig viele) Tabs verwendet werden. Jeder Tab kann entweder `fullscreen` sein oder beliebig viele `columns` haben, die die einzelnen `modules` in flexibler Reihenfolge beinhalten.
+
+Jedes Modul hat spezielle Konfigurationsmöglichkeiten ([siehe Wiki je Modul](https://github.com/Zefau/ioBroker.jarvis/wiki/Modules-(Modules)#liste-der-module)).
+
+
+## Warum jarvis?
+jarvis ist weitaus weniger flexibel als ioBroker.vis, aber bietet dafür ein standardisiertes Design, um schnell eine Visualisierung zusammenzustellen. Wer besonders spezifische Anforderungen hat, sollte (weiterhin) ioBroker.vis verwendet.
+
+
+## Mehr Informationen
+[Mehr Informationen - insbesondere zur Konfiguration - gibt es im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
+
+_____
+
+
+## Impressionen
+Die Konfiguration von Modulen kann frei angeordnet werden. Nachfolgend einige Impressionen / Beispiele:
+
+### Screencast / Video
+[![Play Video](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/play.png)](https://www.dropbox.com/s/z0o1dsdx12kjql6/Screencast.mp4?dl=0)
+
+Siehe https://www.dropbox.com/s/z0o1dsdx12kjql6/Screencast.mp4?dl=0
+
+### Screenshots
+
+#### Beispiel: Dashboard (3 `columns`)
+![Dashboard.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Dashboard.png)
+
+#### Beispiel: Karte (Vollbild)
+![Map.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Map.png)
+
+#### Beispiel: Statistiken (2 `columns`)
+![Statistik.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Statistik.png)
+
+#### Beispiel: Status (3 `columns`, davon 2 leer)
+![Status.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Status.png)
 
 
 ## Installation
+Eine ausführliche Dokumentation befindet sich [im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki)!
 
-For installation instructions please see the [Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki)!
+### Module
+[Eine aktuelle Liste der Module ist im Wiki zu finden](https://github.com/Zefau/ioBroker.jarvis/wiki/Modules-(Modules)).
 
 
 ## Changelog
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+
+### 0.1.0 (2020-03-28)
 
 ### 0.0.1 (2020-02-21)
 - (Zefau) initial version
