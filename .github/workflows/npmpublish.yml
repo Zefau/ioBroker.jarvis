@@ -1,4 +1,4 @@
-name: Node.js Package
+name: npm publish
 
 on:
   release:
@@ -8,11 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm run build
       - run: npm ci
       - run: npm test
 
@@ -20,7 +19,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
