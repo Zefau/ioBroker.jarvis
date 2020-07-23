@@ -3,6 +3,9 @@
   "version": "0.1.4",
   "description": "jarvis - just another remarkable vis",
   "main": "jarvis.js",
+  "engines" : {
+    "node" : ">=8.0.0"
+  },
   "directories": {
     "lib": "lib"
   },

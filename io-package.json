@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "jarvis",
-    "version": "0.1.4",
+    "version": "0.2.0",
     "title": "jarvis - just another remarkable vis",
     "desc": {
       "en": "jarvis - just another remarkable vis"
@@ -26,6 +26,11 @@
     "messagebox": true,
     "subscribe": "messagebox",
     "type": "visualization",
+    "dependencies": [
+      {
+        "web": ">=3.0.0"
+      }
+    ],
     "authors": [
       {
         "name": "Zefau",
