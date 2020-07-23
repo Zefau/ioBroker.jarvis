@@ -1,10 +1,10 @@
 {
   "name": "iobroker.jarvis",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "jarvis - just another remarkable vis",
   "main": "jarvis.js",
-  "engines" : {
-    "node" : ">=8.0.0"
+  "engines": {
+    "node": ">=8.0.0"
   },
   "directories": {
     "lib": "lib"
