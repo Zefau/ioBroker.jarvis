@@ -1,96 +1,95 @@
 {
-  "common": {
-    "name": "jarvis",
-    "version": "0.3.0",
-    "title": "jarvis - just another remarkable vis",
-    "desc": {
-      "en": "jarvis - just another remarkable vis"
-    },
-    "news": {
-    },
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "mode": "daemon",
-    "icon": "jarvis.png",
-    "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
-    "keywords": [
-      "vis",
-      "visualization"
-    ],
-    "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
-    "loglevel": "info",
-    "materialize": true,
-    "compact": true,
-    "enabled": true,
-	"localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html",
-    "messagebox": true,
-    "subscribe": "messagebox",
-    "type": "visualization",
-    "dependencies": [
+   "common": {
+      "name": "jarvis",
+      "version": "0.4.1",
+      "title": "jarvis - just another remarkable vis",
+      "desc": {
+         "en": "jarvis - just another remarkable vis"
+      },
+      "news": {},
+      "license": "MIT",
+      "platform": "Javascript/Node.js",
+      "mode": "daemon",
+      "icon": "jarvis.png",
+      "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
+      "keywords": [
+         "vis",
+         "visualization"
+      ],
+      "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
+      "loglevel": "info",
+      "materialize": true,
+      "compact": true,
+      "enabled": true,
+      "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html",
+      "messagebox": true,
+      "subscribe": "messagebox",
+      "type": "visualization",
+      "dependencies": [
+         {
+            "web": ">=3.0.0"
+         }
+      ],
+      "authors": [
+         {
+            "name": "Zefau",
+            "email": "zefau@mailbox.org"
+         }
+      ]
+   },
+   "native": {
+      "devices": {},
+      "settings": {},
+      "notifications": {},
+      "addNotification": ""
+   },
+   "objects": [],
+   "instanceObjects": [
       {
-        "web": ">=3.0.0"
-      }
-    ],
-    "authors": [
+         "_id": "devices",
+         "type": "state",
+         "common": {
+            "name": "List of devices",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": true,
+            "def": "{}"
+         }
+      },
       {
-        "name": "Zefau",
-        "email": "zefau@mailbox.org"
+         "_id": "settings",
+         "type": "state",
+         "common": {
+            "name": "Settings",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": true,
+            "def": "{\"layout\": {}}"
+         }
+      },
+      {
+         "_id": "notifications",
+         "type": "state",
+         "common": {
+            "name": "Notifications",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": false
+         }
+      },
+      {
+         "_id": "addNotification",
+         "type": "state",
+         "common": {
+            "name": "Add new notification",
+            "role": "text",
+            "type": "string",
+            "read": true,
+            "write": true
+         }
       }
-    ]
-  },
-  "native": {
-	"devices": {},
-	"settings": {},
-	"notifications": {},
-	"addNotification": ""
-  },
-  "objects": [],
-  "instanceObjects": [
-	{
-		"_id": "devices",
-		"type": "state",
-		"common": {
-			"name": "List of devices",
-			"role": "json",
-			"type": "string",
-			"read": true,
-			"write": true,
-			"def": "{}"
-		}
-	},
-	{
-		"_id": "settings",
-		"type": "state",
-		"common": {
-			"name": "Settings",
-			"role": "json",
-			"type": "string",
-			"read": true,
-			"write": true,
-			"def": "{\"layout\": {}}"
-		}
-	},
-	{
-		"_id": "notifications",
-		"type": "state",
-		"common": {
-			"name": "Notifications",
-			"role": "json",
-			"type": "string",
-			"read": true,
-			"write": false
-		}
-	},
-	{
-		"_id": "addNotification",
-		"type": "state",
-		"common": {
-			"name": "Add new notification",
-			"role": "text",
-			"type": "string",
-			"read": true,
-			"write": true
-		}
-	}
-  ]
+   ]
 }
