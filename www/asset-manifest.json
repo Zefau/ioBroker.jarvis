@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/jarvis/static/css/main.680b29e9.chunk.css",
+    "main.js": "/jarvis/static/js/main.91c26d32.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.91c26d32.chunk.js.map",
+    "runtime-main.js": "/jarvis/static/js/runtime-main.2ccd8af1.js",
+    "runtime-main.js.map": "/jarvis/static/js/runtime-main.2ccd8af1.js.map",
+    "static/js/2.8d881cf6.chunk.js": "/jarvis/static/js/2.8d881cf6.chunk.js",
+    "static/js/2.8d881cf6.chunk.js.map": "/jarvis/static/js/2.8d881cf6.chunk.js.map",
+    "static/js/3.64f36e48.chunk.js": "/jarvis/static/js/3.64f36e48.chunk.js",
+    "static/js/3.64f36e48.chunk.js.map": "/jarvis/static/js/3.64f36e48.chunk.js.map",
+    "index.html": "/jarvis/index.html",
+    "precache-manifest.35b23f3b0b094984a77c057e1601494f.js": "/jarvis/precache-manifest.35b23f3b0b094984a77c057e1601494f.js",
+    "service-worker.js": "/jarvis/service-worker.js",
+    "static/css/main.680b29e9.chunk.css.map": "/jarvis/static/css/main.680b29e9.chunk.css.map",
+    "static/js/2.8d881cf6.chunk.js.LICENSE.txt": "/jarvis/static/js/2.8d881cf6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ccd8af1.js",
+    "static/js/2.8d881cf6.chunk.js",
+    "static/css/main.680b29e9.chunk.css",
+    "static/js/main.91c26d32.chunk.js"
+  ]
+}
