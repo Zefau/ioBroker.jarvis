@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "0.4.3",
+      "version": "1.0.0-alpha.1",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis"
@@ -25,17 +25,13 @@
       "messagebox": true,
       "subscribe": "messagebox",
       "type": "visualization",
-      "dependencies": [
-         {
-            "web": ">=3.0.0"
-         }
-      ],
       "authors": [
          {
             "name": "Zefau",
             "email": "zefau@mailbox.org"
          }
-      ]
+      ],
+      "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/3d914239daf726d2cca564c05e11717ffe1d2008"
    },
    "native": {
       "devices": {},
@@ -53,7 +49,7 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": true,
+            "write": false,
             "def": "{}"
          }
       },
@@ -65,8 +61,20 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": true,
-            "def": "{\"layout\": {}}"
+            "write": false,
+            "def": "{}"
+         }
+      },
+      {
+         "_id": "layout",
+         "type": "state",
+         "common": {
+            "name": "Layout",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": false,
+            "def": "{}"
          }
       },
       {
