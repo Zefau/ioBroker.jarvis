@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/jarvis/static/css/main.680b29e9.chunk.css",
-    "main.js": "/jarvis/static/js/main.1a363e33.chunk.js",
-    "main.js.map": "/jarvis/static/js/main.1a363e33.chunk.js.map",
-    "runtime-main.js": "/jarvis/static/js/runtime-main.a936044d.js",
-    "runtime-main.js.map": "/jarvis/static/js/runtime-main.a936044d.js.map",
+    "main.js": "/jarvis/static/js/main.ed1a9615.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.ed1a9615.chunk.js.map",
+    "runtime-main.js": "/jarvis/static/js/runtime-main.83d22ebc.js",
+    "runtime-main.js.map": "/jarvis/static/js/runtime-main.83d22ebc.js.map",
     "static/js/2.c3f7ed96.chunk.js": "/jarvis/static/js/2.c3f7ed96.chunk.js",
     "static/js/2.c3f7ed96.chunk.js.map": "/jarvis/static/js/2.c3f7ed96.chunk.js.map",
-    "static/js/3.12065bbe.chunk.js": "/jarvis/static/js/3.12065bbe.chunk.js",
-    "static/js/3.12065bbe.chunk.js.map": "/jarvis/static/js/3.12065bbe.chunk.js.map",
+    "static/js/3.4db014d5.chunk.js": "/jarvis/static/js/3.4db014d5.chunk.js",
+    "static/js/3.4db014d5.chunk.js.map": "/jarvis/static/js/3.4db014d5.chunk.js.map",
     "index.html": "/jarvis/index.html",
-    "precache-manifest.2464f8c83fd65dbed60e51b1242c1b6b.js": "/jarvis/precache-manifest.2464f8c83fd65dbed60e51b1242c1b6b.js",
+    "precache-manifest.9a88d366d4de2ecf5d2d9d8a78426710.js": "/jarvis/precache-manifest.9a88d366d4de2ecf5d2d9d8a78426710.js",
     "service-worker.js": "/jarvis/service-worker.js",
     "static/css/main.680b29e9.chunk.css.map": "/jarvis/static/css/main.680b29e9.chunk.css.map",
     "static/js/2.c3f7ed96.chunk.js.LICENSE.txt": "/jarvis/static/js/2.c3f7ed96.chunk.js.LICENSE.txt",
@@ -22,9 +22,9 @@
     "static/media/snapshot.md": "/jarvis/static/media/snapshot.fdce88e8.md"
   },
   "entrypoints": [
-    "static/js/runtime-main.a936044d.js",
+    "static/js/runtime-main.83d22ebc.js",
     "static/js/2.c3f7ed96.chunk.js",
     "static/css/main.680b29e9.chunk.css",
-    "static/js/main.1a363e33.chunk.js"
+    "static/js/main.ed1a9615.chunk.js"
   ]
 }
