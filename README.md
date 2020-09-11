@@ -21,14 +21,14 @@ jarvis ist [*responsive*](https://de.wikipedia.org/wiki/Responsive_Webdesign) un
 
 Das Layout ist flexibel konfigurierbar. Es können optional (beliebig viele) Tabs verwendet werden. Jeder Tab kann entweder `fullscreen` sein oder beliebig viele `columns` haben, die die einzelnen `modules` in flexibler Reihenfolge beinhalten.
 
-Jedes Modul hat spezielle Konfigurationsmöglichkeiten ([siehe Wiki je Modul](https://github.com/Zefau/ioBroker.jarvis/wiki/Modules-(Modules)#liste-der-module)).
+Jedes Modul hat spezielle Konfigurationsmöglichkeiten ([siehe Wiki je Modul](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Modules).
 
 
 ## Warum jarvis?
 jarvis ist weitaus weniger flexibel als ioBroker.vis, aber bietet dafür ein standardisiertes Design, um schnell eine Visualisierung zusammenzustellen. Wer besonders spezifische Anforderungen hat, sollte (weiterhin) ioBroker.vis verwendet.
 
 
-## Mehr Informationen
+## Installation und mehr Informationen
 [Mehr Informationen - insbesondere zur Konfiguration - gibt es im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 _____
@@ -38,9 +38,9 @@ _____
 Die Konfiguration von Modulen kann frei angeordnet werden. Nachfolgend einige Impressionen / Beispiele:
 
 ### Screencast / Video
-[![Play Video](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/play.png)](https://www.dropbox.com/s/z0o1dsdx12kjql6/Screencast.mp4?dl=0)
+[![Play Video](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/play.png)](https://youtu.be/jltXTSDGoQw)
 
-Siehe https://www.dropbox.com/s/z0o1dsdx12kjql6/Screencast.mp4?dl=0
+Siehe https://youtu.be/jltXTSDGoQw
 
 ### Screenshots
 
@@ -55,13 +55,6 @@ Siehe https://www.dropbox.com/s/z0o1dsdx12kjql6/Screencast.mp4?dl=0
 
 #### Beispiel: Status (3 `columns`, davon 2 leer)
 ![Status.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Status.png)
-
-
-## Installation
-Eine ausführliche Dokumentation befindet sich [im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki)!
-
-### Module
-[Eine aktuelle Liste der Module ist im Wiki zu finden](https://github.com/Zefau/ioBroker.jarvis/wiki/Modules-(Modules)).
 
 
 ## Changelog
