@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.0.0-rc.1",
+      "version": "1.0.0-rc.2",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis"
@@ -35,8 +35,7 @@
             "name": "Zefau",
             "email": "zefau@mailbox.org"
          }
-      ],
-      "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/3d914239daf726d2cca564c05e11717ffe1d2008"
+      ]
    },
    "native": {
       "devices": {},
