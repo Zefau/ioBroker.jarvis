@@ -35,8 +35,7 @@
             "name": "Zefau",
             "email": "zefau@mailbox.org"
          }
-      ],
-      "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/3d914239daf726d2cca564c05e11717ffe1d2008"
+      ]
    },
    "native": {
       "devices": {},
