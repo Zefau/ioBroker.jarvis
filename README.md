@@ -62,6 +62,53 @@ Siehe https://youtu.be/jltXTSDGoQw
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.0-rc.1 - process.argv[2]
+
+#### :bug: fixed bugs
+- Blind level shown as null if level is 0 ([72](https://github.com/Zefau/ioBroker.jarvis/issues/72))
+- Missing translation of functions ([64](https://github.com/Zefau/ioBroker.jarvis/issues/64))
+- Expert mode not loading ([63](https://github.com/Zefau/ioBroker.jarvis/issues/63))
+- State icon depending on state value ([61](https://github.com/Zefau/ioBroker.jarvis/issues/61))
+- Stop button of blind level state not working in pop-up ([60](https://github.com/Zefau/ioBroker.jarvis/issues/60))
+- Add action to imported devices ([59](https://github.com/Zefau/ioBroker.jarvis/issues/59))
+- Import of light alias devices ([55](https://github.com/Zefau/ioBroker.jarvis/issues/55))
+- Import of heating alias devices ([54](https://github.com/Zefau/ioBroker.jarvis/issues/54))
+- Import of window alias devices ([53](https://github.com/Zefau/ioBroker.jarvis/issues/53))
+- Function not recognized while importing alias devices ([52](https://github.com/Zefau/ioBroker.jarvis/issues/52))
+- Button is pulsating ([51](https://github.com/Zefau/ioBroker.jarvis/issues/51))
+- Unit missing after using BlindLevelAction ([50](https://github.com/Zefau/ioBroker.jarvis/issues/50))
+- Icons of blinds states not working ([49](https://github.com/Zefau/ioBroker.jarvis/issues/49))
+- Label of blinds states not used in widget ([48](https://github.com/Zefau/ioBroker.jarvis/issues/48))
+- Changing colors has no effect ([46](https://github.com/Zefau/ioBroker.jarvis/issues/46))
+- Problems in settings dialogue after changing language ([45](https://github.com/Zefau/ioBroker.jarvis/issues/45))
+- LevelBody for blinds not working as expected ([44](https://github.com/Zefau/ioBroker.jarvis/issues/44))
+- Newly created devices / states are not directly available in widget configuration ([41](https://github.com/Zefau/ioBroker.jarvis/issues/41))
+- Function blind throws error ([27](https://github.com/Zefau/ioBroker.jarvis/issues/27))
+- Sorting states of a device ([25](https://github.com/Zefau/ioBroker.jarvis/issues/25))
+- Saving device config ([22](https://github.com/Zefau/ioBroker.jarvis/issues/22))
+- Position of configuration pop-up  ([16](https://github.com/Zefau/ioBroker.jarvis/issues/16))
+
+#### :star2: newly added features
+- Add unreach state ([66](https://github.com/Zefau/ioBroker.jarvis/issues/66))
+- Add possibility for boolean battery state ([65](https://github.com/Zefau/ioBroker.jarvis/issues/65))
+- Import of blind alias devices ([47](https://github.com/Zefau/ioBroker.jarvis/issues/47))
+- Preview for the Action Elements in widget configuration ([43](https://github.com/Zefau/ioBroker.jarvis/issues/43))
+- Improve mobile view ([34](https://github.com/Zefau/ioBroker.jarvis/issues/34))
+- Customize icons / avatars shown on Map ([33](https://github.com/Zefau/ioBroker.jarvis/issues/33))
+- Add pre-defined layout and devices based on user-defined enums ([31](https://github.com/Zefau/ioBroker.jarvis/issues/31))
+- Widget iFrame ([29](https://github.com/Zefau/ioBroker.jarvis/issues/29))
+- Idea for improved configuration of groups and devices ([26](https://github.com/Zefau/ioBroker.jarvis/issues/26))
+- Is it possible to add i18n support ([23](https://github.com/Zefau/ioBroker.jarvis/issues/23))
+- Suggestion of new data structure ([21](https://github.com/Zefau/ioBroker.jarvis/issues/21))
+- Add dropdown field ([20](https://github.com/Zefau/ioBroker.jarvis/issues/20))
+- Device configuration ([18](https://github.com/Zefau/ioBroker.jarvis/issues/18))
+- On value of dimmable lights ([12](https://github.com/Zefau/ioBroker.jarvis/issues/12))
+
+#### :exclamation: BREAKING CHANGES
+- Preview for the Action Elements in widget configuration ([43](https://github.com/Zefau/ioBroker.jarvis/issues/43))
+- Idea for improved configuration of groups and devices ([26](https://github.com/Zefau/ioBroker.jarvis/issues/26))
+
+
 ### 0.1.0 - Shawshank Redemption (2020-03-28)
 
 ### 0.0.1 (2020-02-21)

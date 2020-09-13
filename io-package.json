@@ -6,7 +6,12 @@
       "desc": {
          "en": "jarvis - just another remarkable vis"
       },
-      "news": {},
+      "news": {
+         "1.0.0-rc.1": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1"
+         }
+      },
       "license": "MIT",
       "platform": "Javascript/Node.js",
       "mode": "daemon",
