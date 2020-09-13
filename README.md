@@ -62,7 +62,7 @@ Siehe https://youtu.be/jltXTSDGoQw
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
-### 0.1.0 (2020-03-28)
+### 0.1.0 - Shawshank Redemption (2020-03-28)
 
 ### 0.0.1 (2020-02-21)
 - (Zefau) initial version
