@@ -49,24 +49,32 @@ function startAdapter(options)
 				// no socket.io adapter installed
 				if (obj === null) {
 					adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
-						resolve(obj.native.port || 8082);
+						resolve({
+							'port': obj.native.port || 8082,
+							'secure': obj.native.secure !== undefined ? obj.native.secure : false,
+						});
 					});
 				}
 
 				// socket.io
 				else {
-					resolve(obj.native.port || 8084);
+					resolve({
+						'port': obj.native.port || 8084,
+						'secure': obj.native.secure !== undefined ? obj.native.secure : false,
+					});
 				}
 			});
 		});
 		
 		// write port to config
-		portDetection.then(port => {
-			adapter.log.debug('Socket port detected: ' + port);
+		portDetection.then(config => {
+			adapter.log.debug('Socket port detected: ' + config.port);
 			
-			if (adapter.config.iobrokerPort !== port) {
+			if (adapter.config.socketPort !== config.port || adapter.config.socketSecure !== config.secure) {
 				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
-					obj.native.iobrokerPort = port;
+					obj.native['socketPort'] = config.port;
+					obj.native['socketSecure'] = config.secure;
+					
 					adapter.setForeignObject(obj._id, obj);
 				});
 			}
