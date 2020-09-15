@@ -42,6 +42,36 @@ function startAdapter(options)
 			return library.terminate('This Adapter is not compatible with your Node.js Version ' + process.version + ' (must be >= Node.js v7).', true);
 		}
 		
+		// detect socket port
+		const portDetection = new Promise(resolve => {
+			adapter.getForeignObject('system.adapter.socketio.0', (err, obj) => {
+		
+				// no socket.io adapter installed
+				if (obj === null) {
+					adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
+						resolve(obj.native.port || 8082);
+					});
+				}
+
+				// socket.io
+				else {
+					resolve(obj.native.port || 8084);
+				}
+			});
+		});
+		
+		// write port to config
+		portDetection.then(port => {
+			adapter.log.debug('Socket port detected: ' + port);
+			
+			if (adapter.config.iobrokerPort !== port) {
+				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
+					obj.native.iobrokerPort = port;
+					adapter.setForeignObject(obj._id, obj);
+				});
+			}
+		});
+	
 		// all ok
 		library.set(Library.CONNECTION, true);
 		
