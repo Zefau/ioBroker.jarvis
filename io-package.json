@@ -1,110 +1,110 @@
 {
-  "common": {
-    "name": "jarvis",
-    "version": "1.0.0-rc.3",
-    "title": "jarvis - just another remarkable vis",
-    "desc": {
-      "en": "jarvis - just another remarkable vis"
-    },
-    "news": {
-      "1.0.0-rc.1": {
-        "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1",
-        "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1"
-      }
-    },
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "mode": "daemon",
-    "icon": "jarvis.png",
-    "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
-    "keywords": [
-      "vis",
-      "visualization"
-    ],
-    "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
-    "loglevel": "info",
-    "materialize": true,
-    "compact": true,
-    "enabled": true,
-    "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html#socket=%socketPort%&secure=%socketSecure%",
-    "messagebox": true,
-    "subscribe": "messagebox",
-    "type": "visualization",
-    "authors": [
+   "common": {
+      "name": "jarvis",
+      "version": "1.0.0-rc.4",
+      "title": "jarvis - just another remarkable vis",
+      "desc": {
+         "en": "jarvis - just another remarkable vis"
+      },
+      "news": {
+         "1.0.0-rc.1": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1"
+         }
+      },
+      "license": "MIT",
+      "platform": "Javascript/Node.js",
+      "mode": "daemon",
+      "icon": "jarvis.png",
+      "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
+      "keywords": [
+         "vis",
+         "visualization"
+      ],
+      "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
+      "loglevel": "info",
+      "materialize": true,
+      "compact": true,
+      "enabled": true,
+      "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html#socketPort=%socketPort%&socketSecure=%socketSecure%",
+      "messagebox": true,
+      "subscribe": "messagebox",
+      "type": "visualization",
+      "authors": [
+         {
+            "name": "Zefau",
+            "email": "zefau@mailbox.org"
+         }
+      ],
+      "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/59e5a8b5ceda62f28199358bfe444a3c8dd3a5fa"
+   },
+   "native": {
+      "iobrokerPort": 0,
+      "iobrokerIp": "",
+      "devices": {},
+      "settings": {},
+      "notifications": {},
+      "addNotification": ""
+   },
+   "objects": [],
+   "instanceObjects": [
       {
-        "name": "Zefau",
-        "email": "zefau@mailbox.org"
+         "_id": "devices",
+         "type": "state",
+         "common": {
+            "name": "List of devices",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": false,
+            "def": "{}"
+         }
+      },
+      {
+         "_id": "settings",
+         "type": "state",
+         "common": {
+            "name": "Settings",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": false,
+            "def": "{}"
+         }
+      },
+      {
+         "_id": "layout",
+         "type": "state",
+         "common": {
+            "name": "Layout",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": false,
+            "def": "[]"
+         }
+      },
+      {
+         "_id": "notifications",
+         "type": "state",
+         "common": {
+            "name": "Notifications",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": false
+         }
+      },
+      {
+         "_id": "addNotification",
+         "type": "state",
+         "common": {
+            "name": "Add new notification",
+            "role": "text",
+            "type": "string",
+            "read": true,
+            "write": true
+         }
       }
-    ],
-    "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/59e5a8b5ceda62f28199358bfe444a3c8dd3a5fa"
-  },
-  "native": {
-    "iobrokerPort": 0,
-    "iobrokerIp": "",
-    "devices": {},
-    "settings": {},
-    "notifications": {},
-    "addNotification": ""
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "devices",
-      "type": "state",
-      "common": {
-        "name": "List of devices",
-        "role": "json",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": "{}"
-      }
-    },
-    {
-      "_id": "settings",
-      "type": "state",
-      "common": {
-        "name": "Settings",
-        "role": "json",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": "{}"
-      }
-    },
-    {
-      "_id": "layout",
-      "type": "state",
-      "common": {
-        "name": "Layout",
-        "role": "json",
-        "type": "string",
-        "read": true,
-        "write": false,
-        "def": "[]"
-      }
-    },
-    {
-      "_id": "notifications",
-      "type": "state",
-      "common": {
-        "name": "Notifications",
-        "role": "json",
-        "type": "string",
-        "read": true,
-        "write": false
-      }
-    },
-    {
-      "_id": "addNotification",
-      "type": "state",
-      "common": {
-        "name": "Add new notification",
-        "role": "text",
-        "type": "string",
-        "read": true,
-        "write": true
-      }
-    }
-  ]
+   ]
 }

@@ -50,8 +50,8 @@ function startAdapter(options)
 				if (obj === null) {
 					adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
 						resolve({
-							'port': obj.native.port || 8082,
-							'secure': obj.native.secure !== undefined ? obj.native.secure : false,
+							'port': (obj && obj.native && obj.native.port) || 8082,
+							'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
 						});
 					});
 				}
@@ -59,8 +59,8 @@ function startAdapter(options)
 				// socket.io
 				else {
 					resolve({
-						'port': obj.native.port || 8084,
-						'secure': obj.native.secure !== undefined ? obj.native.secure : false,
+						'port': (obj && obj.native && obj.native.port) || 8084,
+						'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
 					});
 				}
 			});
