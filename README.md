@@ -62,7 +62,27 @@ Siehe https://youtu.be/jltXTSDGoQw
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
-### v1.0.0-rc.1 - process.argv[2]
+### v1.0.0-rc.1 - The Matrix Revolution
+
+#### :exclamation: BREAKING CHANGES
+- Preview for the Action Elements in widget configuration ([43](https://github.com/Zefau/ioBroker.jarvis/issues/43))
+- Idea for improved configuration of groups and devices ([26](https://github.com/Zefau/ioBroker.jarvis/issues/26))
+
+#### :star2: newly added features
+- Add unreach state ([66](https://github.com/Zefau/ioBroker.jarvis/issues/66))
+- Add possibility for boolean battery state ([65](https://github.com/Zefau/ioBroker.jarvis/issues/65))
+- Import of blind alias devices ([47](https://github.com/Zefau/ioBroker.jarvis/issues/47))
+- Preview for the Action Elements in widget configuration ([43](https://github.com/Zefau/ioBroker.jarvis/issues/43))
+- Improve mobile view ([34](https://github.com/Zefau/ioBroker.jarvis/issues/34))
+- Customize icons / avatars shown on Map ([33](https://github.com/Zefau/ioBroker.jarvis/issues/33))
+- Add pre-defined layout and devices based on user-defined enums ([31](https://github.com/Zefau/ioBroker.jarvis/issues/31))
+- Widget iFrame ([29](https://github.com/Zefau/ioBroker.jarvis/issues/29))
+- Idea for improved configuration of groups and devices ([26](https://github.com/Zefau/ioBroker.jarvis/issues/26))
+- Is it possible to add i18n support ([23](https://github.com/Zefau/ioBroker.jarvis/issues/23))
+- Suggestion of new data structure ([21](https://github.com/Zefau/ioBroker.jarvis/issues/21))
+- Add dropdown field ([20](https://github.com/Zefau/ioBroker.jarvis/issues/20))
+- Device configuration ([18](https://github.com/Zefau/ioBroker.jarvis/issues/18))
+- On value of dimmable lights ([12](https://github.com/Zefau/ioBroker.jarvis/issues/12))
 
 #### :bug: fixed bugs
 - Blind level shown as null if level is 0 ([72](https://github.com/Zefau/ioBroker.jarvis/issues/72))
@@ -87,26 +107,6 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - Sorting states of a device ([25](https://github.com/Zefau/ioBroker.jarvis/issues/25))
 - Saving device config ([22](https://github.com/Zefau/ioBroker.jarvis/issues/22))
 - Position of configuration pop-up  ([16](https://github.com/Zefau/ioBroker.jarvis/issues/16))
-
-#### :star2: newly added features
-- Add unreach state ([66](https://github.com/Zefau/ioBroker.jarvis/issues/66))
-- Add possibility for boolean battery state ([65](https://github.com/Zefau/ioBroker.jarvis/issues/65))
-- Import of blind alias devices ([47](https://github.com/Zefau/ioBroker.jarvis/issues/47))
-- Preview for the Action Elements in widget configuration ([43](https://github.com/Zefau/ioBroker.jarvis/issues/43))
-- Improve mobile view ([34](https://github.com/Zefau/ioBroker.jarvis/issues/34))
-- Customize icons / avatars shown on Map ([33](https://github.com/Zefau/ioBroker.jarvis/issues/33))
-- Add pre-defined layout and devices based on user-defined enums ([31](https://github.com/Zefau/ioBroker.jarvis/issues/31))
-- Widget iFrame ([29](https://github.com/Zefau/ioBroker.jarvis/issues/29))
-- Idea for improved configuration of groups and devices ([26](https://github.com/Zefau/ioBroker.jarvis/issues/26))
-- Is it possible to add i18n support ([23](https://github.com/Zefau/ioBroker.jarvis/issues/23))
-- Suggestion of new data structure ([21](https://github.com/Zefau/ioBroker.jarvis/issues/21))
-- Add dropdown field ([20](https://github.com/Zefau/ioBroker.jarvis/issues/20))
-- Device configuration ([18](https://github.com/Zefau/ioBroker.jarvis/issues/18))
-- On value of dimmable lights ([12](https://github.com/Zefau/ioBroker.jarvis/issues/12))
-
-#### :exclamation: BREAKING CHANGES
-- Preview for the Action Elements in widget configuration ([43](https://github.com/Zefau/ioBroker.jarvis/issues/43))
-- Idea for improved configuration of groups and devices ([26](https://github.com/Zefau/ioBroker.jarvis/issues/26))
 
 
 ### 0.1.0 - Shawshank Redemption (2020-03-28)
