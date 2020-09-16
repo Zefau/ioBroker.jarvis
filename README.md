@@ -62,6 +62,14 @@ Siehe https://youtu.be/jltXTSDGoQw
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.0-rc.5 - The Matrix
+
+#### :bug: fixed bugs
+- Connection issues when using socket.io as separated adapter (not socket via integrated web adapter) ([74](https://github.com/Zefau/ioBroker.jarvis/issues/74))
+- Adapters without a status are shown with yellow status ([68](https://github.com/Zefau/ioBroker.jarvis/issues/68))
+- Stop button of blind level state not working in pop-up ([60](https://github.com/Zefau/ioBroker.jarvis/issues/60))
+
+
 ### v1.0.0-rc.1 - The Matrix Revolution
 
 #### :exclamation: BREAKING CHANGES
