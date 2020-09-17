@@ -21,7 +21,7 @@ jarvis ist [*responsive*](https://de.wikipedia.org/wiki/Responsive_Webdesign) un
 
 Das Layout ist flexibel konfigurierbar. Es können optional (beliebig viele) Tabs verwendet werden. Jeder Tab kann entweder `fullscreen` sein oder beliebig viele `columns` haben, die die einzelnen `modules` in flexibler Reihenfolge beinhalten.
 
-Jedes Modul hat spezielle Konfigurationsmöglichkeiten ([siehe Wiki je Modul](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Modules).
+Jedes Modul hat spezielle Konfigurationsmöglichkeiten ([siehe Wiki je Modul](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Modules)).
 
 
 ## Warum jarvis?
@@ -60,6 +60,12 @@ Siehe https://youtu.be/jltXTSDGoQw
 ## Changelog
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
+
+### v1.0.0-rc.6 - The Matrix Reloaded
+
+#### :bug: fixed bugs
+- WidgetPage: Cannot read property "map" of undefined ([77](https://github.com/Zefau/ioBroker.jarvis/issues/77))
 
 
 ### v1.0.0-rc.5 - The Matrix
