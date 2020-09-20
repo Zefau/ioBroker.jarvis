@@ -72,6 +72,11 @@ function startAdapter(options)
 			
 			if (adapter.config.socketPort !== config.port || adapter.config.socketSecure !== config.secure) {
 				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
+					
+					if (err || !obj || !obj.native) {
+						return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
+					}
+					
 					obj.native['socketPort'] = config.port;
 					obj.native['socketSecure'] = config.secure;
 					

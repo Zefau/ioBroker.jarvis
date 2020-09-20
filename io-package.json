@@ -1,10 +1,19 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.0.0-rc.7",
+      "version": "1.0.0-rc.8",
       "title": "jarvis - just another remarkable vis",
       "desc": {
-         "en": "jarvis - just another remarkable vis"
+         "en": "jarvis - just another remarkable vis",
+         "de": "jarvis - just another remarkable vis",
+         "ru": "jarvis - just another remarkable vis",
+         "pt": "jarvis - just another remarkable vis",
+         "nl": "jarvis - just another remarkable vis",
+         "fr": "jarvis - just another remarkable vis",
+         "it": "jarvis - just another remarkable vis",
+         "es": "jarvis - just another remarkable vis",
+         "pl": "jarvis - just another remarkable vis",
+         "zh-cn": "jarvis - just another remarkable vis"
       },
       "news": {
          "1.0.0-rc.1": {
@@ -48,8 +57,7 @@
             "name": "Zefau",
             "email": "zefau@mailbox.org"
          }
-      ],
-      "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/59e5a8b5ceda62f28199358bfe444a3c8dd3a5fa"
+      ]
    },
    "native": {
       "iobrokerPort": 0,
