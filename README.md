@@ -62,6 +62,23 @@ Siehe https://youtu.be/jltXTSDGoQw
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.0-rc.10 - Fight Club
+
+#### :star2: newly added features
+- Add standard state keys to device depending on function ([89](https://github.com/Zefau/ioBroker.jarvis/issues/89))
+
+#### :bug: fixed bugs
+- Group action fails on certain device state configuration ([94](https://github.com/Zefau/ioBroker.jarvis/issues/94))
+- Unhandled promise rejection ([93](https://github.com/Zefau/ioBroker.jarvis/issues/93))
+- Can't add devices to Map module ([92](https://github.com/Zefau/ioBroker.jarvis/issues/92))
+- Map in Widget not shown and jumper is wrongly positioned ([88](https://github.com/Zefau/ioBroker.jarvis/issues/88))
+
+#### core
+- Unhandled promise rejection ([93](https://github.com/Zefau/ioBroker.jarvis/issues/93))
+- Add all required language transitions ([91](https://github.com/Zefau/ioBroker.jarvis/issues/91))
+- Remove `installedFrom` from io-package the deployment process ([90](https://github.com/Zefau/ioBroker.jarvis/issues/90))
+
+
 ### v1.0.0-rc.6 - The Matrix Reloaded
 
 #### :bug: fixed bugs
