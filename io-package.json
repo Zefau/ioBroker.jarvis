@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.0.0-rc.15",
+      "version": "1.0.0-rc.16",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -35,6 +35,10 @@
          "1.0.0-rc.15": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.15",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.15"
+         },
+         "1.0.0-rc.16": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16"
          }
       },
       "license": "MIT",
@@ -54,7 +58,7 @@
       "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html#socketPort=%socketPort%&socketSecure=%socketSecure%",
       "dependencies": [
          {
-            "web": ">=3.0.13"
+            "web": ">=3.0.12"
          }
       ],
       "messagebox": true,
