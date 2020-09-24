@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.0.0-rc.16",
+      "version": "1.0.0",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -39,6 +39,10 @@
          "1.0.0-rc.16": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16"
+         },
+         "1.0.0": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0"
          }
       },
       "license": "MIT",
