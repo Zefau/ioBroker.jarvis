@@ -23,9 +23,9 @@
     "static/media/index.js.flow": "/jarvis/static/media/index.js.88b53c87.flow"
   },
   "entrypoints": [
-    "static/js/runtime-main.7ad03130.js",
-    "static/js/2.dfe2a24c.chunk.js",
+    "static/js/runtime-main.cef72354.js",
+    "static/js/2.af970823.chunk.js",
     "static/css/main.680b29e9.chunk.css",
-    "static/js/main.573578f5.chunk.js"
+    "static/js/main.32c7c0c9.chunk.js"
   ]
 }
