@@ -62,6 +62,9 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.3 - The Usual Suspects (2020-09-27)
+
+
 ### v1.0.2 - A Bug's Life (2020-09-27)
 
 #### :bug: fixed bugs
