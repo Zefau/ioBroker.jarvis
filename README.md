@@ -66,7 +66,8 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 
 #### :bug: fixed bugs
 - Widgets will not load ([114](https://github.com/Zefau/ioBroker.jarvis/issues/114))
-
+- Colorpicker opens colorpickers ([126](https://github.com/Zefau/ioBroker.jarvis/issues/126))
+- Option to hide sunrise / sunset not working correctly ([125](https://github.com/Zefau/ioBroker.jarvis/issues/125))
 
 ### v1.0.0-rc.16 - Independence Day (2020-09-23)
 
