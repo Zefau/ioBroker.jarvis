@@ -62,6 +62,12 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.2 - A Bug's Life (2020-09-27)
+
+#### :bug: fixed bugs
+- Widgets will not load ([114](https://github.com/Zefau/ioBroker.jarvis/issues/114))
+
+
 ### v1.0.0-rc.16 - Independence Day (2020-09-23)
 
 #### :star2: newly added features

@@ -39,6 +39,10 @@
          "1.0.0-rc.16": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16"
+         },
+         "1.0.2": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.2",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.2"
          }
       },
       "license": "MIT",
