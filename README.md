@@ -69,6 +69,27 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - Colorpicker opens colorpickers ([126](https://github.com/Zefau/ioBroker.jarvis/issues/126))
 - Option to hide sunrise / sunset not working correctly ([125](https://github.com/Zefau/ioBroker.jarvis/issues/125))
 
+
+### v1.0.0 - The Final Destination (2020-09-24)
+
+#### :star2: newly added features
+- Add standard state keys to device depending on function ([89](https://github.com/Zefau/ioBroker.jarvis/issues/89))
+
+#### :bug: fixed bugs
+- Validate IconStyle and StateStyle ([104](https://github.com/Zefau/ioBroker.jarvis/issues/104))
+- BlindLevelAction: Stop-Button shown even though activity is not given ([100](https://github.com/Zefau/ioBroker.jarvis/issues/100))
+- Group action fails on certain device state configuration ([94](https://github.com/Zefau/ioBroker.jarvis/issues/94))
+- Unhandled promise rejection ([93](https://github.com/Zefau/ioBroker.jarvis/issues/93))
+- Can't add devices to Map module ([92](https://github.com/Zefau/ioBroker.jarvis/issues/92))
+- Map in Widget not shown and jumper is wrongly positioned ([88](https://github.com/Zefau/ioBroker.jarvis/issues/88))
+- Import of alias devices may fail in case of insufficient declaration ([87](https://github.com/Zefau/ioBroker.jarvis/issues/87))
+
+#### core
+- Unhandled promise rejection ([93](https://github.com/Zefau/ioBroker.jarvis/issues/93))
+- Add all required language transitions ([91](https://github.com/Zefau/ioBroker.jarvis/issues/91))
+- Remove `installedFrom` from io-package the deployment process ([90](https://github.com/Zefau/ioBroker.jarvis/issues/90))
+
+
 ### v1.0.0-rc.16 - Independence Day (2020-09-23)
 
 #### :star2: newly added features
