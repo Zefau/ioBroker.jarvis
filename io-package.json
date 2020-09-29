@@ -47,6 +47,10 @@
          "1.0.3": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.3",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.3"
+         },
+         "1.0.5": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.5",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.5"
          }
       },
       "license": "MIT",

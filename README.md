@@ -62,6 +62,17 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.5 - A Beautiful Mind (2020-09-29)
+
+#### :bug: fixed bugs
+- DateTime Module will crash in case wrong input ([135](https://github.com/Zefau/ioBroker.jarvis/issues/135))
+- StateList group actions might set a single device multiple times ([133](https://github.com/Zefau/ioBroker.jarvis/issues/133))
+- State updates are not reflected correctly ([132](https://github.com/Zefau/ioBroker.jarvis/issues/132))
+- Colorpicker opens colorpickers ([126](https://github.com/Zefau/ioBroker.jarvis/issues/126))
+- Option to hide sunrise / sunset not working correctly ([125](https://github.com/Zefau/ioBroker.jarvis/issues/125))
+- Layout: Changing a tab to fullscreen breaks the layout ([123](https://github.com/Zefau/ioBroker.jarvis/issues/123))
+
+
 ### v1.0.3 - The Usual Suspects (2020-09-27)
 
 
