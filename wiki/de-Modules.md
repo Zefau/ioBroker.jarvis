@@ -98,9 +98,11 @@ Das Modul dient der Anzeige des aktuellen Datums und Zeit.
 #### Konfiguration
 | Parameter | Beschreibung | Typ | Standard |
 | - | - | - | - |
-| `style` | Style des Textes  | Text | `{ "fontSize": "1.5rem", "textAlign": "center" }` |
 | `format` | Format des Datums / Uhrzeit  | Text | `d. MMMM yyyy HH:mm` |
+| `style` | Style des Textes  | Text | `{ "fontSize": "1.5rem", "textAlign": "center" }` |
+| `city` | Zeigt die Stadt  | Switch | `true` |
 | `sun` | Zeigt Zeiten für Sonnenauf- und -untergang  | Switch | `true` |
+| `calendarweek` | Zeigt die aktuelle Kalenderwoche  | Switch | `true` |
 
 
 ***
@@ -223,8 +225,9 @@ Zeigt die Wetter-Vorschau an.
 | - | - | - | - |
 | ***`apikey`*** | Dein API Schlüssel (affiliate_id) von www.daswetter.com  | Text | - |
 | ***`localid`*** | Der Ort (localid) für den das Wetter anzuzeigen ist  | Text | - |
-| `iconSetWeather` | config#Weather#iconSetWeather#label  | Select (`set1,_translated`, `set2,_translated`, `set3,_translated`, `set4,_translated`, `set5,_translated`, `set5-white,_translated`) | `set5` |
-| `iconSetWind` | config#Weather#iconSetWind#label  | Select (`set1,_translated`, `set2,_translated`, `set5-white,_translated`) | `set2` |
+| `forecast` | Zeige Wetter-Vorschau  | Switch | `true` |
+| `iconSetWeather` | Icon Set Wetter  | Select (`set1,_translated`, `set2,_translated`, `set3,_translated`, `set4,_translated`, `set5,_translated`, `set5-white,_translated`) | `set5` |
+| `iconSetWind` | Icon Set Wind  | Select (`set1,_translated`, `set2,_translated`, `set5-white,_translated`) | `set2` |
 
 
 ***
