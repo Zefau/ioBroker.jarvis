@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.1.0-beta.11",
+      "version": "1.1.0-beta.12",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -59,7 +59,7 @@
       "materialize": true,
       "compact": true,
       "enabled": true,
-      "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html#socketPort=%socketPort%&socketSecure=%socketSecure%",
+      "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html#instance=%instance%&socketPort=%socketPort%&socketSecure=%socketSecure%",
       "dependencies": [
          {
             "web": ">=3.0.12"
