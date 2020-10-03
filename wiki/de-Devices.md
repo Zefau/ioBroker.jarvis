@@ -8,7 +8,7 @@ Mehr über die Gewerke kann [hier nachgelesen](de-Functions) werden.
 
 Die Gerätekonfiguration kann in den jarvis Einstellungen je Gerät vorgenommen werden.
 
-![Gerätekonfiguration](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/wiki/de-Gerätekonfiguration.png)
+![Gerätekonfiguration](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Gerätekonfiguration.png)
 
 
 ## Konfiguration der Datenpunkte / States

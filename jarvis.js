@@ -16,6 +16,7 @@ let adapter;
 let library;
 let unloaded;
 let NOTIFICATIONS = [];
+let SETTINGS = {};
 
 
 /*
@@ -88,6 +89,30 @@ function startAdapter(options)
 		// all ok
 		library.set(Library.CONNECTION, true);
 		
+		// write settings to states
+		const settings = adapter.getState('settings', (err, state) => {
+			
+			if (!err && state && state.val) {
+				const settings = JSON.parse(state.val);
+				SETTINGS = { ...settings }
+				
+				for (let setting in settings) {
+					
+					library.set({
+						'node': 'settings.' + setting,
+						'description': 'Modify setting ' + setting,
+						'role': 'config',
+						'type': typeof settings[setting],
+						'write': true,
+						'read': true
+						
+					}, settings[setting]);
+				}
+				
+				adapter.subscribeStates('settings.*');
+			}
+		});
+		
 		// listen for new notifications to add
 		adapter.getState('notifications', (err, state) => {
 			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
@@ -103,9 +128,22 @@ function startAdapter(options)
 	adapter.on('stateChange', function(id, state)
 	{
 		adapter.log.debug('State ' + id + ' has changed: ' + JSON.stringify(state));
-		adapter.setState(id, '');
 		
+		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
+			return;
+		}
+		
+		// SETTINGS
+		if (id.indexOf('.settings.') > -1 && state && state.val !== undefined) {
+			const setting = id.substr(id.lastIndexOf('.settings.')+10);
+			
+			SETTINGS[setting] = state.val;
+			adapter.setState('settings', JSON.stringify(SETTINGS));
+		}
+		
+		// NOTIFICATIONS
 		if (id.indexOf('.addNotification') > -1 && state && state.val) {
+			adapter.setState(id, '');
 			let notification = {};
 			
 			// try to parse object
