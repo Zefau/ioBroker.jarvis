@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.1.0-beta.16",
+      "version": "1.1.0-beta.17",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -93,7 +93,7 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": false,
+            "write": true,
             "def": "{}"
          }
       },
@@ -105,7 +105,7 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": false,
+            "write": true,
             "def": "{}"
          }
       },
@@ -117,8 +117,20 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": false,
+            "write": true,
             "def": "[]"
+         }
+      },
+      {
+         "_id": "theme",
+         "type": "state",
+         "common": {
+            "name": "Theme",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": true,
+            "def": "{}"
          }
       },
       {
@@ -129,7 +141,7 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": false
+            "write": true
          }
       },
       {

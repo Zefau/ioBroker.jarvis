@@ -6,7 +6,26 @@ Die meisten Einstellungen können direkt in jarvis vorgenommen werden. Besondere
 
 
 ## Liste der möglichen Einstellungen
-{SETTINGS}
+
+### Seiteneinstellungen
+| Parameter | Beschreibung | Information | Typ | Standard |
+| - | - | - | - | - |
+| `language` | Spracheinstellung von jarvis | - | Select (`de-DE,_translated`, `en-GB,_translated`) | `() => i18n.getLanguage(true)` |
+| `pageFavicon` | Favicon im Browser | base64 Wert der Grafik | Text | - |
+| `pageTitle` | Titel im Browser | - | Text | `jarvis - just another remarkable vis` |
+
+### Theme Einstellungen
+| Parameter | Beschreibung | Information | Typ | Standard |
+| - | - | - | - | - |
+| `themeDarkMode` | Dark Mode | - | Switch | - |
+| `themeColorPrimary` | Primäre Farbe des Themes | [Der Farbwert kann ein Wert aus der Farbpalette in der Form `HUE\|SHADE` (z. B. `blue\|700`) sein. Alternativ kann ein Hex oder RGB angegeben werden.](https://material-ui.com/customization/color/#color-palette) | Text | `blue\|700` |
+| `themeColorSecondary` | Sekundäre Farbe des Themes | [Der Farbwert kann ein Wert aus der Farbpalette in der Form `HUE\|SHADE` (z. B. `pink\|500`) sein. Alternativ kann ein Hex oder RGB angegeben werden.](https://material-ui.com/customization/color/#color-palette) | Text | `pink\|500` |
+| `defaultBoxIcon` | Standard Widget-Box Icon | - | Text | `home` |
+| `hideTopBarIconTitle` | Icon und Titel der TopBar ausblenden | - | Switch | - |
+| `columnsOnSmallScreenSizes` | Spalten auf kleinem Bildschirm | Anzahl der Spalten auf Bildschirmen mit einer Breite zwischen 600-960px. | Select (`12,_translated`, `1,_translated`, `2,_translated`, `3,_translated`, `4,_translated`, `6,_translated`) | `2` |
+| `columnsOnMediumScreenSizes` | Spalten auf mittleren Bildschirm | Anzahl der Spalten auf Bildschirmen mit einer Breite zwischen 960-1280px. | Select (`12,_translated`, `1,_translated`, `2,_translated`, `3,_translated`, `4,_translated`, `6,_translated`) | `2` |
+| `columnsOnLargeScreenSizes` | Spalten auf großem Bildschirm | Anzahl der Spalten auf Bildschirmen mit einer Breite zwischen 1280px-1920px. | Select (`12,_translated`, `1,_translated`, `2,_translated`, `3,_translated`, `4,_translated`, `6,_translated`) | `12` |
+| `columnsOnExtraLargeScreenSizes` | Spalten auf sehr großem Bildschirm | Anzahl der Spalten auf Bildschirmen mit einer Breite über 1920px. | Select (`12,_translated`, `1,_translated`, `2,_translated`, `3,_translated`, `4,_translated`, `6,_translated`) | `12` |
 
 
 ## Experten-Einstellungen

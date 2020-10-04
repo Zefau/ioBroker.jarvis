@@ -755,3 +755,28 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 <tr><td><code>wind</code></td><td>-</td><td>-</td><td><code>km/h</code></td><td><pre lang="json">"weather-windy"</pre></td><td>-</td></tr>
 </table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-wrc2</h5>
+<ul>
+<li><code>PRESS_LONG_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_LONG</code></li>
+<li>action: <code>.1.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_SHORT</code></li>
+<li>action: <code>.1.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_LONG</code></li>
+<li>action: <code>.2.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_SHORT</code></li>
+<li>action: <code>.2.PRESS_SHORT</code></li>
+</ul>
+</ul>
