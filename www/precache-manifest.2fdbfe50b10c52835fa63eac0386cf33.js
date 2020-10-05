@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f240382c2936740fe765b65111c6f85d",
+    "revision": "09b67784b541d404fe1ce882ac36fba9",
     "url": "/jarvis/index.html"
   },
   {
-    "revision": "ba0dd1570706868cb9b9",
+    "revision": "b2d768aae38de129f1a7",
     "url": "/jarvis/static/css/main.680b29e9.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jarvis/static/js/3.726d566d.chunk.js"
   },
   {
-    "revision": "ba0dd1570706868cb9b9",
-    "url": "/jarvis/static/js/main.9da1eb88.chunk.js"
+    "revision": "b2d768aae38de129f1a7",
+    "url": "/jarvis/static/js/main.cba0b908.chunk.js"
   },
   {
     "revision": "858edbfb61f394d5fa0c",
