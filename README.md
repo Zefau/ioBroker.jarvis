@@ -65,6 +65,13 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.7 - Se7en (2020-10-05)
+
+#### :bug: fixed bugs
+- Operators <=, <, >=, >, != and = for Icon and Styles do not apply correctly ([151](https://github.com/Zefau/ioBroker.jarvis/issues/151))
+- DateTime fails if no lon / lat is configured in ioBroker ([150](https://github.com/Zefau/ioBroker.jarvis/issues/150))
+
+
 ### v1.0.6 - Heat (2020-09-30)
 
 #### :bug: fixed bugs
