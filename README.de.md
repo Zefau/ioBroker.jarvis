@@ -14,49 +14,46 @@ jarvis - just another remarkable vis
 [![NPM](https://nodei.co/npm/iobroker.jarvis.png?downloads=true)](https://nodei.co/npm/iobroker.jarvis/) 
 
 
-## Deutsche Version
-[Hier gibt es die deutsche Übersetzung](README.de.md).
+## Was ist jarvis?
+jarvis ist eine Material Design Visualisierung, die auf [Material UI](https://material-ui.com/) basiert. jarvis gibt eine Struktur und Module vor, die zur Visualisierung genutzt werden, aber sehr flexibel konfiguriert werden können.
 
-## What is jarvis?
-jarvis is a Material Design visualisation based on [Material UI](https://material-ui.com/). jarvis provides a structure and modules, which can be used for the visualisation and configured flexibly.
+jarvis ist [*responsive*](https://de.wikipedia.org/wiki/Responsive_Webdesign) und passt sich der Größe des Screens an.
 
-jarvis is [*responsive*](https://de.wikipedia.org/wiki/Responsive_Webdesign) and adapts to the browser's screen size.
+Das Layout ist flexibel konfigurierbar. Es können optional (beliebig viele) Tabs verwendet werden. Jeder Tab kann entweder `fullscreen` sein oder beliebig viele `columns` haben, die die einzelnen `modules` in flexibler Reihenfolge beinhalten.
 
-The layout is flexible configurable. You may add as many tabs as prefered. Each tab may be either `fullscreen` or have as many `columns` as prefered, where each column holds the `modules` in a flexible order.
-
-Each module has its own configuration possibilities ([see Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Modules)).
+Jedes Modul hat spezielle Konfigurationsmöglichkeiten ([siehe Wiki je Modul](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Modules)).
 
 
-## Why jarvis?
-jarvis is not as flexible as ioBroker.vis, but offers a standard design for a quick visualisation.
+## Warum jarvis?
+jarvis ist weitaus weniger flexibel als ioBroker.vis, aber bietet dafür ein standardisiertes Design, um schnell eine Visualisierung zusammenzustellen. Wer besonders spezifische Anforderungen hat, sollte (weiterhin) ioBroker.vis verwendet.
 
 
-## Installation and more informationen
-[More informationen - especially redarding configuration - may be found in the Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
+## Installation und mehr Informationen
+[Mehr Informationen - insbesondere zur Konfiguration - gibt es im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 _____
 
 
-## Impressions
-The configuration of modules can be freely aligned. Subsequentely some impressions / examples:
+## Impressionen
+Die Konfiguration von Modulen kann frei angeordnet werden. Nachfolgend einige Impressionen / Beispiele:
 
 ### Screencast / Video
 [![Play Video](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/play.png)](https://youtu.be/jltXTSDGoQw)
 
-You may find more videos on the [YouTube Channels](https://www.youtube.com/channel/UCQ7rw5Uect8PSx1aVzEOlzQ).
+Mehr Videos im [YouTube Channel](https://www.youtube.com/channel/UCQ7rw5Uect8PSx1aVzEOlzQ).
 
 ### Screenshots
 
-#### Example: Dashboard (3 `columns`)
+#### Beispiel: Dashboard (3 `columns`)
 ![Dashboard.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Dashboard.png)
 
-#### Example: Map (fullscreen)
+#### Beispiel: Karte (Vollbild)
 ![Map.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Map.png)
 
-#### Example: Statistics (2 `columns`)
+#### Beispiel: Statistiken (2 `columns`)
 ![Statistik.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Statistik.png)
 
-#### Example: Status (3 `columns`, davon 2 leer)
+#### Beispiel: Status (3 `columns`, davon 2 leer)
 ![Status.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Status.png)
 
 
