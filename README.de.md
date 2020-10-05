@@ -38,23 +38,23 @@ _____
 Die Konfiguration von Modulen kann frei angeordnet werden. Nachfolgend einige Impressionen / Beispiele:
 
 ### Screencast / Video
-[![Play Video](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/play.png)](https://youtu.be/jltXTSDGoQw)
+[![Play Video](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/play.png)](https://youtu.be/jltXTSDGoQw)
 
-You may find more videos on the [YouTube Channels](https://www.youtube.com/channel/UCQ7rw5Uect8PSx1aVzEOlzQ).
+Mehr Videos im [YouTube Channel](https://www.youtube.com/channel/UCQ7rw5Uect8PSx1aVzEOlzQ).
 
 ### Screenshots
 
 #### Beispiel: Dashboard (3 `columns`)
-![Dashboard.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Dashboard.png)
+![Dashboard.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Dashboard.png)
 
 #### Beispiel: Karte (Vollbild)
-![Map.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Map.png)
+![Map.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Map.png)
 
 #### Beispiel: Statistiken (2 `columns`)
-![Statistik.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Statistik.png)
+![Statistik.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Statistik.png)
 
 #### Beispiel: Status (3 `columns`, davon 2 leer)
-![Status.png](https://raw.githubusercontent.com/Zefau/jarvis/master/documentation/App/Status.png)
+![Status.png](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/App/Status.png)
 
 
 ## Changelog
