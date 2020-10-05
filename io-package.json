@@ -57,6 +57,7 @@
       "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
       "loglevel": "info",
       "materialize": true,
+	  "eraseOnUpload": true,
       "compact": true,
       "enabled": true,
       "localLink": "%web_protocol%://%ip%:%web_port%/jarvis/index.html#instance=%instance%&socketPort=%socketPort%&socketSecure=%socketSecure%",
