@@ -33,7 +33,7 @@ Zeigt alle installierten Adapter mit ihren Instanzen und dem jeweiligen Status (
 
 #### Beispiel Screenshots
 ##### Screenshot1
-<kbd>![Screenshot des Moduls AdapterStatus konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/AdapterStatus/screenshots/AdapterStatus1.png)</kbd>
+<kbd>![Screenshot des Moduls AdapterStatus konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/AdapterStatus1.png)</kbd>
 
 
 #### Konfiguration
@@ -54,7 +54,7 @@ Stellt historische Werte (z.B. aus ioBroker.history) grafisch als Chart mittels 
 
 #### Beispiel Screenshots
 ##### Screenshot1
-<kbd>![Screenshot des Moduls Chart konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/Chart/screenshots/Chart1.png)</kbd>
+<kbd>![Screenshot des Moduls Chart konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/Chart1.png)</kbd>
 
 
 #### Konfiguration
@@ -92,7 +92,7 @@ Das Modul dient der Anzeige des aktuellen Datums und Zeit.
 
 #### Beispiel Screenshots
 ##### Screenshot1
-<kbd>![Screenshot des Moduls DateTime konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/DateTime/screenshots/DateTime1.png)</kbd>
+<kbd>![Screenshot des Moduls DateTime konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/DateTime1.png)</kbd>
 
 
 #### Konfiguration
@@ -153,7 +153,7 @@ Zeigt eine Karte von OpenStreetMap.
 
 #### Beispiel Screenshots
 ##### Screenshot1
-<kbd>![Screenshot des Moduls Map konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/Map/screenshots/Map1.png)</kbd>
+<kbd>![Screenshot des Moduls Map konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/Map1.png)</kbd>
 
 
 #### Konfiguration
@@ -176,16 +176,16 @@ Zeigt eine Liste von States an.
 
 #### Beispiel Screenshots
 ##### Screenshot1
-<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList1.png)</kbd>
+<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/StateList1.png)</kbd>
 
 ##### Screenshot2
-<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList2.png)</kbd>
+<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/StateList2.png)</kbd>
 
 ##### Screenshot3
-<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList3.png)</kbd>
+<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/StateList3.png)</kbd>
 
 ##### Screenshot4
-<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList4.png)</kbd>
+<kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/StateList4.png)</kbd>
 
 
 #### Konfiguration
@@ -202,7 +202,7 @@ Zeigt eine Liste von States (horizontal) an.
 
 #### Beispiel Screenshots
 ##### Screenshot1
-<kbd>![Screenshot des Moduls StateListHorizontal konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateListHorizontal/screenshots/StateListHorizontal1.png)</kbd>
+<kbd>![Screenshot des Moduls StateListHorizontal konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/StateListHorizontal1.png)</kbd>
 
 
 #### Konfiguration
