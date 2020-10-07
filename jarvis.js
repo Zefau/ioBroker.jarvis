@@ -88,6 +88,8 @@ function startAdapter(options)
 	
 		// all ok
 		library.set(Library.CONNECTION, true);
+		library.set({ 'node': 'info.error', 'description': 'Error Handler' }, '');
+		adapter.subscribeStates('info.error');
 		
 		// write settings to states
 		const settings = adapter.getState('settings', (err, state) => {
@@ -127,10 +129,20 @@ function startAdapter(options)
 	 */
 	adapter.on('stateChange', function(id, state)
 	{
-		adapter.log.debug('State ' + id + ' has changed: ' + JSON.stringify(state));
+		//adapter.log.debug('State ' + id + ' has changed: ' + JSON.stringify(state));
 		
 		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
 			return;
+		}
+		
+		// SETTINGS
+		if (id.indexOf('.info.error') > -1 && state && state.val !== undefined && state.val !== '') {
+			
+			try {
+				const error = JSON.parse(state.val);
+				adapter.log[error.criticality || 'debug'](error.message);
+			}
+			catch(err) {}
 		}
 		
 		// SETTINGS
