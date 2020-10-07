@@ -1,6 +1,6 @@
 {
   "name": "iobroker.jarvis",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "jarvis - just another remarkable vis",
   "main": "jarvis.js",
   "engines": {
