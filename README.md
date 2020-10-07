@@ -65,6 +65,13 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.8 - The Prestige (2020-10-07)
+
+#### :bug: fixed bugs
+- Chart fails ([157](https://github.com/Zefau/ioBroker.jarvis/issues/157))
+- Chart - Issue showing more than one graph of the same device ([153](https://github.com/Zefau/ioBroker.jarvis/issues/153))
+
+
 ### v1.0.7 - Se7en (2020-10-05)
 
 #### :bug: fixed bugs
