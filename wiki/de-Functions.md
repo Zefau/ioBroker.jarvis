@@ -205,6 +205,19 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.BOOST_MODE</code></li>
 </ul>
 </ul>
+<h4>Adapter hmip</h4>
+<h5>hmip-etrv-2</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.channels.1.valveActualTemperature</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.channels.1.setPointTemperature</code></li>
+<li>action: <code>.channels.1.setPointTemperature</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Licht (<code>light</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -670,6 +683,15 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>open</code>
 <ul>
 <li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h4>Adapter hmip</h4>
+<h5>hmip-swdo</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.channels.1.windowOpen</code></li>
+<li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
 

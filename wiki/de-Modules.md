@@ -32,7 +32,7 @@ Zeigt alle installierten Adapter mit ihren Instanzen und dem jeweiligen Status (
 
 
 #### Beispiel Screenshots
-##### Screenshot 1
+##### Screenshot1
 <kbd>![Screenshot des Moduls AdapterStatus konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/AdapterStatus/screenshots/AdapterStatus1.png)</kbd>
 
 
@@ -53,7 +53,7 @@ Stellt historische Werte (z.B. aus ioBroker.history) grafisch als Chart mittels 
 
 
 #### Beispiel Screenshots
-##### Screenshot 1
+##### Screenshot1
 <kbd>![Screenshot des Moduls Chart konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/Chart/screenshots/Chart1.png)</kbd>
 
 
@@ -91,7 +91,7 @@ Das Modul dient der Anzeige des aktuellen Datums und Zeit.
 
 
 #### Beispiel Screenshots
-##### Screenshot 1
+##### Screenshot1
 <kbd>![Screenshot des Moduls DateTime konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/DateTime/screenshots/DateTime1.png)</kbd>
 
 
@@ -152,7 +152,7 @@ Zeigt eine Karte von OpenStreetMap.
 
 
 #### Beispiel Screenshots
-##### Screenshot 1
+##### Screenshot1
 <kbd>![Screenshot des Moduls Map konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/Map/screenshots/Map1.png)</kbd>
 
 
@@ -175,16 +175,16 @@ Zeigt eine Liste von States an.
 
 
 #### Beispiel Screenshots
-##### Screenshot 1
+##### Screenshot1
 <kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList1.png)</kbd>
 
-##### Screenshot 2
+##### Screenshot2
 <kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList2.png)</kbd>
 
-##### Screenshot 3
+##### Screenshot3
 <kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList3.png)</kbd>
 
-##### Screenshot 4
+##### Screenshot4
 <kbd>![Screenshot des Moduls StateList konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateList/screenshots/StateList4.png)</kbd>
 
 
@@ -201,7 +201,7 @@ Zeigt eine Liste von States (horizontal) an.
 
 
 #### Beispiel Screenshots
-##### Screenshot 1
+##### Screenshot1
 <kbd>![Screenshot des Moduls StateListHorizontal konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/jarvis/master/src/modules/StateListHorizontal/screenshots/StateListHorizontal1.png)</kbd>
 
 
