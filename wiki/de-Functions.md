@@ -237,7 +237,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    }
 }</pre></td><td><pre lang="json">{
    "0": "ausgeschaltet"
-}</pre></td><td><code>%</code></td><td><pre lang="json">{
+}</pre></td><td><code>val => val > 0 ? \ %\ : null</code></td><td><pre lang="json">{
    "0": "lightbulb-off-outline",
    "default": "lightbulb-on"
 }</pre></td><td>-</td></tr>
@@ -247,7 +247,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    }
 }</pre></td><td><pre lang="json">{
    "0": "ausgeschaltet"
-}</pre></td><td><code>%</code></td><td><pre lang="json">{
+}</pre></td><td><code>val => val > 0 ? \ %\ : null</code></td><td><pre lang="json">{
    "0": "lightbulb-off-outline",
    "default": "lightbulb-on"
 }</pre></td><td>-</td></tr>
