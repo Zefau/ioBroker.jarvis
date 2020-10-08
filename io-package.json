@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -20,49 +20,29 @@
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.8",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.8"
          },
-         "1.0.0-rc.1": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.1"
-         },
-         "1.0.0-rc.5": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.5",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.5"
-         },
-         "1.0.0-rc.6": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.6",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.6"
-         },
-         "1.0.0-rc.10": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.10",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.10"
-         },
-         "1.0.0-rc.15": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.15",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.15"
-         },
-         "1.0.0-rc.16": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0-rc.16"
-         },
-         "1.0.2": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.2",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.2"
-         },
-         "1.0.3": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.3",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.3"
+         "1.0.7": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.7",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.7"
+         }
+         "1.0.6": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.6",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.6"
          },
          "1.0.5": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.5",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.5"
          },
-         "1.0.6": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.6",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.6"
+         "1.0.3": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.3",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.3"
          },
-         "1.0.7": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.7",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.7"
+         "1.0.2": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.2",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.2"
+         },
+         "1.0.0": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.0"
          }
       },
       "license": "MIT",
