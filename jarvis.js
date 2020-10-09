@@ -45,8 +45,9 @@ function startAdapter(options)
 		
 		// detect socket port
 		const portDetection = new Promise(resolve => {
-			adapter.getForeignObject('system.adapter.socketio.0', (err, obj) => {
-		
+			adapter.getObjectView('system', 'instance', { 'startkey': 'system.adapter.socketio.', 'endkey': 'system.adapter.socketio.999' }, (err, instances) => {
+				const obj = (instances && instances.rows && instances.rows[0] && instances.rows[0].value) || null;
+				
 				// no socket.io adapter installed
 				if (obj === null) {
 					adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
@@ -69,7 +70,7 @@ function startAdapter(options)
 		
 		// write port to config
 		portDetection.then(config => {
-			adapter.log.debug('Socket port detected: ' + config.port);
+			adapter.log.info('Socket port detected: ' + config.port);
 			
 			if (adapter.config.socketPort !== config.port || adapter.config.socketSecure !== config.secure) {
 				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
