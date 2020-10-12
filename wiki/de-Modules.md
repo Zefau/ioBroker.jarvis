@@ -223,8 +223,8 @@ Zeigt die Wetter-Vorschau an.
 #### Konfiguration
 | Parameter | Beschreibung | Typ | Standard |
 | - | - | - | - |
-| ***`apikey`*** | Dein API Schlüssel (affiliate_id) von www.daswetter.com  | Text | - |
-| ***`localid`*** | Der Ort (localid) für den das Wetter anzuzeigen ist  | Text | - |
+| ***`apikey`*** | API Schlüssel (affiliate_id) von daswetter.com  | Text | - |
+| ***`localid`*** | Ort (localid) von daswetter.com  | Text | - |
 | `forecast` | Zeige Wetter-Vorschau  | Switch | `true` |
 | `iconSetWeather` | Icon Set Wetter  | Select (`set1,_translated`, `set2,_translated`, `set3,_translated`, `set4,_translated`, `set5,_translated`, `set5-white,_translated`) | `set5` |
 | `iconSetWind` | Icon Set Wind  | Select (`set1,_translated`, `set2,_translated`, `set5-white,_translated`) | `set2` |
