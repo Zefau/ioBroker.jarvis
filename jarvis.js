@@ -100,6 +100,7 @@ function startAdapter(options)
 				SETTINGS = { ...settings }
 				
 				for (let setting in settings) {
+					settings[setting] = typeof settings[setting] === 'object' ? JSON.stringify(settings[setting]) : settings[setting];
 					
 					library.set({
 						'node': 'settings.' + setting,
