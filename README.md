@@ -65,6 +65,13 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v1.0.9 - The Terminator (2020-10-17)
+
+#### :bug: fixed bugs
+- Jarvis Vis direkt öffnen ([180](https://github.com/Zefau/ioBroker.jarvis/issues/180))
+- Blind level shown as null if level is 0 ([72](https://github.com/Zefau/ioBroker.jarvis/issues/72))
+
+
 ### v1.0.8 - The Prestige (2020-10-07)
 
 #### :bug: fixed bugs
