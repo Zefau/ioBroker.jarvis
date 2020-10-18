@@ -1,6 +1,7 @@
 'use strict';
 const adapterName = require('./io-package.json').common.name;
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+const _request = require('request-promise');
 
 
 /*
@@ -32,8 +33,7 @@ function startAdapter(options)
 	 * ADAPTER READY
 	 *
 	 */
-	adapter.on('ready', function()
-	{
+	adapter.on('ready', function() {
 		unloaded = false;
 		library = new Library(adapter);
 		
@@ -89,7 +89,10 @@ function startAdapter(options)
 	
 		// all ok
 		library.set(Library.CONNECTION, true);
-		library.set({ 'node': 'info.error', 'description': 'Error Handler' }, '');
+		
+		// create additional states and subscribe
+		library.set({ 'node': 'info.data', 'role': 'json', 'description': 'Data transfer to jarvis' }, '');
+		library.set({ 'node': 'info.error', 'role': 'text', 'description': 'Error Handler' }, '');
 		adapter.subscribeStates('info.error');
 		
 		// write settings to states
@@ -191,13 +194,35 @@ function startAdapter(options)
 	});
 	
 	/*
+	 * MESSAGE
+	 *
+	 */
+	adapter.on('message', function(msg) {
+		
+		// request
+		if (msg.command === '_request' && msg.message) {
+			const options = JSON.parse(msg.message);
+			const token = options.token;
+			
+			_request(options)
+				.then(data => {
+					data = data.substr(0, 1) === '{' && data.substr(-1) === '}' ? JSON.parse(data) : data;
+					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
+				})
+				.catch(err => {
+					//adapter.log.error(err.message);
+					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
+				});
+		}
+	});
+	
+	/*
 	 * ADAPTER UNLOAD
 	 *
 	 */
-	adapter.on('unload', function(callback)
-	{
-		try
-		{
+	adapter.on('unload', function(callback) {
+		
+		try {
 			adapter.log.info('Adapter stopped und unloaded.');
 			
 			unloaded = true;
@@ -205,8 +230,7 @@ function startAdapter(options)
 			
 			callback();
 		}
-		catch(e)
-		{
+		catch(e) {
 			callback();
 		}
 	});
