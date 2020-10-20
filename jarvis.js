@@ -2,6 +2,7 @@
 const adapterName = require('./io-package.json').common.name;
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const _request = require('request-promise');
+const _crypto = require('crypto');
 
 
 /*
@@ -24,8 +25,7 @@ let SETTINGS = {};
  * ADAPTER
  *
  */
-function startAdapter(options)
-{
+function startAdapter(options) {
 	options = options || {};
 	adapter = new utils.Adapter({ ...options, name: adapterName });
 	
@@ -81,7 +81,6 @@ function startAdapter(options)
 					
 					obj.native['socketPort'] = config.port;
 					obj.native['socketSecure'] = config.secure;
-					
 					adapter.setForeignObject(obj._id, obj);
 				});
 			}
@@ -96,26 +95,27 @@ function startAdapter(options)
 		adapter.subscribeStates('info.error');
 		
 		// write settings to states
-		const settings = adapter.getState('settings', (err, state) => {
+		adapter.getState('settings', (err, state) => {
 			
 			if (!err && state && state.val) {
-				const settings = JSON.parse(state.val);
-				SETTINGS = { ...settings }
+				SETTINGS = JSON.parse(state.val) || {};
+				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
 				
-				for (let setting in settings) {
-					settings[setting] = typeof settings[setting] === 'object' ? JSON.stringify(settings[setting]) : settings[setting];
+				for (let setting in SETTINGS) {
+					SETTINGS[setting] = typeof SETTINGS[setting] === 'object' ? JSON.stringify(SETTINGS[setting]) : SETTINGS[setting];
 					
 					library.set({
 						'node': 'settings.' + setting,
 						'description': 'Modify setting ' + setting,
 						'role': 'config',
-						'type': typeof settings[setting],
+						'type': typeof SETTINGS[setting],
 						'write': true,
 						'read': true
 						
-					}, settings[setting]);
+					}, SETTINGS[setting]);
 				}
 				
+				adapter.setState('settings', JSON.stringify(SETTINGS));
 				adapter.subscribeStates('settings.*');
 			}
 		});
@@ -154,8 +154,23 @@ function startAdapter(options)
 		if (id.indexOf('.settings.') > -1 && state && state.val !== undefined) {
 			const setting = id.substr(id.lastIndexOf('.settings.')+10);
 			
+			// update settings
 			SETTINGS[setting] = state.val;
 			adapter.setState('settings', JSON.stringify(SETTINGS));
+			
+			// update adapter config
+			if (adapter.config[setting] !== undefined) {
+				
+				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
+					
+					if (err || !obj || !obj.native) {
+						return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
+					}
+					
+					obj.native[setting] = state.val;
+					adapter.setForeignObject(obj._id, obj);
+				});
+			}
 		}
 		
 		// NOTIFICATIONS
@@ -204,9 +219,17 @@ function startAdapter(options)
 			const options = JSON.parse(msg.message);
 			const token = options.token;
 			
+			// encrypt
+			if (options._encrypt && options.body.data) {
+				const iv = _crypto.randomBytes(16).toString('hex').substr(0,16);
+				const encryptor = _crypto.createCipheriv('AES-256-CBC', 'KutTGsNQ8HCX$hrT9Ua5beRSs2BLVeQq', iv);
+				options.body.data = Buffer.from(iv).toString('base64').substr(0,24) + encryptor.update(JSON.stringify(options.body.data), 'utf8', 'base64') + encryptor.final('base64');
+			}
+			
+			// request
 			_request(options)
 				.then(data => {
-					data = data.substr(0, 1) === '{' && data.substr(-1) === '}' ? JSON.parse(data) : data;
+					data = data && data.substr(0, 1) === '{' && data.substr(-1) === '}' ? JSON.parse(data) : (data || '');
 					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
 				})
 				.catch(err => {
