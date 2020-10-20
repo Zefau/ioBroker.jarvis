@@ -91,8 +91,8 @@ function startAdapter(options) {
 		
 		// create additional states and subscribe
 		library.set({ 'node': 'info.data', 'role': 'json', 'description': 'Data transfer to jarvis' }, '');
-		library.set({ 'node': 'info.error', 'role': 'text', 'description': 'Error Handler' }, '');
-		adapter.subscribeStates('info.error');
+		library.set({ 'node': 'info.log', 'role': 'text', 'description': 'Log Handler' }, '');
+		adapter.subscribeStates('info.log');
 		
 		// write settings to states
 		adapter.getState('settings', (err, state) => {
@@ -100,23 +100,10 @@ function startAdapter(options) {
 			if (!err && state && state.val) {
 				SETTINGS = JSON.parse(state.val) || {};
 				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
-				
-				for (let setting in SETTINGS) {
-					SETTINGS[setting] = typeof SETTINGS[setting] === 'object' ? JSON.stringify(SETTINGS[setting]) : SETTINGS[setting];
-					
-					library.set({
-						'node': 'settings.' + setting,
-						'description': 'Modify setting ' + setting,
-						'role': 'config',
-						'type': typeof SETTINGS[setting],
-						'write': true,
-						'read': true
-						
-					}, SETTINGS[setting]);
-				}
+				writeSettingsToStates(SETTINGS);
 				
 				adapter.setState('settings', JSON.stringify(SETTINGS));
-				adapter.subscribeStates('settings.*');
+				adapter.subscribeStates('settings*');
 			}
 		});
 		
@@ -132,26 +119,30 @@ function startAdapter(options) {
 	 * STATE CHANGE
 	 *
 	 */
-	adapter.on('stateChange', function(id, state)
-	{
+	adapter.on('stateChange', function(id, state) {
 		//adapter.log.debug('State ' + id + ' has changed: ' + JSON.stringify(state));
 		
 		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
 			return;
 		}
 		
-		// SETTINGS
-		if (id.indexOf('.info.error') > -1 && state && state.val !== undefined && state.val !== '') {
+		// LOG
+		if (id.indexOf('.info.log') > -1 && state.val !== '') {
 			
 			try {
-				const error = JSON.parse(state.val);
-				adapter.log[error.criticality || 'debug'](error.message);
+				const log = JSON.parse(state.val);
+				adapter.log[log.criticality || 'debug'](log.message);
 			}
 			catch(err) {}
 		}
 		
 		// SETTINGS
-		if (id.indexOf('.settings.') > -1 && state && state.val !== undefined) {
+		if (id.substr(-9) === '.settings') {
+			writeSettingsToStates(JSON.parse(state.val) || {});
+		}
+		
+		// SETTING
+		if (id.indexOf('.settings.') > -1) {
 			const setting = id.substr(id.lastIndexOf('.settings.')+10);
 			
 			// update settings
@@ -174,7 +165,7 @@ function startAdapter(options) {
 		}
 		
 		// NOTIFICATIONS
-		if (id.indexOf('.addNotification') > -1 && state && state.val) {
+		if (id.indexOf('.addNotification') > -1 && state.val) {
 			adapter.setState(id, '');
 			let notification = {};
 			
@@ -261,6 +252,27 @@ function startAdapter(options) {
 	return adapter;
 };
 
+
+/**
+ *
+ *
+ */
+function writeSettingsToStates(s) {
+	
+	for (let setting in s) {
+		s[setting] = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
+		
+		library.set({
+			'node': 'settings.' + setting,
+			'description': 'Modify setting ' + setting,
+			'role': 'config',
+			'type': typeof s[setting],
+			'write': true,
+			'read': true
+			
+		}, s[setting]);
+	}
+}
 
 /*
  * COMPACT MODE
