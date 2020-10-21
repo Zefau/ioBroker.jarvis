@@ -18,20 +18,55 @@
 	let saveParams = {};
 	
 	// load
-	function load(settings, onChange)
-	{
+	function load(settings, onChange) {
 		_load(settings, onChange);
 	}
 	
 	// save
-	function save(callback)
-	{
+	function save(callback) {
 		_save(callback, saveParams);
 	}
 	
+	// confirmation
+	let restore = null;
+	function dialog(id, date, contents) {
+		console.log(date, contents);
+		restore = {
+			id,
+			date
+		}
+		
+		$('#json').text(JSON.stringify(JSON.parse(contents), null, 3));
+		$('.modal').modal('open');
+	}
+	
 	// page loaded
-	$(window).on('load', function()
-	{
+	$(window).on('load', function() {
+		$('.modal').modal();
+		$('.collapsible').collapsible();
+	
+		// get backups
+		['devices', 'layout', 'settings'].forEach(id => {
+			sendTo(null, '_backups', { 'id': id }, function(res) {
+				const dates = Object.keys(res);
+				dates.reverse().forEach(function(date) {
+					$('#' + id).append(
+						$('<a href="#!" class="collection-item">' + date + '</a>').on('click', function() {
+							dialog(id, date, res[date]);
+						})
+					);
+				});
+			});
+		});
+		
+		// restore
+		$('.btn-restore').on('click', function() {
+			console.log('Restore ' + restore.id + ' from ' + restore.date + '..');
+			sendTo(null, '_restore', { 'id': restore.id, 'date': restore.date }, function(res) {});
+			
+			alert('Backup restored!');
+			window.location = '#tab-intro';
+		});
 	});
 	// -->
 	</script>
@@ -42,7 +77,7 @@
 <body>
 
 
-<div class="m adapter-container" id="settings">
+<div class="m adapter-container">
 	
 	<div class="row">
 		
@@ -99,7 +134,54 @@
 							</div>
 						</div>
 					</div>
-					
+				</div>
+			</div>
+			
+			<!-- Backups -->
+			<div id="modal1" class="modal modal-fixed-footer">
+				<div class="modal-content">
+					<pre id="json"></pre>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat btn-cancel">Cancel</a>
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat btn-restore">Restore</a>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col s12 m12">
+					<div class="row" style="margin-bottom: 0">
+						<div class="col s12 m12">
+							<p class="title">Backups</p>
+						</div>
+					</div>
+					<div class="row box">
+						<p class="subtitle translate">Please be aware that backups will be deleted when the adapter is updated.</p>
+						
+						<ul class="collapsible">
+							<li>
+								<div class="collapsible-header"><span class="translate">Devices</span></div>
+								<div class="collapsible-body">
+								  <div class="collection" id="devices">
+								  </div>
+								</div>
+							</li>
+							<li>
+								<div class="collapsible-header"><span class="translate">Layout</span></div>
+								<div class="collapsible-body">
+								  <div class="collection" id="layout">
+								  </div>
+								</div>
+							</li>
+							<li>
+								<div class="collapsible-header"><span class="translate">Settings</span></div>
+								<div class="collapsible-body">
+								  <div class="collection" id="settings">
+								  </div>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			

@@ -19,6 +19,11 @@ let library;
 let unloaded;
 let NOTIFICATIONS = [];
 let SETTINGS = {};
+let BACKUPS = {
+	'settings': {},
+	'layout': {},
+	'devices': {}
+};
 
 
 /*
@@ -42,6 +47,23 @@ function startAdapter(options) {
 		if (version <= 6) {
 			return library.terminate('This Adapter is not compatible with your Node.js Version ' + process.version + ' (must be >= Node.js v7).', true);
 		}
+		
+		// create backup object
+		['devices', 'layout', 'settings'].forEach(id => {
+			adapter.readFile('jarvis', '_BACKUP_' + id.toUpperCase() + '.json', null, (err, contents) => {
+				
+				// trigger initial backup
+				if (err) {
+					adapter.getState(id, (err, state) => !err && state && state.val && backup(id, state.val));
+				}
+				
+				// load recent backups
+				else if (contents) {
+					
+					BACKUPS[id] = JSON.parse(contents);
+				}
+			});
+		});
 		
 		// detect socket port
 		const portDetection = new Promise(resolve => {
@@ -100,10 +122,9 @@ function startAdapter(options) {
 			if (!err && state && state.val) {
 				SETTINGS = JSON.parse(state.val) || {};
 				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
-				writeSettingsToStates(SETTINGS);
 				
-				adapter.setState('settings', JSON.stringify(SETTINGS));
-				adapter.subscribeStates('settings*');
+				writeSettingsToStates(SETTINGS);
+				adapter.setState('settings', JSON.stringify(SETTINGS), () => adapter.subscribeStates('settings*'));
 			}
 		});
 		
@@ -113,6 +134,8 @@ function startAdapter(options) {
 		});
 		
 		adapter.subscribeStates('addNotification');
+		adapter.subscribeStates('devices');
+		adapter.subscribeStates('layout');
 	});
 
 	/*
@@ -134,6 +157,11 @@ function startAdapter(options) {
 				adapter.log[log.criticality || 'debug'](log.message);
 			}
 			catch(err) {}
+		}
+		
+		// BACKUP
+		if (id.substr(id.lastIndexOf('.')) === '.devices' || id.substr(id.lastIndexOf('.')) === '.layout' || id.substr(id.lastIndexOf('.')) === '.settings') {
+			backup(id.substr(id.lastIndexOf('.')+1), state.val);
 		}
 		
 		// SETTINGS
@@ -205,28 +233,44 @@ function startAdapter(options) {
 	 */
 	adapter.on('message', function(msg) {
 		
+		// get backups
+		if (msg.command === '_backups' && msg.message) {
+			library.msg(msg.from, msg.command, BACKUPS[msg.message.id], msg.callback);
+		}
+		
+		// restore
+		if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.date) {
+			restore(msg.message.id, msg.message.date);
+		}
+		
 		// request
 		if (msg.command === '_request' && msg.message) {
-			const options = JSON.parse(msg.message);
-			const token = options.token;
 			
-			// encrypt
-			if (options._encrypt && options.body.data) {
-				const iv = _crypto.randomBytes(16).toString('hex').substr(0,16);
-				const encryptor = _crypto.createCipheriv('AES-256-CBC', 'KutTGsNQ8HCX$hrT9Ua5beRSs2BLVeQq', iv);
-				options.body.data = Buffer.from(iv).toString('base64').substr(0,24) + encryptor.update(JSON.stringify(options.body.data), 'utf8', 'base64') + encryptor.final('base64');
+			try {
+				const options = JSON.parse(msg.message);
+				const token = options.token;
+				
+				// encrypt
+				if (options._encrypt && options.body.data) {
+					const iv = _crypto.randomBytes(16).toString('hex').substr(0,16);
+					const encryptor = _crypto.createCipheriv('AES-256-CBC', 'KutTGsNQ8HCX$hrT9Ua5beRSs2BLVeQq', iv);
+					options.body.data = Buffer.from(iv).toString('base64').substr(0,24) + encryptor.update(JSON.stringify(options.body.data), 'utf8', 'base64') + encryptor.final('base64');
+				}
+				
+				// request
+				_request(options)
+					.then(data => {
+						data = data && data.substr(0, 1) === '{' && data.substr(-1) === '}' ? JSON.parse(data) : (data || '');
+						adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
+					})
+					.catch(err => {
+						//adapter.log.error(err.message);
+						adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
+					});
 			}
-			
-			// request
-			_request(options)
-				.then(data => {
-					data = data && data.substr(0, 1) === '{' && data.substr(-1) === '}' ? JSON.parse(data) : (data || '');
-					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
-				})
-				.catch(err => {
-					//adapter.log.error(err.message);
-					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
-				});
+			catch(err) {
+				adapter.log.warn(err.message);
+			}
 		}
 	});
 	
@@ -252,6 +296,42 @@ function startAdapter(options) {
 	return adapter;
 };
 
+/**
+ *
+ *
+ */
+function restore(id, date) {
+	adapter.log.info('Restore ' + id + ' from ' + date + '..');
+	adapter.setState(id, BACKUPS[id][date]);
+}
+
+/**
+ *
+ *
+ */
+function backup(id, data) {
+	
+	// add to backup
+	const date = new Date();
+	const key = date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).substr(-2) + '-' + ('0' + date.getDate()).substr(-2) + '_' + ('0' + date.getHours()).substr(-2) + '-' + ('0' + date.getMinutes()).substr(-2) + '-' + ('0' + date.getSeconds()).substr(-2);
+	BACKUPS[id][key] = data;
+	
+	// delete old entries
+	adapter.config.keepBackupEntries = (adapter.config.keepBackupEntries || 25)-1;
+	const entries = Object.keys(BACKUPS[id]);
+	
+	if (entries.length > adapter.config.keepBackupEntries) {
+		entries.reverse().forEach((key, i) => {
+			if (i > adapter.config.keepBackupEntries) {
+				delete BACKUPS[id][key];
+			}
+		});
+	}
+	
+	// save backup
+	adapter.log.info('Backup ' + id + '..');
+	adapter.writeFile('jarvis', '_BACKUP_' + id.toUpperCase() + '.json', JSON.stringify(BACKUPS[id], null, 3));
+}
 
 /**
  *
