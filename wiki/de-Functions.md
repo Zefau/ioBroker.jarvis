@@ -218,6 +218,28 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.channels.1.setPointTemperature</code></li>
 </ul>
 </ul>
+<h4>Adapter zwave2</h4>
+<ul>
+<li><code>mode</code>
+<ul>
+<li>state: <code>.Thermostat_Mode.mode</code></li>
+<li>action: <code>.Thermostat_Mode.mode</code></li>
+</ul>
+<li><code>setTemperatureEnergySave</code>
+<ul>
+<li>state: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
+<li>action: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.Multilevel_Sensor.airTemperature</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.Thermostat_Setpoint.setpoint_heating</code></li>
+<li>action: <code>.Thermostat_Setpoint.setpoint_heating</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Licht (<code>light</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
