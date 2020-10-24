@@ -220,15 +220,24 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </ul>
 <h4>Adapter zwave2</h4>
 <ul>
+<li><code>valve</code>
+<ul>
+<li>state: <code>.Multilevel_Switch.currentValue</code></li>
+<li>unit: <code>%</code></li>
+<li>icon: <code>rotate-right</code></li>
+</ul>
 <li><code>mode</code>
 <ul>
 <li>state: <code>.Thermostat_Mode.mode</code></li>
 <li>action: <code>.Thermostat_Mode.mode</code></li>
+<li>icon: <code>[object Object]</code></li>
 </ul>
 <li><code>setTemperatureEnergySave</code>
 <ul>
 <li>state: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
 <li>action: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
+<li>unit: <code>°C</code></li>
+<li>icon: <code>radiator-disabled</code></li>
 </ul>
 <li><code>temperature</code>
 <ul>
