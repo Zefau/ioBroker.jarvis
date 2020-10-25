@@ -32,7 +32,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Rollladen / Jalousie (<code>blind</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"window-shutter"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>level</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">{
    "default": "window-shutter-open",
    ">90": "window-shutter-open",
@@ -114,7 +114,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Tür (<code>door</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"door"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>open</code></td><td>-</td><td><pre lang="json">{
    "true": "offen",
    "false": "geschlossen"
@@ -128,7 +128,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Lüfter (<code>fan</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"fan"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
    "true": "fan",
    "false": "fan-off"
@@ -138,7 +138,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Heizung (<code>heating</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"radiator"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>temperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"radiator"</pre></td><td>-</td></tr>
 <tr><td><code>settemperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"thermometer-chevron-up"</pre></td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
@@ -205,6 +205,27 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.BOOST_MODE</code></li>
 </ul>
 </ul>
+<h5>hm-tc-it-wm-w-eu</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.2.SET_TEMPERATURE</code></li>
+<li>action: <code>.2.SET_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.2.BOOST_MODE</code></li>
+<li>action: <code>.2.BOOST_MODE</code></li>
+</ul>
+</ul>
 <h4>Adapter hmip</h4>
 <h5>hmip-etrv-2</h5>
 <ul>
@@ -253,7 +274,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Licht (<code>light</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"lightbulb-on"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>on</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
    "true": "lightbulb-on",
    "false": "lightbulb-off-outline"
@@ -267,7 +288,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
       "color": "#999"
    }
 }</pre></td><td><pre lang="json">{
-   "0": "ausgeschaltet"
+   "0": "aus"
 }</pre></td><td><code>val => val > 0 ? \ %\ : null</code></td><td><pre lang="json">{
    "0": "lightbulb-off-outline",
    "default": "lightbulb-on"
@@ -277,7 +298,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
       "color": "#999"
    }
 }</pre></td><td><pre lang="json">{
-   "0": "ausgeschaltet"
+   "0": "aus"
 }</pre></td><td><code>val => val > 0 ? \ %\ : null</code></td><td><pre lang="json">{
    "0": "lightbulb-off-outline",
    "default": "lightbulb-on"
@@ -436,7 +457,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Ort (<code>location</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
 <tr><td><code>presence</code></td><td>-</td><td><pre lang="json">{
    "true": "anwesend",
@@ -456,7 +477,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Bewegungs-/Präsenzmelder (<code>motion</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"motion-sensor"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>motion</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
    "true": "motion-sensor",
    "false": "motion-sensor-off"
@@ -527,13 +548,13 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Rasenmäher-Roboter (<code>mower</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"robot-mower"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 
 <h2>Gewerk Sensor (<code>sensor</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-thermometer"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>temperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"mdi-thermometer"</pre></td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
 <tr><td><code>illumination</code></td><td>-</td><td>-</td><td><code>lux</code></td><td><pre lang="json">"mdi-brightness-7"</pre></td><td>-</td></tr>
@@ -543,7 +564,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Server (<code>server</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"server-network"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
    "true": "server-network",
    "false": "server-network-off"
@@ -553,7 +574,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Rauchmelder (<code>smoke</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-smoke-detector"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>alarm</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
    "true": "mdi-alarm-light",
    "false": "mdi-alarm-light-outline"
@@ -563,7 +584,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Steckdose (<code>socket</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"power-socket-eu"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>consumption</code></td><td>-</td><td>-</td><td><code>W</code></td><td><pre lang="json">{
    "default": "mdi-power-plug-off-outline",
    ">0": "mdi-power-plug"
@@ -597,13 +618,13 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Lautsprecher (<code>speaker</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"speaker"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 
 <h2>Gewerk Fernseher (<code>tv</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"television"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
    "true": "television",
    "false": "television-off"
@@ -613,7 +634,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Benutzer (<code>user</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"account"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
 <tr><td><code>location</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"account"</pre></td><td>-</td></tr>
 <tr><td><code>battery</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
@@ -622,13 +643,13 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Staubsauger-Roboter (<code>vacuum</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"robot-vacuum"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 
 <h2>Gewerk Wetter-Station (<code>weather-station</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"weather-partly-snowy-rainy"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>wind</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>temperature</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
@@ -675,7 +696,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h2>Gewerk Fenster (<code>window</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"window-closed-variant"</pre></td><td>-</td></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>open</code></td><td>-</td><td><pre lang="json">{
    "true": "offen",
    "false": "geschlossen"
