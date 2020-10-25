@@ -15,14 +15,6 @@ Die Gerätekonfiguration kann in den jarvis Einstellungen je Gerät vorgenommen 
 
 | Label | Information | Format |
 | ----- | ----------- | ------ |
-| Datenpunkt (Anzeige) (`state`) | Datenpunkt dessen State als Wert angezeigt wird | text |
-| Datenpunkt Stil (`stateStyle`) | Stil des angezeigten Wertes (im JSON Format) | json |
-| Anzeigevariante (`display`) | Texte die den angezeigten Wert ersetzen (im JSON Format) | json |
-| Label (`label`) | - | text |
-| Einheit (`unit`) | Einheit des Datenpunkts, z. B. % oder ° | json |
-| Datenpunkt (Trigger) (`action`) | Datenpunkt der zum Schalten getriggert wird | text |
-| Icon (`icon`) | [Material Icon (klick zur Ansicht aller Icons)](https://materialdesignicons.com/) | json |
-| Icon Stil (`iconStyle`) | Stil des Icons (im JSON Format) | json |
 
 
 ## JSON Eingabefelder
