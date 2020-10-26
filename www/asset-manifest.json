@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/jarvis/static/css/main.45d5d0e8.chunk.css",
-    "main.js": "/jarvis/static/js/main.ed0f7a6a.chunk.js",
-    "main.js.map": "/jarvis/static/js/main.ed0f7a6a.chunk.js.map",
-    "runtime-main.js": "/jarvis/static/js/runtime-main.64b82bdc.js",
-    "runtime-main.js.map": "/jarvis/static/js/runtime-main.64b82bdc.js.map",
-    "static/js/2.741434af.chunk.js": "/jarvis/static/js/2.741434af.chunk.js",
-    "static/js/2.741434af.chunk.js.map": "/jarvis/static/js/2.741434af.chunk.js.map",
+    "main.js": "/jarvis/static/js/main.0b9477e6.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.0b9477e6.chunk.js.map",
+    "runtime-main.js": "/jarvis/static/js/runtime-main.8320d367.js",
+    "runtime-main.js.map": "/jarvis/static/js/runtime-main.8320d367.js.map",
+    "static/js/2.3a8e2635.chunk.js": "/jarvis/static/js/2.3a8e2635.chunk.js",
+    "static/js/2.3a8e2635.chunk.js.map": "/jarvis/static/js/2.3a8e2635.chunk.js.map",
     "static/js/3.999472fc.chunk.js": "/jarvis/static/js/3.999472fc.chunk.js",
     "static/js/3.999472fc.chunk.js.map": "/jarvis/static/js/3.999472fc.chunk.js.map",
-    "static/js/4.dc6d70af.chunk.js": "/jarvis/static/js/4.dc6d70af.chunk.js",
-    "static/js/4.dc6d70af.chunk.js.map": "/jarvis/static/js/4.dc6d70af.chunk.js.map",
+    "static/js/4.8b54fb44.chunk.js": "/jarvis/static/js/4.8b54fb44.chunk.js",
+    "static/js/4.8b54fb44.chunk.js.map": "/jarvis/static/js/4.8b54fb44.chunk.js.map",
     "static/js/5.63e106f9.chunk.js": "/jarvis/static/js/5.63e106f9.chunk.js",
     "static/js/5.63e106f9.chunk.js.map": "/jarvis/static/js/5.63e106f9.chunk.js.map",
     "index.html": "/jarvis/index.html",
-    "precache-manifest.a165d978d8902c2541aa4d326675ab99.js": "/jarvis/precache-manifest.a165d978d8902c2541aa4d326675ab99.js",
+    "precache-manifest.932257935b7b76dbfa19799667891ca8.js": "/jarvis/precache-manifest.932257935b7b76dbfa19799667891ca8.js",
     "service-worker.js": "/jarvis/service-worker.js",
     "static/css/main.45d5d0e8.chunk.css.map": "/jarvis/static/css/main.45d5d0e8.chunk.css.map",
-    "static/js/2.741434af.chunk.js.LICENSE.txt": "/jarvis/static/js/2.741434af.chunk.js.LICENSE.txt",
+    "static/js/2.3a8e2635.chunk.js.LICENSE.txt": "/jarvis/static/js/2.3a8e2635.chunk.js.LICENSE.txt",
     "static/js/3.999472fc.chunk.js.LICENSE.txt": "/jarvis/static/js/3.999472fc.chunk.js.LICENSE.txt",
     "static/media/0.png": "/jarvis/static/media/0.b2b907ab.png",
     "static/media/1.png": "/jarvis/static/media/1.a768f444.png",
@@ -60,9 +60,9 @@
     "static/media/zefau.jpg": "/jarvis/static/media/zefau.e3988b38.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.64b82bdc.js",
-    "static/js/2.741434af.chunk.js",
+    "static/js/runtime-main.8320d367.js",
+    "static/js/2.3a8e2635.chunk.js",
     "static/css/main.45d5d0e8.chunk.css",
-    "static/js/main.ed0f7a6a.chunk.js"
+    "static/js/main.0b9477e6.chunk.js"
   ]
 }
