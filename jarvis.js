@@ -1,7 +1,7 @@
 'use strict';
 const adapterName = require('./io-package.json').common.name;
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
-const _request = require('request-promise');
+const _got = require('got');
 const _crypto = require('crypto');
 
 
@@ -121,6 +121,11 @@ function startAdapter(options) {
 			
 			if (!err && state && state.val) {
 				SETTINGS = JSON.parse(state.val) || {};
+				
+				// random token
+				SETTINGS.token = SETTINGS.token || _crypto.randomBytes(16).toString('hex');
+				
+				// usage data option
 				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
 				
 				writeSettingsToStates(SETTINGS);
@@ -233,35 +238,57 @@ function startAdapter(options) {
 	 */
 	adapter.on('message', function(msg) {
 		
+		// encrypt
+		if (msg.command === '_encrypt' && msg.message) {
+			const options = JSON.parse(msg.message);
+			const token = options.token;
+			
+			adapter.setState('info.data', JSON.stringify({ 'data': encrypt(options.str, options.secretKey), token }));
+		}
+		
+		// decrypt
+		else if (msg.command === '_decrypt' && msg.message) {
+			const options = JSON.parse(msg.message);
+			const token = options.token;
+			
+			adapter.setState('info.data', JSON.stringify({ 'data': decrypt(options.hash, options.secretKey), token }));
+		}
+		
 		// get backups
-		if (msg.command === '_backups' && msg.message) {
+		else if (msg.command === '_backups' && msg.message) {
 			library.msg(msg.from, msg.command, BACKUPS[msg.message.id], msg.callback);
 		}
 		
 		// restore
-		if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.date) {
+		else if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.date) {
 			restore(msg.message.id, msg.message.date);
 		}
 		
 		// request
-		if (msg.command === '_request' && msg.message) {
+		else if (msg.command === '_request' && msg.message) {
 			
 			try {
 				const options = JSON.parse(msg.message);
 				const token = options.token;
+				delete options.token;
 				
 				// encrypt
 				if (options._encrypt && options.body.data) {
-					const iv = _crypto.randomBytes(16).toString('hex').substr(0,16);
-					const encryptor = _crypto.createCipheriv('AES-256-CBC', 'KutTGsNQ8HCX$hrT9Ua5beRSs2BLVeQq', iv);
-					options.body.data = Buffer.from(iv).toString('base64').substr(0,24) + encryptor.update(JSON.stringify(options.body.data), 'utf8', 'base64') + encryptor.final('base64');
+					options.body.data = encrypt(options.body.data, 'KutTGsNQ8HCX$hrT9Ua5beRSs2BLVeQq');
+					delete options._encrypt;
+				}
+				
+				// map body
+				if (options.json === true && options.body) {
+					options.json = options.body;
+					delete options.body;
+					
 				}
 				
 				// request
-				_request(options)
-					.then(data => {
-						data = data && data.substr(0, 1) === '{' && data.substr(-1) === '}' ? JSON.parse(data) : (data || '');
-						adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
+				_got(options)
+					.then(res => {
+						adapter.setState('info.data', JSON.stringify({ 'data': res.body || '', token }));
 					})
 					.catch(err => {
 						//adapter.log.error(err.message);
@@ -294,7 +321,40 @@ function startAdapter(options) {
 	});
 
 	return adapter;
-};
+}
+
+/**
+ *
+ *
+ */
+function encrypt(str, secretKey, algorithm = 'AES-256-CBC') {
+	
+	try {
+		const iv = _crypto.randomBytes(16).toString('hex').substr(0,16);
+		const cipher = _crypto.createCipheriv(algorithm, _crypto.createHash('sha256').update(secretKey).digest('hex').substr(0,32), iv);
+		const encrypted = Buffer.from(iv).toString('base64').substr(0,24) + cipher.update((typeof str === 'object' ? JSON.stringify(str) : str), 'utf8', 'base64') + cipher.final('base64');
+		return encrypted;
+	}
+	catch(err) {
+		return str;
+	}
+}
+
+/**
+ *
+ *
+ */
+function decrypt(hash, secretKey, algorithm = 'AES-256-CBC') {
+	
+	try {
+		const decipher = _crypto.createDecipheriv(algorithm, _crypto.createHash('sha256').update(secretKey).digest('hex').substr(0,32), Buffer.from(hash.substr(0,24), 'base64'));
+		const decrypted = Buffer.concat([decipher.update(Buffer.from(hash.substr(24), 'base64')), decipher.final()]);
+		return decrypted.toString();
+	}
+	catch(err) {
+		return hash;
+	}
+}
 
 /**
  *
