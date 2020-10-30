@@ -1,8 +1,9 @@
 'use strict';
 const adapterName = require('./io-package.json').common.name;
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
-const _got = require('got');
 const _crypto = require('crypto');
+const _got = require('got');
+const _fs = require('fs');
 
 
 /*
@@ -254,6 +255,22 @@ function startAdapter(options) {
 			adapter.setState('info.data', JSON.stringify({ 'data': decrypt(options.hash, options.secretKey), token }));
 		}
 		
+		// get file
+		else if (msg.command === '_readFile' && msg.message) {
+			const options = JSON.parse(msg.message);
+			const token = options.token;
+			
+			readFile(options.file, (err, data) => {
+				
+				if (err) {
+					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
+				}
+				else {
+					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
+				}
+			});
+		}
+		
 		// get backups
 		else if (msg.command === '_backups' && msg.message) {
 			library.msg(msg.from, msg.command, BACKUPS[msg.message.id], msg.callback);
@@ -282,7 +299,6 @@ function startAdapter(options) {
 				if (options.json === true && options.body) {
 					options.json = options.body;
 					delete options.body;
-					
 				}
 				
 				// request
@@ -321,6 +337,22 @@ function startAdapter(options) {
 	});
 
 	return adapter;
+}
+
+/**
+ *
+ *
+ */
+function readFile(file, cb) {
+	
+	_fs.readFile(file, 'utf8', (err, data) => {
+		if (err) {
+			cb(err);
+			return;
+		}
+		
+		cb(null, data);
+	});
 }
 
 /**
