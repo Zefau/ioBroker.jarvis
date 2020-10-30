@@ -263,10 +263,10 @@ function startAdapter(options) {
 			readFile(options.file, (err, data) => {
 				
 				if (err) {
-					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
+					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
 				}
 				else {
-					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
+					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
 				}
 			});
 		}
