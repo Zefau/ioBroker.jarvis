@@ -60,7 +60,6 @@ function startAdapter(options) {
 				
 				// load recent backups
 				else if (contents) {
-					
 					BACKUPS[id] = JSON.parse(contents);
 				}
 			});
