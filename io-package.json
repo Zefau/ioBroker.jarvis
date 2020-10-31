@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.1.0-beta.67",
+      "version": "1.1.0-beta.68",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -83,7 +83,7 @@
       "settings": {},
       "notifications": {},
       "addNotification": "",
-	  "sendUsageData": true
+      "sendUsageData": true
    },
    "objects": [],
    "instanceObjects": [
