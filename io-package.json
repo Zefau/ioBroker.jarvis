@@ -82,7 +82,8 @@
       "devices": {},
       "settings": {},
       "notifications": {},
-      "addNotification": ""
+      "addNotification": "",
+	  "sendUsageData": true
    },
    "objects": [],
    "instanceObjects": [
