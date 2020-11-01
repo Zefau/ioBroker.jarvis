@@ -15,6 +15,8 @@ Jedes Modul, dass in einem Widget (einer Box) angezeigt wird (und damit nicht fu
 
 ## Liste der Module
 - [AdapterStatus](#modul-adapterstatus)
+- [Calendar](#modul-calendar)
+- [Chart](#modul-chart)
 - [CustomHTML](#modul-customhtml)
 - [DateTime](#modul-datetime)
 - [DisplayImage](#modul-displayimage)
@@ -41,6 +43,51 @@ Zeigt alle installierten Adapter mit ihren Instanzen und dem jeweiligen Status (
 | `updates` | Adapter Updates  | Switch | `true` |
 | `list` | Liste angezeigter Adapter  | Text | - |
 | `blacklist` | Liste nicht angezeigter Adapter  | Text | - |
+
+
+***
+
+
+### Modul: Calendar
+#### Kurzbeschreibung
+Zeigt ical / ics Inhalte in einem Kalender an.
+
+
+#### Beispiel Screenshots
+
+
+#### Konfiguration
+| Parameter | Beschreibung | Typ | Standard |
+| - | - | - | - |
+
+| `calendarPreview` | Zeigt eine Kalender-Vorschau  | Switch | `true` |
+| `listView` | Wechselt zwischen List- / Grid-Anzeige  | Switch | `true` |
+| `daysReview` | Zeigt vergangene Ereignisse (in Tagen)  | Number | `7` |
+| `daysPreview` | Zeigt zukünftige Ereignisse (in Tagen)  | Number | - |
+
+
+***
+
+
+### Modul: Chart
+#### Kurzbeschreibung
+Stellt historische Werte (z.B. aus ioBroker.history) grafisch als Chart mittels Chart.js dar.
+
+
+#### Beispiel Screenshots
+##### Screenshot1
+<kbd>![Screenshot des Moduls Chart konnte nicht geladen werden!](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/modules/Chart1.png)</kbd>
+
+
+#### Konfiguration
+| Parameter | Beschreibung | Typ | Standard |
+| - | - | - | - |
+| `chartConfigyLeftAxisUnitBefore` | Einheit der y-Achse (vor dem Bezeichner)  | Text | - |
+| `chartConfigyLeftAxisUnitAfter` | Einheit der y-Achse (nach dem Bezeichner)  | Text | - |
+| `chartFilterTimeRangeValue` | Standard-Zeit des historischen Rückblicks  | Number | `1` |
+| `chartFilterTimeRangeUnit` | Standard-Einheit des historischen Rückblicks  | Select (`seconds`, `minutes`, `hours`, `days`, `weeks`, `months`, `years`) | `days` |
+| `liveUpdates` | Live-Aktualisierung  | Switch | `true` |
+| `multiplicator` | Multiplikator  | Number | `1` |
 
 
 ***
