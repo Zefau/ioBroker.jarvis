@@ -179,7 +179,7 @@ function startAdapter(options) {
 			const setting = id.substr(id.lastIndexOf('.settings.')+10);
 			
 			// update settings
-			SETTINGS[setting] = state.val;
+			SETTINGS[setting] = state && state.val && state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
 			adapter.setState('settings', JSON.stringify(SETTINGS));
 			
 			// update adapter config
