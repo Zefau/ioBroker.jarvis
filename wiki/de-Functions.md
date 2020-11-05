@@ -371,6 +371,35 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.STATE</code></li>
 </ul>
 </ul>
+<h5>hm-lc-sw1-fm</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>hm-lc-dim1tpbu-fm</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+</ul>
+<h5>hm-lc-dim1t-pl-3</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+</ul>
 <h4>Adapter hue-extended</h4>
 <ul>
 <li><code>power</code>
@@ -544,6 +573,23 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
 </ul>
+<h4>Adapter zigbee</h4>
+<ul>
+<li><code>illuminance</code>
+<ul>
+<li>state: <code>.illuminance</code></li>
+<li>unit: <code> lux</code></li>
+</ul>
+<li><code>noMotionTime</code>
+<ul>
+<li>state: <code>.no_motion</code></li>
+<li>unit: <code> s</code></li>
+</ul>
+<li><code>occupancy</code>
+<ul>
+<li>state: <code>.occupancy</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Rasenmäher-Roboter (<code>mower</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -560,6 +606,54 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>illumination</code></td><td>-</td><td>-</td><td><code>lux</code></td><td><pre lang="json">"mdi-brightness-7"</pre></td><td>-</td></tr>
 <tr><td><code>pressure</code></td><td>-</td><td>-</td><td><code>hPa</code></td><td><pre lang="json">"mdi-air-purifier"</pre></td><td>-</td></tr>
 </table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter zigbee</h4>
+<ul>
+<li><code>drop</code>
+<ul>
+<li>state: <code>.drop</code></li>
+</ul>
+<li><code>tilt</code>
+<ul>
+<li>state: <code>.tilt</code></li>
+</ul>
+<li><code>tilt_angle</code>
+<ul>
+<li>state: <code>.tilt_angle</code></li>
+</ul>
+<li><code>tilt_angle_x</code>
+<ul>
+<li>state: <code>.tilt_angle_x</code></li>
+</ul>
+<li><code>tilt_angle_x_abs</code>
+<ul>
+<li>state: <code>.tilt_angle_x_abs</code></li>
+</ul>
+<li><code>tilt_angle_y</code>
+<ul>
+<li>state: <code>.tilt_angle_y</code></li>
+</ul>
+<li><code>tilt_angle_y_abs</code>
+<ul>
+<li>state: <code>.tilt_angle_y_abs</code></li>
+</ul>
+<li><code>tilt_angle_z</code>
+<ul>
+<li>state: <code>.tilt_angle_z</code></li>
+</ul>
+<li><code>contact</code>
+<ul>
+<li>state: <code>.contact</code></li>
+</ul>
+<li><code>opened</code>
+<ul>
+<li>state: <code>.opened</code></li>
+</ul>
+<li><code>occupancy</code>
+<ul>
+<li>state: <code>.occupancy</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Server (<code>server</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -612,6 +706,56 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>meter</code>
 <ul>
 <li>state: <code>.6.POWER</code></li>
+</ul>
+</ul>
+<h5>hm-lc-sw1-pl-dn-r1</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>hm-es-pmsw1-pl</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>powerCurrent</code>
+<ul>
+<li>state: <code>.2.CURRENT</code></li>
+<li>action: <code>.2.CURRENT</code></li>
+<li>unit: <code> mA</code></li>
+</ul>
+<li><code>powerCounter</code>
+<ul>
+<li>state: <code>.2.ENERGY_COUNTER</code></li>
+<li>action: <code>.2.ENERGY_COUNTER</code></li>
+<li>unit: <code> Wh</code></li>
+</ul>
+<li><code>powerMeter</code>
+<ul>
+<li>state: <code>.2.POWER</code></li>
+<li>action: <code>.2.POWER</code></li>
+<li>unit: <code> W</code></li>
+</ul>
+<li><code>powerVoltage</code>
+<ul>
+<li>state: <code>.2.VOLTAGE</code></li>
+<li>action: <code>.2.VOLTAGE</code></li>
+<li>unit: <code> V</code></li>
 </ul>
 </ul>
 
