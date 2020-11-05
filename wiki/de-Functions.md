@@ -146,6 +146,41 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
+<h5>hmip-etrv-b</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>frost</code>
+<ul>
+<li>state: <code>.1.FROST_PROTECTION</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+<li><code>boostTime</code>
+<ul>
+<li>state: <code>.1.BOOST_TIME</code></li>
+<li>action: <code>.1.BOOST_TIME</code></li>
+</ul>
+<li><code>windowState</code>
+<ul>
+<li>state: <code>.1.WINDOW_STATE</code></li>
+</ul>
+<li><code>partyMode</code>
+<ul>
+<li>state: <code>.1.PARTY_MODE</code></li>
+<li>action: <code>.1.PARTY_MODE</code></li>
+</ul>
+</ul>
 <h5>hmip-bwth</h5>
 <ul>
 <li><code>temperature</code>
@@ -347,6 +382,60 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </ul>
 </ul>
 <h4>Adapter hm-prc</h4>
+<h5>hmip-bsm</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+<li><code>powerMeter</code>
+<ul>
+<li>state: <code>.7.POWER</code></li>
+</ul>
+<li><code>powerVoltage</code>
+<ul>
+<li>state: <code>.7.VOLTAGE</code></li>
+</ul>
+<li><code>powerFrequency</code>
+<ul>
+<li>state: <code>.7.FREQUENCY</code></li>
+</ul>
+</ul>
+<h5>hmip-bsl</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+<li><code>levelTop</code>
+<ul>
+<li>state: <code>.8.LEVEL</code></li>
+<li>action: <code>.8.LEVEL</code></li>
+</ul>
+<li><code>colorTop</code>
+<ul>
+<li>state: <code>.8.COLOR</code></li>
+<li>action: <code>.8.COLOR</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>levelBottom</code>
+<ul>
+<li>state: <code>.12.LEVEL</code></li>
+<li>action: <code>.12.LEVEL</code></li>
+</ul>
+<li><code>colorBottom</code>
+<ul>
+<li>state: <code>.12.COLOR</code></li>
+<li>action: <code>.12.COLOR</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>powerMeter</code>
+<ul>
+<li>state: <code>.7.POWER</code></li>
+</ul>
+</ul>
 <h5>hmip-brc2</h5>
 <ul>
 <li><code>power</code>
@@ -831,9 +920,40 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
-<li><code>sunshineduration</code>
+<li><code>sunshineDuration</code>
 <ul>
 <li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+</ul>
+<h5>hmip-swo-pl</h5>
+<ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>wind</code>
+<ul>
+<li>state: <code>.1.WIND_SPEED</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+<li><code>sunshineDuration</code>
+<ul>
+<li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+<li><code>raining</code>
+<ul>
+<li>state: <code>.1.RAINING</code></li>
+</ul>
+<li><code>rainCounter</code>
+<ul>
+<li>state: <code>.1.RAIN_COUNTER</code></li>
 </ul>
 </ul>
 
