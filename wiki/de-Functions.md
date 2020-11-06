@@ -239,6 +239,41 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.4.BOOST_MODE</code></li>
 <li>action: <code>.4.BOOST_MODE</code></li>
 </ul>
+<li><code>modeAuto</code>
+<ul>
+<li>state: <code>.4.AUTO_MODE</code></li>
+<li>action: <code>.4.AUTO_MODE</code></li>
+</ul>
+<li><code>modeManu</code>
+<ul>
+<li>state: <code>.4.MANU_MODE</code></li>
+<li>action: <code>.4.MANU_MODE</code></li>
+</ul>
+<li><code>boostState</code>
+<ul>
+<li>state: <code>.4.BOOST_STATE</code></li>
+<li>action: <code>.4.BOOST_STATE</code></li>
+</ul>
+<li><code>modeCurrent</code>
+<ul>
+<li>state: <code>.4.COMFORT_MODE</code></li>
+<li>action: <code>.4.COMFORT_MODE</code></li>
+</ul>
+<li><code>modeLowering</code>
+<ul>
+<li>state: <code>.4.LOWERING_MODE</code></li>
+<li>action: <code>.4.LOWERING_MODE</code></li>
+</ul>
+<li><code>modeControl</code>
+<ul>
+<li>state: <code>.4.CONTROL_MODE</code></li>
+<li>action: <code>.4.CONTROL_MODE</code></li>
+</ul>
+<li><code>valve</code>
+<ul>
+<li>state: <code>.4.VALVE_STATE</code></li>
+<li>action: <code>.4.VALVE_STATE</code></li>
+</ul>
 </ul>
 <h5>hm-tc-it-wm-w-eu</h5>
 <ul>
@@ -430,10 +465,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.12.COLOR</code></li>
 <li>action: <code>.12.COLOR</code></li>
 <li>display: <code>[object Object]</code></li>
-</ul>
-<li><code>powerMeter</code>
-<ul>
-<li>state: <code>.7.POWER</code></li>
 </ul>
 </ul>
 <h5>hmip-brc2</h5>
