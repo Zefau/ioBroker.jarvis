@@ -128,8 +128,10 @@ function startAdapter(options) {
 				// usage data option
 				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
 				
-				writeSettingsToStates(SETTINGS);
-				adapter.setState('settings', JSON.stringify(SETTINGS), () => adapter.subscribeStates('settings*'));
+				adapter.setState('settings', JSON.stringify(SETTINGS), () => {
+					writeSettingsToStates(SETTINGS);
+					adapter.subscribeStates('settings*');
+				});
 			}
 		});
 		
