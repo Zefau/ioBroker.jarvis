@@ -46,7 +46,7 @@
 		$('.collapsible').collapsible();
 	
 		// get backups
-		['devices', 'layout', 'settings'].forEach(id => {
+		['devices', 'layout', 'settings', 'theme'].forEach(id => {
 			sendTo(null, '_backups', { 'id': id }, function(res) {
 				const dates = Object.keys(res);
 				dates.reverse().forEach(function(date) {

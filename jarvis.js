@@ -21,11 +21,32 @@ let unloaded;
 let NOTIFICATIONS = [];
 let SETTINGS = {};
 let BACKUPS = {
+	'theme': {},
 	'settings': {},
 	'layout': {},
 	'devices': {}
 };
 
+/*
+ * allSettled polyfill
+ * @see https://medium.com/trabe/using-promise-allsettled-now-e1767d43e480
+ */
+if (!Promise.allSettled) {
+	Promise.allSettled = promises =>
+		Promise.all(
+			promises.map((promise, i) =>
+				promise
+					.then(value => ({
+						status: "fulfilled",
+						value,
+					}))
+					.catch(reason => ({
+						status: "rejected",
+						reason,
+					}))
+			)
+		);
+}
 
 /*
  * ADAPTER
@@ -50,7 +71,7 @@ function startAdapter(options) {
 		}
 		
 		// create backup object
-		['devices', 'layout', 'settings'].forEach(id => {
+		['devices', 'layout', 'settings', 'theme'].forEach(id => {
 			adapter.readFile('jarvis', '_BACKUP_' + id.toUpperCase() + '.json', null, (err, contents) => {
 				
 				// trigger initial backup
@@ -128,10 +149,8 @@ function startAdapter(options) {
 				// usage data option
 				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
 				
-				adapter.setState('settings', JSON.stringify(SETTINGS), () => {
-					writeSettingsToStates(SETTINGS);
-					adapter.subscribeStates('settings*');
-				});
+				adapter.setState('settings', JSON.stringify(SETTINGS));
+				writeSettingsToStates(SETTINGS, () => adapter.subscribeStates('settings*'));
 			}
 		});
 		
@@ -150,7 +169,7 @@ function startAdapter(options) {
 	 *
 	 */
 	adapter.on('stateChange', function(id, state) {
-		adapter.log.info('State ' + id + ' has changed: ' + JSON.stringify(state));
+		//adapter.log.info('State ' + id + ' has changed: ' + JSON.stringify(state));
 		
 		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
 			return;
@@ -181,7 +200,7 @@ function startAdapter(options) {
 			const setting = id.substr(id.lastIndexOf('.settings.')+10);
 			
 			// update settings
-			SETTINGS[setting] = state && state.val && state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
+			SETTINGS[setting] = state && state.val && state.val.toString().indexOf('{') > -1 && state.val.toString().indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
 			adapter.setState('settings', JSON.stringify(SETTINGS));
 			
 			// update adapter config
@@ -430,21 +449,28 @@ function backup(id, data) {
  *
  *
  */
-function writeSettingsToStates(s) {
+function writeSettingsToStates(s, cb = null) {
+	
+	let promises = [];
 	
 	for (let setting in s) {
-		s[setting] = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
+		let val = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
 		
-		library.set({
-			'node': 'settings.' + setting,
-			'description': 'Modify setting ' + setting,
-			'role': 'config',
-			'type': typeof s[setting],
-			'write': true,
-			'read': true
+		promises.push(new Promise((resolve, reject) => {
 			
-		}, s[setting]);
+			library.set({
+				'node': 'settings.' + setting,
+				'description': 'Modify setting ' + setting,
+				'role': 'config',
+				'type': typeof val,
+				'write': true,
+				'read': true
+				
+			}, val, { 'callback': (err, res) => err ? reject(err) : resolve(res) });
+		}));
 	}
+	
+	Promise.allSettled(promises).then(res => cb && cb());
 }
 
 /*
