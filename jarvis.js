@@ -148,7 +148,7 @@ function startAdapter(options) {
 	 *
 	 */
 	adapter.on('stateChange', function(id, state) {
-		//adapter.log.debug('State ' + id + ' has changed: ' + JSON.stringify(state));
+		adapter.log.info('State ' + id + ' has changed: ' + JSON.stringify(state));
 		
 		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
 			return;
