@@ -143,6 +143,7 @@ Zeigt Inhalte anderer Seiten in einem iFrame an.
 | ***`url`*** | URL, die zu laden / anzuzeigen ist  | Text | `http://` |
 | `height` | Höhe des iFrame Fensters  | Text | `100%` |
 | `width` | Breite des iFrame Fensters  | Text | `100%` |
+| `refresh` | Aktualisierungsintervall  | Number | `0` |
 
 
 ***
