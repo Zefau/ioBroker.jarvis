@@ -121,8 +121,8 @@ Zeigt ein Bild aus einer URL oder einem base64-Wert an.
 | Parameter | Beschreibung | Typ | Standard |
 | - | - | - | - |
 | ***`url`*** | Datenpunkt, URL oder Base64-Wert des Bilds  | Text | `http://` |
-| `height` | Höhe des Bilds Fensters  | Text | `100%` |
-| `width` | Breite des Bilds Fensters  | Text | `100%` |
+| `height` | Höhe des Fensters  | Text | `100%` |
+| `width` | Breite des Fensters  | Text | `100%` |
 | `refresh` | Aktualisierungsintervall  | Number | `0` |
 
 
