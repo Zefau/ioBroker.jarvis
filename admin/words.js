@@ -2,6 +2,18 @@
 'use strict';
 
 systemDictionary = {
+	"socketTitle": {
+		"en": "Settings for host / IP and port of the Socket connection (data connection), e.g. when using docker.",
+		"de": "Einstellungen des Hosts / IP und des Ports der Socket-Verbindung (Datenverbindung), z. B. wenn Docker genutzt wird."
+	},
+	"socketHost": {
+		"en": "Socket Host / IP",
+		"de": "Socket Host / IP"
+	},
+	"socketPort": {
+		"en": "Socket Port",
+		"de": "Socket Port"
+	},
 	"usageDataTitle": {
 		"en": "Send Configuration Data to the developer",
 		"de": "Dem Entwickler die Konfigurationdaten schicken"
