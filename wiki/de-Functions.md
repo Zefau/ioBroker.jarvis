@@ -693,6 +693,17 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
 </ul>
+<h5>hm-sen-mdir-wm55</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.3.MOTION</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.3.ILLUMINATION</code></li>
+</ul>
+</ul>
 <h4>Adapter zigbee</h4>
 <ul>
 <li><code>illuminance</code>
@@ -705,7 +716,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.no_motion</code></li>
 <li>unit: <code> s</code></li>
 </ul>
-<li><code>occupancy</code>
+<li><code>motion</code>
 <ul>
 <li>state: <code>.occupancy</code></li>
 </ul>
@@ -773,6 +784,22 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.occupancy</code></li>
 </ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.humidity</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.temperature</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.illuminance</code></li>
+</ul>
+<li><code>pressure</code>
+<ul>
+<li>state: <code>.pressure</code></li>
+</ul>
 </ul>
 
 <h2>Gewerk Server (<code>server</code>)</h2>
@@ -794,6 +821,18 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    "false": "mdi-alarm-light-outline"
 }</pre></td><td>-</td></tr>
 </table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter zigbee</h4>
+<ul>
+<li><code>alarm</code>
+<ul>
+<li>state: <code>.detected</code></li>
+</ul>
+<li><code>test</code>
+<ul>
+<li>state: <code>.selftest</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Steckdose (<code>socket</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -876,6 +915,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.2.VOLTAGE</code></li>
 <li>action: <code>.2.VOLTAGE</code></li>
 <li>unit: <code> V</code></li>
+</ul>
+</ul>
+<h4>Adapter zigbee</h4>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.state</code></li>
+<li>action: <code>.state</code></li>
 </ul>
 </ul>
 
@@ -1002,6 +1049,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
+<h5>hmip-swdo-I</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
 <h5>hmip-swdo</h5>
 <ul>
 <li><code>open</code>
