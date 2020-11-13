@@ -10,9 +10,17 @@ systemDictionary = {
 		"en": "Socket Host / IP",
 		"de": "Socket Host / IP"
 	},
+	"autoDetect": {
+		"en": "Auto Detect Connection Settings",
+		"de": "Verbindungseinstellungen automatisch ermitteln"
+	},
 	"socketPort": {
 		"en": "Socket Port",
 		"de": "Socket Port"
+	},
+	"webPort": {
+		"en": "Web Port",
+		"de": "Web Port"
 	},
 	"usageDataTitle": {
 		"en": "Send Configuration Data to the developer",

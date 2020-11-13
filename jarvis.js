@@ -90,39 +90,41 @@ function startAdapter(options) {
 		const portDetection = new Promise(resolve => {
 			adapter.getObjectView('system', 'instance', { 'startkey': 'system.adapter.socketio.', 'endkey': 'system.adapter.socketio.999' }, (err, instances) => {
 				const obj = (instances && instances.rows && instances.rows[0] && instances.rows[0].value) || null;
+				let res = {}
 				
-				// no socket.io adapter installed
-				if (obj === null) {
-					adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
-						resolve({
-							'port': (obj && obj.native && obj.native.port) || 8082,
-							'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
-						});
-					});
-				}
-
 				// socket.io
-				else {
-					resolve({
-						'port': (obj && obj.native && obj.native.port) || 8084,
+				if (obj !== null) {
+					res = {
+						'socket': (obj && obj.native && obj.native.port) || 8084,
 						'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
-					});
+					}
 				}
+				
+				// detect web port and - if no socket.io adapter is installed - socket port
+				adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
+					resolve({
+						'web': (obj && obj.native && obj.native.port) || 8082,
+						'socket': (obj && obj.native && obj.native.port) || 8082,
+						'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
+						...res
+					});
+				});
 			});
 		});
 		
 		// write port to config
 		portDetection.then(config => {
-			adapter.log.info('Socket port detected: ' + config.port);
+			adapter.log.info('Socket port detected: ' + config.socket);
 			
-			if (adapter.config.socketPort !== config.port || adapter.config.socketSecure !== config.secure) {
+			if (adapter.config.autoDetect === true && adapter.config.webPort !== config.web || adapter.config.socketPort !== config.socket || adapter.config.socketSecure !== config.secure) {
 				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
 					
 					if (err || !obj || !obj.native) {
 						return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
 					}
 					
-					obj.native['socketPort'] = config.port;
+					obj.native['webPort'] = config.web;
+					obj.native['socketPort'] = config.socket;
 					obj.native['socketSecure'] = config.secure;
 					adapter.setForeignObject(obj._id, obj);
 				});

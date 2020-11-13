@@ -19,6 +19,13 @@
 	
 	// load
 	function load(settings, onChange) {
+		//$('.disableAutoDetection').prop('disabled', settings.autoDetect);
+		
+		// auto detect checkbox
+		$('body').on('change', '#autoDetect', function(e) {
+			$('.disableAutoDetection').prop('disabled', e.target.checked);
+		});
+		
 		_load(settings, onChange);
 	}
 	
@@ -127,12 +134,24 @@
 					<div class="row box">
 						<div class="col s2 m2 right-align">
 						</div>
+						<div class="col s10 m10">
+							<input class="value" id="autoDetect" type="checkbox" />
+							<label for="autoDetect" class="translate">autoDetect</label>
+						</div>
+					</div>
+					<div class="row box">
+						<div class="col s2 m2 right-align">
+						</div>
 						<div class="input-field col s2 m2">
-							<input class="value" id="socketHost" type="text" />
+							<input class="value disableAutoDetection" id="socketHost" type="text" />
 							<label for="socketHost" class="translate">socketHost</label>
 						</div>
 						<div class="input-field col s1 m1">
-							<input class="value" id="socketPort" type="number" />
+							<input class="value disableAutoDetection" id="webPort" type="number" />
+							<label for="webPort" class="translate">webPort</label>
+						</div>
+						<div class="input-field col s1 m1">
+							<input class="value disableAutoDetection" id="socketPort" type="number" />
 							<label for="socketPort" class="translate">socketPort</label>
 						</div>
 					</div>
