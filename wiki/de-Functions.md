@@ -644,9 +644,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.3.MOTION</code></li>
 </ul>
-<li><code>illumination</code>
+<li><code>brightness</code>
 <ul>
-<li>state: <code>.3.ILLUMINATION</code></li>
+<li>state: <code>.3.BRIGHTNESS</code></li>
 </ul>
 </ul>
 <h5>hmip-smi</h5>
