@@ -15,6 +15,7 @@ Jedes Modul, dass in einem Widget (einer Box) angezeigt wird (und damit nicht fu
 
 ## Liste der Module
 - [AdapterStatus](#modul-adapterstatus)
+- [Calendar](#modul-calendar)
 - [Chart](#modul-chart)
 - [CustomHTML](#modul-customhtml)
 - [DateTime](#modul-datetime)
@@ -42,6 +43,28 @@ Zeigt alle installierten Adapter mit ihren Instanzen und dem jeweiligen Status (
 | `updates` | Adapter Updates  | Switch | `true` |
 | `list` | Liste angezeigter Adapter  | Text | - |
 | `blacklist` | Liste nicht angezeigter Adapter  | Text | - |
+
+
+***
+
+
+### Modul: Calendar
+#### Kurzbeschreibung
+Zeigt ical / ics Inhalte in einem Kalender an.
+
+
+#### Beispiel Screenshots
+
+
+#### Konfiguration
+| Parameter | Beschreibung | Typ | Standard |
+| - | - | - | - |
+
+| `calendarPreview` | Zeigt eine Kalender-Vorschau  | Switch | `true` |
+| `calendarView` | Wähle die Art der Anzeige von Ereignissen  | RadioGroup | `listView` |
+| `refresh` | Aktualisierung (in Minuten)  | Number | `5` |
+| `daysReview` | Zeigt vergangene Ereignisse (in Tagen)  | Number | `7` |
+| `daysPreview` | Zeigt zukünftige Ereignisse (in Tagen)  | Number | - |
 
 
 ***
