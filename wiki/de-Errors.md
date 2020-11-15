@@ -15,7 +15,7 @@ Die Browser Konsole findet ihr im Browser Menü, in der Regel mittels Taste `F12
 Mit dieser Information bitte [ein Issue auf Github als Bug-Report öffnen](https://github.com/Zefau/ioBroker.jarvis/issues/new?assignees=Zefau&labels=bug&template=bug_report.md&title=).
 
 ### Firefox
-![Firefox](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Errors-Firefox.png)
+[![Firefox](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Errors-Firefox.png)](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Errors-Firefox.png)
 
 ### Chrome
-![Chrome](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Errors-Chrome.png)
+[![Chrome](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Errors-Chrome.png)](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Errors-Chrome.png)

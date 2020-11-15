@@ -1,5 +1,6 @@
 **Deutsch**
 * [Geräte](de-Devices)
+  * [Geräte importieren](de-Devices-Import)
 * [Layout](de-Layout)
   * [Widgets](de-Widgets)
   * [Module](de-Modules)

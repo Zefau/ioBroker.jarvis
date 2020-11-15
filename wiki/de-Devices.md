@@ -36,6 +36,8 @@ Für alle Datenpunkte, die das Format `json` haben, können die Inhalte abhängi
 
 Die durch jarvis definierten Voreinstellungen sind durch das jeweilige Gewerk des Geräts vorgegeben und können durch die Angabe direkt im Gerät (vgl. Screenshot oben) überschrieben werden. Die [definierten Voreinstellungen können unter Gewerke](de-Functions) eingesehen werden.
 
+Erlaubte Operatoren sind `<`, `<=`, `>`, `>=` und `!=`.
+
 ### Display
 
 Mit Display können die Werte des Datenpunkts durch einen Bezeichner bzw. ein Label ersetzt werden.
