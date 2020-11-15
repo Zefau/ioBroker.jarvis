@@ -17,41 +17,41 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ## Liste unterstützter Adapter
 
 - [deconz](#adapter-deconz)
-  - [Function light of deconz](#function-light-of-oadapter-[object Object])
+  - [Function `light` of deconz](#function-light-of-deconz)
 - [hm-prc](#adapter-hm-prc)
-  - [Function light of hm-prc](#function-light-of-oadapter-[object Object])
-  - [Function heating of hm-prc](#function-heating-of-oadapter-[object Object])
-  - [Function blind of hm-prc](#function-blind-of-oadapter-[object Object])
-  - [Function window of hm-prc](#function-window-of-oadapter-[object Object])
-  - [Function socket of hm-prc](#function-socket-of-oadapter-[object Object])
-  - [Function motion of hm-prc](#function-motion-of-oadapter-[object Object])
-  - [Function weather-station of hm-prc](#function-weather-station-of-oadapter-[object Object])
-  - [Function other of hm-prc](#function-other-of-oadapter-[object Object])
+  - [Function `light` of hm-prc](#function-light-of-hm-prc)
+  - [Function `heating` of hm-prc](#function-heating-of-hm-prc)
+  - [Function `blind` of hm-prc](#function-blind-of-hm-prc)
+  - [Function `window` of hm-prc](#function-window-of-hm-prc)
+  - [Function `socket` of hm-prc](#function-socket-of-hm-prc)
+  - [Function `motion` of hm-prc](#function-motion-of-hm-prc)
+  - [Function `weather-station` of hm-prc](#function-weather-station-of-hm-prc)
+  - [Function `other` of hm-prc](#function-other-of-hm-prc)
 - [hmip](#adapter-hmip)
-  - [Function heating of hmip](#function-heating-of-oadapter-[object Object])
-  - [Function window of hmip](#function-window-of-oadapter-[object Object])
+  - [Function `heating` of hmip](#function-heating-of-hmip)
+  - [Function `window` of hmip](#function-window-of-hmip)
 - [hue-extended](#adapter-hue-extended)
-  - [Function light of hue-extended](#function-light-of-oadapter-[object Object])
+  - [Function `light` of hue-extended](#function-light-of-hue-extended)
 - [hue](#adapter-hue)
-  - [Function light of hue](#function-light-of-oadapter-[object Object])
+  - [Function `light` of hue](#function-light-of-hue)
 - [shelly](#adapter-shelly)
-  - [Function blind of shelly](#function-blind-of-oadapter-[object Object])
-  - [Function light of shelly](#function-light-of-oadapter-[object Object])
+  - [Function `blind` of shelly](#function-blind-of-shelly)
+  - [Function `light` of shelly](#function-light-of-shelly)
 - [zigbee](#adapter-zigbee)
-  - [Function light of zigbee](#function-light-of-oadapter-[object Object])
-  - [Function socket of zigbee](#function-socket-of-oadapter-[object Object])
-  - [Function sensor of zigbee](#function-sensor-of-oadapter-[object Object])
-  - [Function smoke of zigbee](#function-smoke-of-oadapter-[object Object])
-  - [Function motion of zigbee](#function-motion-of-oadapter-[object Object])
+  - [Function `light` of zigbee](#function-light-of-zigbee)
+  - [Function `socket` of zigbee](#function-socket-of-zigbee)
+  - [Function `sensor` of zigbee](#function-sensor-of-zigbee)
+  - [Function `smoke` of zigbee](#function-smoke-of-zigbee)
+  - [Function `motion` of zigbee](#function-motion-of-zigbee)
 - [zwave2](#adapter-zwave2)
-  - [Function heating of zwave2](#function-heating-of-oadapter-[object Object])
+  - [Function `heating` of zwave2](#function-heating-of-zwave2)
 
 
 ## Unterstützte Geräte der Adapter
 
 ### Adapter deconz
 
-#### light
+#### Function `light` of deconz
 ```
 {
    "power": {
@@ -75,7 +75,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter hm-prc
 
-#### light
+#### Function `light` of hm-prc
 ```
 {
    "hmip-bsm": {
@@ -179,7 +179,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### heating
+#### Function `heating` of hm-prc
 ```
 {
    "hmip-etrv-b": {
@@ -302,7 +302,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### blind
+#### Function `blind` of hm-prc
 ```
 {
    "hmip-broll": {
@@ -343,7 +343,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### window
+#### Function `window` of hm-prc
 ```
 {
    "hmip-swdo-I": {
@@ -388,7 +388,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### socket
+#### Function `socket` of hm-prc
 ```
 {
    "hmip-ps": {
@@ -448,7 +448,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### motion
+#### Function `motion` of hm-prc
 ```
 {
    "hmip-smi55": {
@@ -503,7 +503,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### weather-station
+#### Function `weather-station` of hm-prc
 ```
 {
    "hmip-stho-a": {
@@ -558,7 +558,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### other
+#### Function `other` of hm-prc
 ```
 {
    "hmip-wrc2": {
@@ -584,7 +584,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter hmip
 
-#### heating
+#### Function `heating` of hmip
 ```
 {
    "hmip-etrv-2": {
@@ -600,7 +600,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### window
+#### Function `window` of hmip
 ```
 {
    "hmip-swdo": {
@@ -617,7 +617,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter hue-extended
 
-#### light
+#### Function `light` of hue-extended
 ```
 {
    "power": {
@@ -641,7 +641,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter hue
 
-#### light
+#### Function `light` of hue
 ```
 {
    "power": {
@@ -665,7 +665,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter shelly
 
-#### blind
+#### Function `blind` of shelly
 ```
 {
    "level": {
@@ -680,7 +680,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### light
+#### Function `light` of shelly
 ```
 {
    "power": {
@@ -696,7 +696,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter zigbee
 
-#### light
+#### Function `light` of zigbee
 ```
 {
    "power": {
@@ -719,7 +719,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### socket
+#### Function `socket` of zigbee
 ```
 {
    "power": {
@@ -730,7 +730,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### sensor
+#### Function `sensor` of zigbee
 ```
 {
    "drop": {
@@ -782,7 +782,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### smoke
+#### Function `smoke` of zigbee
 ```
 {
    "alarm": {
@@ -795,7 +795,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### motion
+#### Function `motion` of zigbee
 ```
 {
    "illuminance": {
@@ -814,7 +814,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter zwave2
 
-#### heating
+#### Function `heating` of zwave2
 ```
 {
    "valve": {
