@@ -1,4 +1,8 @@
-**Deutsch**
+**Deutsche Hilfe**
+* [Häufige Fragen und Lösungen](de-FAQ)
+
+***
+
 * [Geräte](de-Devices)
   * [Geräte importieren](de-Devices_Importer)
 * [Layout](de-Layout)
