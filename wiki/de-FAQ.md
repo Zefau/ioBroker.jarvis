@@ -28,7 +28,7 @@
 ### General
 
 #### Verbindungsparameter / Connection parameters (Proxy, Docker)
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/349).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/349).
 
 Die Verbindungsparameter sind an die URL mittels Raute (`#`) anzufügen und mit einem Und (`&`) voneinander zu trennen, beispielsweise:
 ```
@@ -64,44 +64,29 @@ http://<ioBrokerIp>:<ioBrokerWebPort>/#instance=1&socketSecure=true&socketPort=8
 
 
 #### Nach einem Update ist die Konfiguration verschwunden?
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/328).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/328).
 
-Hallo,
-
-Ich habe gerade auf die aktuelle beta 88 hochgezogen und anscheinend ist jetzt meine Konfig nicht mehr vorhanden bzw. kann darauf nicht mehr zugegriffen werden.
+Ich habe gerade auf die aktuelle Version hochgezogen und anscheinend ist jetzt meine Konfig nicht mehr vorhanden bzw. kann darauf nicht mehr zugegriffen werden.
 Bekomme jetzt nur mehr den Startscreen wie beim ersten Start zu sehen
 
 ![image](https://user-images.githubusercontent.com/73381262/98462133-167b3280-21b2-11eb-9bfa-429cbaa52264.png)
 
 in der layout.json stehen die Einstellungen noch korrekt drinn.
 ![image](https://user-images.githubusercontent.com/73381262/98462205-a5884a80-21b2-11eb-9fcd-807229d77913.png)
-
-Bitte um kurze Info und Hilfe was ich hier tun kann.
-
-Danke 
-lg
-mandragora
-
-
 ***
 
 
 #### Wie kann ich Geräte und Layout direkt editieren
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/313).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/313).
 
-Hallo,
-
-ich möchte gerne Geräte und Layout direkt per SSH und VSCODE editieren können. Wo sind die Dateien gespeichert?
+Ich möchte gerne Geräte und Layout direkt per SSH und VSCODE editieren können. Wo sind die Dateien gespeichert?
 
 ![image](https://user-images.githubusercontent.com/20707078/98254265-607ad300-1f7c-11eb-8148-0cf3b02bab06.png)
-
-Grüße
-crypted
 ***
 
 
 #### KNX Diskussion
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/301).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/301).
 
 Diskussion rund um KNX und die Einbindung in jarvis.
 Der Start der Diskussion ist im Verlauf des Issues https://github.com/Zefau/ioBroker.jarvis/issues/231 zu finden.
@@ -109,23 +94,18 @@ Der Start der Diskussion ist im Verlauf des Issues https://github.com/Zefau/ioBr
 
 
 #### Log Eintrag: discarded x devices due to incorrect configuration
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/285).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/285).
 
-Hi Zefau,
-
-I still found this entry in Beta63 log. 
+I found this entry in the log:
 
 <img width="1264" alt="Bildschirmfoto 2020-10-31 um 10 06 31" src="https://user-images.githubusercontent.com/57875762/97775477-2fa43380-1b61-11eb-88fc-b64a1dc926cb.png">
 
 I guess there are some old devices not configured properly, but it's quite hard to find the right device for fixing or even deleting it. I can imagine I auto-added some of my deconz-devices in Jarvis1.0.9. These were not configured quite well, so I manually deleted most of them. Is it possible these devices show up in log with "incorrect config" although already deleted?
-
-Thanks for your great adapter and keep on going
-
 ***
 
 
 #### Schieberegler konfigurieren
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/229).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/229).
 
 Bei Rollos ist ein schieberegler 0-100% eingestellt
 bei Heizung 0-35°C jeweils mit Schrittweite 1
@@ -137,7 +117,7 @@ aktuell ist meine sollraumtemperatur nämlich auf 22,5°C
 
 
 #### Buttons konfigurieren
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/228).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/228).
 
 Hi. Gibt es eine möglichkeit buttons zu konfigurieren?
 ich benötige unter anderem auch buttons, welche anstatt true auch false senden
@@ -150,7 +130,7 @@ auf meiner node-red visu sind die buttons direkt beschriftet, z.b. mit "Messvorg
 
 
 #### Meine alias Geräte werden nicht importiert / My alias devices are not imported correctly
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/222).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/222).
 
 Please remark: States of the alias adapter will ONLY be recognized by the Importer if they are grouped in a `channel`.
 
@@ -160,7 +140,7 @@ Bitte beachten: Datenpunkte des Alias Adapter werden NUR vom Importer erkannt, w
 ### Design / Theme
 
 #### Eigene icons benutzen / How to use your own icons
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/348).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/348).
 
 Um eigene Icons zu benutzen ist die Grafik mittels Base64 Image Encoder (https://www.base64-image.de/) in eine Zeichenkette umzuwandeln. Diese beginnt nach dem Konvertieren mit `data:image/jpeg;base64` (oder `data:image/png;base64`).
 
@@ -175,7 +155,7 @@ Paste the code into the icon input field.
 
 
 #### Desktop vs. Mobil - Relative Höhe des Widgets
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/271).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/271).
 
 > gerade getestet mit beta 52
 mit skalieren ein/aus passiert gar nichts
@@ -189,7 +169,7 @@ _Originally posted by @Timmes123 in https://github.com/Zefau/ioBroker.jarvis/iss
 
 
 #### Icon Stil 
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/211).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/211).
 
 Make it possbile to use this json `{"<0":{"color":"#FFBF00"}}` in Icon-Stil
 ***
@@ -197,7 +177,7 @@ Make it possbile to use this json `{"<0":{"color":"#FFBF00"}}` in Icon-Stil
 ### Module AdapterStatus
 
 #### Nur bestimmte Adapter auflisten oder ausschließen
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/323).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/323).
 
 Um im Modul AdapterStatus nur bestimmte Adapter zu zeigen ist der Namespace des Adapters in die `whitelist` aufzunehmen, z. B.: `hm-rpc,shelly`.
 
@@ -207,7 +187,7 @@ Um bestimmte Adapter auszuschließen, sind diese in der `blacklist` aufzuführen
 ### Module CustomHTML
 
 #### Desktop vs. Mobil - Relative Höhe des Widgets
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/271).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/271).
 
 > gerade getestet mit beta 52
 mit skalieren ein/aus passiert gar nichts
@@ -222,7 +202,7 @@ _Originally posted by @Timmes123 in https://github.com/Zefau/ioBroker.jarvis/iss
 ### Module Weather
 
 #### Sie sind kein registrierter Benutzer der daswetter.com-API 
-[Siehe vollständige Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/249).
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/249).
 
 Hab mir für die API bei wetter.com registriert.
 URL hab ich und `localidad` und `affiliate_id` im Jarvis Wetter Widget eingetragen.
