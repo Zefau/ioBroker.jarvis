@@ -16,6 +16,17 @@ Die Gerätekonfiguration kann in den jarvis Einstellungen je Gerät vorgenommen 
 {DEVICE_STATES_CONFIG}
 
 
+## Datenpunkt Eigenschaften
+
+Mit den Datenpunkt Eigenschaften können die Standardwerte für die visuellen Komponenten (Body Element `bodyElement` sowie Action Element `actionElement`) überschrieben werden.
+
+Die folgenden Eigenschaften stehen zur Verfügung:
+- `on` (Standard `true`): Definiert den Wert, der beim Einschalten gesetzt werden soll. Dieser Wert wird für `SwitchAction`, `IconButtonAction` und `ButtonAction` genutzt.
+- `off` (Standard `false`): Definiert den Wert, der beim Ausschalten gesetzt werden soll. Dieser Wert wird für `SwitchAction` genutzt.
+- `min` (Standard `0`) / `max` (Standard `100`): Definiert den unteren und oberen möglichen Wert eines Geräts. Dieser Wertebereich wird für `LevelBody` genutzt.
+- `level` (Standard `100`): Definiert das initiale Dimmlevel beim Einschalten eines Dimmers.
+
+
 ## JSON Eingabefelder
 
 Für alle Datenpunkte, die das Format `json` haben, können die Inhalte abhängig des Wertes des Datenpunkts definiert werden.

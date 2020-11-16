@@ -23,11 +23,21 @@ Die Gerätekonfiguration kann in den jarvis Einstellungen je Gerät vorgenommen 
 | Einheit (`unit`) | Einheit des Datenpunkts, z. B. % oder ° | json |
 | Icon (`icon`) | [Material Icon (klick zur Ansicht aller Icons)](https://materialdesignicons.com/) | json |
 | Icon Stil (`iconStyle`) | Stil des Icons (im JSON Format) | json |
-| undefined (`placeholder_1`) | - | text |
 | Datenpunkt (Trigger) (`action`) | Datenpunkt der zum Schalten getriggert wird | text |
 | Body Element (`bodyElement`) | - | text |
 | Action Element (`actionElement`) | - | text |
 | im Popup verstecken (`hide`) | Datenpunkt nicht in den Geräte-Details (Popup) zeigen | text |
+
+
+## Datenpunkt Eigenschaften
+
+Mit den Datenpunkt Eigenschaften können die Standardwerte für die visuellen Komponenten (Body Element `bodyElement` sowie Action Element `actionElement`) überschrieben werden.
+
+Die folgenden Eigenschaften stehen zur Verfügung:
+- `on` (Standard `true`): Definiert den Wert, der beim Einschalten gesetzt werden soll. Dieser Wert wird für `SwitchAction`, `IconButtonAction` und `ButtonAction` genutzt.
+- `off` (Standard `false`): Definiert den Wert, der beim Ausschalten gesetzt werden soll. Dieser Wert wird für `SwitchAction` genutzt.
+- `min` (Standard `0`) / `max` (Standard `100`): Definiert den unteren und oberen möglichen Wert eines Geräts. Dieser Wertebereich wird für `LevelBody` genutzt.
+- `level` (Standard `100`): Definiert das initiale Dimmlevel beim Einschalten eines Dimmers.
 
 
 ## JSON Eingabefelder
