@@ -116,7 +116,7 @@ function startAdapter(options) {
 		portDetection.then(config => {
 			adapter.log.info('Socket port detected: ' + config.socket);
 			
-			if (adapter.config.autoDetect === true && adapter.config.webPort !== config.web || adapter.config.socketPort !== config.socket || adapter.config.socketSecure !== config.secure) {
+			if (adapter.config.autoDetect === true && (adapter.config.webPort !== config.web || adapter.config.socketPort !== config.socket || adapter.config.socketSecure !== config.secure)) {
 				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
 					
 					if (err || !obj || !obj.native) {
