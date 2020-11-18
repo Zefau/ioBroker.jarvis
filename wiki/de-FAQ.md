@@ -19,6 +19,8 @@
   - [Nur bestimmte Adapter auflisten oder ausschließen](#nur-bestimmte-adapter-auflisten-oder-ausschließen)
 - [Module CustomHTML](#Module-CustomHTML)
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
+- [Module DateTime](#Module-DateTime)
+  - [DateTime module is left aligned instead of centered](#datetime-module-is-left-aligned-instead-of-centered)
 - [Module Weather](#Module-Weather)
   - [Sie sind kein registrierter Benutzer der daswetter.com-API ](#sie-sind-kein-registrierter-benutzer-der-daswettercom-api-)
 
@@ -197,6 +199,32 @@ ist aber fast zu klein für die visu am pc, aber zu groß fürs handy.
 irgendwie müsste das noch etwas dynamischer gehen
 
 _Originally posted by @Timmes123 in https://github.com/Zefau/ioBroker.jarvis/issues/252#issuecomment-716061420_
+***
+
+### Module DateTime
+
+#### DateTime module is left aligned instead of centered
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/353).
+
+**Prerequisites**
+- [x] Are you on the latest stable or latest beta of jarvis?
+- [x] Please note that you may restore an old layout via jarvis adapter configuration directly within ioBroker
+
+**Versions**
+- Which jarvis version are you running: 1.1.0-beta.112
+- Please provide your `Support-ID` (in jarvis via Settings -> Help): 1ef8d78141f72c240535a04d4a2f3160028d19b5b1f384b464e23d2c1659d70f
+
+**Describe the bug**
+Like mentioned in the title, the text in the dateTime-widget is left aligned instead of center.
+
+**Expected behavior**
+The text should be aligned to center. If I'm right the property "display: flex" of the class jss25 is the "wrongdoer".
+
+**Screenshots**
+![grafik](https://user-images.githubusercontent.com/72187841/99495432-f0ece680-2972-11eb-881b-ddd9de696fc9.png)
+![grafik](https://user-images.githubusercontent.com/72187841/99495437-f4806d80-2972-11eb-95b5-e67f8d25574d.png)
+
+
 ***
 
 ### Module Weather
