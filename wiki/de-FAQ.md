@@ -3,6 +3,7 @@
 ## Übersicht
 
 - [General](#General)
+  - [Anzeige auf Fire 7 hochformat](#anzeige-auf-fire-7-hochformat)
   - [Verbindungsparameter / Connection parameters (Proxy, Docker)](#verbindungsparameter--connection-parameters-(proxy,-docker))
   - [Nach einem Update ist die Konfiguration verschwunden?](#nach-einem-update-ist-die-konfiguration-verschwunden)
   - [Wie kann ich Geräte und Layout direkt editieren](#wie-kann-ich-geräte-und-layout-direkt-editieren)
@@ -28,6 +29,22 @@
 ## Fragen und Lösungen
 
 ### General
+
+#### Anzeige auf Fire 7 hochformat
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/359).
+
+Hallo, habe 2 Fire 7 im Einsatz leider ist hier die Anzeige buggy- siehe Foto -bekomme es mit de Einstellungen nicht hin.
+
+Die Spaten sollen komplette Bildbreite haben
+
+Am PC und am iPad ist alles richtig
+
+Vielen Dank für diesen super Adapter
+
+![00B371A0-FA9E-48DB-BDC8-5FF96278AC18](https://user-images.githubusercontent.com/56870555/99852494-64644300-2b81-11eb-8b04-6d293e54335c.jpeg)
+
+***
+
 
 #### Verbindungsparameter / Connection parameters (Proxy, Docker)
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/349).
