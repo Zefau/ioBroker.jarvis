@@ -26,6 +26,10 @@ Die folgenden Eigenschaften stehen zur Verfügung:
 - `min` (Standard `0`) / `max` (Standard `100`): Definiert den unteren und oberen möglichen Wert eines Geräts. Dieser Wertebereich wird für `LevelBody` genutzt.
 - `level` (Standard `100`): Definiert das initiale Dimmlevel beim Einschalten eines Dimmers.
 
+Die Angaben sind im JSON Format zu machen, analog der [JSON Eingabefelder](#datenpunkt-eigenschaften).
+**Beispiel**
+![Datenpunkt Eigenschaften](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Devices-Properties.png)
+
 
 ## JSON Eingabefelder
 
