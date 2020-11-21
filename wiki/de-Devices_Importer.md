@@ -587,6 +587,21 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `heating` of hmip
 ```
 {
+   "hmip-etrv-b": {
+      "temperature": {
+         "state": ".channels.1.valveActualTemperature"
+      },
+      "setTemperature": {
+         "state": ".channels.1.setPointTemperature",
+         "action": ".channels.1.setPointTemperature"
+      },
+      "valvePosition": {
+         "state": ".channels.1.valvePosition"
+      },
+      "valveState": {
+         "state": ".channels.1.valveState"
+      }
+   },
    "hmip-etrv-2": {
       "temperature": {
          "state": ".channels.1.valveActualTemperature"

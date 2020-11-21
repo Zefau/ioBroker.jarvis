@@ -297,6 +297,26 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </ul>
 </ul>
 <h4>Adapter hmip</h4>
+<h5>hmip-etrv-b</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.channels.1.valveActualTemperature</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.channels.1.setPointTemperature</code></li>
+<li>action: <code>.channels.1.setPointTemperature</code></li>
+</ul>
+<li><code>valvePosition</code>
+<ul>
+<li>state: <code>.channels.1.valvePosition</code></li>
+</ul>
+<li><code>valveState</code>
+<ul>
+<li>state: <code>.channels.1.valveState</code></li>
+</ul>
+</ul>
 <h5>hmip-etrv-2</h5>
 <ul>
 <li><code>temperature</code>
