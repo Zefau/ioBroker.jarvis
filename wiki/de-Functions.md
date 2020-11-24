@@ -858,6 +858,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>consumption</code></td><td>-</td><td>-</td><td><code>W</code></td><td><pre lang="json">{
    "default": "mdi-power-plug-off-outline",
    ">0": "mdi-power-plug"

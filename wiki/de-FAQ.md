@@ -22,6 +22,8 @@
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
 - [Module DateTime](#Module-DateTime)
   - [DateTime module is left aligned instead of centered](#datetime-module-is-left-aligned-instead-of-centered)
+- [Module StateList](#Module-StateList)
+  - [SwitchAction Trigger Element / Settings für eigenen Objektwert fehlt](#switchaction-trigger-element--settings-für-eigenen-objektwert-fehlt)
 - [Module Weather](#Module-Weather)
   - [Sie sind kein registrierter Benutzer der daswetter.com-API ](#sie-sind-kein-registrierter-benutzer-der-daswettercom-api-)
 
@@ -241,6 +243,23 @@ The text should be aligned to center. If I'm right the property "display: flex" 
 ![grafik](https://user-images.githubusercontent.com/72187841/99495432-f0ece680-2972-11eb-881b-ddd9de696fc9.png)
 ![grafik](https://user-images.githubusercontent.com/72187841/99495437-f4806d80-2972-11eb-95b5-e67f8d25574d.png)
 
+
+***
+
+### Module StateList
+
+#### SwitchAction Trigger Element / Settings für eigenen Objektwert fehlt
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/371).
+
+Hallo,
+
+bis vor kurzem war bei dem Trigger Element "SwitchAction" der Schraubenschlüssel daneben zu finden, siehe hier ein älterer Screenshot:
+![image](https://user-images.githubusercontent.com/74955542/100078562-f26f5080-2e43-11eb-998b-d1da3b682bd4.png)
+
+Aktuell setze ich Beta 133 ein - dort ist dieser Schlüssel weg - Die Funktion, einen eigenen Wert als Value bei ON und bei OFF in das Trigger-Objekt zu schreiben war super und würde ich benötigen. Wurde die Funktion umgebaut oder <<versteckt>> und ich finde Sie nicht mehr?
+
+Vielen Dank & Gruß,
+Robert
 
 ***
 
