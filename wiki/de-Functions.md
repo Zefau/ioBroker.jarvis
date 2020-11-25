@@ -139,10 +139,23 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>temperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"radiator"</pre></td><td>-</td></tr>
+<tr><td><code>temperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"thermometer"</pre></td><td>-</td></tr>
 <tr><td><code>settemperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"thermometer-chevron-up"</pre></td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
 <tr><td><code>boost</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"radiator"</pre></td><td>-</td></tr>
+<tr><td><code>boostTime</code></td><td>-</td><td>-</td><td><code>min.</code></td><td><pre lang="json">"clock-outline"</pre></td><td>-</td></tr>
+<tr><td><code>boostState</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>frost</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>windowState</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>partyMode</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>modeAuto</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"brightness-auto"</pre></td><td>-</td></tr>
+<tr><td><code>modeManu</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>modeCurrent</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>modeLowering</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>modeControl</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"list-status"</pre></td><td>-</td></tr>
+<tr><td><code>valve</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">"valve"</pre></td><td>-</td></tr>
+<tr><td><code>valvePosition</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>valveState</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
@@ -268,6 +281,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.4.CONTROL_MODE</code></li>
 <li>action: <code>.4.CONTROL_MODE</code></li>
+<li>display: <code>[object Object]</code></li>
 </ul>
 <li><code>valve</code>
 <ul>

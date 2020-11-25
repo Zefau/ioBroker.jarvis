@@ -275,7 +275,13 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       },
       "modeControl": {
          "state": ".4.CONTROL_MODE",
-         "action": ".4.CONTROL_MODE"
+         "action": ".4.CONTROL_MODE",
+         "display": {
+            "0": "Auto-Mode",
+            "1": "Manu-Mode",
+            "2": "Party-Mode",
+            "3": "Boost-Mode"
+         }
       },
       "valve": {
          "state": ".4.VALVE_STATE",
