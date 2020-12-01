@@ -3,6 +3,7 @@
 ## Übersicht
 
 - [General](#General)
+  - [Databinding for Labels / Titles](#databinding-for-labels--titles)
   - [Verbindungsparameter / Connection parameters (Proxy, Docker)](#verbindungsparameter--connection-parameters-(proxy,-docker))
   - [Nach einem Update ist die Konfiguration verschwunden?](#nach-einem-update-ist-die-konfiguration-verschwunden)
   - [Wie kann ich Geräte und Layout direkt editieren](#wie-kann-ich-geräte-und-layout-direkt-editieren)
@@ -31,6 +32,22 @@
 ## Fragen und Lösungen
 
 ### General
+
+#### Databinding for Labels / Titles
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/390).
+
+In my current visualizations (VIS) i am using often the feature of databinding (from data states) instead of using static labels.
+
+Would be very nice to have the same in jarvices
+
+For example, instead of a static text "Lights in the house" i would like to use databinding:
+{javascript.0.clement.shelly.vis.subtitle_tablet}
+
+Then the dynamic label could be like "There are 7 from 23 lights switched on"
+
+Would be very useful also for tabtitles. My usecase on tabs is that i want to visualize that "something is wrong" within this tab, like a error or something like this.
+***
+
 
 #### Verbindungsparameter / Connection parameters (Proxy, Docker)
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/349).
