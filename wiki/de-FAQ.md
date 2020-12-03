@@ -3,6 +3,7 @@
 ## Übersicht
 
 - [General](#General)
+  - [Deconz XY CIE  Farbwahl](#deconz-xy-cie--farbwahl)
   - [Databinding for Labels / Titles](#databinding-for-labels--titles)
   - [Verbindungsparameter / Connection parameters (Proxy, Docker)](#verbindungsparameter--connection-parameters-(proxy,-docker))
   - [Nach einem Update ist die Konfiguration verschwunden?](#nach-einem-update-ist-die-konfiguration-verschwunden)
@@ -32,6 +33,19 @@
 ## Fragen und Lösungen
 
 ### General
+
+#### Deconz XY CIE  Farbwahl
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/399).
+
+Hallo ist es möglich die folgende Farbwahl via Hueslider in Jarvis zu verwirklichen ? 
+
+![image](https://user-images.githubusercontent.com/22169074/100795664-b29a0180-341f-11eb-9f34-9c7c8091a642.png)
+
+bisher hab ich nichts dazu gefunden. 
+
+Danke.
+***
+
 
 #### Databinding for Labels / Titles
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/390).
