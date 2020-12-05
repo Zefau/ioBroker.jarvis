@@ -1,0 +1,12 @@
+.jsoneditor {
+	border: 0 !important;
+}
+
+.jsoneditor-menu {
+    background-color: var(--primary) !important;
+    border: 0 !important;
+}
+
+.jsoneditor-field {
+    color: var(--text) !important;
+}

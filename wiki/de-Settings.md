@@ -27,6 +27,11 @@ Die meisten Einstellungen können direkt in jarvis vorgenommen werden. Besondere
 | `columnsOnLargeScreenSizes` | Spalten auf großem Bildschirm | Anzahl der Spalten auf Bildschirmen mit einer Breite zwischen 1280px-1920px. | Select (`12,_translated`, `1,_translated`, `2,_translated`, `3,_translated`, `4,_translated`, `6,_translated`) | `12` |
 | `columnsOnExtraLargeScreenSizes` | Spalten auf sehr großem Bildschirm | Anzahl der Spalten auf Bildschirmen mit einer Breite über 1920px. | Select (`12,_translated`, `1,_translated`, `2,_translated`, `3,_translated`, `4,_translated`, `6,_translated`) | `12` |
 
+### Mobile Einstellungen
+| Parameter | Beschreibung | Information | Typ | Standard |
+| - | - | - | - | - |
+| `hideQuickJumper` | Verstecke QuickJumper | - | Switch | - |
+
 
 ## Experten-Einstellungen
 Die Einstellungen für ioBroker.jarvis erfolgen im [JSON-Format](https://de.wikipedia.org/wiki/JavaScript_Object_Notation) und finden sich im Datenpunkt `jarvis.0.settings`.

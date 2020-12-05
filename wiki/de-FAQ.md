@@ -3,6 +3,8 @@
 ## Übersicht
 
 - [General](#General)
+  - [Deconz XY CIE  Farbwahl](#deconz-xy-cie--farbwahl)
+  - [Databinding for Labels / Titles](#databinding-for-labels--titles)
   - [Verbindungsparameter / Connection parameters (Proxy, Docker)](#verbindungsparameter--connection-parameters-(proxy,-docker))
   - [Nach einem Update ist die Konfiguration verschwunden?](#nach-einem-update-ist-die-konfiguration-verschwunden)
   - [Wie kann ich Geräte und Layout direkt editieren](#wie-kann-ich-geräte-und-layout-direkt-editieren)
@@ -22,6 +24,8 @@
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
 - [Module DateTime](#Module-DateTime)
   - [DateTime module is left aligned instead of centered](#datetime-module-is-left-aligned-instead-of-centered)
+- [Module DisplayImage](#Module-DisplayImage)
+  - [DisplayImage == iobroker state](#displayimage-==-iobroker-state)
 - [Module StateList](#Module-StateList)
   - [SwitchAction Trigger Element / Settings für eigenen Objektwert fehlt](#switchaction-trigger-element--settings-für-eigenen-objektwert-fehlt)
 - [Module Weather](#Module-Weather)
@@ -31,6 +35,35 @@
 ## Fragen und Lösungen
 
 ### General
+
+#### Deconz XY CIE  Farbwahl
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/399).
+
+Hallo ist es möglich die folgende Farbwahl via Hueslider in Jarvis zu verwirklichen ? 
+
+![image](https://user-images.githubusercontent.com/22169074/100795664-b29a0180-341f-11eb-9f34-9c7c8091a642.png)
+
+bisher hab ich nichts dazu gefunden. 
+
+Danke.
+***
+
+
+#### Databinding for Labels / Titles
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/390).
+
+In my current visualizations (VIS) i am using often the feature of databinding (from data states) instead of using static labels.
+
+Would be very nice to have the same in jarvices
+
+For example, instead of a static text "Lights in the house" i would like to use databinding:
+{javascript.0.clement.shelly.vis.subtitle_tablet}
+
+Then the dynamic label could be like "There are 7 from 23 lights switched on"
+
+Would be very useful also for tabtitles. My usecase on tabs is that i want to visualize that "something is wrong" within this tab, like a error or something like this.
+***
+
 
 #### Verbindungsparameter / Connection parameters (Proxy, Docker)
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/349).
@@ -244,6 +277,18 @@ The text should be aligned to center. If I'm right the property "display: flex" 
 ![grafik](https://user-images.githubusercontent.com/72187841/99495437-f4806d80-2972-11eb-95b5-e67f8d25574d.png)
 
 
+***
+
+### Module DisplayImage
+
+#### DisplayImage == iobroker state
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/413).
+
+wäre ganz praktisch wenn man beim displayImage, neben base64,url, auch einen iobroker state angeben kann in welchem beispielsweise eine http url zu einem bild steht. 
+
+z.b. handhabt der synology adapter das so, alle mpeg streams als states.
+
+gruss
 ***
 
 ### Module StateList
