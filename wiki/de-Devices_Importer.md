@@ -22,9 +22,11 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `light` of hm-prc](#function-light-of-hm-prc)
   - [Function `heating` of hm-prc](#function-heating-of-hm-prc)
   - [Function `blind` of hm-prc](#function-blind-of-hm-prc)
+  - [Function `smoke` of hm-prc](#function-smoke-of-hm-prc)
   - [Function `window` of hm-prc](#function-window-of-hm-prc)
   - [Function `socket` of hm-prc](#function-socket-of-hm-prc)
   - [Function `motion` of hm-prc](#function-motion-of-hm-prc)
+  - [Function `door` of hm-prc](#function-door-of-hm-prc)
   - [Function `weather-station` of hm-prc](#function-weather-station-of-hm-prc)
   - [Function `other` of hm-prc](#function-other-of-hm-prc)
 - [hmip](#adapter-hmip)
@@ -34,9 +36,19 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `light` of hue-extended](#function-light-of-hue-extended)
 - [hue](#adapter-hue)
   - [Function `light` of hue](#function-light-of-hue)
+- [nuki-extended](#adapter-nuki-extended)
+  - [Function `openers` of nuki-extended](#function-openers-of-nuki-extended)
+  - [Function `smartlocks` of nuki-extended](#function-smartlocks-of-nuki-extended)
 - [shelly](#adapter-shelly)
   - [Function `blind` of shelly](#function-blind-of-shelly)
   - [Function `light` of shelly](#function-light-of-shelly)
+- [sonoff](#adapter-sonoff)
+  - [Function `light` of sonoff](#function-light-of-sonoff)
+  - [Function `other` of sonoff](#function-other-of-sonoff)
+- [tr-064](#adapter-tr-064)
+  - [Function `calllists` of tr-064](#function-calllists-of-tr-064)
+  - [Function `phonebook` of tr-064](#function-phonebook-of-tr-064)
+  - [Function `states` of tr-064](#function-states-of-tr-064)
 - [zigbee](#adapter-zigbee)
   - [Function `light` of zigbee](#function-light-of-zigbee)
   - [Function `socket` of zigbee](#function-socket-of-zigbee)
@@ -303,6 +315,22 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".2.BOOST_MODE",
          "action": ".2.BOOST_MODE"
       }
+   },
+   "hm-wds40-th-i": {
+      "temperature": {
+         "state": ".1.TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      }
+   },
+   "hm-wds30-ot2-sm": {
+      "temperature1": {
+         "state": ".1.TEMPERATURE"
+      },
+      "temperature2": {
+         "state": ".2.TEMPERATURE"
+      }
    }
 }
 ```
@@ -343,6 +371,18 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "activity": {
          "state": ".1.WORKING",
          "action": ".1.STOP"
+      }
+   }
+}
+```
+
+
+#### Function `smoke` of hm-prc
+```
+{
+   "hm-sec-sd-2": {
+      "alarm": {
+         "state": ".1.STATE"
       }
    }
 }
@@ -504,6 +544,29 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "illumination": {
          "state": ".3.ILLUMINATION"
       }
+   },
+   "hm-sen-mdir-o-2": {
+      "motion": {
+         "state": ".1.MOTION"
+      },
+      "brightness": {
+         "state": ".1.BRIGHTNESS"
+      }
+   }
+}
+```
+
+
+#### Function `door` of hm-prc
+```
+{
+   "hm-sec-key": {
+      "error": {
+         "state": "1.ERROR"
+      },
+      "lock": {
+         "state": "1.OPEN"
+      }
    }
 }
 ```
@@ -583,6 +646,76 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "PRESS_SHORT_TOP": {
          "state": ".2.PRESS_SHORT",
          "action": ".2.PRESS_SHORT"
+      }
+   },
+   "hm-lc-sw1-dr": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      }
+   },
+   "hm-pb-2-wm55": {
+      "PRESS_LONG_BOTTOM": {
+         "state": ".1.PRESS_LONG",
+         "action": ".1.PRESS_LONG"
+      },
+      "PRESS_SHORT_BOTTOM": {
+         "state": ".1.PRESS_SHORT",
+         "action": ".1.PRESS_SHORT"
+      },
+      "PRESS_LONG_TOP": {
+         "state": ".2.PRESS_LONG",
+         "action": ".2.PRESS_LONG"
+      },
+      "PRESS_SHORT_TOP": {
+         "state": ".2.PRESS_SHORT",
+         "action": ".2.PRESS_SHORT"
+      }
+   },
+   "hb-uni-senact-4-4-rc": {
+      "state1": {
+         "state": ".1.STATE"
+      },
+      "state2": {
+         "state": ".2.STATE"
+      },
+      "state3": {
+         "state": ".3.STATE"
+      },
+      "state4": {
+         "state": ".4.STATE"
+      },
+      "PRESS_LONG1": {
+         "state": ".5.PRESS_LONG",
+         "action": ".5.PRESS_LONG"
+      },
+      "PRESS_SHORT1": {
+         "state": ".5.PRESS_SHORT",
+         "action": ".5.PRESS_SHORT"
+      },
+      "PRESS_LONG2": {
+         "state": ".6.PRESS_LONG",
+         "action": ".6.PRESS_LONG"
+      },
+      "PRESS_SHORT2": {
+         "state": ".6.PRESS_SHORT",
+         "action": ".6.PRESS_SHORT"
+      },
+      "PRESS_LONG3": {
+         "state": ".7.PRESS_LONG",
+         "action": ".7.PRESS_LONG"
+      },
+      "PRESS_SHORT3": {
+         "state": ".7.PRESS_SHORT",
+         "action": ".7.PRESS_SHORT"
+      },
+      "PRESS_LONG4": {
+         "state": ".8.PRESS_LONG",
+         "action": ".8.PRESS_LONG"
+      },
+      "PRESS_SHORT4": {
+         "state": ".8.PRESS_SHORT",
+         "action": ".8.PRESS_SHORT"
       }
    }
 }
@@ -684,6 +817,147 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 }
 ```
 
+### Adapter nuki-extended
+
+#### Function `openers` of nuki-extended
+```
+{
+   "door": {
+      "state": ".state.doorState"
+   },
+   "ring": {
+      "state": ".state.ringState"
+   },
+   "ringUpdate": {
+      "state": ".state.ringStateUpdate"
+   },
+   "state": {
+      "state": ".state.lockState",
+      "display": {
+         "0": "UNTRAINED",
+         "1": "ONLINE",
+         "3": "RING_TO_OPEN",
+         "5": "OPEN",
+         "7": "OPENING",
+         "253": "BOOT_RUN",
+         "255": "UNDEFINED"
+      }
+   },
+   "lowbattery": {
+      "state": ".state.batteryCritical"
+   },
+   "ACTIONS": {
+      "action": "._ACTION",
+      "display": {
+         "0": "NO_ACTION",
+         "1": "ACTIVE RTO",
+         "2": "DEACTIVATE RTO",
+         "3": "ELECTRIC STRIKE ACTUATION",
+         "4": "ACTIVATE CM",
+         "5": "DEACTIVATE CM"
+      },
+      "actionElement": "DropdownAction"
+   },
+   "ACTIVATE_CM": {
+      "action": "._ACTION.ACTIVATE_CM",
+      "actionElement": "IconButtonAction"
+   },
+   "ACTIVE_RTO": {
+      "action": "._ACTION.ACTIVE_RTO",
+      "actionElement": "IconButtonAction"
+   },
+   "DEACTIVATE_CM": {
+      "action": "._ACTION.DEACTIVATE_CM",
+      "actionElement": "IconButtonAction"
+   },
+   "DEACTIVATE_RTO": {
+      "action": "._ACTION.DEACTIVATE_RTO",
+      "actionElement": "IconButtonAction"
+   },
+   "ELECTRIC_STRIKE_ACTUATION": {
+      "action": "._ACTION.ELECTRIC_STRIKE_ACTUATION",
+      "actionElement": "IconButtonAction"
+   }
+}
+```
+
+
+#### Function `smartlocks` of nuki-extended
+```
+{
+   "door": {
+      "state": ".state.closed"
+   },
+   "doorState": {
+      "state": ".state.doorState",
+      "display": {
+         "0": "UNAVAILABLE",
+         "1": "DEACTIVATED",
+         "2": "DOOR_CLOSED",
+         "3": "DOOR_OPENED",
+         "4": "DOOR_STATE_UNKNOWN",
+         "5": "CALIBRATING"
+      }
+   },
+   "lock": {
+      "state": ".state.locked"
+   },
+   "lockState": {
+      "state": ".state.lockState",
+      "display": {
+         "0": "UNCALIBRATED",
+         "1": "LOCKED",
+         "2": "UNLOCKING",
+         "3": "UNLOCKED",
+         "4": "LOCKING",
+         "5": "UNLATCHED",
+         "6": "UNLOCKED_LOCK_N_GO",
+         "7": "UNLATCHING",
+         "254": "MOTOR_BLOCKED",
+         "255": "UNDEFINED"
+      }
+   },
+   "lockUpdate": {
+      "state": ".state.lastStateUpdate"
+   },
+   "lowbattery": {
+      "state": ".state.batteryCritical"
+   },
+   "ACTIONS": {
+      "action": "._ACTION",
+      "display": {
+         "0": "NO_ACTION",
+         "1": "UNLOCK",
+         "2": "LOCK",
+         "3": "UNLATCH",
+         "4": "LOCK_N_GO",
+         "5": "LOCK_N_GO_WITH_UNLATCH"
+      },
+      "actionElement": "DropdownAction"
+   },
+   "LOCK": {
+      "action": "._ACTION.LOCK",
+      "actionElement": "IconButtonAction"
+   },
+   "LOCK_N_GO": {
+      "action": "._ACTION.LOCK_N_GO",
+      "actionElement": "IconButtonAction"
+   },
+   "LOCK_N_GO_WITH_UNLATCH": {
+      "action": "._ACTION.LOCK_N_GO_WITH_UNLATCH",
+      "actionElement": "IconButtonAction"
+   },
+   "UNLATCH": {
+      "action": "._ACTION.UNLATCH",
+      "actionElement": "IconButtonAction"
+   },
+   "UNLOCK": {
+      "action": "._ACTION.UNLOCK",
+      "actionElement": "IconButtonAction"
+   }
+}
+```
+
 ### Adapter shelly
 
 #### Function `blind` of shelly
@@ -711,6 +985,200 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
    "level": {
       "state": ".lights.brightness",
       "action": ".lights.brightness"
+   }
+}
+```
+
+### Adapter sonoff
+
+#### Function `light` of sonoff
+```
+{
+   "dimmer": {
+      "state": ".Dimmer",
+      "action": ".Dimmer"
+   },
+   "ct": {
+      "state": ".CT",
+      "action": ".CT",
+      "properties": {
+         "min": 153,
+         "max": 500
+      }
+   },
+   "hue": {
+      "state": ".Hue",
+      "action": ".Hue"
+   },
+   "sat": {
+      "state": ".Saturation",
+      "action": ".Saturation"
+   }
+}
+```
+
+
+#### Function `other` of sonoff
+```
+{
+   "version": [
+      ".Version",
+      ".INFO.Version"
+   ],
+   "reachability": ".alive",
+   "ip": ".INFO.IPAddress",
+   "signal": ".Wifi_Signal",
+   "alive": ".alive",
+   "dataReceived": ".RfReceived_Data",
+   "power": {
+      "state": ".POWER",
+      "action": ".POWER"
+   },
+   "powerCurrent": {
+      "state": ".ENERGY_Current",
+      "unit": " A"
+   },
+   "powerMeter": {
+      "state": ".ENERGY_Power",
+      "unit": " W"
+   },
+   "powerConsumption": {
+      "state": ".ENERGY_Total",
+      "unit": " kWh"
+   },
+   "powerConsumptionToday": {
+      "state": ".ENERGY_Today",
+      "unit": " kWh"
+   },
+   "powerConsumptionYesterday": {
+      "state": ".ENERGY_Yesterday",
+      "unit": " kWh"
+   },
+   "power1": {
+      "state": ".POWER1",
+      "action": ".POWER1"
+   },
+   "power2": {
+      "state": ".POWER2",
+      "action": ".POWER2"
+   },
+   "power3": {
+      "state": ".POWER3",
+      "action": ".POWER3"
+   },
+   "power4": {
+      "state": ".POWER4",
+      "action": ".POWER4"
+   },
+   "power5": {
+      "state": ".POWER5",
+      "action": ".POWER5"
+   },
+   "power6": {
+      "state": ".POWER6",
+      "action": ".POWER6"
+   },
+   "power7": {
+      "state": ".POWER7",
+      "action": ".POWER7"
+   },
+   "power8": {
+      "state": ".POWER8",
+      "action": ".POWER8"
+   },
+   "power9": {
+      "state": ".POWER9",
+      "action": ".POWER9"
+   }
+}
+```
+
+### Adapter tr-064
+
+#### Function `calllists` of tr-064
+```
+{
+   "allCount": {
+      "state": ".all.count"
+   },
+   "allHTML": {
+      "state": ".all.html"
+   },
+   "allJson": {
+      "state": ".all.json"
+   },
+   "inboundCount": {
+      "state": ".inbound.count"
+   },
+   "inboundHTML": {
+      "state": ".inbound.html"
+   },
+   "inboundJson": {
+      "state": ".inbound.json"
+   },
+   "missedCount": {
+      "state": ".missed.count"
+   },
+   "missedHTML": {
+      "state": ".missed.html"
+   },
+   "missedJson": {
+      "state": ".missed.json"
+   },
+   "outbundCount": {
+      "state": ".outbund.count"
+   },
+   "outbundHTML": {
+      "state": ".outbund.html"
+   },
+   "outbundJson": {
+      "state": ".outbund.json"
+   }
+}
+```
+
+
+#### Function `phonebook` of tr-064
+```
+{
+   "image": {
+      "state": ".image"
+   },
+   "name": {
+      "state": ".name"
+   },
+   "number": {
+      "state": ".number"
+   }
+}
+```
+
+
+#### Function `states` of tr-064
+```
+{
+   "ab": {
+      "state": ".ab"
+   },
+   "ip": {
+      "state": ".externalIP"
+   },
+   "ipv6": {
+      "state": ".externalIPv6"
+   },
+   "reboot": {
+      "action": ".reboot",
+      "actionElement": "IconButtonAction"
+   },
+   "reconnect": {
+      "action": ".reconnectInternet",
+      "actionElement": "IconButtonAction"
+   },
+   "wlan24": {
+      "state": ".wlan24"
+   },
+   "wlan50": {
+      "state": ".wlan50"
    }
 }
 ```

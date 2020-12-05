@@ -52,6 +52,51 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-broll</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.3.LEVEL</code></li>
+<li>action: <code>.4.LEVEL</code></li>
+</ul>
+<li><code>level2</code>
+<ul>
+<li>state: <code>.3.LEVEL2</code></li>
+<li>action: <code>.4.LEVEL2</code></li>
+</ul>
+<li><code>activity</code>
+<ul>
+<li>state: <code>.3.ACTIVITY_STATE</code></li>
+<li>action: <code>.4.STOP</code></li>
+</ul>
+</ul>
+<h5>hm-lc-bl1-fm</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+<li><code>activity</code>
+<ul>
+<li>state: <code>.1.WORKING</code></li>
+<li>action: <code>.1.STOP</code></li>
+</ul>
+</ul>
+<h5>hm-lc-bl1pbu-fm</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+<li><code>activity</code>
+<ul>
+<li>state: <code>.1.WORKING</code></li>
+<li>action: <code>.1.STOP</code></li>
+</ul>
+</ul>
 <h4>Adapter shelly</h4>
 <ul>
 <li><code>level</code>
@@ -79,6 +124,19 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 <tr><td><code>lock</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hm-sec-key</h5>
+<ul>
+<li><code>error</code>
+<ul>
+<li>state: <code>1.ERROR</code></li>
+</ul>
+<li><code>lock</code>
+<ul>
+<li>state: <code>1.OPEN</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Lüfter (<code>fan</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -113,6 +171,180 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>valveState</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-etrv-b</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>frost</code>
+<ul>
+<li>state: <code>.1.FROST_PROTECTION</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+<li><code>boostTime</code>
+<ul>
+<li>state: <code>.1.BOOST_TIME</code></li>
+<li>action: <code>.1.BOOST_TIME</code></li>
+</ul>
+<li><code>windowState</code>
+<ul>
+<li>state: <code>.1.WINDOW_STATE</code></li>
+</ul>
+<li><code>partyMode</code>
+<ul>
+<li>state: <code>.1.PARTY_MODE</code></li>
+<li>action: <code>.1.PARTY_MODE</code></li>
+</ul>
+</ul>
+<h5>hmip-bwth</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+</ul>
+<h5>hmip-wth-2</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+</ul>
+<h5>hm-cc-rt-dn</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.4.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.4.SET_TEMPERATURE</code></li>
+<li>action: <code>.4.SET_TEMPERATURE</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.4.BOOST_MODE</code></li>
+<li>action: <code>.4.BOOST_MODE</code></li>
+</ul>
+<li><code>modeAuto</code>
+<ul>
+<li>state: <code>.4.AUTO_MODE</code></li>
+<li>action: <code>.4.AUTO_MODE</code></li>
+</ul>
+<li><code>modeManu</code>
+<ul>
+<li>state: <code>.4.MANU_MODE</code></li>
+<li>action: <code>.4.MANU_MODE</code></li>
+</ul>
+<li><code>boostState</code>
+<ul>
+<li>state: <code>.4.BOOST_STATE</code></li>
+<li>action: <code>.4.BOOST_STATE</code></li>
+</ul>
+<li><code>modeCurrent</code>
+<ul>
+<li>state: <code>.4.COMFORT_MODE</code></li>
+<li>action: <code>.4.COMFORT_MODE</code></li>
+</ul>
+<li><code>modeLowering</code>
+<ul>
+<li>state: <code>.4.LOWERING_MODE</code></li>
+<li>action: <code>.4.LOWERING_MODE</code></li>
+</ul>
+<li><code>modeControl</code>
+<ul>
+<li>state: <code>.4.CONTROL_MODE</code></li>
+<li>action: <code>.4.CONTROL_MODE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>valve</code>
+<ul>
+<li>state: <code>.4.VALVE_STATE</code></li>
+<li>action: <code>.4.VALVE_STATE</code></li>
+</ul>
+</ul>
+<h5>hm-tc-it-wm-w-eu</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.2.SET_TEMPERATURE</code></li>
+<li>action: <code>.2.SET_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.2.BOOST_MODE</code></li>
+<li>action: <code>.2.BOOST_MODE</code></li>
+</ul>
+</ul>
+<h5>hm-wds40-th-i</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+</ul>
+<h5>hm-wds30-ot2-sm</h5>
+<ul>
+<li><code>temperature1</code>
+<ul>
+<li>state: <code>.1.TEMPERATURE</code></li>
+</ul>
+<li><code>temperature2</code>
+<ul>
+<li>state: <code>.2.TEMPERATURE</code></li>
+</ul>
+</ul>
 <h4>Adapter hmip</h4>
 <h5>hmip-etrv-b</h5>
 <ul>
@@ -251,6 +483,110 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.hue</code></li>
 <li>action: <code>.hue</code></li>
+</ul>
+</ul>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-bsm</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+<li><code>powerMeter</code>
+<ul>
+<li>state: <code>.7.POWER</code></li>
+</ul>
+<li><code>powerVoltage</code>
+<ul>
+<li>state: <code>.7.VOLTAGE</code></li>
+</ul>
+<li><code>powerFrequency</code>
+<ul>
+<li>state: <code>.7.FREQUENCY</code></li>
+</ul>
+</ul>
+<h5>hmip-bsl</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+<li><code>levelTop</code>
+<ul>
+<li>state: <code>.8.LEVEL</code></li>
+<li>action: <code>.8.LEVEL</code></li>
+</ul>
+<li><code>colorTop</code>
+<ul>
+<li>state: <code>.8.COLOR</code></li>
+<li>action: <code>.8.COLOR</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>levelBottom</code>
+<ul>
+<li>state: <code>.12.LEVEL</code></li>
+<li>action: <code>.12.LEVEL</code></li>
+</ul>
+<li><code>colorBottom</code>
+<ul>
+<li>state: <code>.12.COLOR</code></li>
+<li>action: <code>.12.COLOR</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>hmip-brc2</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.3.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+</ul>
+<h5>hmip-bdt</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.3.LEVEL</code></li>
+<li>action: <code>.4.LEVEL</code></li>
+</ul>
+</ul>
+<h5>hm-lc-sw1pbu-fm</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>hm-lc-sw1-fm</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>hm-lc-dim1tpbu-fm</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+</ul>
+<h5>hm-lc-dim1t-pl-3</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
 </ul>
 </ul>
 <h4>Adapter hue-extended</h4>
@@ -394,6 +730,84 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-smi55</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.3.MOTION</code></li>
+</ul>
+<li><code>brightness</code>
+<ul>
+<li>state: <code>.3.BRIGHTNESS</code></li>
+</ul>
+</ul>
+<h5>hmip-smi</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.1.MOTION</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+</ul>
+<h5>hmip-smo-a</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.1.MOTION</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+</ul>
+<h5>hmip-sam</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.1.MOTION</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+</ul>
+<h5>hmip-spi</h5>
+<ul>
+<li><code>presence</code>
+<ul>
+<li>state: <code>.1.PRESENCE_DETECTION_STATE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+</ul>
+<h5>hm-sen-mdir-wm55</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.3.MOTION</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.3.ILLUMINATION</code></li>
+</ul>
+</ul>
+<h5>hm-sen-mdir-o-2</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.1.MOTION</code></li>
+</ul>
+<li><code>brightness</code>
+<ul>
+<li>state: <code>.1.BRIGHTNESS</code></li>
+</ul>
+</ul>
 <h4>Adapter zigbee</h4>
 <ul>
 <li><code>illuminance</code>
@@ -512,6 +926,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hm-sec-sd-2</h5>
+<ul>
+<li><code>alarm</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
 <h4>Adapter zigbee</h4>
 <ul>
 <li><code>alarm</code>
@@ -539,6 +961,75 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-ps</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.3.STATE</code></li>
+</ul>
+</ul>
+<h5>hmip-psm</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.3.STATE</code></li>
+</ul>
+<li><code>meter</code>
+<ul>
+<li>state: <code>.6.POWER</code></li>
+</ul>
+</ul>
+<h5>hm-lc-sw1-pl-dn-r1</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>hm-es-pmsw1-pl</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>powerCurrent</code>
+<ul>
+<li>state: <code>.2.CURRENT</code></li>
+<li>action: <code>.2.CURRENT</code></li>
+<li>unit: <code> mA</code></li>
+</ul>
+<li><code>powerCounter</code>
+<ul>
+<li>state: <code>.2.ENERGY_COUNTER</code></li>
+<li>action: <code>.2.ENERGY_COUNTER</code></li>
+<li>unit: <code> Wh</code></li>
+</ul>
+<li><code>powerMeter</code>
+<ul>
+<li>state: <code>.2.POWER</code></li>
+<li>action: <code>.2.POWER</code></li>
+<li>unit: <code> W</code></li>
+</ul>
+<li><code>powerVoltage</code>
+<ul>
+<li>state: <code>.2.VOLTAGE</code></li>
+<li>action: <code>.2.VOLTAGE</code></li>
+<li>unit: <code> V</code></li>
+</ul>
+</ul>
 <h4>Adapter zigbee</h4>
 <ul>
 <li><code>power</code>
@@ -589,6 +1080,73 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>illumination</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-brightness-7"</pre></td><td>-</td></tr>
 <tr><td><code>sunshineduration</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-weather-sunny"</pre></td><td>-</td></tr>
 </table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-stho-a</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+</ul>
+<h5>hmip-swo-b</h5>
+<ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>wind</code>
+<ul>
+<li>state: <code>.1.WIND_SPEED</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+<li><code>sunshineDuration</code>
+<ul>
+<li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+</ul>
+<h5>hmip-swo-pl</h5>
+<ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>wind</code>
+<ul>
+<li>state: <code>.1.WIND_SPEED</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+<li><code>sunshineDuration</code>
+<ul>
+<li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+<li><code>raining</code>
+<ul>
+<li>state: <code>.1.RAINING</code></li>
+</ul>
+<li><code>rainCounter</code>
+<ul>
+<li>state: <code>.1.RAIN_COUNTER</code></li>
+</ul>
+</ul>
 
 <h2>Gewerk Fenster (<code>window</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -603,6 +1161,45 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-swdo-I</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>hmip-swdo</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>hmip-srh</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>hm-sec-sco</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>hm-sec-sc-2</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
 <h4>Adapter hmip</h4>
 <h5>hmip-swdo</h5>
 <ul>
@@ -696,6 +1293,120 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>wind</code></td><td>-</td><td>-</td><td><code>km/h</code></td><td><pre lang="json">"weather-windy"</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>hmip-wrc2</h5>
+<ul>
+<li><code>PRESS_LONG_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_LONG</code></li>
+<li>action: <code>.1.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_SHORT</code></li>
+<li>action: <code>.1.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_LONG</code></li>
+<li>action: <code>.2.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_SHORT</code></li>
+<li>action: <code>.2.PRESS_SHORT</code></li>
+</ul>
+</ul>
+<h5>hm-lc-sw1-dr</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>hm-pb-2-wm55</h5>
+<ul>
+<li><code>PRESS_LONG_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_LONG</code></li>
+<li>action: <code>.1.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_SHORT</code></li>
+<li>action: <code>.1.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_LONG</code></li>
+<li>action: <code>.2.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_SHORT</code></li>
+<li>action: <code>.2.PRESS_SHORT</code></li>
+</ul>
+</ul>
+<h5>hb-uni-senact-4-4-rc</h5>
+<ul>
+<li><code>state1</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+<li><code>state2</code>
+<ul>
+<li>state: <code>.2.STATE</code></li>
+</ul>
+<li><code>state3</code>
+<ul>
+<li>state: <code>.3.STATE</code></li>
+</ul>
+<li><code>state4</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+</ul>
+<li><code>PRESS_LONG1</code>
+<ul>
+<li>state: <code>.5.PRESS_LONG</code></li>
+<li>action: <code>.5.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT1</code>
+<ul>
+<li>state: <code>.5.PRESS_SHORT</code></li>
+<li>action: <code>.5.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG2</code>
+<ul>
+<li>state: <code>.6.PRESS_LONG</code></li>
+<li>action: <code>.6.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT2</code>
+<ul>
+<li>state: <code>.6.PRESS_SHORT</code></li>
+<li>action: <code>.6.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG3</code>
+<ul>
+<li>state: <code>.7.PRESS_LONG</code></li>
+<li>action: <code>.7.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT3</code>
+<ul>
+<li>state: <code>.7.PRESS_SHORT</code></li>
+<li>action: <code>.7.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG4</code>
+<ul>
+<li>state: <code>.8.PRESS_LONG</code></li>
+<li>action: <code>.8.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT4</code>
+<ul>
+<li>state: <code>.8.PRESS_SHORT</code></li>
+<li>action: <code>.8.PRESS_SHORT</code></li>
+</ul>
+</ul>
 <h4>Adapter sonoff</h4>
 <h5>version</h5>
 <ul>
