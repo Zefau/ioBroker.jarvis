@@ -1407,6 +1407,66 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.8.PRESS_SHORT</code></li>
 </ul>
 </ul>
+<h4>Adapter nuki-extended</h4>
+<ul>
+<li><code>door</code>
+<ul>
+<li>state: <code>.state.closed</code></li>
+</ul>
+<li><code>doorState</code>
+<ul>
+<li>state: <code>.state.doorState</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>lock</code>
+<ul>
+<li>state: <code>.state.locked</code></li>
+</ul>
+<li><code>lockState</code>
+<ul>
+<li>state: <code>.state.lockState</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>lockUpdate</code>
+<ul>
+<li>state: <code>.state.lastStateUpdate</code></li>
+</ul>
+<li><code>lowbattery</code>
+<ul>
+<li>state: <code>.state.batteryCritical</code></li>
+</ul>
+<li><code>ACTIONS</code>
+<ul>
+<li>action: <code>._ACTION</code></li>
+<li>display: <code>[object Object]</code></li>
+<li>actionElement: <code>DropdownAction</code></li>
+</ul>
+<li><code>LOCK</code>
+<ul>
+<li>action: <code>._ACTION.LOCK</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>LOCK_N_GO</code>
+<ul>
+<li>action: <code>._ACTION.LOCK_N_GO</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>LOCK_N_GO_WITH_UNLATCH</code>
+<ul>
+<li>action: <code>._ACTION.LOCK_N_GO_WITH_UNLATCH</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>UNLATCH</code>
+<ul>
+<li>action: <code>._ACTION.UNLATCH</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>UNLOCK</code>
+<ul>
+<li>action: <code>._ACTION.UNLOCK</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+</ul>
 <h4>Adapter sonoff</h4>
 <h5>version</h5>
 <ul>
@@ -2031,5 +2091,38 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>4: <code>E</code></li>
 <li>5: <code>R</code></li>
 <li>6: <code>9</code></li>
+</ul>
+</ul>
+<h4>Adapter tr-064</h4>
+<ul>
+<li><code>ab</code>
+<ul>
+<li>state: <code>.ab</code></li>
+</ul>
+<li><code>ip</code>
+<ul>
+<li>state: <code>.externalIP</code></li>
+</ul>
+<li><code>ipv6</code>
+<ul>
+<li>state: <code>.externalIPv6</code></li>
+</ul>
+<li><code>reboot</code>
+<ul>
+<li>action: <code>.reboot</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>reconnect</code>
+<ul>
+<li>action: <code>.reconnectInternet</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>wlan24</code>
+<ul>
+<li>state: <code>.wlan24</code></li>
+</ul>
+<li><code>wlan50</code>
+<ul>
+<li>state: <code>.wlan50</code></li>
 </ul>
 </ul>
