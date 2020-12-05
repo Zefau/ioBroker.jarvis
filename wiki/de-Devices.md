@@ -4,6 +4,37 @@ Ein Gerät stellt Element dar, welches durch einen Namen, Gewerk und seine Zust�
 Mehr über die Gewerke kann [hier nachgelesen](de-Functions) werden.
 
 
+# Geräteliste
+
+![Geräteliste](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Geräteliste.png)
+
+Die Liste der Geräte kann nach Gewerk oder Hersteller (`manufacturer`) gruppiert werden.
+
+Außerdem kann die Liste mittels Filter durchsucht und eingegrenzt werden. Bei der Suche werden folgenden Bestandteile berücksichtigt:
+- Name des Geräts (`name`)
+- ID des Geräts (`id`)
+- Gewerk des Geräts (`function`)
+- ID der Datenpunkte des Geräts (`stateId`)
+- Label der Datenpunkte des Geräts (`stateLabel`)
+- State sowie Action Trigger der Datenpunkte des Geräts (`state` / `action`)
+- Hersteller (`manufacturer`)
+
+Es werden immer alle genannten Bestandteile bei der Eingabe durchsucht.
+
+Um nur bestimmte Bestandteile zu durchsuchen, kann die Suche mittels Angabe des Attributs eingeschränkt werden, z. B. `-Attribut:Suchbegriff`
+```
+-name:Gerätename
+```
+oder
+```
+-function:Licht
+```
+oder
+```
+-manufacturer:Shelly
+```
+
+
 # Gerätekonfiguration
 
 Die Gerätekonfiguration kann in den jarvis Einstellungen je Gerät vorgenommen werden.
