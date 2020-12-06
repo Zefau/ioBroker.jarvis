@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "25475b0f1e8dc6e2e0a6b40b416fb44b",
+    "revision": "2ada70b9fa2b6c7227256ce748742309",
     "url": "/jarvis/index.html"
   },
   {
-    "revision": "13f8ad21458f8818ba72",
+    "revision": "6be001bd84df2ac98855",
     "url": "/jarvis/static/css/main.45d5d0e8.chunk.css"
   },
   {
@@ -24,20 +24,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jarvis/static/js/3.fe8e90e0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1a37ffd33b2fe4d16ad8",
-    "url": "/jarvis/static/js/4.371d80dc.chunk.js"
+    "revision": "75ee775247369823d3aa",
+    "url": "/jarvis/static/js/4.b4609c82.chunk.js"
   },
   {
     "revision": "d915c641e6d370206146",
     "url": "/jarvis/static/js/5.3a24dca4.chunk.js"
   },
   {
-    "revision": "13f8ad21458f8818ba72",
-    "url": "/jarvis/static/js/main.2ac4cddb.chunk.js"
+    "revision": "6be001bd84df2ac98855",
+    "url": "/jarvis/static/js/main.f54cf8c3.chunk.js"
   },
   {
-    "revision": "329a7b1b1a7ff7cce038",
-    "url": "/jarvis/static/js/runtime-main.f1f01a80.js"
+    "revision": "1a40f12aa5997c2b64ba",
+    "url": "/jarvis/static/js/runtime-main.3cb4d4a8.js"
   },
   {
     "revision": "b2b907ab14ac5605e1b9d47425372323",

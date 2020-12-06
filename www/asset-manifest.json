@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/jarvis/static/css/main.45d5d0e8.chunk.css",
-    "main.js": "/jarvis/static/js/main.2ac4cddb.chunk.js",
-    "main.js.map": "/jarvis/static/js/main.2ac4cddb.chunk.js.map",
-    "runtime-main.js": "/jarvis/static/js/runtime-main.f1f01a80.js",
-    "runtime-main.js.map": "/jarvis/static/js/runtime-main.f1f01a80.js.map",
+    "main.js": "/jarvis/static/js/main.f54cf8c3.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.f54cf8c3.chunk.js.map",
+    "runtime-main.js": "/jarvis/static/js/runtime-main.3cb4d4a8.js",
+    "runtime-main.js.map": "/jarvis/static/js/runtime-main.3cb4d4a8.js.map",
     "static/js/2.d7bb47c8.chunk.js": "/jarvis/static/js/2.d7bb47c8.chunk.js",
     "static/js/2.d7bb47c8.chunk.js.map": "/jarvis/static/js/2.d7bb47c8.chunk.js.map",
     "static/js/3.fe8e90e0.chunk.js": "/jarvis/static/js/3.fe8e90e0.chunk.js",
     "static/js/3.fe8e90e0.chunk.js.map": "/jarvis/static/js/3.fe8e90e0.chunk.js.map",
-    "static/js/4.371d80dc.chunk.js": "/jarvis/static/js/4.371d80dc.chunk.js",
-    "static/js/4.371d80dc.chunk.js.map": "/jarvis/static/js/4.371d80dc.chunk.js.map",
+    "static/js/4.b4609c82.chunk.js": "/jarvis/static/js/4.b4609c82.chunk.js",
+    "static/js/4.b4609c82.chunk.js.map": "/jarvis/static/js/4.b4609c82.chunk.js.map",
     "static/js/5.3a24dca4.chunk.js": "/jarvis/static/js/5.3a24dca4.chunk.js",
     "static/js/5.3a24dca4.chunk.js.map": "/jarvis/static/js/5.3a24dca4.chunk.js.map",
     "index.html": "/jarvis/index.html",
-    "precache-manifest.63c83b13d99ba0864ba8e9d5d1459550.js": "/jarvis/precache-manifest.63c83b13d99ba0864ba8e9d5d1459550.js",
+    "precache-manifest.33e53f0366cd0a2eb026f18bc286775d.js": "/jarvis/precache-manifest.33e53f0366cd0a2eb026f18bc286775d.js",
     "service-worker.js": "/jarvis/service-worker.js",
     "static/css/main.45d5d0e8.chunk.css.map": "/jarvis/static/css/main.45d5d0e8.chunk.css.map",
     "static/js/2.d7bb47c8.chunk.js.LICENSE.txt": "/jarvis/static/js/2.d7bb47c8.chunk.js.LICENSE.txt",
@@ -60,9 +60,9 @@
     "static/media/zefau.jpg": "/jarvis/static/media/zefau.e3988b38.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f1f01a80.js",
+    "static/js/runtime-main.3cb4d4a8.js",
     "static/js/2.d7bb47c8.chunk.js",
     "static/css/main.45d5d0e8.chunk.css",
-    "static/js/main.2ac4cddb.chunk.js"
+    "static/js/main.f54cf8c3.chunk.js"
   ]
 }

@@ -24,6 +24,8 @@
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
 - [Module DateTime](#Module-DateTime)
   - [DateTime module is left aligned instead of centered](#datetime-module-is-left-aligned-instead-of-centered)
+- [Module DisplayImage](#Module-DisplayImage)
+  - [DisplayImage == iobroker state](#displayimage-==-iobroker-state)
 - [Module StateList](#Module-StateList)
   - [SwitchAction Trigger Element / Settings für eigenen Objektwert fehlt](#switchaction-trigger-element--settings-für-eigenen-objektwert-fehlt)
 - [Module Weather](#Module-Weather)
@@ -275,6 +277,18 @@ The text should be aligned to center. If I'm right the property "display: flex" 
 ![grafik](https://user-images.githubusercontent.com/72187841/99495437-f4806d80-2972-11eb-95b5-e67f8d25574d.png)
 
 
+***
+
+### Module DisplayImage
+
+#### DisplayImage == iobroker state
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/413).
+
+wäre ganz praktisch wenn man beim displayImage, neben base64,url, auch einen iobroker state angeben kann in welchem beispielsweise eine http url zu einem bild steht. 
+
+z.b. handhabt der synology adapter das so, alle mpeg streams als states.
+
+gruss
 ***
 
 ### Module StateList
