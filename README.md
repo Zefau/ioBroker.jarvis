@@ -65,6 +65,9 @@ You may find more videos on the [YouTube Channels](https://www.youtube.com/chann
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
 
+### v2.0.0-rc.3 - American Beauty (2020-12-06)
+
+
 ### v2.0.0-rc.2 - Inglourious Basterds (2020-12-01)
 
 
