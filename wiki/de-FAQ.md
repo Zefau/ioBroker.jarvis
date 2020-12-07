@@ -3,7 +3,6 @@
 ## Übersicht
 
 - [General](#General)
-  - [Deconz XY CIE  Farbwahl](#deconz-xy-cie--farbwahl)
   - [Databinding for Labels / Titles](#databinding-for-labels--titles)
   - [Verbindungsparameter / Connection parameters (Proxy, Docker)](#verbindungsparameter--connection-parameters-(proxy,-docker))
   - [Nach einem Update ist die Konfiguration verschwunden?](#nach-einem-update-ist-die-konfiguration-verschwunden)
@@ -18,6 +17,8 @@
   - [Eigene icons benutzen / How to use your own icons](#eigene-icons-benutzen--how-to-use-your-own-icons)
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
   - [Icon Stil ](#icon-stil-)
+- [foreign issue](#foreign-issue)
+  - [Deconz XY CIE  Farbwahl](#deconz-xy-cie--farbwahl)
 - [Module AdapterStatus](#Module-AdapterStatus)
   - [Nur bestimmte Adapter auflisten oder ausschließen](#nur-bestimmte-adapter-auflisten-oder-ausschließen)
 - [Module CustomHTML](#Module-CustomHTML)
@@ -35,19 +36,6 @@
 ## Fragen und Lösungen
 
 ### General
-
-#### Deconz XY CIE  Farbwahl
-[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/399).
-
-Hallo ist es möglich die folgende Farbwahl via Hueslider in Jarvis zu verwirklichen ? 
-
-![image](https://user-images.githubusercontent.com/22169074/100795664-b29a0180-341f-11eb-9f34-9c7c8091a642.png)
-
-bisher hab ich nichts dazu gefunden. 
-
-Danke.
-***
-
 
 #### Databinding for Labels / Titles
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/390).
@@ -226,6 +214,20 @@ _Originally posted by @Timmes123 in https://github.com/Zefau/ioBroker.jarvis/iss
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/211).
 
 Make it possbile to use this json `{"<0":{"color":"#FFBF00"}}` in Icon-Stil
+***
+
+### foreign issue
+
+#### Deconz XY CIE  Farbwahl
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/399).
+
+Hallo ist es möglich die folgende Farbwahl via Hueslider in Jarvis zu verwirklichen ? 
+
+![image](https://user-images.githubusercontent.com/22169074/100795664-b29a0180-341f-11eb-9f34-9c7c8091a642.png)
+
+bisher hab ich nichts dazu gefunden. 
+
+Danke.
 ***
 
 ### Module AdapterStatus
