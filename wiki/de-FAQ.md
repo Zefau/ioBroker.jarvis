@@ -3,12 +3,13 @@
 ## Übersicht
 
 - [General](#General)
-  - [Deconz XY CIE  Farbwahl](#deconz-xy-cie--farbwahl)
+  - [Alternative Anzeigewerte](#alternative-anzeigewerte)
+  - [Wie konfiguriere ich ein Dropdown Feld?](#wie-konfiguriere-ich-ein-dropdown-feld)
+  - [Farben mit LightHueBody bzw. LightColorBody beim hue-extended sind falsch](#farben-mit-lighthuebody-bzw-lightcolorbody-beim-hue-extended-sind-falsch)
   - [Databinding for Labels / Titles](#databinding-for-labels--titles)
   - [Verbindungsparameter / Connection parameters (Proxy, Docker)](#verbindungsparameter--connection-parameters-(proxy,-docker))
   - [Nach einem Update ist die Konfiguration verschwunden?](#nach-einem-update-ist-die-konfiguration-verschwunden)
   - [Wie kann ich Geräte und Layout direkt editieren](#wie-kann-ich-geräte-und-layout-direkt-editieren)
-  - [KNX Diskussion](#knx-diskussion)
   - [Log Eintrag: discarded x devices due to incorrect configuration](#log-eintrag-discarded-x-devices-due-to-incorrect-configuration)
   - [Schieberegler konfigurieren](#schieberegler-konfigurieren)
   - [Buttons konfigurieren](#buttons-konfigurieren)
@@ -18,6 +19,8 @@
   - [Eigene icons benutzen / How to use your own icons](#eigene-icons-benutzen--how-to-use-your-own-icons)
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
   - [Icon Stil ](#icon-stil-)
+- [foreign issue](#foreign-issue)
+  - [Deconz XY CIE  Farbwahl](#deconz-xy-cie--farbwahl)
 - [Module AdapterStatus](#Module-AdapterStatus)
   - [Nur bestimmte Adapter auflisten oder ausschließen](#nur-bestimmte-adapter-auflisten-oder-ausschließen)
 - [Module CustomHTML](#Module-CustomHTML)
@@ -36,16 +39,32 @@
 
 ### General
 
-#### Deconz XY CIE  Farbwahl
-[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/399).
+#### Alternative Anzeigewerte
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/434).
 
-Hallo ist es möglich die folgende Farbwahl via Hueslider in Jarvis zu verwirklichen ? 
+Hi,
+die Werte gehen von -600 bis -100
 
-![image](https://user-images.githubusercontent.com/22169074/100795664-b29a0180-341f-11eb-9f34-9c7c8091a642.png)
+![image](https://user-images.githubusercontent.com/22169074/101669846-be567b00-3a52-11eb-9b7c-cfbf65c34da6.png)
 
-bisher hab ich nichts dazu gefunden. 
+ist es möglich eine alternative Anzeige zu haben, also 0-100, die Werte aber die gleichen bleiben.
+Habe es mit der Anzeige JSON versucht, aber scheint nicht zu greifen. Wie muss das JSON aussehen ? 
 
-Danke.
+Danke dir. 
+***
+
+
+#### Wie konfiguriere ich ein Dropdown Feld?
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/432).
+
+Wie kann ich einen bestimmten Text in das DropDown Feld packen dass dann einen bestimmten Wert in das ioBroker Objekt tut?
+***
+
+
+#### Farben mit LightHueBody bzw. LightColorBody beim hue-extended sind falsch
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/431).
+
+Die Option `Verwenden von XY anstelle von hue (nur für nicht-Philips-Geräte)` ist zu deaktivieren, siehe https://forum.iobroker.net/post/533641.
 ***
 
 
@@ -120,14 +139,6 @@ in der layout.json stehen die Einstellungen noch korrekt drinn.
 Ich möchte gerne Geräte und Layout direkt per SSH und VSCODE editieren können. Wo sind die Dateien gespeichert?
 
 ![image](https://user-images.githubusercontent.com/20707078/98254265-607ad300-1f7c-11eb-8148-0cf3b02bab06.png)
-***
-
-
-#### KNX Diskussion
-[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/301).
-
-Diskussion rund um KNX und die Einbindung in jarvis.
-Der Start der Diskussion ist im Verlauf des Issues https://github.com/Zefau/ioBroker.jarvis/issues/231 zu finden.
 ***
 
 
@@ -226,6 +237,20 @@ _Originally posted by @Timmes123 in https://github.com/Zefau/ioBroker.jarvis/iss
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/211).
 
 Make it possbile to use this json `{"<0":{"color":"#FFBF00"}}` in Icon-Stil
+***
+
+### foreign issue
+
+#### Deconz XY CIE  Farbwahl
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/399).
+
+Hallo ist es möglich die folgende Farbwahl via Hueslider in Jarvis zu verwirklichen ? 
+
+![image](https://user-images.githubusercontent.com/22169074/100795664-b29a0180-341f-11eb-9f34-9c7c8091a642.png)
+
+bisher hab ich nichts dazu gefunden. 
+
+Danke.
 ***
 
 ### Module AdapterStatus
