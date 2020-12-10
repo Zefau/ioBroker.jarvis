@@ -13,6 +13,7 @@ Die meisten Einstellungen können direkt in jarvis vorgenommen werden. Besondere
 | `language` | Spracheinstellung von jarvis | - | Select (`de-DE,_translated`, `en-GB,_translated`) | `() => i18n.getLanguage(true)` |
 | `pageFavicon` | Favicon im Browser | base64 Wert der Grafik | Text | - |
 | `pageTitle` | Titel im Browser | - | Text | `jarvis - just another remarkable vis` |
+| `LastChangeBody` | Zeitformat LastChangeBody | Globales Zeitformat der LastChangeBody Komponente. Für mögliche Werte, siehe date-fns Dokumentation. | Text | `DistanceToNow` |
 
 ### Theme Einstellungen
 | Parameter | Beschreibung | Information | Typ | Standard |
