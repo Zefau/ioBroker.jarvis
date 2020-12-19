@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/jarvis/static/css/main.45d5d0e8.chunk.css",
-    "main.js": "/jarvis/static/js/main.b9b97938.chunk.js",
-    "main.js.map": "/jarvis/static/js/main.b9b97938.chunk.js.map",
+    "main.js": "/jarvis/static/js/main.2f7dce66.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.2f7dce66.chunk.js.map",
     "runtime-main.js": "/jarvis/static/js/runtime-main.a104d410.js",
     "runtime-main.js.map": "/jarvis/static/js/runtime-main.a104d410.js.map",
     "static/js/2.c2e74df2.chunk.js": "/jarvis/static/js/2.c2e74df2.chunk.js",
@@ -15,7 +15,7 @@
     "static/js/5.397a1c1d.chunk.js": "/jarvis/static/js/5.397a1c1d.chunk.js",
     "static/js/5.397a1c1d.chunk.js.map": "/jarvis/static/js/5.397a1c1d.chunk.js.map",
     "index.html": "/jarvis/index.html",
-    "precache-manifest.fe90969da3cc0d5f4075294a915d7587.js": "/jarvis/precache-manifest.fe90969da3cc0d5f4075294a915d7587.js",
+    "precache-manifest.d54e30a3aced0bb183c01470ffafd89d.js": "/jarvis/precache-manifest.d54e30a3aced0bb183c01470ffafd89d.js",
     "service-worker.js": "/jarvis/service-worker.js",
     "static/css/3.1a719957.chunk.css.map": "/jarvis/static/css/3.1a719957.chunk.css.map",
     "static/css/main.45d5d0e8.chunk.css.map": "/jarvis/static/css/main.45d5d0e8.chunk.css.map",
@@ -66,6 +66,6 @@
     "static/js/runtime-main.a104d410.js",
     "static/js/2.c2e74df2.chunk.js",
     "static/css/main.45d5d0e8.chunk.css",
-    "static/js/main.b9b97938.chunk.js"
+    "static/js/main.2f7dce66.chunk.js"
   ]
 }
