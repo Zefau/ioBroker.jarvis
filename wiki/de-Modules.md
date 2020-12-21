@@ -63,8 +63,8 @@ Zeigt ical / ics Inhalte in einem Kalender an.
 | `calendarPreview` | Zeigt eine Kalender-Vorschau  | Switch | `true` |
 | `calendarView` | Wähle die Art der Anzeige von Ereignissen  | RadioGroup | `listView` |
 | `refresh` | Aktualisierung (in Minuten)  | Number | `5` |
-| `daysReview` | Zeigt vergangene Ereignisse (in Tagen)  | Number | `7` |
-| `daysPreview` | Zeigt zukünftige Ereignisse (in Tagen)  | Number | - |
+| `daysReview` | Zeigt vergangene Ereignisse (in Tagen)  | Number | - |
+| `daysPreview` | Zeigt zukünftige Ereignisse (in Tagen)  | Number | `7` |
 
 
 ***
