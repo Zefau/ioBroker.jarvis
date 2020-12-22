@@ -1247,8 +1247,8 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    "<=5": "battery-alert-variant-outline"
 }</pre></td><td>-</td></tr>
 <tr><td><code>door</code></td><td>-</td><td><pre lang="json">{
-   "true": "open",
-   "false": "closed"
+   "true": "door#open",
+   "false": "door#closed"
 }</pre></td><td>-</td><td><pre lang="json">{
    "true": "door-open",
    "false": "door-closed"
