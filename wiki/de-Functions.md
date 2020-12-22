@@ -822,6 +822,18 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.BRIGHTNESS</code></li>
 </ul>
 </ul>
+<h4>Adapter hmip</h4>
+<h5>hmip-smi</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.channels.1.motionDetected</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.channels.1.illumination</code></li>
+</ul>
+</ul>
 <h4>Adapter zigbee</h4>
 <ul>
 <li><code>illuminance</code>
