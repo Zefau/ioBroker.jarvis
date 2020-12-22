@@ -102,13 +102,13 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li><code>level</code>
 <ul>
-<li>state: <code>.1.shutterLevel</code></li>
-<li>action: <code>.1.shutterLevel</code></li>
+<li>state: <code>.channels.1.shutterLevel</code></li>
+<li>action: <code>.channels.1.shutterLevel</code></li>
 </ul>
 <li><code>activity</code>
 <ul>
-<li>state: <code>.1.processing</code></li>
-<li>action: <code>.1.stop</code></li>
+<li>state: <code>.channels.1.processing</code></li>
+<li>action: <code>.channels.1.stop</code></li>
 </ul>
 </ul>
 <h4>Adapter shelly</h4>
