@@ -97,6 +97,20 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.STOP</code></li>
 </ul>
 </ul>
+<h4>Adapter hmip</h4>
+<h5>hmip-broll</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.shutterLevel</code></li>
+<li>action: <code>.1.shutterLevel</code></li>
+</ul>
+<li><code>activity</code>
+<ul>
+<li>state: <code>.1.processing</code></li>
+<li>action: <code>.1.stop</code></li>
+</ul>
+</ul>
 <h4>Adapter shelly</h4>
 <ul>
 <li><code>level</code>
@@ -1222,8 +1236,8 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
       "color": "#999"
    }
 }</pre></td><td><pre lang="json">{
-   "true": "on",
-   "false": "off"
+   "true": "an",
+   "false": "aus"
 }</pre></td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>battery</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">{
    ">80": "battery-high",
