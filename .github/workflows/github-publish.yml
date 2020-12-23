@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: actions/setup-node@v2
         with:
           node-version: 12
       - run: yarn install
@@ -19,9 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: actions/setup-node@v2
         with:
-          auth-token: ${{secrets.GITHUB_TOKEN}}
           registry-url: https://npm.pkg.github.com/
       - run: yarn install
       - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
