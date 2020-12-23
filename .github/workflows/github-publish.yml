@@ -10,14 +10,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: 12
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@zefau'
-      - name: Publish to GitHub Package Registry
-        run:
-          echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" >
-          ~/.npmrc
-        
+            node-version: 12
+            registry-url: "https://npm.pkg.github.com"
+            scope: "@zefau"
+      - run: npm install
+      - run: echo "registry=https://npm.pkg.github.com/@zefau" >> .npmrc
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
