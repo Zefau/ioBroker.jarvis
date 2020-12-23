@@ -1,7 +1,6 @@
 {
   "name": "iobroker.jarvis",
   "version": "2.1.0-beta.15",
-  "publishConfig": "@zefau/iobroker.jarvis",
   "description": "jarvis - just another remarkable vis",
   "main": "jarvis.js",
   "engines": {
