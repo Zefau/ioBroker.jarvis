@@ -14,6 +14,10 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@zefau'
       - name: Publish to GitHub Package Registry
-        run: npm publish
+        run:
+          echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" >
+          ~/.npmrc
+        
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
