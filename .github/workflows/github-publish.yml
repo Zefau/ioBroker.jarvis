@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 12
-          registry-url: https://npm.pkg.github.com/
+          registry-url: 'https://npm.pkg.github.com/'
           scope: '@zefau'
       - name: Publish to GitHub Package Registry
         run: npm publish
