@@ -11,8 +11,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 12
-      - run: yarn install
-      - run: yarn test
+      - run: npm ci
+      - run: npm test
         
   publish-gpr:
     needs: build
@@ -20,9 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-        with:
-          registry-url: https://npm.pkg.github.com/
-      - run: yarn install
-      - run: yarn publish
+      - run: npm install
+      - run: npm config set registry https://npm.pkg.github.com/
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
