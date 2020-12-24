@@ -1433,6 +1433,54 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.8.PRESS_SHORT</code></li>
 </ul>
 </ul>
+<h4>Adapter mihome-vacuum</h4>
+<h5>state</h5>
+<ul>
+<li><code>0</code>
+<ul>
+<li>0: <code>.</code></li>
+</ul>
+<li><code>1</code>
+<ul>
+<li>0: <code>i</code></li>
+</ul>
+<li><code>2</code>
+<ul>
+<li>0: <code>n</code></li>
+</ul>
+<li><code>3</code>
+<ul>
+<li>0: <code>f</code></li>
+</ul>
+<li><code>4</code>
+<ul>
+<li>0: <code>o</code></li>
+</ul>
+<li><code>5</code>
+<ul>
+<li>0: <code>.</code></li>
+</ul>
+<li><code>6</code>
+<ul>
+<li>0: <code>q</code></li>
+</ul>
+<li><code>7</code>
+<ul>
+<li>0: <code>u</code></li>
+</ul>
+<li><code>8</code>
+<ul>
+<li>0: <code>e</code></li>
+</ul>
+<li><code>9</code>
+<ul>
+<li>0: <code>u</code></li>
+</ul>
+<li><code>10</code>
+<ul>
+<li>0: <code>e</code></li>
+</ul>
+</ul>
 <h4>Adapter nuki-extended</h4>
 <ul>
 <li><code>door</code>
