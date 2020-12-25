@@ -703,7 +703,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.colortemp</code></li>
 <li>action: <code>.colortemp</code></li>
 </ul>
-<li><code>rgb</code>
+<li><code>hex</code>
 <ul>
 <li>state: <code>.color</code></li>
 <li>action: <code>.color</code></li>
