@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "2.1.0-beta.21",
+      "version": "2.1.0-beta.22",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -139,6 +139,18 @@
             "read": true,
             "write": true,
             "def": "{}"
+         }
+      },
+      {
+         "_id": "css",
+         "type": "state",
+         "common": {
+            "name": "Custom CSS",
+            "role": "text",
+            "type": "string",
+            "read": true,
+            "write": true,
+            "def": ""
          }
       },
       {
