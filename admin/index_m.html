@@ -36,14 +36,15 @@
 	
 	// confirmation
 	let restore = null;
-	function dialog(id, date, contents) {
+	function dialog(s, date, contents) {
 		console.log(date, contents);
 		restore = {
-			id,
+			id: s.id,
+			state: s.state,
 			date
 		}
 		
-		$('#json').text(JSON.stringify(JSON.parse(contents), null, 3));
+		$('#json').text(s.type === 'json' ? JSON.stringify(JSON.parse(contents), null, 3) : contents);
 		$('.modal').modal('open');
 	}
 	
@@ -55,13 +56,20 @@
 		$('.collapsible').collapsible();
 		
 		// get backups
-		['devices', 'layout', 'settings', 'theme'].forEach(id => {
+		['devices', 'layout', 'settings', 'styles:css:css', 'theme'].forEach(id => {
+			let state = id;
+			let type = 'json';
+			
+			if (id.indexOf(':') > -1) {
+				[ id, state, type ] = id.split(':');
+			}
+			
 			sendTo(null, '_backups', { 'id': id }, function(res) {
 				const dates = Object.keys(res);
 				dates.reverse().forEach(function(date) {
 					$('#' + id).append(
 						$('<a href="#!" class="collection-item">' + date + '</a>').on('click', function() {
-							dialog(id, date, res[date]);
+							dialog({ id, state, type }, date, res[date]);
 						})
 					);
 				});
@@ -71,7 +79,7 @@
 		// restore
 		$('.btn-restore').on('click', function() {
 			console.log('Restore ' + restore.id + ' from ' + restore.date + '..');
-			sendTo(null, '_restore', { 'id': restore.id, 'date': restore.date }, function(res) {});
+			sendTo(null, '_restore', { 'id': restore.id, 'state': restore.state, 'date': restore.date }, function(res) {});
 			
 			alert('Backup restored!');
 			window.location = '#tab-intro';
@@ -221,6 +229,13 @@
 								<div class="collapsible-header"><span class="translate">Settings</span></div>
 								<div class="collapsible-body">
 								  <div class="collection" id="settings">
+								  </div>
+								</div>
+							</li>
+							<li>
+								<div class="collapsible-header"><span class="translate">Styles</span></div>
+								<div class="collapsible-body">
+								  <div class="collection" id="styles">
 								  </div>
 								</div>
 							</li>

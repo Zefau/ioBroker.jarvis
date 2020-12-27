@@ -21,11 +21,18 @@ let unloaded;
 let NOTIFICATIONS = [];
 let SETTINGS = {};
 let BACKUPS = {
-	'theme': {},
+	'styles': {},
 	'settings': {},
 	'layout': {},
 	'devices': {}
 };
+
+const BACKUP_STATES = [
+	{ 'state': 'devices' },
+	{ 'state': 'layout' },
+	{ 'state': 'settings',},
+	{ 'state': 'css', 'id': 'styles' }
+];
 
 /*
  * allSettled polyfill
@@ -71,17 +78,18 @@ function startAdapter(options) {
 		}
 		
 		// create backup object
-		['devices', 'layout', 'settings', 'theme'].forEach(id => {
-			adapter.readFile('jarvis', '_BACKUP_' + id.toUpperCase() + '.json', null, (err, contents) => {
+		BACKUP_STATES.forEach(s => {
+			s.id = s.id || s.state;
+			adapter.readFile('jarvis', '_BACKUP_' + s.id.toUpperCase() + '.json', null, (err, contents) => {
 				
 				// trigger initial backup
 				if (err) {
-					adapter.getState(id, (err, state) => !err && state && state.val && backup(id, state.val));
+					adapter.getState(s.state, (err, state) => !err && state && state.val && backup(s, state.val));
 				}
 				
 				// load recent backups
 				else if (contents) {
-					BACKUPS[id] = JSON.parse(contents);
+					BACKUPS[s.id] = JSON.parse(contents);
 				}
 			});
 		});
@@ -162,8 +170,11 @@ function startAdapter(options) {
 		});
 		
 		adapter.subscribeStates('addNotification');
+		
+		// BACKUP
 		adapter.subscribeStates('devices');
 		adapter.subscribeStates('layout');
+		adapter.subscribeStates('css');
 	});
 
 	/*
@@ -188,8 +199,9 @@ function startAdapter(options) {
 		}
 		
 		// BACKUP
-		if (id.substr(id.lastIndexOf('.')) === '.devices' || id.substr(id.lastIndexOf('.')) === '.layout' || id.substr(id.lastIndexOf('.')) === '.settings') {
-			backup(id.substr(id.lastIndexOf('.')+1), state.val);
+		const foundIndex = BACKUP_STATES.findIndex(s => s.state === id.substr(id.lastIndexOf('.')+1));
+		if (foundIndex > -1) {
+			backup(BACKUP_STATES[foundIndex], state.val);
 		}
 		
 		// SETTINGS
@@ -299,8 +311,8 @@ function startAdapter(options) {
 		}
 		
 		// restore
-		else if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.date) {
-			restore(msg.message.id, msg.message.date);
+		else if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.state && msg.message.date) {
+			restore(msg.message.id, msg.message.state, msg.message.date);
 		}
 		
 		// request
@@ -414,37 +426,38 @@ function decrypt(hash, secretKey, algorithm = 'AES-256-CBC') {
  *
  *
  */
-function restore(id, date) {
+function restore(id, state, date) {
 	adapter.log.info('Restore ' + id + ' from ' + date + '..');
-	adapter.setState(id, BACKUPS[id][date]);
+	adapter.setState(state, BACKUPS[id][date]);
 }
 
 /**
  *
  *
  */
-function backup(id, data) {
+function backup(s, data) {
+	s.id = s.id || s.state;
 	
 	// add to backup
 	const date = new Date();
 	const key = date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).substr(-2) + '-' + ('0' + date.getDate()).substr(-2) + '_' + ('0' + date.getHours()).substr(-2) + '-' + ('0' + date.getMinutes()).substr(-2) + '-' + ('0' + date.getSeconds()).substr(-2);
-	BACKUPS[id][key] = data;
+	BACKUPS[s.id][key] = data;
 	
 	// delete old entries
 	adapter.config.keepBackupEntries = (adapter.config.keepBackupEntries || 25)-1;
-	const entries = Object.keys(BACKUPS[id]);
+	const entries = Object.keys(BACKUPS[s.id]);
 	
 	if (entries.length > adapter.config.keepBackupEntries) {
 		entries.reverse().forEach((key, i) => {
 			if (i > adapter.config.keepBackupEntries) {
-				delete BACKUPS[id][key];
+				delete BACKUPS[s.id][key];
 			}
 		});
 	}
 	
 	// save backup
-	adapter.log.info('Backup ' + id + '..');
-	adapter.writeFile('jarvis', '_BACKUP_' + id.toUpperCase() + '.json', JSON.stringify(BACKUPS[id], null, 3));
+	adapter.log.info('Backup ' + s.id + '..');
+	adapter.writeFile('jarvis', '_BACKUP_' + s.id.toUpperCase() + '.json', JSON.stringify(BACKUPS[s.id], null, 3));
 }
 
 /**
