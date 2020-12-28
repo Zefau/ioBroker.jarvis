@@ -3,6 +3,8 @@
 ## Übersicht
 
 - [General](#General)
+  - [Button / Switch Size](#button--switch-size)
+  - [Trotz manuell geänderter Anzeigevariante wird Wert aus Datenpunkt visualisiert - Fehler?](#trotz-manuell-geänderter-anzeigevariante-wird-wert-aus-datenpunkt-visualisiert---fehler)
   - [Alternative Anzeigewerte](#alternative-anzeigewerte)
   - [Wie konfiguriere ich ein Dropdown Feld?](#wie-konfiguriere-ich-ein-dropdown-feld)
   - [Farben mit LightHueBody bzw. LightColorBody beim hue-extended sind falsch](#farben-mit-lighthuebody-bzw-lightcolorbody-beim-hue-extended-sind-falsch)
@@ -38,6 +40,33 @@
 ## Fragen und Lösungen
 
 ### General
+
+#### Button / Switch Size
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/526).
+
+Mir ist gerade aufgefallen das die Spalten Größe unterschiedlich ist z.b. zwischen Switch und Button, kannst du das anpassen oder muss man dies auch via css lösen?
+
+![image](https://user-images.githubusercontent.com/25475385/103238990-98830e80-494c-11eb-9955-7de4f8750bd5.png)
+![image](https://user-images.githubusercontent.com/25475385/103239026-ae90cf00-494c-11eb-8546-d06ffd596fa3.png)
+
+***
+
+
+#### Trotz manuell geänderter Anzeigevariante wird Wert aus Datenpunkt visualisiert - Fehler?
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/519).
+
+Ich hab die Wikiseite zu JSON gefunden und durch Spielerei in den Devices noch Einiges hinbekommen ;)
+Eins blieb mir jedoch unklar:
+
+Ich habe aktuell einen FensterTürKontakt, der den Battery in % rausgibt, die anderen FTKs geben nur BatteryLow=True raus. Hab mir überlegt den einen FTK aus optischen Gründen dann halt mit <=10% als "Batterie schwach" und alles >10% als "Batterie OK" darzustellen. Das funktioniert in sofern, dass der Text zwar dort steht, aber die 29(%) vom Datenpunkt stellt Jarvis dennoch dar. 
+Ich hatte gehofft, durch Eintrag der Schwellen in der Anzeigevariante wird der eigentliche Wert automatisch vollständig ausgeblendet. Hab ich das falsch verstanden? Und falls ja, bekomme ich die 29(%) vom Datenpunkt hinter dem Text dann auf eine andere Art  ausgeblendet?
+
+<img width="574" alt="Bildschirmfoto 2020-12-28 um 01 37 37" src="https://user-images.githubusercontent.com/57875762/103182944-8e5f0280-48af-11eb-8383-6b71e5e145c6.png">
+
+<img width="964" alt="Bildschirmfoto 2020-12-28 um 01 44 41" src="https://user-images.githubusercontent.com/57875762/103182947-928b2000-48af-11eb-97d1-e1e5a2518099.png">
+
+***
+
 
 #### Alternative Anzeigewerte
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/434).
