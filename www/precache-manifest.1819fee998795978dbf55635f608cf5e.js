@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e802d702deceb62140ab15127197d1df",
+    "revision": "627bb6211d408bffe97770218dd689dc",
     "url": "/jarvis/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jarvis/static/css/5.1a719957.chunk.css"
   },
   {
-    "revision": "fbe281ee9b700020613c",
+    "revision": "a3948f9410aa27ff8447",
     "url": "/jarvis/static/css/main.45d5d0e8.chunk.css"
   },
   {
@@ -60,8 +60,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jarvis/static/js/9.7efbc558.chunk.js"
   },
   {
-    "revision": "fbe281ee9b700020613c",
-    "url": "/jarvis/static/js/main.762870b1.chunk.js"
+    "revision": "a3948f9410aa27ff8447",
+    "url": "/jarvis/static/js/main.b2585b29.chunk.js"
   },
   {
     "revision": "fa6177e4093508ee8cf8",
