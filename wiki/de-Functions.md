@@ -140,7 +140,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hm-sec-key</h5>
+<h5>HM-Sec-Key</h5>
 <ul>
 <li><code>error</code>
 <ul>
@@ -348,7 +348,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.HUMIDITY</code></li>
 </ul>
 </ul>
-<h5>hm-wds30-ot2-sm</h5>
+<h5>HM-WDS30-OT2-SM</h5>
 <ul>
 <li><code>temperature1</code>
 <ul>
@@ -953,7 +953,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hm-sec-sd-2</h5>
+<h5>HM-Sec-SD-2</h5>
 <ul>
 <li><code>alarm</code>
 <ul>
@@ -1179,11 +1179,16 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>open</code></td><td>-</td><td><pre lang="json">{
-   "true": "offen",
-   "false": "geschlossen"
+   "0": "geschlossen",
+   "1": "offen",
+   "2": "offen",
+   "false": "geschlossen",
+   "true": "offen"
 }</pre></td><td>-</td><td><pre lang="json">{
-   "true": "window-open-variant",
-   "false": "window-closed-variant"
+   "0": "window-closed-variant",
+   "1": "window-open-variant",
+   "false": "window-closed-variant",
+   "true": "window-open-variant"
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
@@ -1193,7 +1198,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>open</code>
 <ul>
 <li>state: <code>.1.STATE</code></li>
-<li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
 <h5>hmip-swdo</h5>
@@ -1201,7 +1205,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>open</code>
 <ul>
 <li>state: <code>.1.STATE</code></li>
-<li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
 <h5>hmip-srh</h5>
@@ -1232,7 +1235,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>open</code>
 <ul>
 <li>state: <code>.channels.1.windowOpen</code></li>
-<li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
 
@@ -1351,7 +1353,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.STATE</code></li>
 </ul>
 </ul>
-<h5>hm-pb-2-wm55</h5>
+<h5>HM-PB-2-WM55</h5>
 <ul>
 <li><code>PRESS_LONG_BOTTOM</code>
 <ul>
@@ -1374,7 +1376,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.2.PRESS_SHORT</code></li>
 </ul>
 </ul>
-<h5>hb-uni-senact-4-4-rc</h5>
+<h5>HB-UNI-SenAct-4-4-RC</h5>
 <ul>
 <li><code>state1</code>
 <ul>
