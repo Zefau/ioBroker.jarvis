@@ -22,6 +22,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `light` of hm-prc](#function-light-of-hm-prc)
   - [Function `heating` of hm-prc](#function-heating-of-hm-prc)
   - [Function `blind` of hm-prc](#function-blind-of-hm-prc)
+  - [Function `sensor` of hm-prc](#function-sensor-of-hm-prc)
   - [Function `smoke` of hm-prc](#function-smoke-of-hm-prc)
   - [Function `window` of hm-prc](#function-window-of-hm-prc)
   - [Function `socket` of hm-prc](#function-socket-of-hm-prc)
@@ -126,7 +127,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `light` of hm-prc
 ```
 {
-   "hmip-bsm": {
+   "HmIP-BSM": {
       "power": {
          "state": ".4.STATE",
          "action": ".4.STATE"
@@ -141,7 +142,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".7.FREQUENCY"
       }
    },
-   "hmip-bsl": {
+   "HmIP-BSL": {
       "power": {
          "state": ".4.STATE",
          "action": ".4.STATE"
@@ -183,25 +184,39 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          }
       }
    },
-   "hmip-brc2": {
+   "HmIP-BRC2": {
       "power": {
          "state": ".3.STATE",
          "action": ".4.STATE"
       }
    },
-   "hmip-bdt": {
+   "HmIP-BDT": {
       "level": {
          "state": ".3.LEVEL",
          "action": ".4.LEVEL"
       }
    },
-   "hm-lc-sw1pbu-fm": {
+   "HM-LC-Sw1PBU-FM": {
       "power": {
          "state": ".1.STATE",
          "action": ".1.STATE"
       }
    },
-   "hm-lc-sw1-fm": {
+   "HM-LC-Sw1-FM": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "activity": {
+         "state": ".1.WORKING",
+         "action": ".1.WORKING"
+      }
+   },
+   "HM-LC-Sw1-DR": {
       "power": {
          "state": ".1.STATE",
          "action": ".1.STATE"
@@ -211,13 +226,65 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.ON_TIME"
       }
    },
-   "hm-lc-dim1tpbu-fm": {
+   "HM-LC-Sw2-FM": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "powerCh2": {
+         "state": ".2.STATE",
+         "action": ".2.STATE"
+      },
+      "timerOffCh2": {
+         "state": ".2.ON_TIME",
+         "action": ".2.ON_TIME"
+      }
+   },
+   "HM-LC-Sw4-DR": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "powerCh2": {
+         "state": ".2.STATE",
+         "action": ".2.STATE"
+      },
+      "timerOffCh2": {
+         "state": ".2.ON_TIME",
+         "action": ".2.ON_TIME"
+      },
+      "powerCh3": {
+         "state": ".3.STATE",
+         "action": ".3.STATE"
+      },
+      "timerOffCh3": {
+         "state": ".3.ON_TIME",
+         "action": ".3.ON_TIME"
+      },
+      "powerCh4": {
+         "state": ".4.STATE",
+         "action": ".4.STATE"
+      },
+      "timerOffCh4": {
+         "state": ".4.ON_TIME",
+         "action": ".4.ON_TIME"
+      }
+   },
+   "HM-LC-Dim1TPBU-FM": {
       "level": {
          "state": ".1.LEVEL",
          "action": ".1.LEVEL"
       }
    },
-   "hm-lc-dim1t-pl-3": {
+   "HM-LC-Dim1T-Pl-3": {
       "level": {
          "state": ".1.LEVEL",
          "action": ".1.LEVEL"
@@ -230,7 +297,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `heating` of hm-prc
 ```
 {
-   "hmip-etrv-b": {
+   "HmIP-eTRV-B": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
       },
@@ -257,7 +324,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.PARTY_MODE"
       }
    },
-   "hmip-bwth": {
+   "HmIP-BWTH": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
       },
@@ -273,7 +340,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.BOOST_MODE"
       }
    },
-   "hmip-wth-2": {
+   "HmIP-WTH-2": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
       },
@@ -289,7 +356,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.BOOST_MODE"
       }
    },
-   "hm-cc-rt-dn": {
+   "HM-CC-RT-DN": {
       "temperature": {
          "state": ".4.ACTUAL_TEMPERATURE"
       },
@@ -300,6 +367,12 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "boost": {
          "state": ".4.BOOST_MODE",
          "action": ".4.BOOST_MODE"
+      },
+      "batteryState": {
+         "state": ".4.BATTERY_STATE"
+      },
+      "partyTemperature": {
+         "state": ".4.PARTY_TEMPERATURE"
       },
       "modeAuto": {
          "state": ".4.AUTO_MODE",
@@ -336,23 +409,77 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".4.VALVE_STATE"
       }
    },
-   "hm-tc-it-wm-w-eu": {
+   "HM-TC-IT-WM-W-EU": {
       "temperature": {
          "state": ".1.TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      },
+      "actualHumidity": {
+         "state": ".2.ACTUAL_HUMIDITY"
+      },
+      "actualTemperature": {
+         "state": ".2.ACTUAL_TEMPERATURE"
+      },
+      "modeAuto": {
+         "state": ".2.AUTO_MODE",
+         "action": ".2.AUTO_MODE"
+      },
+      "batteryState": {
+         "state": ".2.BATTERY_STATE"
+      },
+      "boost": {
+         "state": ".2.BOOST_MODE",
+         "action": ".2.BOOST_MODE"
+      },
+      "boostState": {
+         "state": ".2.BOOST_STATE",
+         "action": ".2.BOOST_STATE"
+      },
+      "modeControl": {
+         "state": ".2.CONTROL_MODE",
+         "action": ".2.CONTROL_MODE",
+         "display": {
+            "0": "Auto-Mode",
+            "1": "Manu-Mode",
+            "2": "Party-Mode",
+            "3": "Boost-Mode"
+         }
+      },
+      "modeCurrent": {
+         "state": ".2.COMFORT_MODE",
+         "action": ".2.COMFORT_MODE"
+      },
+      "lowBatteryAlarm": {
+         "state": ".2.LOWBAT_REPORTING",
+         "action": ".2.LOWBAT_REPORTING"
+      },
+      "modeManu": {
+         "state": ".2.MANU_MODE",
+         "action": ".2.MANU_MODE"
+      },
+      "partyTemperature": {
+         "state": ".2.PARTY_TEMPERATURE"
       },
       "setTemperature": {
          "state": ".2.SET_TEMPERATURE",
          "action": ".2.SET_TEMPERATURE"
       },
-      "humidity": {
-         "state": ".1.HUMIDITY"
-      },
-      "boost": {
-         "state": ".2.BOOST_MODE",
-         "action": ".2.BOOST_MODE"
+      "openWindow": {
+         "state": ".2.WINDOW_OPEN_REPORTING",
+         "action": ".2.WINDOW_OPEN_REPORTING"
       }
    },
-   "hm-wds40-th-i": {
+   "HM-WDS40-TH-I": {
+      "temperature": {
+         "state": ".1.TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      }
+   },
+   "HM-WDS10-TH-O": {
       "temperature": {
          "state": ".1.TEMPERATURE"
       },
@@ -361,11 +488,41 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       }
    },
    "HM-WDS30-OT2-SM": {
-      "temperature1": {
+      "temperature": {
          "state": ".1.TEMPERATURE"
       },
-      "temperature2": {
+      "lowBattery": {
+         "state": ".1.LOWBAT"
+      },
+      "temperatureCh2": {
          "state": ".2.TEMPERATURE"
+      },
+      "lowBatteryCh2": {
+         "state": ".2.LOWBAT"
+      },
+      "temperatureCh3": {
+         "state": ".3.TEMPERATURE"
+      },
+      "lowBatteryCh3": {
+         "state": ".3.LOWBAT"
+      },
+      "temperatureCh4": {
+         "state": ".4.TEMPERATURE"
+      },
+      "lowBatteryCh4": {
+         "state": ".4.LOWBAT"
+      },
+      "temperatureCh5": {
+         "state": ".5.TEMPERATURE"
+      },
+      "lowBatteryCh5": {
+         "state": ".5.LOWBAT"
+      },
+      "temperatureCh6": {
+         "state": ".6.TEMPERATURE"
+      },
+      "lowBatteryCh6": {
+         "state": ".6.LOWBAT"
       }
    }
 }
@@ -375,7 +532,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `blind` of hm-prc
 ```
 {
-   "hmip-broll": {
+   "HmIP-BROLL": {
       "level": {
          "state": ".3.LEVEL",
          "action": ".4.LEVEL"
@@ -389,7 +546,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".4.STOP"
       }
    },
-   "hm-lc-bl1-fm": {
+   "HM-LC-Bl1-FM": {
       "level": {
          "state": ".1.LEVEL",
          "action": ".1.LEVEL"
@@ -399,7 +556,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.STOP"
       }
    },
-   "hm-lc-bl1pbu-fm": {
+   "HM-LC-Bl1PBU-FM": {
       "level": {
          "state": ".1.LEVEL",
          "action": ".1.LEVEL"
@@ -407,6 +564,18 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "activity": {
          "state": ".1.WORKING",
          "action": ".1.STOP"
+      }
+   }
+}
+```
+
+
+#### Function `sensor` of hm-prc
+```
+{
+   "HM-Sec-WDS-2": {
+      "alarm": {
+         "state": ".1.STATE"
       }
    }
 }
@@ -428,17 +597,17 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `window` of hm-prc
 ```
 {
-   "hmip-swdo-I": {
+   "HmIP-SWDO-I": {
       "open": {
          "state": ".1.STATE"
       }
    },
-   "hmip-swdo": {
+   "HmIP-SWDO": {
       "open": {
          "state": ".1.STATE"
       }
    },
-   "hmip-srh": {
+   "HmIP-SRH": {
       "open": {
          "state": ".1.STATE",
          "display": {
@@ -448,12 +617,22 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          }
       }
    },
-   "hm-sec-sco": {
+   "HM-Sec-RHS": {
+      "open": {
+         "state": ".1.STATE",
+         "display": {
+            "0": "window#open#false",
+            "1": "window#open#tilted",
+            "2": "window#open#true"
+         }
+      }
+   },
+   "HM-Sec-Sco": {
       "open": {
          "state": ".1.STATE"
       }
    },
-   "hm-sec-sc-2": {
+   "HM-Sec-SC-2": {
       "open": {
          "state": ".1.STATE"
       }
@@ -465,12 +644,12 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `socket` of hm-prc
 ```
 {
-   "hmip-ps": {
+   "HmIP-PS": {
       "power": {
          "state": ".3.STATE"
       }
    },
-   "hmip-psm": {
+   "HmIP-PSM": {
       "power": {
          "state": ".3.STATE"
       },
@@ -478,7 +657,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".6.POWER"
       }
    },
-   "hm-lc-sw1-pl-dn-r1": {
+   "HM-LC-Sw1-Pl-2": {
       "power": {
          "state": ".1.STATE",
          "action": ".1.STATE"
@@ -488,7 +667,17 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.ON_TIME"
       }
    },
-   "hm-es-pmsw1-pl": {
+   "HM-LC-Sw1-Pl-DN-R1": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      }
+   },
+   "HM-ES-PMSw1-Pl": {
       "power": {
          "state": ".1.STATE",
          "action": ".1.STATE"
@@ -497,24 +686,27 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.ON_TIME",
          "action": ".1.ON_TIME"
       },
+      "boot": {
+         "state": ".2.BOOT",
+         "action": ".2.BOOT"
+      },
       "powerCurrent": {
          "state": ".2.CURRENT",
-         "action": ".2.CURRENT",
          "unit": " mA"
+      },
+      "powerFrequency": {
+         "state": ".2.FREQUENCY"
       },
       "powerCounter": {
          "state": ".2.ENERGY_COUNTER",
-         "action": ".2.ENERGY_COUNTER",
          "unit": " Wh"
       },
       "powerMeter": {
          "state": ".2.POWER",
-         "action": ".2.POWER",
          "unit": " W"
       },
       "powerVoltage": {
          "state": ".2.VOLTAGE",
-         "action": ".2.VOLTAGE",
          "unit": " V"
       }
    }
@@ -525,7 +717,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `motion` of hm-prc
 ```
 {
-   "hmip-smi55": {
+   "HmIP-SMI55": {
       "motion": {
          "state": ".3.MOTION"
       },
@@ -533,7 +725,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".3.BRIGHTNESS"
       }
    },
-   "hmip-smi": {
+   "HmIP-SMI": {
       "motion": {
          "state": ".1.MOTION"
       },
@@ -541,7 +733,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.ILLUMINATION"
       }
    },
-   "hmip-smo-a": {
+   "HmIP-SMO-A": {
       "motion": {
          "state": ".1.MOTION"
       },
@@ -549,7 +741,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.ILLUMINATION"
       }
    },
-   "hmip-sam": {
+   "HmIP-SAM": {
       "motion": {
          "state": ".1.MOTION"
       },
@@ -557,7 +749,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.ILLUMINATION"
       }
    },
-   "hmip-spi": {
+   "HmIP-SPI": {
       "presence": {
          "state": ".1.PRESENCE_DETECTION_STATE"
       },
@@ -565,7 +757,23 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.ILLUMINATION"
       }
    },
-   "hm-sen-mdir-wm55": {
+   "HM-Sen-MDIR-WM55": {
+      "PRESS_LONG_BOTTOM": {
+         "state": ".1.PRESS_LONG",
+         "action": ".1.PRESS_LONG"
+      },
+      "PRESS_SHORT_BOTTOM": {
+         "state": ".1.PRESS_SHORT",
+         "action": ".1.PRESS_SHORT"
+      },
+      "PRESS_LONG_TOP": {
+         "state": ".2.PRESS_LONG",
+         "action": ".2.PRESS_LONG"
+      },
+      "PRESS_SHORT_TOP": {
+         "state": ".2.PRESS_SHORT",
+         "action": ".2.PRESS_SHORT"
+      },
       "motion": {
          "state": ".3.MOTION"
       },
@@ -573,7 +781,15 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".3.ILLUMINATION"
       }
    },
-   "hm-sen-mdir-o-2": {
+   "HM-Sen-MDIR-O-2": {
+      "motion": {
+         "state": ".1.MOTION"
+      },
+      "brightness": {
+         "state": ".1.BRIGHTNESS"
+      }
+   },
+   "HM-Sen-MDIR-O-3": {
       "motion": {
          "state": ".1.MOTION"
       },
@@ -603,7 +819,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `weather-station` of hm-prc
 ```
 {
-   "hmip-stho-a": {
+   "HmIP-STHO-A": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
       },
@@ -611,7 +827,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.HUMIDITY"
       }
    },
-   "hmip-swo-b": {
+   "HmIP-SWO-B": {
       "humidity": {
          "state": ".1.HUMIDITY"
       },
@@ -628,7 +844,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.SUNSHINEDURATION"
       }
    },
-   "hmip-swo-pl": {
+   "HmIP-SWO-PL": {
       "humidity": {
          "state": ".1.HUMIDITY"
       },
@@ -658,7 +874,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `other` of hm-prc
 ```
 {
-   "hmip-wrc2": {
+   "HmIP-WRC2": {
       "PRESS_LONG_BOTTOM": {
          "state": ".1.PRESS_LONG",
          "action": ".1.PRESS_LONG"
@@ -676,7 +892,18 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".2.PRESS_SHORT"
       }
    },
-   "hm-lc-sw1-dr": {
+   "HM-Sec-TiS": {
+      "power": {
+         "state": ".1.STATE"
+      }
+   },
+   "HM-LC-Sw1-DR": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      }
+   },
+   "HM-LC-SW1-FM": {
       "power": {
          "state": ".1.STATE",
          "action": ".1.STATE"

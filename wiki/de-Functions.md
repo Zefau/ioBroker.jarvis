@@ -53,7 +53,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-broll</h5>
+<h5>HmIP-BROLL</h5>
 <ul>
 <li><code>level</code>
 <ul>
@@ -71,7 +71,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.STOP</code></li>
 </ul>
 </ul>
-<h5>hm-lc-bl1-fm</h5>
+<h5>HM-LC-Bl1-FM</h5>
 <ul>
 <li><code>level</code>
 <ul>
@@ -84,7 +84,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.STOP</code></li>
 </ul>
 </ul>
-<h5>hm-lc-bl1pbu-fm</h5>
+<h5>HM-LC-Bl1PBU-FM</h5>
 <ul>
 <li><code>level</code>
 <ul>
@@ -186,7 +186,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-etrv-b</h5>
+<h5>HmIP-eTRV-B</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -221,7 +221,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.PARTY_MODE</code></li>
 </ul>
 </ul>
-<h5>hmip-bwth</h5>
+<h5>HmIP-BWTH</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -242,7 +242,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.BOOST_MODE</code></li>
 </ul>
 </ul>
-<h5>hmip-wth-2</h5>
+<h5>HmIP-WTH-2</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -263,7 +263,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.BOOST_MODE</code></li>
 </ul>
 </ul>
-<h5>hm-cc-rt-dn</h5>
+<h5>HM-CC-RT-DN</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -278,6 +278,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.4.BOOST_MODE</code></li>
 <li>action: <code>.4.BOOST_MODE</code></li>
+</ul>
+<li><code>batteryState</code>
+<ul>
+<li>state: <code>.4.BATTERY_STATE</code></li>
+</ul>
+<li><code>partyTemperature</code>
+<ul>
+<li>state: <code>.4.PARTY_TEMPERATURE</code></li>
 </ul>
 <li><code>modeAuto</code>
 <ul>
@@ -316,28 +324,91 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.VALVE_STATE</code></li>
 </ul>
 </ul>
-<h5>hm-tc-it-wm-w-eu</h5>
+<h5>HM-TC-IT-WM-W-EU</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
 <li>state: <code>.1.TEMPERATURE</code></li>
 </ul>
-<li><code>setTemperature</code>
-<ul>
-<li>state: <code>.2.SET_TEMPERATURE</code></li>
-<li>action: <code>.2.SET_TEMPERATURE</code></li>
-</ul>
 <li><code>humidity</code>
 <ul>
 <li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>actualHumidity</code>
+<ul>
+<li>state: <code>.2.ACTUAL_HUMIDITY</code></li>
+</ul>
+<li><code>actualTemperature</code>
+<ul>
+<li>state: <code>.2.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>modeAuto</code>
+<ul>
+<li>state: <code>.2.AUTO_MODE</code></li>
+<li>action: <code>.2.AUTO_MODE</code></li>
+</ul>
+<li><code>batteryState</code>
+<ul>
+<li>state: <code>.2.BATTERY_STATE</code></li>
 </ul>
 <li><code>boost</code>
 <ul>
 <li>state: <code>.2.BOOST_MODE</code></li>
 <li>action: <code>.2.BOOST_MODE</code></li>
 </ul>
+<li><code>boostState</code>
+<ul>
+<li>state: <code>.2.BOOST_STATE</code></li>
+<li>action: <code>.2.BOOST_STATE</code></li>
 </ul>
-<h5>hm-wds40-th-i</h5>
+<li><code>modeControl</code>
+<ul>
+<li>state: <code>.2.CONTROL_MODE</code></li>
+<li>action: <code>.2.CONTROL_MODE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>modeCurrent</code>
+<ul>
+<li>state: <code>.2.COMFORT_MODE</code></li>
+<li>action: <code>.2.COMFORT_MODE</code></li>
+</ul>
+<li><code>lowBatteryAlarm</code>
+<ul>
+<li>state: <code>.2.LOWBAT_REPORTING</code></li>
+<li>action: <code>.2.LOWBAT_REPORTING</code></li>
+</ul>
+<li><code>modeManu</code>
+<ul>
+<li>state: <code>.2.MANU_MODE</code></li>
+<li>action: <code>.2.MANU_MODE</code></li>
+</ul>
+<li><code>partyTemperature</code>
+<ul>
+<li>state: <code>.2.PARTY_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.2.SET_TEMPERATURE</code></li>
+<li>action: <code>.2.SET_TEMPERATURE</code></li>
+</ul>
+<li><code>openWindow</code>
+<ul>
+<li>state: <code>.2.WINDOW_OPEN_REPORTING</code></li>
+<li>action: <code>.2.WINDOW_OPEN_REPORTING</code></li>
+</ul>
+</ul>
+<h5>HM-WDS40-TH-I</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+</ul>
+<h5>HM-WDS10-TH-O</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -350,13 +421,53 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </ul>
 <h5>HM-WDS30-OT2-SM</h5>
 <ul>
-<li><code>temperature1</code>
+<li><code>temperature</code>
 <ul>
 <li>state: <code>.1.TEMPERATURE</code></li>
 </ul>
-<li><code>temperature2</code>
+<li><code>lowBattery</code>
+<ul>
+<li>state: <code>.1.LOWBAT</code></li>
+</ul>
+<li><code>temperatureCh2</code>
 <ul>
 <li>state: <code>.2.TEMPERATURE</code></li>
+</ul>
+<li><code>lowBatteryCh2</code>
+<ul>
+<li>state: <code>.2.LOWBAT</code></li>
+</ul>
+<li><code>temperatureCh3</code>
+<ul>
+<li>state: <code>.3.TEMPERATURE</code></li>
+</ul>
+<li><code>lowBatteryCh3</code>
+<ul>
+<li>state: <code>.3.LOWBAT</code></li>
+</ul>
+<li><code>temperatureCh4</code>
+<ul>
+<li>state: <code>.4.TEMPERATURE</code></li>
+</ul>
+<li><code>lowBatteryCh4</code>
+<ul>
+<li>state: <code>.4.LOWBAT</code></li>
+</ul>
+<li><code>temperatureCh5</code>
+<ul>
+<li>state: <code>.5.TEMPERATURE</code></li>
+</ul>
+<li><code>lowBatteryCh5</code>
+<ul>
+<li>state: <code>.5.LOWBAT</code></li>
+</ul>
+<li><code>temperatureCh6</code>
+<ul>
+<li>state: <code>.6.TEMPERATURE</code></li>
+</ul>
+<li><code>lowBatteryCh6</code>
+<ul>
+<li>state: <code>.6.LOWBAT</code></li>
 </ul>
 </ul>
 <h4>Adapter hmip</h4>
@@ -500,7 +611,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </ul>
 </ul>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-bsm</h5>
+<h5>HmIP-BSM</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -520,7 +631,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.7.FREQUENCY</code></li>
 </ul>
 </ul>
-<h5>hmip-bsl</h5>
+<h5>HmIP-BSL</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -550,7 +661,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
-<h5>hmip-brc2</h5>
+<h5>HmIP-BRC2</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -558,7 +669,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.STATE</code></li>
 </ul>
 </ul>
-<h5>hmip-bdt</h5>
+<h5>HmIP-BDT</h5>
 <ul>
 <li><code>level</code>
 <ul>
@@ -566,7 +677,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.LEVEL</code></li>
 </ul>
 </ul>
-<h5>hm-lc-sw1pbu-fm</h5>
+<h5>HM-LC-Sw1PBU-FM</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -574,7 +685,25 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.STATE</code></li>
 </ul>
 </ul>
-<h5>hm-lc-sw1-fm</h5>
+<h5>HM-LC-Sw1-FM</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>activity</code>
+<ul>
+<li>state: <code>.1.WORKING</code></li>
+<li>action: <code>.1.WORKING</code></li>
+</ul>
+</ul>
+<h5>HM-LC-Sw1-DR</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -587,7 +716,73 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.ON_TIME</code></li>
 </ul>
 </ul>
-<h5>hm-lc-dim1tpbu-fm</h5>
+<h5>HM-LC-Sw2-FM</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>powerCh2</code>
+<ul>
+<li>state: <code>.2.STATE</code></li>
+<li>action: <code>.2.STATE</code></li>
+</ul>
+<li><code>timerOffCh2</code>
+<ul>
+<li>state: <code>.2.ON_TIME</code></li>
+<li>action: <code>.2.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>HM-LC-Sw4-DR</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>powerCh2</code>
+<ul>
+<li>state: <code>.2.STATE</code></li>
+<li>action: <code>.2.STATE</code></li>
+</ul>
+<li><code>timerOffCh2</code>
+<ul>
+<li>state: <code>.2.ON_TIME</code></li>
+<li>action: <code>.2.ON_TIME</code></li>
+</ul>
+<li><code>powerCh3</code>
+<ul>
+<li>state: <code>.3.STATE</code></li>
+<li>action: <code>.3.STATE</code></li>
+</ul>
+<li><code>timerOffCh3</code>
+<ul>
+<li>state: <code>.3.ON_TIME</code></li>
+<li>action: <code>.3.ON_TIME</code></li>
+</ul>
+<li><code>powerCh4</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+<li><code>timerOffCh4</code>
+<ul>
+<li>state: <code>.4.ON_TIME</code></li>
+<li>action: <code>.4.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>HM-LC-Dim1TPBU-FM</h5>
 <ul>
 <li><code>level</code>
 <ul>
@@ -595,7 +790,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.LEVEL</code></li>
 </ul>
 </ul>
-<h5>hm-lc-dim1t-pl-3</h5>
+<h5>HM-LC-Dim1T-Pl-3</h5>
 <ul>
 <li><code>level</code>
 <ul>
@@ -745,7 +940,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-smi55</h5>
+<h5>HmIP-SMI55</h5>
 <ul>
 <li><code>motion</code>
 <ul>
@@ -756,7 +951,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.3.BRIGHTNESS</code></li>
 </ul>
 </ul>
-<h5>hmip-smi</h5>
+<h5>HmIP-SMI</h5>
 <ul>
 <li><code>motion</code>
 <ul>
@@ -767,7 +962,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
 </ul>
-<h5>hmip-smo-a</h5>
+<h5>HmIP-SMO-A</h5>
 <ul>
 <li><code>motion</code>
 <ul>
@@ -778,7 +973,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
 </ul>
-<h5>hmip-sam</h5>
+<h5>HmIP-SAM</h5>
 <ul>
 <li><code>motion</code>
 <ul>
@@ -789,7 +984,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
 </ul>
-<h5>hmip-spi</h5>
+<h5>HmIP-SPI</h5>
 <ul>
 <li><code>presence</code>
 <ul>
@@ -800,8 +995,28 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.ILLUMINATION</code></li>
 </ul>
 </ul>
-<h5>hm-sen-mdir-wm55</h5>
+<h5>HM-Sen-MDIR-WM55</h5>
 <ul>
+<li><code>PRESS_LONG_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_LONG</code></li>
+<li>action: <code>.1.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_BOTTOM</code>
+<ul>
+<li>state: <code>.1.PRESS_SHORT</code></li>
+<li>action: <code>.1.PRESS_SHORT</code></li>
+</ul>
+<li><code>PRESS_LONG_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_LONG</code></li>
+<li>action: <code>.2.PRESS_LONG</code></li>
+</ul>
+<li><code>PRESS_SHORT_TOP</code>
+<ul>
+<li>state: <code>.2.PRESS_SHORT</code></li>
+<li>action: <code>.2.PRESS_SHORT</code></li>
+</ul>
 <li><code>motion</code>
 <ul>
 <li>state: <code>.3.MOTION</code></li>
@@ -811,7 +1026,18 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.3.ILLUMINATION</code></li>
 </ul>
 </ul>
-<h5>hm-sen-mdir-o-2</h5>
+<h5>HM-Sen-MDIR-O-2</h5>
+<ul>
+<li><code>motion</code>
+<ul>
+<li>state: <code>.1.MOTION</code></li>
+</ul>
+<li><code>brightness</code>
+<ul>
+<li>state: <code>.1.BRIGHTNESS</code></li>
+</ul>
+</ul>
+<h5>HM-Sen-MDIR-O-3</h5>
 <ul>
 <li><code>motion</code>
 <ul>
@@ -868,6 +1094,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>pressure</code></td><td>-</td><td>-</td><td><code>hPa</code></td><td><pre lang="json">"mdi-air-purifier"</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-prc</h4>
+<h5>HM-Sec-WDS-2</h5>
+<ul>
+<li><code>alarm</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
 <h4>Adapter zigbee</h4>
 <ul>
 <li><code>drop</code>
@@ -988,14 +1222,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-ps</h5>
+<h5>HmIP-PS</h5>
 <ul>
 <li><code>power</code>
 <ul>
 <li>state: <code>.3.STATE</code></li>
 </ul>
 </ul>
-<h5>hmip-psm</h5>
+<h5>HmIP-PSM</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -1006,7 +1240,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.6.POWER</code></li>
 </ul>
 </ul>
-<h5>hm-lc-sw1-pl-dn-r1</h5>
+<h5>HM-LC-Sw1-Pl-2</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -1019,7 +1253,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.ON_TIME</code></li>
 </ul>
 </ul>
-<h5>hm-es-pmsw1-pl</h5>
+<h5>HM-LC-Sw1-Pl-DN-R1</h5>
 <ul>
 <li><code>power</code>
 <ul>
@@ -1030,29 +1264,47 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.1.ON_TIME</code></li>
 <li>action: <code>.1.ON_TIME</code></li>
+</ul>
+</ul>
+<h5>HM-ES-PMSw1-Pl</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>boot</code>
+<ul>
+<li>state: <code>.2.BOOT</code></li>
+<li>action: <code>.2.BOOT</code></li>
 </ul>
 <li><code>powerCurrent</code>
 <ul>
 <li>state: <code>.2.CURRENT</code></li>
-<li>action: <code>.2.CURRENT</code></li>
 <li>unit: <code> mA</code></li>
+</ul>
+<li><code>powerFrequency</code>
+<ul>
+<li>state: <code>.2.FREQUENCY</code></li>
 </ul>
 <li><code>powerCounter</code>
 <ul>
 <li>state: <code>.2.ENERGY_COUNTER</code></li>
-<li>action: <code>.2.ENERGY_COUNTER</code></li>
 <li>unit: <code> Wh</code></li>
 </ul>
 <li><code>powerMeter</code>
 <ul>
 <li>state: <code>.2.POWER</code></li>
-<li>action: <code>.2.POWER</code></li>
 <li>unit: <code> W</code></li>
 </ul>
 <li><code>powerVoltage</code>
 <ul>
 <li>state: <code>.2.VOLTAGE</code></li>
-<li>action: <code>.2.VOLTAGE</code></li>
 <li>unit: <code> V</code></li>
 </ul>
 </ul>
@@ -1108,7 +1360,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-stho-a</h5>
+<h5>HmIP-STHO-A</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -1119,7 +1371,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.HUMIDITY</code></li>
 </ul>
 </ul>
-<h5>hmip-swo-b</h5>
+<h5>HmIP-SWO-B</h5>
 <ul>
 <li><code>humidity</code>
 <ul>
@@ -1142,7 +1394,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.SUNSHINEDURATION</code></li>
 </ul>
 </ul>
-<h5>hmip-swo-pl</h5>
+<h5>HmIP-SWO-PL</h5>
 <ul>
 <li><code>humidity</code>
 <ul>
@@ -1193,21 +1445,21 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-swdo-I</h5>
+<h5>HmIP-SWDO-I</h5>
 <ul>
 <li><code>open</code>
 <ul>
 <li>state: <code>.1.STATE</code></li>
 </ul>
 </ul>
-<h5>hmip-swdo</h5>
+<h5>HmIP-SWDO</h5>
 <ul>
 <li><code>open</code>
 <ul>
 <li>state: <code>.1.STATE</code></li>
 </ul>
 </ul>
-<h5>hmip-srh</h5>
+<h5>HmIP-SRH</h5>
 <ul>
 <li><code>open</code>
 <ul>
@@ -1215,14 +1467,22 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
-<h5>hm-sec-sco</h5>
+<h5>HM-Sec-RHS</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>HM-Sec-Sco</h5>
 <ul>
 <li><code>open</code>
 <ul>
 <li>state: <code>.1.STATE</code></li>
 </ul>
 </ul>
-<h5>hm-sec-sc-2</h5>
+<h5>HM-Sec-SC-2</h5>
 <ul>
 <li><code>open</code>
 <ul>
@@ -1322,7 +1582,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-prc</h4>
-<h5>hmip-wrc2</h5>
+<h5>HmIP-WRC2</h5>
 <ul>
 <li><code>PRESS_LONG_BOTTOM</code>
 <ul>
@@ -1345,7 +1605,22 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.2.PRESS_SHORT</code></li>
 </ul>
 </ul>
-<h5>hm-lc-sw1-dr</h5>
+<h5>HM-Sec-TiS</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>HM-LC-Sw1-DR</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>HM-LC-SW1-FM</h5>
 <ul>
 <li><code>power</code>
 <ul>

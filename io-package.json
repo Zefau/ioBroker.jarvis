@@ -16,6 +16,10 @@
          "zh-cn": "jarvis - just another remarkable vis"
       },
       "news": {
+         "2.1.0-rc.2": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2"
+         },
          "2.1.0-rc.1": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.1",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.1"
