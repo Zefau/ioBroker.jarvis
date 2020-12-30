@@ -31,11 +31,47 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `other` of hm-prc](#function-other-of-hm-prc)
 - [hmip](#adapter-hmip)
   - [Function `heating` of hmip](#function-heating-of-hmip)
+  - [Function `blind` of hmip](#function-blind-of-hmip)
   - [Function `window` of hmip](#function-window-of-hmip)
+  - [Function `motion` of hmip](#function-motion-of-hmip)
 - [hue-extended](#adapter-hue-extended)
   - [Function `light` of hue-extended](#function-light-of-hue-extended)
 - [hue](#adapter-hue)
   - [Function `light` of hue](#function-light-of-hue)
+- [mihome-vacuum](#adapter-mihome-vacuum)
+  - [Function `consumableFilter` of mihome-vacuum](#function-consumableFilter-of-mihome-vacuum)
+  - [Function `consumableBrushMain` of mihome-vacuum](#function-consumableBrushMain-of-mihome-vacuum)
+  - [Function `consumableBrushSide` of mihome-vacuum](#function-consumableBrushSide-of-mihome-vacuum)
+  - [Function `consumableSensors` of mihome-vacuum](#function-consumableSensors-of-mihome-vacuum)
+  - [Function `consumableFilterWater` of mihome-vacuum](#function-consumableFilterWater-of-mihome-vacuum)
+  - [Function `controlSoundVolume` of mihome-vacuum](#function-controlSoundVolume-of-mihome-vacuum)
+  - [Function `controlModeCarpet` of mihome-vacuum](#function-controlModeCarpet-of-mihome-vacuum)
+  - [Function `controlFind` of mihome-vacuum](#function-controlFind-of-mihome-vacuum)
+  - [Function `controlHome` of mihome-vacuum](#function-controlHome-of-mihome-vacuum)
+  - [Function `controlPause` of mihome-vacuum](#function-controlPause-of-mihome-vacuum)
+  - [Function `cleanRoomResume` of mihome-vacuum](#function-cleanRoomResume-of-mihome-vacuum)
+  - [Function `cleanZoneResume` of mihome-vacuum](#function-cleanZoneResume-of-mihome-vacuum)
+  - [Function `cleanSpot` of mihome-vacuum](#function-cleanSpot-of-mihome-vacuum)
+  - [Function `cleanZone` of mihome-vacuum](#function-cleanZone-of-mihome-vacuum)
+  - [Function `clean` of mihome-vacuum](#function-clean-of-mihome-vacuum)
+  - [Function `controlFan` of mihome-vacuum](#function-controlFan-of-mihome-vacuum)
+  - [Function `historyTableJson` of mihome-vacuum](#function-historyTableJson-of-mihome-vacuum)
+  - [Function `cleanedTotalArea` of mihome-vacuum](#function-cleanedTotalArea-of-mihome-vacuum)
+  - [Function `cleanedTotalCleanups` of mihome-vacuum](#function-cleanedTotalCleanups-of-mihome-vacuum)
+  - [Function `cleanedTotalTime` of mihome-vacuum](#function-cleanedTotalTime-of-mihome-vacuum)
+  - [Function `cleanedMissionArea` of mihome-vacuum](#function-cleanedMissionArea-of-mihome-vacuum)
+  - [Function `cleanedMissionTime` of mihome-vacuum](#function-cleanedMissionTime-of-mihome-vacuum)
+  - [Function `battery` of mihome-vacuum](#function-battery-of-mihome-vacuum)
+  - [Function `connection` of mihome-vacuum](#function-connection-of-mihome-vacuum)
+  - [Function `device_fw` of mihome-vacuum](#function-device_fw-of-mihome-vacuum)
+  - [Function `device_model` of mihome-vacuum](#function-device_model-of-mihome-vacuum)
+  - [Function `doNotDisturb` of mihome-vacuum](#function-doNotDisturb-of-mihome-vacuum)
+  - [Function `error` of mihome-vacuum](#function-error-of-mihome-vacuum)
+  - [Function `state` of mihome-vacuum](#function-state-of-mihome-vacuum)
+  - [Function `waterBox` of mihome-vacuum](#function-waterBox-of-mihome-vacuum)
+  - [Function `map` of mihome-vacuum](#function-map-of-mihome-vacuum)
+  - [Function `cleanQueueClear` of mihome-vacuum](#function-cleanQueueClear-of-mihome-vacuum)
+  - [Function `cleanQueue` of mihome-vacuum](#function-cleanQueue-of-mihome-vacuum)
 - [nuki-extended](#adapter-nuki-extended)
   - [Function `openers` of nuki-extended](#function-openers-of-nuki-extended)
   - [Function `smartlocks` of nuki-extended](#function-smartlocks-of-nuki-extended)
@@ -324,7 +360,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.HUMIDITY"
       }
    },
-   "hm-wds30-ot2-sm": {
+   "HM-WDS30-OT2-SM": {
       "temperature1": {
          "state": ".1.TEMPERATURE"
       },
@@ -380,7 +416,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `smoke` of hm-prc
 ```
 {
-   "hm-sec-sd-2": {
+   "HM-Sec-SD-2": {
       "alarm": {
          "state": ".1.STATE"
       }
@@ -394,29 +430,21 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 {
    "hmip-swdo-I": {
       "open": {
-         "state": ".1.STATE",
-         "display": {
-            "0": "CLOSED",
-            "1": "OPEN"
-         }
+         "state": ".1.STATE"
       }
    },
    "hmip-swdo": {
       "open": {
-         "state": ".1.STATE",
-         "display": {
-            "0": "CLOSED",
-            "1": "OPEN"
-         }
+         "state": ".1.STATE"
       }
    },
    "hmip-srh": {
       "open": {
          "state": ".1.STATE",
          "display": {
-            "0": "CLOSED",
-            "1": "TILTED",
-            "2": "OPEN"
+            "0": "window#open#false",
+            "1": "window#open#tilted",
+            "2": "window#open#true"
          }
       }
    },
@@ -560,7 +588,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `door` of hm-prc
 ```
 {
-   "hm-sec-key": {
+   "HM-Sec-Key": {
       "error": {
          "state": "1.ERROR"
       },
@@ -654,7 +682,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.STATE"
       }
    },
-   "hm-pb-2-wm55": {
+   "HM-PB-2-WM55": {
       "PRESS_LONG_BOTTOM": {
          "state": ".1.PRESS_LONG",
          "action": ".1.PRESS_LONG"
@@ -672,7 +700,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".2.PRESS_SHORT"
       }
    },
-   "hb-uni-senact-4-4-rc": {
+   "HB-UNI-SenAct-4-4-RC": {
       "state1": {
          "state": ".1.STATE"
       },
@@ -754,16 +782,44 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
+#### Function `blind` of hmip
+```
+{
+   "hmip-broll": {
+      "level": {
+         "state": ".channels.1.shutterLevel",
+         "action": ".channels.1.shutterLevel"
+      },
+      "activity": {
+         "state": ".channels.1.processing",
+         "action": ".channels.1.stop"
+      }
+   }
+}
+```
+
+
 #### Function `window` of hmip
 ```
 {
    "hmip-swdo": {
       "open": {
-         "state": ".channels.1.windowOpen",
-         "display": {
-            "0": "CLOSED",
-            "1": "OPEN"
-         }
+         "state": ".channels.1.windowOpen"
+      }
+   }
+}
+```
+
+
+#### Function `motion` of hmip
+```
+{
+   "hmip-smi": {
+      "motion": {
+         "state": ".channels.1.motionDetected"
+      },
+      "illumination": {
+         "state": ".channels.1.illumination"
       }
    }
 }
@@ -814,6 +870,301 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "state": ".hue",
       "action": ".hue"
    }
+}
+```
+
+### Adapter mihome-vacuum
+
+#### Function `consumableFilter` of mihome-vacuum
+```
+{
+   "state": ".consumable.filter",
+   "action": ".consumable.filter_reset",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `consumableBrushMain` of mihome-vacuum
+```
+{
+   "state": ".consumable.main_brush",
+   "action": ".consumable.main_brush_reset",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `consumableBrushSide` of mihome-vacuum
+```
+{
+   "state": ".consumable.side_brush",
+   "action": ".consumable.side_brush_reset",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `consumableSensors` of mihome-vacuum
+```
+{
+   "state": ".consumable.sensors",
+   "action": ".consumable.sensors_reset",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `consumableFilterWater` of mihome-vacuum
+```
+{
+   "state": ".consumable.water_filter",
+   "action": ".consumable.water_filter_reset",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `controlSoundVolume` of mihome-vacuum
+```
+{
+   "state": ".control.sound_volume",
+   "action": ".control.sound_volume",
+   "actionElement": "InputAction"
+}
+```
+
+
+#### Function `controlModeCarpet` of mihome-vacuum
+```
+{
+   "action": ".control.carpet_mode",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `controlFind` of mihome-vacuum
+```
+{
+   "action": ".control.find",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `controlHome` of mihome-vacuum
+```
+{
+   "action": ".control.home",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `controlPause` of mihome-vacuum
+```
+{
+   "action": ".control.pause",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `cleanRoomResume` of mihome-vacuum
+```
+{
+   "action": ".control.resumeRoomClean",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `cleanZoneResume` of mihome-vacuum
+```
+{
+   "action": ".control.resumeZoneClean",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `cleanSpot` of mihome-vacuum
+```
+{
+   "action": ".control.spotclean",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `cleanZone` of mihome-vacuum
+```
+{
+   "action": ".control.zoneClean",
+   "actionElement": "InputAction"
+}
+```
+
+
+#### Function `clean` of mihome-vacuum
+```
+{
+   "action": ".control.clean",
+   "actionElement": "IconButtonAction"
+}
+```
+
+
+#### Function `controlFan` of mihome-vacuum
+```
+{
+   "action": ".control.fan_power",
+   "display": {
+      "101": "QUIET",
+      "102": "BALANCED",
+      "103": "TURBO",
+      "104": "MAXIMUM",
+      "105": "MOP",
+      "106": "CUSTOM"
+   }
+}
+```
+
+
+#### Function `historyTableJson` of mihome-vacuum
+```
+{
+   "state": ".history.allTableJSON"
+}
+```
+
+
+#### Function `cleanedTotalArea` of mihome-vacuum
+```
+{
+   "state": ".history.total_area"
+}
+```
+
+
+#### Function `cleanedTotalCleanups` of mihome-vacuum
+```
+{
+   "state": ".history.cleanups"
+}
+```
+
+
+#### Function `cleanedTotalTime` of mihome-vacuum
+```
+{
+   "state": ".history.total_time"
+}
+```
+
+
+#### Function `cleanedMissionArea` of mihome-vacuum
+```
+{
+   "state": ".info.cleanedarea"
+}
+```
+
+
+#### Function `cleanedMissionTime` of mihome-vacuum
+```
+{
+   "state": ".info.cleanedtime"
+}
+```
+
+
+#### Function `battery` of mihome-vacuum
+```
+{
+   "state": ".info.battery"
+}
+```
+
+
+#### Function `connection` of mihome-vacuum
+```
+{
+   "state": ".info.connection"
+}
+```
+
+
+#### Function `device_fw` of mihome-vacuum
+```
+{
+   "state": ".info.device_fw"
+}
+```
+
+
+#### Function `device_model` of mihome-vacuum
+```
+{
+   "state": ".info.device_model"
+}
+```
+
+
+#### Function `doNotDisturb` of mihome-vacuum
+```
+{
+   "state": ".info.dnd"
+}
+```
+
+
+#### Function `error` of mihome-vacuum
+```
+{
+   "state": ".info.error"
+}
+```
+
+
+#### Function `state` of mihome-vacuum
+```
+{
+   "state": ".info.state"
+}
+```
+
+
+#### Function `waterBox` of mihome-vacuum
+```
+{
+   "state": ".info.water_box"
+}
+```
+
+
+#### Function `map` of mihome-vacuum
+```
+{
+   "state": ".map.map64",
+   "action": ".map.loadMap"
+}
+```
+
+
+#### Function `cleanQueueClear` of mihome-vacuum
+```
+{
+   "action": ".control.clearQueue"
+}
+```
+
+
+#### Function `cleanQueue` of mihome-vacuum
+```
+{
+   "state": ".info.queue"
 }
 ```
 
@@ -1125,14 +1476,14 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
    "missedJson": {
       "state": ".missed.json"
    },
-   "outbundCount": {
-      "state": ".outbund.count"
+   "outboundCount": {
+      "state": ".outbound.count"
    },
-   "outbundHTML": {
-      "state": ".outbund.html"
+   "outboundHTML": {
+      "state": ".outbound.html"
    },
-   "outbundJson": {
-      "state": ".outbund.json"
+   "outboundJson": {
+      "state": ".outbound.json"
    }
 }
 ```
@@ -1200,7 +1551,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "state": ".colortemp",
       "action": ".colortemp"
    },
-   "rgb": {
+   "hex": {
       "state": ".color",
       "action": ".color"
    }
