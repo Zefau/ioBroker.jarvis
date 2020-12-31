@@ -9,6 +9,7 @@
   * [Widgets](de-Widgets)
   * [Module](de-Modules)
   * [Gewerke](de-Functions)
+* [Beispiele](de-Beispiele)
 * [Einstellungen](de-Settings)
 
 ***
