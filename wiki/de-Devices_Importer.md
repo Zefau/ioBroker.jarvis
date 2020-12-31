@@ -451,7 +451,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".2.COMFORT_MODE",
          "action": ".2.COMFORT_MODE"
       },
-      "lowBatteryAlarm": {
+      "lowBatteryAlarmReporting": {
          "state": ".2.LOWBAT_REPORTING",
          "action": ".2.LOWBAT_REPORTING"
       },
@@ -488,10 +488,10 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       }
    },
    "HM-WDS30-OT2-SM": {
-      "temperature": {
+      "temperatureCh1": {
          "state": ".1.TEMPERATURE"
       },
-      "lowBattery": {
+      "lowBatteryCh1": {
          "state": ".1.LOWBAT"
       },
       "temperatureCh2": {

@@ -372,7 +372,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.2.COMFORT_MODE</code></li>
 <li>action: <code>.2.COMFORT_MODE</code></li>
 </ul>
-<li><code>lowBatteryAlarm</code>
+<li><code>lowBatteryAlarmReporting</code>
 <ul>
 <li>state: <code>.2.LOWBAT_REPORTING</code></li>
 <li>action: <code>.2.LOWBAT_REPORTING</code></li>
@@ -421,11 +421,11 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </ul>
 <h5>HM-WDS30-OT2-SM</h5>
 <ul>
-<li><code>temperature</code>
+<li><code>temperatureCh1</code>
 <ul>
 <li>state: <code>.1.TEMPERATURE</code></li>
 </ul>
-<li><code>lowBattery</code>
+<li><code>lowBatteryCh1</code>
 <ul>
 <li>state: <code>.1.LOWBAT</code></li>
 </ul>
