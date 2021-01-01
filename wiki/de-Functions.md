@@ -130,11 +130,15 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>open</code></td><td>-</td><td><pre lang="json">{
-   "true": "offen",
-   "false": "geschlossen"
+   "0": "door#open#closed",
+   "1": "door#open#opened",
+   "false": "geschlossen",
+   "true": "offen"
 }</pre></td><td>-</td><td><pre lang="json">{
-   "true": "door-open",
-   "false": "door-closed"
+   "0": "window-closed-variant",
+   "1": "window-open-variant",
+   "false": "door-closed",
+   "true": "door-open"
 }</pre></td><td>-</td></tr>
 <tr><td><code>lock</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
@@ -1517,15 +1521,19 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    ">80": "battery-high",
    "<=80": "battery-medium",
    "<=30": "battery-low",
-   "<=10": "battery-outline",
-   "<=5": "battery-alert-variant-outline"
-}</pre></td><td>-</td></tr>
-<tr><td><code>door</code></td><td>-</td><td><pre lang="json">{
-   "true": "door#open",
-   "false": "door#closed"
+   "<=10": "battery-outline blink",
+   "<=5": "battery-alert-variant-outline blink"
+}</pre></td><td><pre lang="json">{
+   "<=10": {
+      "color": "#900"
+   }
+}</pre></td></tr>
+<tr><td><code>firmware</code></td><td>-</td><td><pre lang="json">{
+   "true": "Update verfügbar",
+   "false": "kein Update"
 }</pre></td><td>-</td><td><pre lang="json">{
-   "true": "door-open",
-   "false": "door-closed"
+   "true": "mdi-cog-refresh",
+   "false": "mdi-cog-outline"
 }</pre></td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">"water-percent"</pre></td><td>-</td></tr>
 <tr><td><code>level</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>

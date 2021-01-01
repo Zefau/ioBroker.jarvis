@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "2.1.0-rc.3",
+      "version": "2.1.0-rc.4",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -16,6 +16,10 @@
          "zh-cn": "jarvis - just another remarkable vis"
       },
       "news": {
+         "2.1.0-rc.4": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.4",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.4"
+         },
          "2.1.0-rc.2": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2"
