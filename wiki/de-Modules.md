@@ -22,6 +22,7 @@ Jedes Modul, dass in einem Widget (einer Box) angezeigt wird (und damit nicht fu
 - [DisplayImage](#modul-displayimage)
 - [iFrame](#modul-iframe)
 - [Map](#modul-map)
+- [MediaControl](#modul-mediacontrol)
 - [StateList](#modul-statelist)
 - [StateListHorizontal](#modul-statelisthorizontal)
 - [Weather](#modul-weather)
@@ -190,6 +191,27 @@ Zeigt eine Karte von OpenStreetMap.
 | `tooltipDirection` | Richtung in die der Tooltip öffnet  | Select (`auto`, `center`, `top`, `left`, `right`, `bottom`) | `bottom` |
 | `tooltipPermanent` | Permanenter Tooltip  | Switch | `true` |
 | `height` | Höhe der Karte  | Number | `500` |
+
+
+***
+
+
+### Modul: MediaControl
+#### Kurzbeschreibung
+Zeigt ein Multimedia-Player an (z. B. Spotify).
+
+
+#### Beispiel Screenshots
+
+
+#### Konfiguration
+| Parameter | Beschreibung | Typ | Standard |
+| - | - | - | - |
+| ***`adapter`*** | Musik Adapter  | Select | - |
+| `player` | Player ID  | Text | - |
+| `coverMode` | Cover Modus  | Switch | - |
+| `coverHeight` | Cover Höhe  | Number | `200` |
+| `coverUrl` | Cover Prefix URL  | Text | - |
 
 
 ***
