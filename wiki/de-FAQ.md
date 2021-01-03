@@ -17,7 +17,7 @@
   - [Buttons konfigurieren](#buttons-konfigurieren)
   - [Meine alias Geräte werden nicht importiert / My alias devices are not imported correctly](#meine-alias-geräte-werden-nicht-importiert--my-alias-devices-are-not-imported-correctly)
 - [:gem: Design / Theme](#:gem:-Design-/-Theme)
-  - [Hochformat-Anzeige auf dem Tablet (z. B. Fire 7)](#hochformat-anzeige-auf-dem-tablet-(z-b-fire-7))
+  - [Falsche Darstellung der Spalten auf dem Tablet](#falsche-darstellung-der-spalten-auf-dem-tablet)
   - [Eigene icons benutzen / How to use your own icons](#eigene-icons-benutzen--how-to-use-your-own-icons)
   - [Desktop vs. Mobil - Relative Höhe des Widgets](#desktop-vs-mobil---relative-höhe-des-widgets)
   - [Icon Stil ](#icon-stil-)
@@ -217,7 +217,7 @@ Bitte beachten: Datenpunkte des Alias Adapter werden NUR vom Importer erkannt, w
 
 ### :gem: Design / Theme
 
-#### Hochformat-Anzeige auf dem Tablet (z. B. Fire 7)
+#### Falsche Darstellung der Spalten auf dem Tablet
 [Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/359).
 
 Hallo, habe 2 Fire 7 im Einsatz leider ist hier die Anzeige buggy- siehe Foto -bekomme es mit de Einstellungen nicht hin.
