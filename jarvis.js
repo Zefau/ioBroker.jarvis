@@ -84,11 +84,13 @@ function startAdapter(options) {
 				
 				// trigger initial backup
 				if (err) {
+					adapter.log.info('No Backup found for ' + s.id + ', thus backing up initially.');
 					adapter.getState(s.state, (err, state) => !err && state && state.val && backup(s, state.val));
 				}
 				
 				// load recent backups
 				else if (contents) {
+					adapter.log.info('Found Backups for ' + s.id + '.');
 					BACKUPS[s.id] = JSON.parse(contents);
 				}
 			});

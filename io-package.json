@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "2.2.0-beta.5",
+      "version": "2.2.0-beta.6",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -85,6 +85,15 @@
    },
    "objects": [],
    "instanceObjects": [
+      {
+         "_id": "",
+         "type": "meta",
+         "common": {
+            "name": "user files and images for jarvis",
+            "type": "meta.user"
+         },
+         "native": {}
+      },
       {
          "_id": "devices",
          "type": "state",
