@@ -34,7 +34,9 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `heating` of hmip](#function-heating-of-hmip)
   - [Function `blind` of hmip](#function-blind-of-hmip)
   - [Function `window` of hmip](#function-window-of-hmip)
+  - [Function `socket` of hmip](#function-socket-of-hmip)
   - [Function `motion` of hmip](#function-motion-of-hmip)
+  - [Function `weather-station` of hmip](#function-weather-station-of-hmip)
 - [hue-extended](#adapter-hue-extended)
   - [Function `light` of hue-extended](#function-light-of-hue-extended)
 - [hue](#adapter-hue)
@@ -340,6 +342,22 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "action": ".1.BOOST_MODE"
       }
    },
+   "HmIP-WTH": {
+      "temperature": {
+         "state": ".1.ACTUAL_TEMPERATURE"
+      },
+      "setTemperature": {
+         "state": ".1.SET_POINT_TEMPERATURE",
+         "action": ".1.SET_POINT_TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      },
+      "boost": {
+         "state": ".1.BOOST_MODE",
+         "action": ".1.BOOST_MODE"
+      }
+   },
    "HmIP-WTH-2": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
@@ -532,6 +550,20 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `blind` of hm-prc
 ```
 {
+   "HmIP-BBL": {
+      "level": {
+         "state": ".3.LEVEL",
+         "action": ".4.LEVEL"
+      },
+      "level2": {
+         "state": ".3.LEVEL2",
+         "action": ".4.LEVEL2"
+      },
+      "activity": {
+         "state": ".3.ACTIVITY_STATE",
+         "action": ".4.STOP"
+      }
+   },
    "HmIP-BROLL": {
       "level": {
          "state": ".3.LEVEL",
@@ -573,6 +605,35 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `sensor` of hm-prc
 ```
 {
+   "HmIP-SLO": {
+      "illuminationAverage": {
+         "state": ".1.AVERAGE_ILLUMINATION",
+         "unit": " Lux"
+      },
+      "illuminationCurrent": {
+         "state": ".1.CURRENT_ILLUMINATION",
+         "unit": " Lux"
+      },
+      "illuminationHighest": {
+         "state": ".1.HIGHEST_ILLUMINATION",
+         "unit": " Lux"
+      },
+      "illuminationLowest": {
+         "state": ".1.LOWEST_ILLUMINATION",
+         "unit": " Lux"
+      }
+   },
+   "HmIP-SWD": {
+      "alarm": {
+         "state": ".1.ALARMSTATE"
+      },
+      "alarmMoisture": {
+         "state": ".1.MOISTURE_DETECTED"
+      },
+      "alarmWaterlevel": {
+         "state": ".1.WATERLEVEL_DETECTED"
+      }
+   },
    "HM-Sec-WDS-2": {
       "alarm": {
          "state": ".1.STATE"
@@ -588,6 +649,9 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
    "HM-Sec-SD-2": {
       "alarm": {
          "state": ".1.STATE"
+      },
+      "lowBatteryCh1": {
+         "state": ".1.LOWBAT"
       }
    }
 }
@@ -597,6 +661,11 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `window` of hm-prc
 ```
 {
+   "HmIP-SWDM": {
+      "open": {
+         "state": ".1.STATE"
+      }
+   },
    "HmIP-SWDO-I": {
       "open": {
          "state": ".1.STATE"
@@ -644,6 +713,35 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `socket` of hm-prc
 ```
 {
+   "HmIP-FSM": {
+      "power": {
+         "state": ".2.STATE",
+         "action": ".2.STATE"
+      },
+      "timerOff": {
+         "state": ".2.ON_TIME",
+         "action": ".2.ON_TIME"
+      },
+      "powerCurrent": {
+         "state": ".5.CURRENT",
+         "unit": " mA"
+      },
+      "powerFrequency": {
+         "state": ".5.FREQUENCY"
+      },
+      "powerCounter": {
+         "state": ".5.ENERGY_COUNTER",
+         "unit": " Wh"
+      },
+      "powerMeter": {
+         "state": ".5.POWER",
+         "unit": " W"
+      },
+      "powerVoltage": {
+         "state": ".5.VOLTAGE",
+         "unit": " V"
+      }
+   },
    "HmIP-PS": {
       "power": {
          "state": ".3.STATE"
@@ -675,6 +773,39 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "timerOff": {
          "state": ".1.ON_TIME",
          "action": ".1.ON_TIME"
+      }
+   },
+   "HM-ES-PMSw1-DR": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "boot": {
+         "state": ".2.BOOT",
+         "action": ".2.BOOT"
+      },
+      "powerCurrent": {
+         "state": ".2.CURRENT",
+         "unit": " mA"
+      },
+      "powerFrequency": {
+         "state": ".2.FREQUENCY"
+      },
+      "powerCounter": {
+         "state": ".2.ENERGY_COUNTER",
+         "unit": " Wh"
+      },
+      "powerMeter": {
+         "state": ".2.POWER",
+         "unit": " W"
+      },
+      "powerVoltage": {
+         "state": ".2.VOLTAGE",
+         "unit": " V"
       }
    },
    "HM-ES-PMSw1-Pl": {
@@ -757,6 +888,56 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.ILLUMINATION"
       }
    },
+   "HM-PB-6-WM55": {
+      "PRESS_LONG1": {
+         "state": ".1.PRESS_LONG",
+         "action": ".1.PRESS_LONG"
+      },
+      "PRESS_SHORT1": {
+         "state": ".1.PRESS_SHORT",
+         "action": ".1.PRESS_SHORT"
+      },
+      "PRESS_LONG2": {
+         "state": ".2.PRESS_LONG",
+         "action": ".2.PRESS_LONG"
+      },
+      "PRESS_SHORT2": {
+         "state": ".2.PRESS_SHORT",
+         "action": ".2.PRESS_SHORT"
+      },
+      "PRESS_LONG3": {
+         "state": ".3.PRESS_LONG",
+         "action": ".3.PRESS_LONG"
+      },
+      "PRESS_SHORT3": {
+         "state": ".3.PRESS_SHORT",
+         "action": ".3.PRESS_SHORT"
+      },
+      "PRESS_LONG4": {
+         "state": ".4.PRESS_LONG",
+         "action": ".4.PRESS_LONG"
+      },
+      "PRESS_SHORT4": {
+         "state": ".4.PRESS_SHORT",
+         "action": ".4.PRESS_SHORT"
+      },
+      "PRESS_LONG5": {
+         "state": ".5.PRESS_LONG",
+         "action": ".5.PRESS_LONG"
+      },
+      "PRESS_SHORT5": {
+         "state": ".5.PRESS_SHORT",
+         "action": ".5.PRESS_SHORT"
+      },
+      "PRESS_LONG6": {
+         "state": ".6.PRESS_LONG",
+         "action": ".6.PRESS_LONG"
+      },
+      "PRESS_SHORT6": {
+         "state": ".6.PRESS_SHORT",
+         "action": ".6.PRESS_SHORT"
+      }
+   },
    "HM-Sen-MDIR-WM55": {
       "PRESS_LONG_BOTTOM": {
          "state": ".1.PRESS_LONG",
@@ -806,10 +987,10 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 {
    "HM-Sec-Key": {
       "error": {
-         "state": "1.ERROR"
+         "state": ".1.ERROR"
       },
       "lock": {
-         "state": "1.OPEN"
+         "state": ".1.OPEN"
       }
    }
 }
@@ -897,6 +1078,40 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.STATE"
       }
    },
+   "HM-RC-2-PBU-FM": {
+      "PRESS_CONT_BOTTOM": {
+         "state": ".1.PRESS_CONT",
+         "action": ".1.PRESS_CONT"
+      },
+      "PRESS_LONG_BOTTOM": {
+         "state": ".1.PRESS_LONG",
+         "action": ".1.PRESS_LONG"
+      },
+      "PRESS_LONGRELEASE_BOTTOM": {
+         "state": ".1.PRESS_LONG_RELEASE",
+         "action": ".1.PRESS_LONG_RELEASE"
+      },
+      "PRESS_SHORT_BOTTOM": {
+         "state": ".1.PRESS_SHORT",
+         "action": ".1.PRESS_SHORT"
+      },
+      "PRESS_CONT_TOP": {
+         "state": ".2.PRESS_CONT",
+         "action": ".2.PRESS_CONT"
+      },
+      "PRESS_LONG_TOP": {
+         "state": ".2.PRESS_LONG",
+         "action": ".2.PRESS_LONG"
+      },
+      "PRESS_LONGRELEASE_TOP": {
+         "state": ".2.PRESS_LONG_RELEASE",
+         "action": ".2.PRESS_LONG_RELEASE"
+      },
+      "PRESS_SHORT_TOP": {
+         "state": ".2.PRESS_SHORT",
+         "action": ".2.PRESS_SHORT"
+      }
+   },
    "HM-LC-Sw1-DR": {
       "power": {
          "state": ".1.STATE",
@@ -910,6 +1125,9 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       }
    },
    "HM-PB-2-WM55": {
+      "lowBatteryCh1": {
+         "state": ".1.LOWBAT"
+      },
       "PRESS_LONG_BOTTOM": {
          "state": ".1.PRESS_LONG",
          "action": ".1.PRESS_LONG"
@@ -981,7 +1199,19 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `heating` of hmip
 ```
 {
-   "hmip-etrv-b": {
+   "HmIP-STH": {
+      "temperature": {
+         "state": ".channels.1.actualTemperature"
+      },
+      "humidity": {
+         "state": ".channels.1.humidity"
+      },
+      "setTemperature": {
+         "state": ".channels.1.setPointTemperature",
+         "action": ".channels.1.setPointTemperature"
+      }
+   },
+   "HmIP-eTRV-B": {
       "temperature": {
          "state": ".channels.1.valveActualTemperature"
       },
@@ -996,13 +1226,28 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".channels.1.valveState"
       }
    },
-   "hmip-etrv-2": {
+   "HmIP-eTRV-2": {
       "temperature": {
          "state": ".channels.1.valveActualTemperature"
       },
       "setTemperature": {
          "state": ".channels.1.setPointTemperature",
          "action": ".channels.1.setPointTemperature"
+      }
+   },
+   "HmIP-WTH-2": {
+      "temperature": {
+         "state": ".channels.1.actualTemperature"
+      },
+      "humidity": {
+         "state": ".channels.1.humidity"
+      },
+      "setTemperature": {
+         "state": ".channels.1.setPointTemperature",
+         "action": ".channels.1.setPointTemperature"
+      },
+      "vapor": {
+         "state": ".channels.1.vaporAmount"
       }
    }
 }
@@ -1012,7 +1257,17 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `blind` of hmip
 ```
 {
-   "hmip-broll": {
+   "HmIP-BBL": {
+      "level": {
+         "state": ".channels.1.shutterLevel",
+         "action": ".channels.1.shutterLevel"
+      },
+      "activity": {
+         "state": ".channels.1.processing",
+         "action": ".channels.1.stop"
+      }
+   },
+   "HmIP-BROLL": {
       "level": {
          "state": ".channels.1.shutterLevel",
          "action": ".channels.1.shutterLevel"
@@ -1029,9 +1284,40 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `window` of hmip
 ```
 {
-   "hmip-swdo": {
+   "HmIP-SWDO": {
       "open": {
          "state": ".channels.1.windowOpen"
+      }
+   },
+   "HmIP-SWDO-I": {
+      "open": {
+         "state": ".channels.1.windowOpen"
+      }
+   },
+   "HmIP-SRH": {
+      "open": {
+         "state": ".channels.1.windowOpen"
+      },
+      "state": {
+         "state": ".channels.1.windowState",
+         "display": {
+            "CLOSED": "window#open#false",
+            "TILTED": "window#open#tilted",
+            "OPEN": "window#open#true"
+         }
+      }
+   }
+}
+```
+
+
+#### Function `socket` of hmip
+```
+{
+   "HmIP-PS": {
+      "power": {
+         "state": ".channels.1.on",
+         "action": ".channels.1.on"
       }
    }
 }
@@ -1041,12 +1327,58 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 #### Function `motion` of hmip
 ```
 {
-   "hmip-smi": {
+   "HmIP-SMI": {
       "motion": {
          "state": ".channels.1.motionDetected"
       },
       "illumination": {
          "state": ".channels.1.illumination"
+      }
+   }
+}
+```
+
+
+#### Function `weather-station` of hmip
+```
+{
+   "HmIP-STHO": {
+      "temperature": {
+         "state": ".channels.1.actualTemperature"
+      },
+      "humidity": {
+         "state": ".channels.1.humidity"
+      },
+      "vapor": {
+         "state": ".channels.1.vaporAmount"
+      },
+      "display": {
+         "state": ".channels.1.display"
+      }
+   },
+   "hmip-stho-a": {
+      "temperature": {
+         "state": ".1.ACTUAL_TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      }
+   },
+   "hmip-swo-b": {
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      },
+      "wind": {
+         "state": ".1.WIND_SPEED"
+      },
+      "temperature": {
+         "state": ".1.ACTUAL_TEMPERATURE"
+      },
+      "illumination": {
+         "state": ".1.ILLUMINATION"
+      },
+      "sunshineduration": {
+         "state": ".1.SUNSHINEDURATION"
       }
    }
 }
