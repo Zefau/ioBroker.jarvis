@@ -1356,7 +1356,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".channels.1.display"
       }
    },
-   "hmip-stho-a": {
+   "HmIP-STHO-A": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
       },
@@ -1364,7 +1364,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
          "state": ".1.HUMIDITY"
       }
    },
-   "hmip-swo-b": {
+   "HmIP-SWO-B": {
       "humidity": {
          "state": ".1.HUMIDITY"
       },

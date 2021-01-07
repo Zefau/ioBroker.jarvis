@@ -1730,7 +1730,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.channels.1.display</code></li>
 </ul>
 </ul>
-<h5>hmip-stho-a</h5>
+<h5>HmIP-STHO-A</h5>
 <ul>
 <li><code>temperature</code>
 <ul>
@@ -1741,7 +1741,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.HUMIDITY</code></li>
 </ul>
 </ul>
-<h5>hmip-swo-b</h5>
+<h5>HmIP-SWO-B</h5>
 <ul>
 <li><code>humidity</code>
 <ul>
