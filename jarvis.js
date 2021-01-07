@@ -4,6 +4,7 @@ const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const _crypto = require('crypto');
 const _got = require('got');
 const _fs = require('fs');
+const _path = require('path');
 
 
 /*
@@ -80,8 +81,16 @@ function startAdapter(options) {
 		// create backup object
 		BACKUP_STATES.forEach(s => {
 			s.id = s.id || s.state;
-			adapter.readFile('jarvis', '_BACKUP_' + s.id.toUpperCase() + '.json', null, (err, contents) => {
+			
+			const file = _path.join(__dirname, '..', '..', 'iobroker-data', 'jarvis', adapter.instance.toString(), '_BACKUP_' + s.id.toUpperCase() + '.json');
+			_fs.readFile(file, (err, contents) => {
 				
+				// create dir
+				const dir = _path.dirname(file);
+				if (!_fs.existsSync(dir)){
+					_fs.mkdirSync(dir, { recursive: true });
+				}
+
 				// trigger initial backup
 				if (err) {
 					adapter.log.info('No Backup found for ' + s.id + ', thus backing up initially.');
@@ -459,7 +468,9 @@ function backup(s, data) {
 	
 	// save backup
 	adapter.log.info('Backup ' + s.id + '..');
-	adapter.writeFile('jarvis', '_BACKUP_' + s.id.toUpperCase() + '.json', JSON.stringify(BACKUPS[s.id], null, 3));
+	
+	const file = _path.join(__dirname, '..', '..', 'iobroker-data', 'jarvis', adapter.instance.toString(), '_BACKUP_' + s.id.toUpperCase() + '.json');
+	_fs.writeFile(file, JSON.stringify(BACKUPS[s.id], null, 3), err => err && adapter.log.error(err));
 }
 
 /**
