@@ -12,15 +12,18 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 - [Tür](#gewerk-tür-door)
 - [Lüfter](#gewerk-lüfter-fan)
 - [Heizung](#gewerk-heizung-heating)
+- [Haushalt](#gewerk-haushalt-household)
 - [Licht](#gewerk-licht-light)
 - [Ort](#gewerk-ort-location)
 - [Bewegungs-/Präsenzmelder](#gewerk-bewegungs-präsenzmelder-motion)
 - [Rasenmäher-Roboter](#gewerk-rasenmäher-roboter-mower)
+- [Szenen](#gewerk-szenen-scenes)
 - [Sensor](#gewerk-sensor-sensor)
 - [Server](#gewerk-server-server)
 - [Rauchmelder](#gewerk-rauchmelder-smoke)
 - [Steckdose](#gewerk-steckdose-socket)
 - [Lautsprecher](#gewerk-lautsprecher-speaker)
+- [Schalter](#gewerk-schalter-switch)
 - [Fernseher](#gewerk-fernseher-tv)
 - [Benutzer](#gewerk-benutzer-user)
 - [Staubsauger-Roboter](#gewerk-staubsauger-roboter-vacuum)
@@ -595,37 +598,21 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.channels.1.vaporAmount</code></li>
 </ul>
 </ul>
-<h4>Adapter zwave2</h4>
-<ul>
-<li><code>valve</code>
-<ul>
-<li>state: <code>.Multilevel_Switch.currentValue</code></li>
-<li>unit: <code>%</code></li>
-<li>icon: <code>rotate-right</code></li>
-</ul>
-<li><code>mode</code>
-<ul>
-<li>state: <code>.Thermostat_Mode.mode</code></li>
-<li>action: <code>.Thermostat_Mode.mode</code></li>
-<li>icon: <code>[object Object]</code></li>
-</ul>
-<li><code>setTemperatureEnergySave</code>
-<ul>
-<li>state: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
-<li>action: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
-<li>unit: <code>°C</code></li>
-<li>icon: <code>radiator-disabled</code></li>
-</ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.Multilevel_Sensor.airTemperature</code></li>
-</ul>
-<li><code>setTemperature</code>
-<ul>
-<li>state: <code>.Thermostat_Setpoint.setpoint_heating</code></li>
-<li>action: <code>.Thermostat_Setpoint.setpoint_heating</code></li>
-</ul>
-</ul>
+
+<h2>Gewerk Haushalt (<code>household</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>consumption</code></td><td>-</td><td>-</td><td><code>W</code></td><td><pre lang="json">{
+   "default": "mdi-power-plug-off-outline",
+   ">0": "mdi-power-plug"
+}</pre></td><td>-</td></tr>
+<tr><td><code>meter</code></td><td>-</td><td>-</td><td><code>W</code></td><td><pre lang="json">{
+   "default": "mdi-power-plug-off-outline",
+   ">0": "mdi-power-plug"
+}</pre></td><td>-</td></tr>
+</table>
 
 <h2>Gewerk Licht (<code>light</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -679,29 +666,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter deconz</h4>
-<ul>
-<li><code>power</code>
-<ul>
-<li>state: <code>.on</code></li>
-<li>action: <code>.on</code></li>
-</ul>
-<li><code>level</code>
-<ul>
-<li>state: <code>.level</code></li>
-<li>action: <code>.level</code></li>
-</ul>
-<li><code>colorTemperature</code>
-<ul>
-<li>state: <code>.ct</code></li>
-<li>action: <code>.ct</code></li>
-</ul>
-<li><code>hue</code>
-<ul>
-<li>state: <code>.hue</code></li>
-<li>action: <code>.hue</code></li>
-</ul>
-</ul>
 <h4>Adapter hm-prc</h4>
 <h5>HmIP-BSM</h5>
 <ul>
@@ -912,6 +876,11 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.action.hue</code></li>
 <li>action: <code>.action.hue</code></li>
 </ul>
+<li><code>hex</code>
+<ul>
+<li>state: <code>.action.hex</code></li>
+<li>action: <code>.action.hex</code></li>
+</ul>
 </ul>
 <h4>Adapter hue</h4>
 <ul>
@@ -934,6 +903,10 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.hue</code></li>
 <li>action: <code>.hue</code></li>
+</ul>
+<li><code>reachability</code>
+<ul>
+<li>state: <code>.reachable</code></li>
 </ul>
 </ul>
 <h4>Adapter shelly</h4>
@@ -971,29 +944,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.Saturation</code></li>
 <li>action: <code>.Saturation</code></li>
-</ul>
-</ul>
-<h4>Adapter zigbee</h4>
-<ul>
-<li><code>power</code>
-<ul>
-<li>state: <code>.state</code></li>
-<li>action: <code>.state</code></li>
-</ul>
-<li><code>level</code>
-<ul>
-<li>state: <code>.brightness</code></li>
-<li>action: <code>.brightness</code></li>
-</ul>
-<li><code>colorTemperature</code>
-<ul>
-<li>state: <code>.colortemp</code></li>
-<li>action: <code>.colortemp</code></li>
-</ul>
-<li><code>hex</code>
-<ul>
-<li>state: <code>.color</code></li>
-<li>action: <code>.color</code></li>
 </ul>
 </ul>
 
@@ -1215,28 +1165,16 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.channels.1.illumination</code></li>
 </ul>
 </ul>
-<h4>Adapter zigbee</h4>
-<ul>
-<li><code>illuminance</code>
-<ul>
-<li>state: <code>.illuminance</code></li>
-<li>unit: <code> lux</code></li>
-</ul>
-<li><code>noMotionTime</code>
-<ul>
-<li>state: <code>.no_motion</code></li>
-<li>unit: <code> s</code></li>
-</ul>
-<li><code>motion</code>
-<ul>
-<li>state: <code>.occupancy</code></li>
-</ul>
-</ul>
 
 <h2>Gewerk Rasenmäher-Roboter (<code>mower</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+
+<h2>Gewerk Szenen (<code>scenes</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 </table>
 
 <h2>Gewerk Sensor (<code>sensor</code>)</h2>
@@ -1295,69 +1233,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.STATE</code></li>
 </ul>
 </ul>
-<h4>Adapter zigbee</h4>
-<ul>
-<li><code>drop</code>
-<ul>
-<li>state: <code>.drop</code></li>
-</ul>
-<li><code>tilt</code>
-<ul>
-<li>state: <code>.tilt</code></li>
-</ul>
-<li><code>tilt_angle</code>
-<ul>
-<li>state: <code>.tilt_angle</code></li>
-</ul>
-<li><code>tilt_angle_x</code>
-<ul>
-<li>state: <code>.tilt_angle_x</code></li>
-</ul>
-<li><code>tilt_angle_x_abs</code>
-<ul>
-<li>state: <code>.tilt_angle_x_abs</code></li>
-</ul>
-<li><code>tilt_angle_y</code>
-<ul>
-<li>state: <code>.tilt_angle_y</code></li>
-</ul>
-<li><code>tilt_angle_y_abs</code>
-<ul>
-<li>state: <code>.tilt_angle_y_abs</code></li>
-</ul>
-<li><code>tilt_angle_z</code>
-<ul>
-<li>state: <code>.tilt_angle_z</code></li>
-</ul>
-<li><code>contact</code>
-<ul>
-<li>state: <code>.contact</code></li>
-</ul>
-<li><code>opened</code>
-<ul>
-<li>state: <code>.opened</code></li>
-</ul>
-<li><code>occupancy</code>
-<ul>
-<li>state: <code>.occupancy</code></li>
-</ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.humidity</code></li>
-</ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.temperature</code></li>
-</ul>
-<li><code>illumination</code>
-<ul>
-<li>state: <code>.illuminance</code></li>
-</ul>
-<li><code>pressure</code>
-<ul>
-<li>state: <code>.pressure</code></li>
-</ul>
-</ul>
 
 <h2>Gewerk Server (<code>server</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -1389,17 +1264,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>lowBatteryCh1</code>
 <ul>
 <li>state: <code>.1.LOWBAT</code></li>
-</ul>
-</ul>
-<h4>Adapter zigbee</h4>
-<ul>
-<li><code>alarm</code>
-<ul>
-<li>state: <code>.detected</code></li>
-</ul>
-<li><code>test</code>
-<ul>
-<li>state: <code>.selftest</code></li>
 </ul>
 </ul>
 
@@ -1593,14 +1457,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.channels.1.on</code></li>
 </ul>
 </ul>
-<h4>Adapter zigbee</h4>
-<ul>
-<li><code>power</code>
-<ul>
-<li>state: <code>.state</code></li>
-<li>action: <code>.state</code></li>
-</ul>
-</ul>
 
 <h2>Gewerk Lautsprecher (<code>speaker</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
@@ -1608,12 +1464,18 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 
+<h2>Gewerk Schalter (<code>switch</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+
 <h2>Gewerk Fernseher (<code>tv</code>)</h2>
 <h3>vordefinierte Datenpunkte</h3>
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
-   "true": "television",
+   "true": "television-clean",
    "false": "television-off"
 }</pre></td><td>-</td></tr>
 </table>
@@ -1897,6 +1759,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    "false": "mdi-cog-outline"
 }</pre></td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">"water-percent"</pre></td><td>-</td></tr>
+<tr><td><code>illuminance</code></td><td>-</td><td>-</td><td><code>lux</code></td><td>-</td><td>-</td></tr>
 <tr><td><code>level</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
 <tr><td><code>lowbattery</code></td><td><pre lang="json">{
    "true": {
@@ -2170,6 +2033,85 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>0: <code>u</code></li>
 </ul>
 <li><code>10</code>
+<ul>
+<li>0: <code>e</code></li>
+</ul>
+</ul>
+<h5>action</h5>
+<ul>
+<li><code>0</code>
+<ul>
+<li>0: <code>.</code></li>
+</ul>
+<li><code>1</code>
+<ul>
+<li>0: <code>c</code></li>
+</ul>
+<li><code>2</code>
+<ul>
+<li>0: <code>o</code></li>
+</ul>
+<li><code>3</code>
+<ul>
+<li>0: <code>n</code></li>
+</ul>
+<li><code>4</code>
+<ul>
+<li>0: <code>t</code></li>
+</ul>
+<li><code>5</code>
+<ul>
+<li>0: <code>r</code></li>
+</ul>
+<li><code>6</code>
+<ul>
+<li>0: <code>o</code></li>
+</ul>
+<li><code>7</code>
+<ul>
+<li>0: <code>l</code></li>
+</ul>
+<li><code>8</code>
+<ul>
+<li>0: <code>.</code></li>
+</ul>
+<li><code>9</code>
+<ul>
+<li>0: <code>c</code></li>
+</ul>
+<li><code>10</code>
+<ul>
+<li>0: <code>l</code></li>
+</ul>
+<li><code>11</code>
+<ul>
+<li>0: <code>e</code></li>
+</ul>
+<li><code>12</code>
+<ul>
+<li>0: <code>a</code></li>
+</ul>
+<li><code>13</code>
+<ul>
+<li>0: <code>r</code></li>
+</ul>
+<li><code>14</code>
+<ul>
+<li>0: <code>Q</code></li>
+</ul>
+<li><code>15</code>
+<ul>
+<li>0: <code>u</code></li>
+</ul>
+<li><code>16</code>
+<ul>
+<li>0: <code>e</code></li>
+</ul>
+<li><code>17</code>
+<ul>
+<li>0: <code>u</code></li>
+</ul>
+<li><code>18</code>
 <ul>
 <li>0: <code>e</code></li>
 </ul>
@@ -2891,5 +2833,36 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>wlan50</code>
 <ul>
 <li>state: <code>.wlan50</code></li>
+</ul>
+</ul>
+<h4>Adapter zwave2</h4>
+<ul>
+<li><code>valve</code>
+<ul>
+<li>state: <code>.Multilevel_Switch.currentValue</code></li>
+<li>unit: <code>%</code></li>
+<li>icon: <code>rotate-right</code></li>
+</ul>
+<li><code>mode</code>
+<ul>
+<li>state: <code>.Thermostat_Mode.mode</code></li>
+<li>action: <code>.Thermostat_Mode.mode</code></li>
+<li>icon: <code>[object Object]</code></li>
+</ul>
+<li><code>setTemperatureEnergySave</code>
+<ul>
+<li>state: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
+<li>action: <code>.Thermostat_Setpoint.setpoint_energySaveHeating</code></li>
+<li>unit: <code>°C</code></li>
+<li>icon: <code>radiator-disabled</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.Multilevel_Sensor.airTemperature</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.Thermostat_Setpoint.setpoint_heating</code></li>
+<li>action: <code>.Thermostat_Setpoint.setpoint_heating</code></li>
 </ul>
 </ul>

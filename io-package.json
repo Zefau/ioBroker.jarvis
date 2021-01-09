@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "2.2.0-beta.8",
+      "version": "2.2.0-beta.9",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -48,7 +48,16 @@
       "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
       "keywords": [
          "vis",
-         "visualization"
+         "visualization",
+         "material",
+         "gui",
+         "ui",
+         "jarvis",
+         "interface",
+         "webapp",
+         "smarthome",
+         "react",
+         "lovelace"
       ],
       "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
       "loglevel": "info",
