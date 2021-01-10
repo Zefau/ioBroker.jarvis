@@ -728,7 +728,13 @@ alle Datenpunkte werden übernommen
 {
    "HmIP-SWSD": {
       "alarm": {
-         "state": ".1.SMOKE_DETECTOR_ALARM_STATUS"
+         "state": ".1.SMOKE_DETECTOR_ALARM_STATUS",
+         "display": {
+            "0": "IDLE_OFF",
+            "1": "PRIMARY_ALARM",
+            "2": "INTRUSION_ALARM",
+            "3": "SECONDARY_ALARM"
+         }
       }
    },
    "HM-Sec-SD-2": {

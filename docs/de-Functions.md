@@ -1374,6 +1374,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>alarm</code>
 <ul>
 <li>state: <code>.1.SMOKE_DETECTOR_ALARM_STATUS</code></li>
+<li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
 <h5>HM-Sec-SD-2</h5>
