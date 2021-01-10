@@ -16,20 +16,22 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ## Liste unterstützter Adapter
 
+- [alias](#adapter-alias)
+- [ble](#adapter-ble)
+- [daswetter](#adapter-daswetter)
 - [deconz](#adapter-deconz)
-  - [Function `light` of deconz](#function-light-of-deconz)
-- [hm-prc](#adapter-hm-prc)
-  - [Function `light` of hm-prc](#function-light-of-hm-prc)
-  - [Function `heating` of hm-prc](#function-heating-of-hm-prc)
-  - [Function `blind` of hm-prc](#function-blind-of-hm-prc)
-  - [Function `sensor` of hm-prc](#function-sensor-of-hm-prc)
-  - [Function `smoke` of hm-prc](#function-smoke-of-hm-prc)
-  - [Function `window` of hm-prc](#function-window-of-hm-prc)
-  - [Function `socket` of hm-prc](#function-socket-of-hm-prc)
-  - [Function `motion` of hm-prc](#function-motion-of-hm-prc)
-  - [Function `door` of hm-prc](#function-door-of-hm-prc)
-  - [Function `weather-station` of hm-prc](#function-weather-station-of-hm-prc)
-  - [Function `other` of hm-prc](#function-other-of-hm-prc)
+- [hm-rpc](#adapter-hm-rpc)
+  - [Function `light` of hm-rpc](#function-light-of-hm-rpc)
+  - [Function `heating` of hm-rpc](#function-heating-of-hm-rpc)
+  - [Function `blind` of hm-rpc](#function-blind-of-hm-rpc)
+  - [Function `sensor` of hm-rpc](#function-sensor-of-hm-rpc)
+  - [Function `smoke` of hm-rpc](#function-smoke-of-hm-rpc)
+  - [Function `window` of hm-rpc](#function-window-of-hm-rpc)
+  - [Function `socket` of hm-rpc](#function-socket-of-hm-rpc)
+  - [Function `motion` of hm-rpc](#function-motion-of-hm-rpc)
+  - [Function `door` of hm-rpc](#function-door-of-hm-rpc)
+  - [Function `weather-station` of hm-rpc](#function-weather-station-of-hm-rpc)
+  - [Function `switch` of hm-rpc](#function-switch-of-hm-rpc)
 - [hmip](#adapter-hmip)
   - [Function `heating` of hmip](#function-heating-of-hmip)
   - [Function `blind` of hmip](#function-blind-of-hmip)
@@ -41,6 +43,8 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `light` of hue-extended](#function-light-of-hue-extended)
 - [hue](#adapter-hue)
   - [Function `light` of hue](#function-light-of-hue)
+- [innogy-smarthome](#adapter-innogy-smarthome)
+- [knx](#adapter-knx)
 - [mihome-vacuum](#adapter-mihome-vacuum)
   - [Function `consumableFilter` of mihome-vacuum](#function-consumableFilter-of-mihome-vacuum)
   - [Function `consumableBrushMain` of mihome-vacuum](#function-consumableBrushMain-of-mihome-vacuum)
@@ -65,19 +69,20 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `cleanedMissionArea` of mihome-vacuum](#function-cleanedMissionArea-of-mihome-vacuum)
   - [Function `cleanedMissionTime` of mihome-vacuum](#function-cleanedMissionTime-of-mihome-vacuum)
   - [Function `battery` of mihome-vacuum](#function-battery-of-mihome-vacuum)
-  - [Function `connection` of mihome-vacuum](#function-connection-of-mihome-vacuum)
   - [Function `device_fw` of mihome-vacuum](#function-device_fw-of-mihome-vacuum)
   - [Function `device_model` of mihome-vacuum](#function-device_model-of-mihome-vacuum)
   - [Function `doNotDisturb` of mihome-vacuum](#function-doNotDisturb-of-mihome-vacuum)
   - [Function `error` of mihome-vacuum](#function-error-of-mihome-vacuum)
+  - [Function `timer` of mihome-vacuum](#function-timer-of-mihome-vacuum)
   - [Function `state` of mihome-vacuum](#function-state-of-mihome-vacuum)
   - [Function `waterBox` of mihome-vacuum](#function-waterBox-of-mihome-vacuum)
   - [Function `map` of mihome-vacuum](#function-map-of-mihome-vacuum)
-  - [Function `cleanQueueClear` of mihome-vacuum](#function-cleanQueueClear-of-mihome-vacuum)
   - [Function `cleanQueue` of mihome-vacuum](#function-cleanQueue-of-mihome-vacuum)
+- [mihome](#adapter-mihome)
 - [nuki-extended](#adapter-nuki-extended)
   - [Function `openers` of nuki-extended](#function-openers-of-nuki-extended)
   - [Function `smartlocks` of nuki-extended](#function-smartlocks-of-nuki-extended)
+- [rpi2](#adapter-rpi2)
 - [shelly](#adapter-shelly)
   - [Function `blind` of shelly](#function-blind-of-shelly)
   - [Function `light` of shelly](#function-light-of-shelly)
@@ -89,44 +94,31 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `phonebook` of tr-064](#function-phonebook-of-tr-064)
   - [Function `states` of tr-064](#function-states-of-tr-064)
 - [zigbee](#adapter-zigbee)
-  - [Function `light` of zigbee](#function-light-of-zigbee)
-  - [Function `socket` of zigbee](#function-socket-of-zigbee)
-  - [Function `sensor` of zigbee](#function-sensor-of-zigbee)
-  - [Function `smoke` of zigbee](#function-smoke-of-zigbee)
-  - [Function `motion` of zigbee](#function-motion-of-zigbee)
 - [zwave2](#adapter-zwave2)
-  - [Function `heating` of zwave2](#function-heating-of-zwave2)
+  - [Function `thermostat` of zwave2](#function-thermostat-of-zwave2)
 
 
 ## Unterstützte Geräte der Adapter
 
+### Adapter alias
+
+alle Datenpunkte werden übernommen
+
+### Adapter ble
+
+alle Datenpunkte werden übernommen
+
+### Adapter daswetter
+
+alle Datenpunkte werden übernommen
+
 ### Adapter deconz
 
-#### Function `light` of deconz
-```
-{
-   "power": {
-      "state": ".on",
-      "action": ".on"
-   },
-   "level": {
-      "state": ".level",
-      "action": ".level"
-   },
-   "colorTemperature": {
-      "state": ".ct",
-      "action": ".ct"
-   },
-   "hue": {
-      "state": ".hue",
-      "action": ".hue"
-   }
-}
-```
+alle Datenpunkte werden übernommen
 
-### Adapter hm-prc
+### Adapter hm-rpc
 
-#### Function `light` of hm-prc
+#### Function `light` of hm-rpc
 ```
 {
    "HmIP-BSM": {
@@ -290,15 +282,53 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "level": {
          "state": ".1.LEVEL",
          "action": ".1.LEVEL"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "timerOn": {
+         "state": ".1.RAMP_TIME",
+         "action": ".1.RAMP_TIME"
       }
    }
 }
 ```
 
 
-#### Function `heating` of hm-prc
+#### Function `heating` of hm-rpc
 ```
 {
+   "HmIP-STHD": {
+      "temperature": {
+         "state": ".1.ACTUAL_TEMPERATURE"
+      },
+      "setTemperature": {
+         "state": ".1.SET_POINT_TEMPERATURE",
+         "action": ".1.SET_POINT_TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      },
+      "frost": {
+         "state": ".1.FROST_PROTECTION"
+      },
+      "boost": {
+         "state": ".1.BOOST_MODE",
+         "action": ".1.BOOST_MODE"
+      },
+      "boostTime": {
+         "state": ".1.BOOST_TIME",
+         "action": ".1.BOOST_TIME"
+      },
+      "windowState": {
+         "state": ".1.WINDOW_STATE"
+      },
+      "partyMode": {
+         "state": ".1.PARTY_MODE",
+         "action": ".1.PARTY_MODE"
+      }
+   },
    "HmIP-eTRV-B": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
@@ -324,6 +354,41 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "partyMode": {
          "state": ".1.PARTY_MODE",
          "action": ".1.PARTY_MODE"
+      }
+   },
+   "HmIP-eTRV2": {
+      "temperature": {
+         "state": ".1.ACTUAL_TEMPERATURE"
+      },
+      "setTemperature": {
+         "state": ".1.SET_POINT_TEMPERATURE",
+         "action": ".1.SET_POINT_TEMPERATURE"
+      },
+      "frost": {
+         "state": ".1.FROST_PROTECTION"
+      },
+      "boost": {
+         "state": ".1.BOOST_MODE",
+         "action": ".1.BOOST_MODE"
+      },
+      "boostTime": {
+         "state": ".1.BOOST_TIME",
+         "action": ".1.BOOST_TIME"
+      },
+      "windowState": {
+         "state": ".1.WINDOW_STATE"
+      },
+      "partyMode": {
+         "state": ".1.PARTY_MODE",
+         "action": ".1.PARTY_MODE"
+      },
+      "level": {
+         "state": ".1.LEVEL",
+         "action": ".1.LEVEL"
+      },
+      "valve": {
+         "state": ".1.VALVE_STATE",
+         "action": ".1.VALVE_STATE"
       }
    },
    "HmIP-BWTH": {
@@ -547,7 +612,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `blind` of hm-prc
+#### Function `blind` of hm-rpc
 ```
 {
    "HmIP-BBL": {
@@ -558,6 +623,16 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "level2": {
          "state": ".3.LEVEL2",
          "action": ".4.LEVEL2"
+      },
+      "activity": {
+         "state": ".3.ACTIVITY_STATE",
+         "action": ".4.STOP"
+      }
+   },
+   "HmIP-FROLL": {
+      "level": {
+         "state": ".3.LEVEL",
+         "action": ".4.LEVEL"
       },
       "activity": {
          "state": ".3.ACTIVITY_STATE",
@@ -602,9 +677,14 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `sensor` of hm-prc
+#### Function `sensor` of hm-rpc
 ```
 {
+   "HM-Sec-TiS": {
+      "power": {
+         "state": ".1.STATE"
+      }
+   },
    "HmIP-SLO": {
       "illuminationAverage": {
          "state": ".1.AVERAGE_ILLUMINATION",
@@ -643,9 +723,14 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `smoke` of hm-prc
+#### Function `smoke` of hm-rpc
 ```
 {
+   "HmIP-SWSD": {
+      "alarm": {
+         "state": ".1.SMOKE_DETECTOR_ALARM_STATUS"
+      }
+   },
    "HM-Sec-SD-2": {
       "alarm": {
          "state": ".1.STATE"
@@ -658,7 +743,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `window` of hm-prc
+#### Function `window` of hm-rpc
 ```
 {
    "HmIP-SWDM": {
@@ -710,7 +795,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `socket` of hm-prc
+#### Function `socket` of hm-rpc
 ```
 {
    "HmIP-FSM": {
@@ -845,7 +930,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `motion` of hm-prc
+#### Function `motion` of hm-rpc
 ```
 {
    "HmIP-SMI55": {
@@ -982,7 +1067,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `door` of hm-prc
+#### Function `door` of hm-rpc
 ```
 {
    "HM-Sec-Key": {
@@ -997,7 +1082,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `weather-station` of hm-prc
+#### Function `weather-station` of hm-rpc
 ```
 {
    "HmIP-STHO-A": {
@@ -1052,7 +1137,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `other` of hm-prc
+#### Function `switch` of hm-rpc
 ```
 {
    "HmIP-WRC2": {
@@ -1071,11 +1156,6 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
       "PRESS_SHORT_TOP": {
          "state": ".2.PRESS_SHORT",
          "action": ".2.PRESS_SHORT"
-      }
-   },
-   "HM-Sec-TiS": {
-      "power": {
-         "state": ".1.STATE"
       }
    },
    "HM-RC-2-PBU-FM": {
@@ -1404,6 +1484,10 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
    "hue": {
       "state": ".action.hue",
       "action": ".action.hue"
+   },
+   "hex": {
+      "state": ".action.hex",
+      "action": ".action.hex"
    }
 }
 ```
@@ -1428,9 +1512,20 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
    "hue": {
       "state": ".hue",
       "action": ".hue"
+   },
+   "reachability": {
+      "state": ".reachable"
    }
 }
 ```
+
+### Adapter innogy-smarthome
+
+alle Datenpunkte werden übernommen
+
+### Adapter knx
+
+alle Datenpunkte werden übernommen
 
 ### Adapter mihome-vacuum
 
@@ -1647,14 +1742,6 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `connection` of mihome-vacuum
-```
-{
-   "state": ".info.connection"
-}
-```
-
-
 #### Function `device_fw` of mihome-vacuum
 ```
 {
@@ -1687,6 +1774,14 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
+#### Function `timer` of mihome-vacuum
+```
+{
+   "state": ".info.nextTimer"
+}
+```
+
+
 #### Function `state` of mihome-vacuum
 ```
 {
@@ -1712,20 +1807,17 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 ```
 
 
-#### Function `cleanQueueClear` of mihome-vacuum
+#### Function `cleanQueue` of mihome-vacuum
 ```
 {
+   "state": ".info.queue",
    "action": ".control.clearQueue"
 }
 ```
 
+### Adapter mihome
 
-#### Function `cleanQueue` of mihome-vacuum
-```
-{
-   "state": ".info.queue"
-}
-```
+alle Datenpunkte werden übernommen
 
 ### Adapter nuki-extended
 
@@ -1867,6 +1959,10 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
    }
 }
 ```
+
+### Adapter rpi2
+
+alle Datenpunkte werden übernommen
 
 ### Adapter shelly
 
@@ -2095,125 +2191,11 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
 
 ### Adapter zigbee
 
-#### Function `light` of zigbee
-```
-{
-   "power": {
-      "state": ".state",
-      "action": ".state"
-   },
-   "level": {
-      "state": ".brightness",
-      "action": ".brightness"
-   },
-   "colorTemperature": {
-      "state": ".colortemp",
-      "action": ".colortemp"
-   },
-   "hex": {
-      "state": ".color",
-      "action": ".color"
-   }
-}
-```
-
-
-#### Function `socket` of zigbee
-```
-{
-   "power": {
-      "state": ".state",
-      "action": ".state"
-   }
-}
-```
-
-
-#### Function `sensor` of zigbee
-```
-{
-   "drop": {
-      "state": ".drop"
-   },
-   "tilt": {
-      "state": ".tilt"
-   },
-   "tilt_angle": {
-      "state": ".tilt_angle"
-   },
-   "tilt_angle_x": {
-      "state": ".tilt_angle_x"
-   },
-   "tilt_angle_x_abs": {
-      "state": ".tilt_angle_x_abs"
-   },
-   "tilt_angle_y": {
-      "state": ".tilt_angle_y"
-   },
-   "tilt_angle_y_abs": {
-      "state": ".tilt_angle_y_abs"
-   },
-   "tilt_angle_z": {
-      "state": ".tilt_angle_z"
-   },
-   "contact": {
-      "state": ".contact"
-   },
-   "opened": {
-      "state": ".opened"
-   },
-   "occupancy": {
-      "state": ".occupancy"
-   },
-   "humidity": {
-      "state": ".humidity"
-   },
-   "temperature": {
-      "state": ".temperature"
-   },
-   "illumination": {
-      "state": ".illuminance"
-   },
-   "pressure": {
-      "state": ".pressure"
-   }
-}
-```
-
-
-#### Function `smoke` of zigbee
-```
-{
-   "alarm": {
-      "state": ".detected"
-   },
-   "test": {
-      "state": ".selftest"
-   }
-}
-```
-
-
-#### Function `motion` of zigbee
-```
-{
-   "illuminance": {
-      "state": ".illuminance",
-      "unit": " lux"
-   },
-   "noMotionTime": {
-      "state": ".no_motion",
-      "unit": " s"
-   },
-   "motion": {
-      "state": ".occupancy"
-   }
-}
-```
+alle Datenpunkte werden übernommen
 
 ### Adapter zwave2
 
-#### Function `heating` of zwave2
+#### Function `thermostat` of zwave2
 ```
 {
    "valve": {

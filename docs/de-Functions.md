@@ -55,7 +55,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
 <h5>HmIP-BBL</h5>
 <ul>
 <li><code>level</code>
@@ -67,6 +67,19 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.3.LEVEL2</code></li>
 <li>action: <code>.4.LEVEL2</code></li>
+</ul>
+<li><code>activity</code>
+<ul>
+<li>state: <code>.3.ACTIVITY_STATE</code></li>
+<li>action: <code>.4.STOP</code></li>
+</ul>
+</ul>
+<h5>HmIP-FROLL</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.3.LEVEL</code></li>
+<li>action: <code>.4.LEVEL</code></li>
 </ul>
 <li><code>activity</code>
 <ul>
@@ -177,7 +190,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>lock</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
 <h5>HM-Sec-Key</h5>
 <ul>
 <li><code>error</code>
@@ -223,7 +236,46 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>valveState</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
+<h5>HmIP-STHD</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>frost</code>
+<ul>
+<li>state: <code>.1.FROST_PROTECTION</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+<li><code>boostTime</code>
+<ul>
+<li>state: <code>.1.BOOST_TIME</code></li>
+<li>action: <code>.1.BOOST_TIME</code></li>
+</ul>
+<li><code>windowState</code>
+<ul>
+<li>state: <code>.1.WINDOW_STATE</code></li>
+</ul>
+<li><code>partyMode</code>
+<ul>
+<li>state: <code>.1.PARTY_MODE</code></li>
+<li>action: <code>.1.PARTY_MODE</code></li>
+</ul>
+</ul>
 <h5>HmIP-eTRV-B</h5>
 <ul>
 <li><code>temperature</code>
@@ -257,6 +309,51 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.1.PARTY_MODE</code></li>
 <li>action: <code>.1.PARTY_MODE</code></li>
+</ul>
+</ul>
+<h5>HmIP-eTRV2</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>frost</code>
+<ul>
+<li>state: <code>.1.FROST_PROTECTION</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+<li><code>boostTime</code>
+<ul>
+<li>state: <code>.1.BOOST_TIME</code></li>
+<li>action: <code>.1.BOOST_TIME</code></li>
+</ul>
+<li><code>windowState</code>
+<ul>
+<li>state: <code>.1.WINDOW_STATE</code></li>
+</ul>
+<li><code>partyMode</code>
+<ul>
+<li>state: <code>.1.PARTY_MODE</code></li>
+<li>action: <code>.1.PARTY_MODE</code></li>
+</ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+<li><code>valve</code>
+<ul>
+<li>state: <code>.1.VALVE_STATE</code></li>
+<li>action: <code>.1.VALVE_STATE</code></li>
 </ul>
 </ul>
 <h5>HmIP-BWTH</h5>
@@ -666,7 +763,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
 <h5>HmIP-BSM</h5>
 <ul>
 <li><code>power</code>
@@ -853,6 +950,16 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.1.LEVEL</code></li>
 <li>action: <code>.1.LEVEL</code></li>
 </ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>timerOn</code>
+<ul>
+<li>state: <code>.1.RAMP_TIME</code></li>
+<li>action: <code>.1.RAMP_TIME</code></li>
+</ul>
 </ul>
 <h4>Adapter hue-extended</h4>
 <ul>
@@ -981,7 +1088,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
 <h5>HmIP-SMI55</h5>
 <ul>
 <li><code>motion</code>
@@ -1187,7 +1294,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>pressure</code></td><td>-</td><td>-</td><td><code>hPa</code></td><td><pre lang="json">"mdi-air-purifier"</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
+<h5>HM-Sec-TiS</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
 <h5>HmIP-SLO</h5>
 <ul>
 <li><code>illuminationAverage</code>
@@ -1254,7 +1368,14 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
+<h5>HmIP-SWSD</h5>
+<ul>
+<li><code>alarm</code>
+<ul>
+<li>state: <code>.1.SMOKE_DETECTOR_ALARM_STATUS</code></li>
+</ul>
+</ul>
 <h5>HM-Sec-SD-2</h5>
 <ul>
 <li><code>alarm</code>
@@ -1282,7 +1403,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
 <h5>HmIP-FSM</h5>
 <ul>
 <li><code>power</code>
@@ -1469,351 +1590,8 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
 <tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
-
-<h2>Gewerk Fernseher (<code>tv</code>)</h2>
-<h3>vordefinierte Datenpunkte</h3>
-<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
-   "true": "television-clean",
-   "false": "television-off"
-}</pre></td><td>-</td></tr>
-</table>
-
-<h2>Gewerk Benutzer (<code>user</code>)</h2>
-<h3>vordefinierte Datenpunkte</h3>
-<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
-<tr><td><code>location</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"account"</pre></td><td>-</td></tr>
-<tr><td><code>battery</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-</table>
-
-<h2>Gewerk Staubsauger-Roboter (<code>vacuum</code>)</h2>
-<h3>vordefinierte Datenpunkte</h3>
-<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-</table>
-
-<h2>Gewerk Wetter-Station (<code>weather-station</code>)</h2>
-<h3>vordefinierte Datenpunkte</h3>
-<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>humidity</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>wind</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>temperature</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>illumination</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-brightness-7"</pre></td><td>-</td></tr>
-<tr><td><code>sunshineduration</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-weather-sunny"</pre></td><td>-</td></tr>
-</table>
 <h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
-<h5>HmIP-STHO-A</h5>
-<ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
-</ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.1.HUMIDITY</code></li>
-</ul>
-</ul>
-<h5>HmIP-SWO-B</h5>
-<ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.1.HUMIDITY</code></li>
-</ul>
-<li><code>wind</code>
-<ul>
-<li>state: <code>.1.WIND_SPEED</code></li>
-</ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
-</ul>
-<li><code>illumination</code>
-<ul>
-<li>state: <code>.1.ILLUMINATION</code></li>
-</ul>
-<li><code>sunshineDuration</code>
-<ul>
-<li>state: <code>.1.SUNSHINEDURATION</code></li>
-</ul>
-</ul>
-<h5>HmIP-SWO-PL</h5>
-<ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.1.HUMIDITY</code></li>
-</ul>
-<li><code>wind</code>
-<ul>
-<li>state: <code>.1.WIND_SPEED</code></li>
-</ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
-</ul>
-<li><code>illumination</code>
-<ul>
-<li>state: <code>.1.ILLUMINATION</code></li>
-</ul>
-<li><code>sunshineDuration</code>
-<ul>
-<li>state: <code>.1.SUNSHINEDURATION</code></li>
-</ul>
-<li><code>raining</code>
-<ul>
-<li>state: <code>.1.RAINING</code></li>
-</ul>
-<li><code>rainCounter</code>
-<ul>
-<li>state: <code>.1.RAIN_COUNTER</code></li>
-</ul>
-</ul>
-<h4>Adapter hmip</h4>
-<h5>HmIP-STHO</h5>
-<ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.channels.1.actualTemperature</code></li>
-</ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.channels.1.humidity</code></li>
-</ul>
-<li><code>vapor</code>
-<ul>
-<li>state: <code>.channels.1.vaporAmount</code></li>
-</ul>
-<li><code>display</code>
-<ul>
-<li>state: <code>.channels.1.display</code></li>
-</ul>
-</ul>
-<h5>HmIP-STHO-A</h5>
-<ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
-</ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.1.HUMIDITY</code></li>
-</ul>
-</ul>
-<h5>HmIP-SWO-B</h5>
-<ul>
-<li><code>humidity</code>
-<ul>
-<li>state: <code>.1.HUMIDITY</code></li>
-</ul>
-<li><code>wind</code>
-<ul>
-<li>state: <code>.1.WIND_SPEED</code></li>
-</ul>
-<li><code>temperature</code>
-<ul>
-<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
-</ul>
-<li><code>illumination</code>
-<ul>
-<li>state: <code>.1.ILLUMINATION</code></li>
-</ul>
-<li><code>sunshineduration</code>
-<ul>
-<li>state: <code>.1.SUNSHINEDURATION</code></li>
-</ul>
-</ul>
-
-<h2>Gewerk Fenster (<code>window</code>)</h2>
-<h3>vordefinierte Datenpunkte</h3>
-<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>open</code></td><td>-</td><td><pre lang="json">{
-   "0": "geschlossen",
-   "1": "offen",
-   "2": "offen",
-   "false": "geschlossen",
-   "true": "offen"
-}</pre></td><td>-</td><td><pre lang="json">{
-   "0": "window-closed-variant",
-   "1": "window-open-variant",
-   "false": "window-closed-variant",
-   "true": "window-open-variant"
-}</pre></td><td>-</td></tr>
-</table>
-<h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
-<h5>HmIP-SWDM</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-</ul>
-</ul>
-<h5>HmIP-SWDO-I</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-</ul>
-</ul>
-<h5>HmIP-SWDO</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-</ul>
-</ul>
-<h5>HmIP-SRH</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-<li>display: <code>[object Object]</code></li>
-</ul>
-</ul>
-<h5>HM-Sec-RHS</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-<li>display: <code>[object Object]</code></li>
-</ul>
-</ul>
-<h5>HM-Sec-Sco</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-</ul>
-</ul>
-<h5>HM-Sec-SC-2</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
-</ul>
-</ul>
-<h4>Adapter hmip</h4>
-<h5>HmIP-SWDO</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.channels.1.windowOpen</code></li>
-</ul>
-</ul>
-<h5>HmIP-SWDO-I</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.channels.1.windowOpen</code></li>
-</ul>
-</ul>
-<h5>HmIP-SRH</h5>
-<ul>
-<li><code>open</code>
-<ul>
-<li>state: <code>.channels.1.windowOpen</code></li>
-</ul>
-<li><code>state</code>
-<ul>
-<li>state: <code>.channels.1.windowState</code></li>
-<li>display: <code>[object Object]</code></li>
-</ul>
-</ul>
-
-<h2>Gewerk Sonstige (<code>_defaults</code>)</h2>
-<h3>vordefinierte Datenpunkte</h3>
-<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
-<tr><td><code>_any</code></td><td><pre lang="json">{
-   "true": {
-      "color": "#090",
-      "fontWeight": "bold"
-   },
-   "false": {
-      "color": "#999"
-   }
-}</pre></td><td><pre lang="json">{
-   "true": "an",
-   "false": "aus"
-}</pre></td><td>-</td><td>-</td><td>-</td></tr>
-<tr><td><code>battery</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">{
-   ">80": "battery-high",
-   "<=80": "battery-medium",
-   "<=30": "battery-low",
-   "<=10": "battery-outline blink",
-   "<=5": "battery-alert-variant-outline blink"
-}</pre></td><td><pre lang="json">{
-   "<=10": {
-      "color": "#900"
-   }
-}</pre></td></tr>
-<tr><td><code>firmware</code></td><td>-</td><td><pre lang="json">{
-   "true": "Update verfügbar",
-   "false": "kein Update"
-}</pre></td><td>-</td><td><pre lang="json">{
-   "true": "mdi-cog-refresh",
-   "false": "mdi-cog-outline"
-}</pre></td><td>-</td></tr>
-<tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">"water-percent"</pre></td><td>-</td></tr>
-<tr><td><code>illuminance</code></td><td>-</td><td>-</td><td><code>lux</code></td><td>-</td><td>-</td></tr>
-<tr><td><code>level</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
-<tr><td><code>lowbattery</code></td><td><pre lang="json">{
-   "true": {
-      "color": "#900",
-      "fontWeight": "bold"
-   },
-   "false": {
-      "color": "#999"
-   }
-}</pre></td><td><pre lang="json">{
-   "true": "niedrig",
-   "false": "voll"
-}</pre></td><td>-</td><td><pre lang="json">{
-   "true": "battery-alert-variant-outline",
-   "false": "battery-high"
-}</pre></td><td>-</td></tr>
-<tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
-<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"power"</pre></td><td>-</td></tr>
-<tr><td><code>reachability</code></td><td><pre lang="json">{
-   "true": {
-      "color": "#090"
-   },
-   "false": {
-      "color": "#900",
-      "fontWeight": "bold"
-   }
-}</pre></td><td><pre lang="json">{
-   "true": "erreichbar",
-   "false": "nicht erreichbar"
-}</pre></td><td>-</td><td><pre lang="json">{
-   "true": "lan-connect",
-   "false": "lan-disconnect"
-}</pre></td><td>-</td></tr>
-<tr><td><code>temperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"thermometer"</pre></td><td>-</td></tr>
-<tr><td><code>trigger</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"power"</pre></td><td>-</td></tr>
-<tr><td><code>unreach</code></td><td><pre lang="json">{
-   "true": {
-      "color": "#900",
-      "fontWeight": "bold"
-   },
-   "false": {
-      "color": "#090"
-   }
-}</pre></td><td><pre lang="json">{
-   "true": "nicht erreichbar",
-   "false": "erreichbar"
-}</pre></td><td>-</td><td><pre lang="json">{
-   "true": "lan-disconnect",
-   "false": "lan-connect"
-}</pre></td><td>-</td></tr>
-<tr><td><code>wind</code></td><td>-</td><td>-</td><td><code>km/h</code></td><td><pre lang="json">"weather-windy"</pre></td><td>-</td></tr>
-</table>
-<h3>Beispielkonfiguration</h3>
-<h4>Adapter hm-prc</h4>
+<h4>Adapter hm-rpc</h4>
 <h5>HmIP-WRC2</h5>
 <ul>
 <li><code>PRESS_LONG_BOTTOM</code>
@@ -1835,13 +1613,6 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.2.PRESS_SHORT</code></li>
 <li>action: <code>.2.PRESS_SHORT</code></li>
-</ul>
-</ul>
-<h5>HM-Sec-TiS</h5>
-<ul>
-<li><code>power</code>
-<ul>
-<li>state: <code>.1.STATE</code></li>
 </ul>
 </ul>
 <h5>HM-RC-2-PBU-FM</h5>
@@ -1989,6 +1760,353 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.8.PRESS_SHORT</code></li>
 </ul>
 </ul>
+
+<h2>Gewerk Fernseher (<code>tv</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
+   "true": "television-clean",
+   "false": "television-off"
+}</pre></td><td>-</td></tr>
+</table>
+
+<h2>Gewerk Benutzer (<code>user</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
+<tr><td><code>location</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"account"</pre></td><td>-</td></tr>
+<tr><td><code>battery</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+
+<h2>Gewerk Staubsauger-Roboter (<code>vacuum</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+
+<h2>Gewerk Wetter-Station (<code>weather-station</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>humidity</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>wind</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>temperature</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>illumination</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-brightness-7"</pre></td><td>-</td></tr>
+<tr><td><code>sunshineduration</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"mdi-weather-sunny"</pre></td><td>-</td></tr>
+</table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-rpc</h4>
+<h5>HmIP-STHO-A</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+</ul>
+<h5>HmIP-SWO-B</h5>
+<ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>wind</code>
+<ul>
+<li>state: <code>.1.WIND_SPEED</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+<li><code>sunshineDuration</code>
+<ul>
+<li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+</ul>
+<h5>HmIP-SWO-PL</h5>
+<ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>wind</code>
+<ul>
+<li>state: <code>.1.WIND_SPEED</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+<li><code>sunshineDuration</code>
+<ul>
+<li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+<li><code>raining</code>
+<ul>
+<li>state: <code>.1.RAINING</code></li>
+</ul>
+<li><code>rainCounter</code>
+<ul>
+<li>state: <code>.1.RAIN_COUNTER</code></li>
+</ul>
+</ul>
+<h4>Adapter hmip</h4>
+<h5>HmIP-STHO</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.channels.1.actualTemperature</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.channels.1.humidity</code></li>
+</ul>
+<li><code>vapor</code>
+<ul>
+<li>state: <code>.channels.1.vaporAmount</code></li>
+</ul>
+<li><code>display</code>
+<ul>
+<li>state: <code>.channels.1.display</code></li>
+</ul>
+</ul>
+<h5>HmIP-STHO-A</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+</ul>
+<h5>HmIP-SWO-B</h5>
+<ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+<li><code>wind</code>
+<ul>
+<li>state: <code>.1.WIND_SPEED</code></li>
+</ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>illumination</code>
+<ul>
+<li>state: <code>.1.ILLUMINATION</code></li>
+</ul>
+<li><code>sunshineduration</code>
+<ul>
+<li>state: <code>.1.SUNSHINEDURATION</code></li>
+</ul>
+</ul>
+
+<h2>Gewerk Fenster (<code>window</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>open</code></td><td>-</td><td><pre lang="json">{
+   "0": "geschlossen",
+   "1": "offen",
+   "2": "offen",
+   "false": "geschlossen",
+   "true": "offen"
+}</pre></td><td>-</td><td><pre lang="json">{
+   "0": "window-closed-variant",
+   "1": "window-open-variant",
+   "false": "window-closed-variant",
+   "true": "window-open-variant"
+}</pre></td><td>-</td></tr>
+</table>
+<h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-rpc</h4>
+<h5>HmIP-SWDM</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>HmIP-SWDO-I</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>HmIP-SWDO</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>HmIP-SRH</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>HM-Sec-RHS</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+<h5>HM-Sec-Sco</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h5>HM-Sec-SC-2</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+</ul>
+<h4>Adapter hmip</h4>
+<h5>HmIP-SWDO</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.channels.1.windowOpen</code></li>
+</ul>
+</ul>
+<h5>HmIP-SWDO-I</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.channels.1.windowOpen</code></li>
+</ul>
+</ul>
+<h5>HmIP-SRH</h5>
+<ul>
+<li><code>open</code>
+<ul>
+<li>state: <code>.channels.1.windowOpen</code></li>
+</ul>
+<li><code>state</code>
+<ul>
+<li>state: <code>.channels.1.windowState</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+</ul>
+
+<h2>Gewerk Sonstige (<code>_defaults</code>)</h2>
+<h3>vordefinierte Datenpunkte</h3>
+<table><tr><th>Datenpunkt Bezeichner</th><th>Datenpunkt Stil</th><th>Anzeige</th><th>Einheit</th><th>Icon</th><th>Icon Stil</th></tr>
+<tr><td><code>_any</code></td><td><pre lang="json">{
+   "true": {
+      "color": "#090",
+      "fontWeight": "bold"
+   },
+   "false": {
+      "color": "#999"
+   }
+}</pre></td><td><pre lang="json">{
+   "true": "an",
+   "false": "aus"
+}</pre></td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><code>battery</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">{
+   ">80": "battery-high",
+   "<=80": "battery-medium",
+   "<=30": "battery-low",
+   "<=10": "battery-outline blink",
+   "<=5": "battery-alert-variant-outline blink"
+}</pre></td><td><pre lang="json">{
+   "<=10": {
+      "color": "#900"
+   }
+}</pre></td></tr>
+<tr><td><code>firmware</code></td><td>-</td><td><pre lang="json">{
+   "true": "Update verfügbar",
+   "false": "kein Update"
+}</pre></td><td>-</td><td><pre lang="json">{
+   "true": "mdi-cog-refresh",
+   "false": "mdi-cog-outline"
+}</pre></td><td>-</td></tr>
+<tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">"water-percent"</pre></td><td>-</td></tr>
+<tr><td><code>illuminance</code></td><td>-</td><td>-</td><td><code>lux</code></td><td>-</td><td>-</td></tr>
+<tr><td><code>level</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
+<tr><td><code>lowbattery</code></td><td><pre lang="json">{
+   "true": {
+      "color": "#900",
+      "fontWeight": "bold"
+   },
+   "false": {
+      "color": "#999"
+   }
+}</pre></td><td><pre lang="json">{
+   "true": "niedrig",
+   "false": "voll"
+}</pre></td><td>-</td><td><pre lang="json">{
+   "true": "battery-alert-variant-outline",
+   "false": "battery-high"
+}</pre></td><td>-</td></tr>
+<tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
+<tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"power"</pre></td><td>-</td></tr>
+<tr><td><code>reachability</code></td><td><pre lang="json">{
+   "true": {
+      "color": "#090"
+   },
+   "false": {
+      "color": "#900",
+      "fontWeight": "bold"
+   }
+}</pre></td><td><pre lang="json">{
+   "true": "erreichbar",
+   "false": "nicht erreichbar"
+}</pre></td><td>-</td><td><pre lang="json">{
+   "true": "lan-connect",
+   "false": "lan-disconnect"
+}</pre></td><td>-</td></tr>
+<tr><td><code>rssi</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
+   "default": "mdi-antenna"
+}</pre></td><td>-</td></tr>
+<tr><td><code>temperature</code></td><td>-</td><td>-</td><td><code>°C</code></td><td><pre lang="json">"thermometer"</pre></td><td>-</td></tr>
+<tr><td><code>trigger</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"power"</pre></td><td>-</td></tr>
+<tr><td><code>unreach</code></td><td><pre lang="json">{
+   "true": {
+      "color": "#900",
+      "fontWeight": "bold"
+   },
+   "false": {
+      "color": "#090"
+   }
+}</pre></td><td><pre lang="json">{
+   "true": "nicht erreichbar",
+   "false": "erreichbar"
+}</pre></td><td>-</td><td><pre lang="json">{
+   "true": "lan-disconnect",
+   "false": "lan-connect"
+}</pre></td><td>-</td></tr>
+<tr><td><code>wind</code></td><td>-</td><td>-</td><td><code>km/h</code></td><td><pre lang="json">"weather-windy"</pre></td><td>-</td></tr>
+</table>
+<h3>Beispielkonfiguration</h3>
 <h4>Adapter mihome-vacuum</h4>
 <h5>state</h5>
 <ul>

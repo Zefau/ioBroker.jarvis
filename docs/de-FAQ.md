@@ -16,6 +16,8 @@
   - [Schieberegler konfigurieren](#schieberegler-konfigurieren)
   - [Buttons konfigurieren](#buttons-konfigurieren)
   - [Meine alias Geräte werden nicht importiert / My alias devices are not imported correctly](#meine-alias-geräte-werden-nicht-importiert--my-alias-devices-are-not-imported-correctly)
+- [:bug: bug](#:bug:-bug)
+  - [Unterstützung für relative Pfade](#unterstützung-für-relative-pfade)
 - [:gem: Design / Theme](#:gem:-Design-/-Theme)
   - [Falsche Darstellung der Spalten auf dem Tablet](#falsche-darstellung-der-spalten-auf-dem-tablet)
   - [Eigene icons benutzen / How to use your own icons](#eigene-icons-benutzen--how-to-use-your-own-icons)
@@ -35,6 +37,8 @@
   - [SwitchAction Trigger Element / Settings für eigenen Objektwert fehlt](#switchaction-trigger-element--settings-für-eigenen-objektwert-fehlt)
 - [Module Weather](#Module-Weather)
   - [Sie sind kein registrierter Benutzer der daswetter.com-API ](#sie-sind-kein-registrierter-benutzer-der-daswettercom-api-)
+- [wontfix](#wontfix)
+  - [Unterstützung für relative Pfade](#unterstützung-für-relative-pfade)
 
 
 ## Fragen und Lösungen
@@ -215,6 +219,28 @@ Please remark: States of the alias adapter will ONLY be recognized by the Import
 Bitte beachten: Datenpunkte des Alias Adapter werden NUR vom Importer erkannt, wenn diese in einem Kanal (`channel`) gruppiert sind.
 ***
 
+### :bug: bug
+
+#### Unterstützung für relative Pfade
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/578).
+
+*Please note that you may restore an old layout via jarvis adapter configuration directly within ioBroker
+
+**Prerequisites / Voraussetzungen**
+- [x] Which jarvis version are you running / Welche Version von jarvis nutzt du? **v2.2.0-beta.6**
+
+**Describe the bug / Beschreibe den Fehler**
+Mit dem Widget "DisplayImage" möchte ich eine Grafik anzeigen lassen (Karte von dem Xiaomi Staubsauger). Auf die Grafik kann über den relativen Pfad zugegriffen werden:
+./opt/iobroker/iobroker-data/files/mihome-vacuum.admin/actualMap_0.png
+
+Jarvis kann über den relativen Pfad die Grafik aber nicht laden, da relative Pfade nicht unterstützt wird.
+Siehe auch https://forum.iobroker.net/post/553952
+
+**Expected behavior**
+Relative Pfade werden unterstützt
+
+***
+
 ### :gem: Design / Theme
 
 #### Falsche Darstellung der Spalten auf dem Tablet
@@ -377,5 +403,27 @@ jarvis.0 | 2020-10-24 13:26:14.718 | error | (28077) Sie sind kein registrierter
 
 Finde bei wetter.com nichts wo ich noch zusätzlich was aktivieren kann und registriert bin ich ja sonst würde ich die URL nicht abrufen können.
 Im Browser bekomm ich die XML mit dem richtigen Werten angezeigt.
+***
+
+### wontfix
+
+#### Unterstützung für relative Pfade
+[Siehe vollständige und Lösung Beschreibung im Issue](https://github.com/Zefau/ioBroker.jarvis/issues/578).
+
+*Please note that you may restore an old layout via jarvis adapter configuration directly within ioBroker
+
+**Prerequisites / Voraussetzungen**
+- [x] Which jarvis version are you running / Welche Version von jarvis nutzt du? **v2.2.0-beta.6**
+
+**Describe the bug / Beschreibe den Fehler**
+Mit dem Widget "DisplayImage" möchte ich eine Grafik anzeigen lassen (Karte von dem Xiaomi Staubsauger). Auf die Grafik kann über den relativen Pfad zugegriffen werden:
+./opt/iobroker/iobroker-data/files/mihome-vacuum.admin/actualMap_0.png
+
+Jarvis kann über den relativen Pfad die Grafik aber nicht laden, da relative Pfade nicht unterstützt wird.
+Siehe auch https://forum.iobroker.net/post/553952
+
+**Expected behavior**
+Relative Pfade werden unterstützt
+
 ***
 
