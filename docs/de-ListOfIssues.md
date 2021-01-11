@@ -8,13 +8,13 @@ jarvis benötigt den Web-Adapter inkl. entweder integriertem Socket oder dedizie
 
 ### Web-Adapter mit integriertem Socket (ohne socket.io Adapter)
 
-![Web-Adapter](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-ListOfIssues-WebAdapterConfig1.png)
+![Web-Adapter](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-ListOfIssues-WebAdapterConfig1.png)
 
 
 ### Web-Adapter in Verbindung mit dem socket.io Adapter
 
-![Web-Adapter](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-ListOfIssues-WebAdapterConfig2.png)
-![socket.io Adapter](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-ListOfIssues-WebAdapterConfig3.png)
+![Web-Adapter](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-ListOfIssues-WebAdapterConfig2.png)
+![socket.io Adapter](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-ListOfIssues-WebAdapterConfig3.png)
 
 
 ## Meine Alias Geräte werden nicht gefunden, warum?

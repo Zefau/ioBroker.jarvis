@@ -2,13 +2,13 @@
 
 Um schnell in jarvis zu starten, können vorhandene Geräte aus ioBroker importiert werden:
 
-![Importer](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Devices_Import-Button.png)
+![Importer](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-Devices_Import-Button.png)
 
 
 ## Such-Modus (alle oder Enums)
 
 Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
-![Importer](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Devices_Import-Structure-Selection.png)
+![Importer](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-Devices_Import-Structure-Selection.png)
 
 - `nach allen Geräten durchsuchen`: Durchsucht die komplette Struktur der ausgewählten Adapter nach allen vorhandenen Geräten und listet diese auf.
 - `nur nach in Enums hinzugefügten Geräten durchsuchen`: Durchsucht die Struktur der ausgewählten Adapter nur nach Geräten, die bereits in Enums zugeordnet sind.
@@ -45,6 +45,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `light` of hue](#function-light-of-hue)
 - [innogy-smarthome](#adapter-innogy-smarthome)
 - [knx](#adapter-knx)
+- [linkeddevices](#adapter-linkeddevices)
 - [mihome-vacuum](#adapter-mihome-vacuum)
   - [Function `consumableFilter` of mihome-vacuum](#function-consumableFilter-of-mihome-vacuum)
   - [Function `consumableBrushMain` of mihome-vacuum](#function-consumableBrushMain-of-mihome-vacuum)
@@ -79,6 +80,9 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `map` of mihome-vacuum](#function-map-of-mihome-vacuum)
   - [Function `cleanQueue` of mihome-vacuum](#function-cleanQueue-of-mihome-vacuum)
 - [mihome](#adapter-mihome)
+- [mqtt](#adapter-mqtt)
+  - [Function `light` of mqtt](#function-light-of-mqtt)
+  - [Function `other` of mqtt](#function-other-of-mqtt)
 - [nuki-extended](#adapter-nuki-extended)
   - [Function `openers` of nuki-extended](#function-openers-of-nuki-extended)
   - [Function `smartlocks` of nuki-extended](#function-smartlocks-of-nuki-extended)
@@ -87,8 +91,6 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `blind` of shelly](#function-blind-of-shelly)
   - [Function `light` of shelly](#function-light-of-shelly)
 - [sonoff](#adapter-sonoff)
-  - [Function `light` of sonoff](#function-light-of-sonoff)
-  - [Function `other` of sonoff](#function-other-of-sonoff)
 - [tr-064](#adapter-tr-064)
   - [Function `calllists` of tr-064](#function-calllists-of-tr-064)
   - [Function `phonebook` of tr-064](#function-phonebook-of-tr-064)
@@ -1533,6 +1535,10 @@ alle Datenpunkte werden übernommen
 
 alle Datenpunkte werden übernommen
 
+### Adapter linkeddevices
+
+alle Datenpunkte werden übernommen
+
 ### Adapter mihome-vacuum
 
 #### Function `consumableFilter` of mihome-vacuum
@@ -1825,6 +1831,110 @@ alle Datenpunkte werden übernommen
 
 alle Datenpunkte werden übernommen
 
+### Adapter mqtt
+
+#### Function `light` of mqtt
+```
+{
+   "dimmer": {
+      "state": ".Dimmer",
+      "action": ".Dimmer"
+   },
+   "ct": {
+      "state": ".CT",
+      "action": ".CT",
+      "properties": {
+         "min": 153,
+         "max": 500
+      }
+   },
+   "hue": {
+      "state": ".Hue",
+      "action": ".Hue"
+   },
+   "sat": {
+      "state": ".Saturation",
+      "action": ".Saturation"
+   }
+}
+```
+
+
+#### Function `other` of mqtt
+```
+{
+   "version": [
+      ".Version",
+      ".INFO.Version"
+   ],
+   "reachability": ".alive",
+   "ip": ".INFO.IPAddress",
+   "signal": ".Wifi_Signal",
+   "alive": ".alive",
+   "dataReceived": ".RfReceived_Data",
+   "power": {
+      "state": ".POWER",
+      "action": ".POWER"
+   },
+   "powerCurrent": {
+      "state": ".ENERGY_Current",
+      "unit": " A"
+   },
+   "powerMeter": {
+      "state": ".ENERGY_Power",
+      "unit": " W"
+   },
+   "powerConsumption": {
+      "state": ".ENERGY_Total",
+      "unit": " kWh"
+   },
+   "powerConsumptionToday": {
+      "state": ".ENERGY_Today",
+      "unit": " kWh"
+   },
+   "powerConsumptionYesterday": {
+      "state": ".ENERGY_Yesterday",
+      "unit": " kWh"
+   },
+   "power1": {
+      "state": ".POWER1",
+      "action": ".POWER1"
+   },
+   "power2": {
+      "state": ".POWER2",
+      "action": ".POWER2"
+   },
+   "power3": {
+      "state": ".POWER3",
+      "action": ".POWER3"
+   },
+   "power4": {
+      "state": ".POWER4",
+      "action": ".POWER4"
+   },
+   "power5": {
+      "state": ".POWER5",
+      "action": ".POWER5"
+   },
+   "power6": {
+      "state": ".POWER6",
+      "action": ".POWER6"
+   },
+   "power7": {
+      "state": ".POWER7",
+      "action": ".POWER7"
+   },
+   "power8": {
+      "state": ".POWER8",
+      "action": ".POWER8"
+   },
+   "power9": {
+      "state": ".POWER9",
+      "action": ".POWER9"
+   }
+}
+```
+
 ### Adapter nuki-extended
 
 #### Function `openers` of nuki-extended
@@ -2003,107 +2113,7 @@ alle Datenpunkte werden übernommen
 
 ### Adapter sonoff
 
-#### Function `light` of sonoff
-```
-{
-   "dimmer": {
-      "state": ".Dimmer",
-      "action": ".Dimmer"
-   },
-   "ct": {
-      "state": ".CT",
-      "action": ".CT",
-      "properties": {
-         "min": 153,
-         "max": 500
-      }
-   },
-   "hue": {
-      "state": ".Hue",
-      "action": ".Hue"
-   },
-   "sat": {
-      "state": ".Saturation",
-      "action": ".Saturation"
-   }
-}
-```
-
-
-#### Function `other` of sonoff
-```
-{
-   "version": [
-      ".Version",
-      ".INFO.Version"
-   ],
-   "reachability": ".alive",
-   "ip": ".INFO.IPAddress",
-   "signal": ".Wifi_Signal",
-   "alive": ".alive",
-   "dataReceived": ".RfReceived_Data",
-   "power": {
-      "state": ".POWER",
-      "action": ".POWER"
-   },
-   "powerCurrent": {
-      "state": ".ENERGY_Current",
-      "unit": " A"
-   },
-   "powerMeter": {
-      "state": ".ENERGY_Power",
-      "unit": " W"
-   },
-   "powerConsumption": {
-      "state": ".ENERGY_Total",
-      "unit": " kWh"
-   },
-   "powerConsumptionToday": {
-      "state": ".ENERGY_Today",
-      "unit": " kWh"
-   },
-   "powerConsumptionYesterday": {
-      "state": ".ENERGY_Yesterday",
-      "unit": " kWh"
-   },
-   "power1": {
-      "state": ".POWER1",
-      "action": ".POWER1"
-   },
-   "power2": {
-      "state": ".POWER2",
-      "action": ".POWER2"
-   },
-   "power3": {
-      "state": ".POWER3",
-      "action": ".POWER3"
-   },
-   "power4": {
-      "state": ".POWER4",
-      "action": ".POWER4"
-   },
-   "power5": {
-      "state": ".POWER5",
-      "action": ".POWER5"
-   },
-   "power6": {
-      "state": ".POWER6",
-      "action": ".POWER6"
-   },
-   "power7": {
-      "state": ".POWER7",
-      "action": ".POWER7"
-   },
-   "power8": {
-      "state": ".POWER8",
-      "action": ".POWER8"
-   },
-   "power9": {
-      "state": ".POWER9",
-      "action": ".POWER9"
-   }
-}
-```
+alle Datenpunkte werden übernommen
 
 ### Adapter tr-064
 

@@ -6,7 +6,7 @@ Mehr über die Gewerke kann [hier nachgelesen](de-Functions) werden.
 
 # Geräteliste
 
-![Geräteliste](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Geräteliste.png)
+![Geräteliste](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-Geräteliste.png)
 
 Die Liste der Geräte kann nach Gewerk oder Hersteller (`manufacturer`) gruppiert werden.
 
@@ -39,7 +39,7 @@ oder
 
 Die Gerätekonfiguration kann in den jarvis Einstellungen je Gerät vorgenommen werden.
 
-![Gerätekonfiguration](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Gerätekonfiguration.png)
+![Gerätekonfiguration](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-Gerätekonfiguration.png)
 
 
 ## Konfiguration der Datenpunkte / States
@@ -72,7 +72,7 @@ Die folgenden Eigenschaften stehen zur Verfügung:
 
 Die Angaben sind im JSON Format zu machen, analog der [JSON Eingabefelder](#datenpunkt-eigenschaften).
 **Beispiel**
-![Datenpunkt Eigenschaften](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Devices-Properties.png)
+![Datenpunkt Eigenschaften](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-Devices-Properties.png)
 
 
 ## JSON Eingabefelder

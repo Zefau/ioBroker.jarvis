@@ -1016,20 +1016,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.reachable</code></li>
 </ul>
 </ul>
-<h4>Adapter shelly</h4>
-<ul>
-<li><code>power</code>
-<ul>
-<li>state: <code>.lights.Switch</code></li>
-<li>action: <code>.lights.Switch</code></li>
-</ul>
-<li><code>level</code>
-<ul>
-<li>state: <code>.lights.brightness</code></li>
-<li>action: <code>.lights.brightness</code></li>
-</ul>
-</ul>
-<h4>Adapter sonoff</h4>
+<h4>Adapter mqtt</h4>
 <ul>
 <li><code>dimmer</code>
 <ul>
@@ -1051,6 +1038,19 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <ul>
 <li>state: <code>.Saturation</code></li>
 <li>action: <code>.Saturation</code></li>
+</ul>
+</ul>
+<h4>Adapter shelly</h4>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.lights.Switch</code></li>
+<li>action: <code>.lights.Switch</code></li>
+</ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.lights.brightness</code></li>
+<li>action: <code>.lights.brightness</code></li>
 </ul>
 </ul>
 
@@ -2050,6 +2050,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
    "true": "mdi-cog-refresh",
    "false": "mdi-cog-outline"
 }</pre></td><td>-</td></tr>
+<tr><td><code>frost</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
+   "default": "mdi-snowflake"
+}</pre></td><td>-</td></tr>
 <tr><td><code>humidity</code></td><td>-</td><td>-</td><td><code>%</code></td><td><pre lang="json">"water-percent"</pre></td><td>-</td></tr>
 <tr><td><code>illuminance</code></td><td>-</td><td>-</td><td><code>lux</code></td><td>-</td><td>-</td></tr>
 <tr><td><code>level</code></td><td>-</td><td>-</td><td><code>%</code></td><td>-</td><td>-</td></tr>
@@ -2235,67 +2238,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>0: <code>e</code></li>
 </ul>
 </ul>
-<h4>Adapter nuki-extended</h4>
-<ul>
-<li><code>door</code>
-<ul>
-<li>state: <code>.state.closed</code></li>
-</ul>
-<li><code>doorState</code>
-<ul>
-<li>state: <code>.state.doorState</code></li>
-<li>display: <code>[object Object]</code></li>
-</ul>
-<li><code>lock</code>
-<ul>
-<li>state: <code>.state.locked</code></li>
-</ul>
-<li><code>lockState</code>
-<ul>
-<li>state: <code>.state.lockState</code></li>
-<li>display: <code>[object Object]</code></li>
-</ul>
-<li><code>lockUpdate</code>
-<ul>
-<li>state: <code>.state.lastStateUpdate</code></li>
-</ul>
-<li><code>lowbattery</code>
-<ul>
-<li>state: <code>.state.batteryCritical</code></li>
-</ul>
-<li><code>ACTIONS</code>
-<ul>
-<li>action: <code>._ACTION</code></li>
-<li>display: <code>[object Object]</code></li>
-<li>actionElement: <code>DropdownAction</code></li>
-</ul>
-<li><code>LOCK</code>
-<ul>
-<li>action: <code>._ACTION.LOCK</code></li>
-<li>actionElement: <code>IconButtonAction</code></li>
-</ul>
-<li><code>LOCK_N_GO</code>
-<ul>
-<li>action: <code>._ACTION.LOCK_N_GO</code></li>
-<li>actionElement: <code>IconButtonAction</code></li>
-</ul>
-<li><code>LOCK_N_GO_WITH_UNLATCH</code>
-<ul>
-<li>action: <code>._ACTION.LOCK_N_GO_WITH_UNLATCH</code></li>
-<li>actionElement: <code>IconButtonAction</code></li>
-</ul>
-<li><code>UNLATCH</code>
-<ul>
-<li>action: <code>._ACTION.UNLATCH</code></li>
-<li>actionElement: <code>IconButtonAction</code></li>
-</ul>
-<li><code>UNLOCK</code>
-<ul>
-<li>action: <code>._ACTION.UNLOCK</code></li>
-<li>actionElement: <code>IconButtonAction</code></li>
-</ul>
-</ul>
-<h4>Adapter sonoff</h4>
+<h4>Adapter mqtt</h4>
 <h5>version</h5>
 <ul>
 <li><code>0</code>
@@ -2919,6 +2862,66 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>4: <code>E</code></li>
 <li>5: <code>R</code></li>
 <li>6: <code>9</code></li>
+</ul>
+</ul>
+<h4>Adapter nuki-extended</h4>
+<ul>
+<li><code>door</code>
+<ul>
+<li>state: <code>.state.closed</code></li>
+</ul>
+<li><code>doorState</code>
+<ul>
+<li>state: <code>.state.doorState</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>lock</code>
+<ul>
+<li>state: <code>.state.locked</code></li>
+</ul>
+<li><code>lockState</code>
+<ul>
+<li>state: <code>.state.lockState</code></li>
+<li>display: <code>[object Object]</code></li>
+</ul>
+<li><code>lockUpdate</code>
+<ul>
+<li>state: <code>.state.lastStateUpdate</code></li>
+</ul>
+<li><code>lowbattery</code>
+<ul>
+<li>state: <code>.state.batteryCritical</code></li>
+</ul>
+<li><code>ACTIONS</code>
+<ul>
+<li>action: <code>._ACTION</code></li>
+<li>display: <code>[object Object]</code></li>
+<li>actionElement: <code>DropdownAction</code></li>
+</ul>
+<li><code>LOCK</code>
+<ul>
+<li>action: <code>._ACTION.LOCK</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>LOCK_N_GO</code>
+<ul>
+<li>action: <code>._ACTION.LOCK_N_GO</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>LOCK_N_GO_WITH_UNLATCH</code>
+<ul>
+<li>action: <code>._ACTION.LOCK_N_GO_WITH_UNLATCH</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>UNLATCH</code>
+<ul>
+<li>action: <code>._ACTION.UNLATCH</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
+</ul>
+<li><code>UNLOCK</code>
+<ul>
+<li>action: <code>._ACTION.UNLOCK</code></li>
+<li>actionElement: <code>IconButtonAction</code></li>
 </ul>
 </ul>
 <h4>Adapter tr-064</h4>

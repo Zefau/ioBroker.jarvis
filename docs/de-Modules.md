@@ -208,7 +208,6 @@ Zeigt ein Multimedia-Player an (z. B. Spotify).
 | Parameter | Beschreibung | Typ | Standard |
 | - | - | - | - |
 | ***`adapter`*** | Musik Adapter  | Select | - |
-| `player` | Player ID  | Text | - |
 | `coverMode` | Cover Modus  | Switch | - |
 | `coverHeight` | Cover Höhe  | Number | `200` |
 | `coverUrl` | Cover Prefix URL  | Text | - |

@@ -1,6 +1,6 @@
 ## Layout
 
-![Layout](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/xx-Home-Layout.png)
+![Layout](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/xx-Home-Layout.png)
 
 ### Tabs
 

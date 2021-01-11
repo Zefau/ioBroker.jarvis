@@ -1,6 +1,6 @@
 ## Widgets
 
-![Widgets](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/wiki/de-Widgets.png)
+![Widgets](https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/docs/de-Widgets.png)
 
 ### Widget-Box
 
