@@ -32,6 +32,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `door` of hm-rpc](#function-door-of-hm-rpc)
   - [Function `weather-station` of hm-rpc](#function-weather-station-of-hm-rpc)
   - [Function `switch` of hm-rpc](#function-switch-of-hm-rpc)
+  - [Function `CUxD` of hm-rpc](#function-CUxD-of-hm-rpc)
 - [hmip](#adapter-hmip)
   - [Function `heating` of hmip](#function-heating-of-hmip)
   - [Function `blind` of hmip](#function-blind-of-hmip)
@@ -45,6 +46,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `light` of hue](#function-light-of-hue)
 - [innogy-smarthome](#adapter-innogy-smarthome)
 - [knx](#adapter-knx)
+- [lifx](#adapter-lifx)
 - [linkeddevices](#adapter-linkeddevices)
 - [mihome-vacuum](#adapter-mihome-vacuum)
   - [Function `consumableFilter` of mihome-vacuum](#function-consumableFilter-of-mihome-vacuum)
@@ -95,6 +97,8 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `calllists` of tr-064](#function-calllists-of-tr-064)
   - [Function `phonebook` of tr-064](#function-phonebook-of-tr-064)
   - [Function `states` of tr-064](#function-states-of-tr-064)
+- [wifilight](#adapter-wifilight)
+- [yeelight](#adapter-yeelight)
 - [zigbee](#adapter-zigbee)
 - [zwave2](#adapter-zwave2)
   - [Function `thermostat` of zwave2](#function-thermostat-of-zwave2)
@@ -190,6 +194,24 @@ alle Datenpunkte werden übernommen
       "level": {
          "state": ".3.LEVEL",
          "action": ".4.LEVEL"
+      }
+   },
+   "HM-LC-RGBW-WM": {
+      "level": {
+         "state": ".1.LEVEL",
+         "action": ".1.LEVEL"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "timerOn": {
+         "state": ".1.RAMP_TIME",
+         "action": ".1.RAMP_TIME"
+      },
+      "hue": {
+         "state": ".2.COLOR",
+         "action": ".2.COLOR"
       }
    },
    "HM-LC-Sw1PBU-FM": {
@@ -1282,6 +1304,79 @@ alle Datenpunkte werden übernommen
 }
 ```
 
+
+#### Function `CUxD` of hm-rpc
+```
+{
+   "HM-LC-Sw1PBU-FM": {
+      "powerCh1": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "powerCh2": {
+         "state": ".2.STATE",
+         "action": ".2.STATE"
+      },
+      "powerCh3": {
+         "state": ".3.STATE",
+         "action": ".3.STATE"
+      },
+      "powerCh4": {
+         "state": ".4.STATE",
+         "action": ".4.STATE"
+      },
+      "powerCh5": {
+         "state": ".5.STATE",
+         "action": ".5.STATE"
+      },
+      "powerCh6": {
+         "state": ".6.STATE",
+         "action": ".6.STATE"
+      },
+      "powerCh7": {
+         "state": ".7.STATE",
+         "action": ".7.STATE"
+      },
+      "powerCh8": {
+         "state": ".8.STATE",
+         "action": ".8.STATE"
+      },
+      "powerCh9": {
+         "state": ".9.STATE",
+         "action": ".9.STATE"
+      },
+      "powerCh10": {
+         "state": ".10.STATE",
+         "action": ".10.STATE"
+      },
+      "powerCh11": {
+         "state": ".11.STATE",
+         "action": ".11.STATE"
+      },
+      "powerCh12": {
+         "state": ".12.STATE",
+         "action": ".12.STATE"
+      },
+      "powerCh13": {
+         "state": ".13.STATE",
+         "action": ".13.STATE"
+      },
+      "powerCh14": {
+         "state": ".14.STATE",
+         "action": ".14.STATE"
+      },
+      "powerCh15": {
+         "state": ".15.STATE",
+         "action": ".15.STATE"
+      },
+      "powerCh16": {
+         "state": ".16.STATE",
+         "action": ".16.STATE"
+      }
+   }
+}
+```
+
 ### Adapter hmip
 
 #### Function `heating` of hmip
@@ -1532,6 +1627,10 @@ alle Datenpunkte werden übernommen
 alle Datenpunkte werden übernommen
 
 ### Adapter knx
+
+alle Datenpunkte werden übernommen
+
+### Adapter lifx
 
 alle Datenpunkte werden übernommen
 
@@ -2204,6 +2303,14 @@ alle Datenpunkte werden übernommen
    }
 }
 ```
+
+### Adapter wifilight
+
+alle Datenpunkte werden übernommen
+
+### Adapter yeelight
+
+alle Datenpunkte werden übernommen
 
 ### Adapter zigbee
 

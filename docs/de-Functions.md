@@ -830,6 +830,29 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.LEVEL</code></li>
 </ul>
 </ul>
+<h5>HM-LC-RGBW-WM</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>timerOn</code>
+<ul>
+<li>state: <code>.1.RAMP_TIME</code></li>
+<li>action: <code>.1.RAMP_TIME</code></li>
+</ul>
+<li><code>hue</code>
+<ul>
+<li>state: <code>.2.COLOR</code></li>
+<li>action: <code>.2.COLOR</code></li>
+</ul>
+</ul>
 <h5>HM-LC-Sw1PBU-FM</h5>
 <ul>
 <li><code>power</code>
@@ -2111,6 +2134,90 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <tr><td><code>wind</code></td><td>-</td><td>-</td><td><code>km/h</code></td><td><pre lang="json">"weather-windy"</pre></td><td>-</td></tr>
 </table>
 <h3>Beispielkonfiguration</h3>
+<h4>Adapter hm-rpc</h4>
+<h5>HM-LC-Sw1PBU-FM</h5>
+<ul>
+<li><code>powerCh1</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>powerCh2</code>
+<ul>
+<li>state: <code>.2.STATE</code></li>
+<li>action: <code>.2.STATE</code></li>
+</ul>
+<li><code>powerCh3</code>
+<ul>
+<li>state: <code>.3.STATE</code></li>
+<li>action: <code>.3.STATE</code></li>
+</ul>
+<li><code>powerCh4</code>
+<ul>
+<li>state: <code>.4.STATE</code></li>
+<li>action: <code>.4.STATE</code></li>
+</ul>
+<li><code>powerCh5</code>
+<ul>
+<li>state: <code>.5.STATE</code></li>
+<li>action: <code>.5.STATE</code></li>
+</ul>
+<li><code>powerCh6</code>
+<ul>
+<li>state: <code>.6.STATE</code></li>
+<li>action: <code>.6.STATE</code></li>
+</ul>
+<li><code>powerCh7</code>
+<ul>
+<li>state: <code>.7.STATE</code></li>
+<li>action: <code>.7.STATE</code></li>
+</ul>
+<li><code>powerCh8</code>
+<ul>
+<li>state: <code>.8.STATE</code></li>
+<li>action: <code>.8.STATE</code></li>
+</ul>
+<li><code>powerCh9</code>
+<ul>
+<li>state: <code>.9.STATE</code></li>
+<li>action: <code>.9.STATE</code></li>
+</ul>
+<li><code>powerCh10</code>
+<ul>
+<li>state: <code>.10.STATE</code></li>
+<li>action: <code>.10.STATE</code></li>
+</ul>
+<li><code>powerCh11</code>
+<ul>
+<li>state: <code>.11.STATE</code></li>
+<li>action: <code>.11.STATE</code></li>
+</ul>
+<li><code>powerCh12</code>
+<ul>
+<li>state: <code>.12.STATE</code></li>
+<li>action: <code>.12.STATE</code></li>
+</ul>
+<li><code>powerCh13</code>
+<ul>
+<li>state: <code>.13.STATE</code></li>
+<li>action: <code>.13.STATE</code></li>
+</ul>
+<li><code>powerCh14</code>
+<ul>
+<li>state: <code>.14.STATE</code></li>
+<li>action: <code>.14.STATE</code></li>
+</ul>
+<li><code>powerCh15</code>
+<ul>
+<li>state: <code>.15.STATE</code></li>
+<li>action: <code>.15.STATE</code></li>
+</ul>
+<li><code>powerCh16</code>
+<ul>
+<li>state: <code>.16.STATE</code></li>
+<li>action: <code>.16.STATE</code></li>
+</ul>
+</ul>
 <h4>Adapter mihome-vacuum</h4>
 <h5>state</h5>
 <ul>
