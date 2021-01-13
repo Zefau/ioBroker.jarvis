@@ -311,6 +311,51 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.PARTY_MODE</code></li>
 </ul>
 </ul>
+<h5>HmIP-eTRV</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>setTemperature</code>
+<ul>
+<li>state: <code>.1.SET_POINT_TEMPERATURE</code></li>
+<li>action: <code>.1.SET_POINT_TEMPERATURE</code></li>
+</ul>
+<li><code>frost</code>
+<ul>
+<li>state: <code>.1.FROST_PROTECTION</code></li>
+</ul>
+<li><code>boost</code>
+<ul>
+<li>state: <code>.1.BOOST_MODE</code></li>
+<li>action: <code>.1.BOOST_MODE</code></li>
+</ul>
+<li><code>boostTime</code>
+<ul>
+<li>state: <code>.1.BOOST_TIME</code></li>
+<li>action: <code>.1.BOOST_TIME</code></li>
+</ul>
+<li><code>windowState</code>
+<ul>
+<li>state: <code>.1.WINDOW_STATE</code></li>
+</ul>
+<li><code>partyMode</code>
+<ul>
+<li>state: <code>.1.PARTY_MODE</code></li>
+<li>action: <code>.1.PARTY_MODE</code></li>
+</ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+<li><code>valve</code>
+<ul>
+<li>state: <code>.1.VALVE_STATE</code></li>
+<li>action: <code>.1.VALVE_STATE</code></li>
+</ul>
+</ul>
 <h5>HmIP-eTRV2</h5>
 <ul>
 <li><code>temperature</code>
