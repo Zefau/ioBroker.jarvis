@@ -5,12 +5,12 @@
     "static/js/1.98591b68.chunk.js": "/jarvis/static/js/1.98591b68.chunk.js",
     "static/js/1.98591b68.chunk.js.map": "/jarvis/static/js/1.98591b68.chunk.js.map",
     "main.css": "/jarvis/static/css/main.45d5d0e8.chunk.css",
-    "main.js": "/jarvis/static/js/main.448167f9.chunk.js",
-    "main.js.map": "/jarvis/static/js/main.448167f9.chunk.js.map",
+    "main.js": "/jarvis/static/js/main.82506744.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.82506744.chunk.js.map",
     "runtime-main.js": "/jarvis/static/js/runtime-main.0f15fa14.js",
     "runtime-main.js.map": "/jarvis/static/js/runtime-main.0f15fa14.js.map",
-    "static/js/4.5633da38.chunk.js": "/jarvis/static/js/4.5633da38.chunk.js",
-    "static/js/4.5633da38.chunk.js.map": "/jarvis/static/js/4.5633da38.chunk.js.map",
+    "static/js/4.bd2d5665.chunk.js": "/jarvis/static/js/4.bd2d5665.chunk.js",
+    "static/js/4.bd2d5665.chunk.js.map": "/jarvis/static/js/4.bd2d5665.chunk.js.map",
     "static/css/5.1a719957.chunk.css": "/jarvis/static/css/5.1a719957.chunk.css",
     "static/js/5.ca010e56.chunk.js": "/jarvis/static/js/5.ca010e56.chunk.js",
     "static/js/5.ca010e56.chunk.js.map": "/jarvis/static/js/5.ca010e56.chunk.js.map",
@@ -23,13 +23,13 @@
     "static/js/9.3a500350.chunk.js": "/jarvis/static/js/9.3a500350.chunk.js",
     "static/js/9.3a500350.chunk.js.map": "/jarvis/static/js/9.3a500350.chunk.js.map",
     "index.html": "/jarvis/index.html",
-    "precache-manifest.b70a9e239b57083803dc9f04ca103c9c.js": "/jarvis/precache-manifest.b70a9e239b57083803dc9f04ca103c9c.js",
+    "precache-manifest.a89ec4d7ed67f7e79b825e44374de93a.js": "/jarvis/precache-manifest.a89ec4d7ed67f7e79b825e44374de93a.js",
     "service-worker.js": "/jarvis/service-worker.js",
     "static/css/5.1a719957.chunk.css.map": "/jarvis/static/css/5.1a719957.chunk.css.map",
     "static/css/main.45d5d0e8.chunk.css.map": "/jarvis/static/css/main.45d5d0e8.chunk.css.map",
     "static/js/0.60b46198.chunk.js.LICENSE.txt": "/jarvis/static/js/0.60b46198.chunk.js.LICENSE.txt",
     "static/js/1.98591b68.chunk.js.LICENSE.txt": "/jarvis/static/js/1.98591b68.chunk.js.LICENSE.txt",
-    "static/js/4.5633da38.chunk.js.LICENSE.txt": "/jarvis/static/js/4.5633da38.chunk.js.LICENSE.txt",
+    "static/js/4.bd2d5665.chunk.js.LICENSE.txt": "/jarvis/static/js/4.bd2d5665.chunk.js.LICENSE.txt",
     "static/js/5.ca010e56.chunk.js.LICENSE.txt": "/jarvis/static/js/5.ca010e56.chunk.js.LICENSE.txt",
     "static/media/0.png": "/jarvis/static/media/0.b2b907ab.png",
     "static/media/1.png": "/jarvis/static/media/1.a768f444.png",
@@ -74,8 +74,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0f15fa14.js",
-    "static/js/4.5633da38.chunk.js",
+    "static/js/4.bd2d5665.chunk.js",
     "static/css/main.45d5d0e8.chunk.css",
-    "static/js/main.448167f9.chunk.js"
+    "static/js/main.82506744.chunk.js"
   ]
 }
