@@ -98,7 +98,7 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `phonebook` of tr-064](#function-phonebook-of-tr-064)
   - [Function `states` of tr-064](#function-states-of-tr-064)
 - [wifilight](#adapter-wifilight)
-- [yeelight](#adapter-yeelight)
+- [yeelight-2](#adapter-yeelight-2)
 - [zigbee](#adapter-zigbee)
 - [zwave2](#adapter-zwave2)
   - [Function `thermostat` of zwave2](#function-thermostat-of-zwave2)
@@ -2343,7 +2343,7 @@ alle Datenpunkte werden übernommen
 
 alle Datenpunkte werden übernommen
 
-### Adapter yeelight
+### Adapter yeelight-2
 
 alle Datenpunkte werden übernommen
 
