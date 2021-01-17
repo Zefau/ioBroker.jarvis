@@ -71,6 +71,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.3.ACTIVITY_STATE</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.4.STOP</code></li>
 </ul>
 </ul>
@@ -84,6 +87,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.3.ACTIVITY_STATE</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.4.STOP</code></li>
 </ul>
 </ul>
@@ -102,6 +108,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.3.ACTIVITY_STATE</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.4.STOP</code></li>
 </ul>
 </ul>
@@ -115,6 +124,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.1.WORKING</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.1.STOP</code></li>
 </ul>
 </ul>
@@ -128,7 +140,85 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.1.WORKING</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.1.STOP</code></li>
+</ul>
+</ul>
+<h5>HmIPW-DRBL4</h5>
+<ul>
+<li><code>levelCh1</code>
+<ul>
+<li>state: <code>.2.LEVEL</code></li>
+<li>action: <code>.2.LEVEL</code></li>
+</ul>
+<li><code>level2Ch1</code>
+<ul>
+<li>state: <code>.2.LEVEL_2</code></li>
+<li>action: <code>.2.LEVEL_2</code></li>
+</ul>
+<li><code>activityCh1</code>
+<ul>
+<li>state: <code>.2.PROCESS</code></li>
+</ul>
+<li><code>stopCh1</code>
+<ul>
+<li>action: <code>.2.STOP</code></li>
+</ul>
+<li><code>levelCh2</code>
+<ul>
+<li>state: <code>.6.LEVEL</code></li>
+<li>action: <code>.6.LEVEL</code></li>
+</ul>
+<li><code>level2Ch2</code>
+<ul>
+<li>state: <code>.6.LEVEL_2</code></li>
+<li>action: <code>.6.LEVEL_2</code></li>
+</ul>
+<li><code>activityCh2</code>
+<ul>
+<li>state: <code>.6.PROCESS</code></li>
+</ul>
+<li><code>stopCh2</code>
+<ul>
+<li>action: <code>.6.STOP</code></li>
+</ul>
+<li><code>levelCh3</code>
+<ul>
+<li>state: <code>.10.LEVEL</code></li>
+<li>action: <code>.10.LEVEL</code></li>
+</ul>
+<li><code>level2Ch3</code>
+<ul>
+<li>state: <code>.10.LEVEL_2</code></li>
+<li>action: <code>.10.LEVEL_2</code></li>
+</ul>
+<li><code>activityCh3</code>
+<ul>
+<li>state: <code>.10.PROCESS</code></li>
+</ul>
+<li><code>stopCh3</code>
+<ul>
+<li>action: <code>.10.STOP</code></li>
+</ul>
+<li><code>levelCh4</code>
+<ul>
+<li>state: <code>.14.LEVEL</code></li>
+<li>action: <code>.14.LEVEL</code></li>
+</ul>
+<li><code>level2Ch4</code>
+<ul>
+<li>state: <code>.14.LEVEL_2</code></li>
+<li>action: <code>.14.LEVEL_2</code></li>
+</ul>
+<li><code>activityCh4</code>
+<ul>
+<li>state: <code>.14.PROCESS</code></li>
+</ul>
+<li><code>stopCh4</code>
+<ul>
+<li>action: <code>.14.STOP</code></li>
 </ul>
 </ul>
 <h4>Adapter hmip</h4>
@@ -142,6 +232,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.channels.1.processing</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.channels.1.stop</code></li>
 </ul>
 </ul>
@@ -155,6 +248,9 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>activity</code>
 <ul>
 <li>state: <code>.channels.1.processing</code></li>
+</ul>
+<li><code>stop</code>
+<ul>
 <li>action: <code>.channels.1.stop</code></li>
 </ul>
 </ul>
@@ -356,7 +452,7 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.1.VALVE_STATE</code></li>
 </ul>
 </ul>
-<h5>HmIP-eTRV2</h5>
+<h5>HmIP-eTRV-2</h5>
 <ul>
 <li><code>temperature</code>
 <ul>

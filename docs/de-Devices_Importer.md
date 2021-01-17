@@ -418,7 +418,7 @@ alle Datenpunkte werden übernommen
          "action": ".1.VALVE_STATE"
       }
    },
-   "HmIP-eTRV2": {
+   "HmIP-eTRV-2": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
       },
@@ -687,7 +687,9 @@ alle Datenpunkte werden übernommen
          "action": ".4.LEVEL2"
       },
       "activity": {
-         "state": ".3.ACTIVITY_STATE",
+         "state": ".3.ACTIVITY_STATE"
+      },
+      "stop": {
          "action": ".4.STOP"
       }
    },
@@ -697,7 +699,9 @@ alle Datenpunkte werden übernommen
          "action": ".4.LEVEL"
       },
       "activity": {
-         "state": ".3.ACTIVITY_STATE",
+         "state": ".3.ACTIVITY_STATE"
+      },
+      "stop": {
          "action": ".4.STOP"
       }
    },
@@ -711,7 +715,9 @@ alle Datenpunkte werden übernommen
          "action": ".4.LEVEL2"
       },
       "activity": {
-         "state": ".3.ACTIVITY_STATE",
+         "state": ".3.ACTIVITY_STATE"
+      },
+      "stop": {
          "action": ".4.STOP"
       }
    },
@@ -721,7 +727,9 @@ alle Datenpunkte werden übernommen
          "action": ".1.LEVEL"
       },
       "activity": {
-         "state": ".1.WORKING",
+         "state": ".1.WORKING"
+      },
+      "stop": {
          "action": ".1.STOP"
       }
    },
@@ -731,8 +739,68 @@ alle Datenpunkte werden übernommen
          "action": ".1.LEVEL"
       },
       "activity": {
-         "state": ".1.WORKING",
+         "state": ".1.WORKING"
+      },
+      "stop": {
          "action": ".1.STOP"
+      }
+   },
+   "HmIPW-DRBL4": {
+      "levelCh1": {
+         "state": ".2.LEVEL",
+         "action": ".2.LEVEL"
+      },
+      "level2Ch1": {
+         "state": ".2.LEVEL_2",
+         "action": ".2.LEVEL_2"
+      },
+      "activityCh1": {
+         "state": ".2.PROCESS"
+      },
+      "stopCh1": {
+         "action": ".2.STOP"
+      },
+      "levelCh2": {
+         "state": ".6.LEVEL",
+         "action": ".6.LEVEL"
+      },
+      "level2Ch2": {
+         "state": ".6.LEVEL_2",
+         "action": ".6.LEVEL_2"
+      },
+      "activityCh2": {
+         "state": ".6.PROCESS"
+      },
+      "stopCh2": {
+         "action": ".6.STOP"
+      },
+      "levelCh3": {
+         "state": ".10.LEVEL",
+         "action": ".10.LEVEL"
+      },
+      "level2Ch3": {
+         "state": ".10.LEVEL_2",
+         "action": ".10.LEVEL_2"
+      },
+      "activityCh3": {
+         "state": ".10.PROCESS"
+      },
+      "stopCh3": {
+         "action": ".10.STOP"
+      },
+      "levelCh4": {
+         "state": ".14.LEVEL",
+         "action": ".14.LEVEL"
+      },
+      "level2Ch4": {
+         "state": ".14.LEVEL_2",
+         "action": ".14.LEVEL_2"
+      },
+      "activityCh4": {
+         "state": ".14.PROCESS"
+      },
+      "stopCh4": {
+         "action": ".14.STOP"
       }
    }
 }
@@ -846,9 +914,9 @@ alle Datenpunkte werden übernommen
       "open": {
          "state": ".1.STATE",
          "display": {
-            "0": "window#open#false",
+            "0": "window#open#closed",
             "1": "window#open#tilted",
-            "2": "window#open#true"
+            "2": "window#open#opened"
          }
       }
    },
@@ -856,9 +924,9 @@ alle Datenpunkte werden übernommen
       "open": {
          "state": ".1.STATE",
          "display": {
-            "0": "window#open#false",
+            "0": "window#open#closed",
             "1": "window#open#tilted",
-            "2": "window#open#true"
+            "2": "window#open#opened"
          }
       }
    },
@@ -1542,7 +1610,9 @@ alle Datenpunkte werden übernommen
          "action": ".channels.1.shutterLevel"
       },
       "activity": {
-         "state": ".channels.1.processing",
+         "state": ".channels.1.processing"
+      },
+      "stop": {
          "action": ".channels.1.stop"
       }
    },
@@ -1552,7 +1622,9 @@ alle Datenpunkte werden übernommen
          "action": ".channels.1.shutterLevel"
       },
       "activity": {
-         "state": ".channels.1.processing",
+         "state": ".channels.1.processing"
+      },
+      "stop": {
          "action": ".channels.1.stop"
       }
    }
@@ -1580,9 +1652,9 @@ alle Datenpunkte werden übernommen
       "state": {
          "state": ".channels.1.windowState",
          "display": {
-            "CLOSED": "window#open#false",
+            "CLOSED": "window#open#closed",
             "TILTED": "window#open#tilted",
-            "OPEN": "window#open#true"
+            "OPEN": "window#open#opened"
          }
       }
    }
