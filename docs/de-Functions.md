@@ -1445,6 +1445,17 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>display: <code>[object Object]</code></li>
 </ul>
 </ul>
+<h5>HM-Sec-SD</h5>
+<ul>
+<li><code>alarm</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+</ul>
+<li><code>lowBatteryCh1</code>
+<ul>
+<li>state: <code>.1.LOWBAT</code></li>
+</ul>
+</ul>
 <h5>HM-Sec-SD-2</h5>
 <ul>
 <li><code>alarm</code>
@@ -1454,6 +1465,13 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>lowBatteryCh1</code>
 <ul>
 <li>state: <code>.1.LOWBAT</code></li>
+</ul>
+</ul>
+<h5>HM-Sec-SD-2-Team</h5>
+<ul>
+<li><code>alarm</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
 </ul>
 </ul>
 
@@ -1526,6 +1544,43 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>meter</code>
 <ul>
 <li>state: <code>.6.POWER</code></li>
+</ul>
+</ul>
+<h5>HM-ES-PMSw1-Pl-DN-R1</h5>
+<ul>
+<li><code>power</code>
+<ul>
+<li>state: <code>.1.STATE</code></li>
+<li>action: <code>.1.STATE</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>powerCurrent</code>
+<ul>
+<li>state: <code>.2.CURRENT</code></li>
+<li>unit: <code> mA</code></li>
+</ul>
+<li><code>powerFrequency</code>
+<ul>
+<li>state: <code>.2.FREQUENCY</code></li>
+</ul>
+<li><code>powerCounter</code>
+<ul>
+<li>state: <code>.2.ENERGY_COUNTER</code></li>
+<li>unit: <code> Wh</code></li>
+</ul>
+<li><code>powerMeter</code>
+<ul>
+<li>state: <code>.2.POWER</code></li>
+<li>unit: <code> W</code></li>
+</ul>
+<li><code>powerVoltage</code>
+<ul>
+<li>state: <code>.2.VOLTAGE</code></li>
+<li>unit: <code> V</code></li>
 </ul>
 </ul>
 <h5>HM-LC-Sw1-Pl-2</h5>
@@ -1867,6 +1922,17 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 </table>
 <h3>Beispielkonfiguration</h3>
 <h4>Adapter hm-rpc</h4>
+<h5>HmIP-STHO</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.ACTUAL_TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
+</ul>
+</ul>
 <h5>HmIP-STHO-A</h5>
 <ul>
 <li><code>temperature</code>
@@ -1930,6 +1996,17 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li><code>rainCounter</code>
 <ul>
 <li>state: <code>.1.RAIN_COUNTER</code></li>
+</ul>
+</ul>
+<h5>HM-WDS40-TH-I-2</h5>
+<ul>
+<li><code>temperature</code>
+<ul>
+<li>state: <code>.1.TEMPERATURE</code></li>
+</ul>
+<li><code>humidity</code>
+<ul>
+<li>state: <code>.1.HUMIDITY</code></li>
 </ul>
 </ul>
 <h4>Adapter hmip</h4>

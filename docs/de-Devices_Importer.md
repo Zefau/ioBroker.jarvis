@@ -799,12 +799,25 @@ alle Datenpunkte werden übernommen
          }
       }
    },
+   "HM-Sec-SD": {
+      "alarm": {
+         "state": ".1.STATE"
+      },
+      "lowBatteryCh1": {
+         "state": ".1.LOWBAT"
+      }
+   },
    "HM-Sec-SD-2": {
       "alarm": {
          "state": ".1.STATE"
       },
       "lowBatteryCh1": {
          "state": ".1.LOWBAT"
+      }
+   },
+   "HM-Sec-SD-2-Team": {
+      "alarm": {
+         "state": ".1.STATE"
       }
    }
 }
@@ -906,6 +919,35 @@ alle Datenpunkte werden übernommen
       },
       "meter": {
          "state": ".6.POWER"
+      }
+   },
+   "HM-ES-PMSw1-Pl-DN-R1": {
+      "power": {
+         "state": ".1.STATE",
+         "action": ".1.STATE"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "powerCurrent": {
+         "state": ".2.CURRENT",
+         "unit": " mA"
+      },
+      "powerFrequency": {
+         "state": ".2.FREQUENCY"
+      },
+      "powerCounter": {
+         "state": ".2.ENERGY_COUNTER",
+         "unit": " Wh"
+      },
+      "powerMeter": {
+         "state": ".2.POWER",
+         "unit": " W"
+      },
+      "powerVoltage": {
+         "state": ".2.VOLTAGE",
+         "unit": " V"
       }
    },
    "HM-LC-Sw1-Pl-2": {
@@ -1153,6 +1195,14 @@ alle Datenpunkte werden übernommen
 #### Function `weather-station` of hm-rpc
 ```
 {
+   "HmIP-STHO": {
+      "temperature": {
+         "state": ".1.ACTUAL_TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
+      }
+   },
    "HmIP-STHO-A": {
       "temperature": {
          "state": ".1.ACTUAL_TEMPERATURE"
@@ -1199,6 +1249,14 @@ alle Datenpunkte werden übernommen
       },
       "rainCounter": {
          "state": ".1.RAIN_COUNTER"
+      }
+   },
+   "HM-WDS40-TH-I-2": {
+      "temperature": {
+         "state": ".1.TEMPERATURE"
+      },
+      "humidity": {
+         "state": ".1.HUMIDITY"
       }
    }
 }
