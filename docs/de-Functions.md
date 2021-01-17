@@ -3109,6 +3109,17 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>state: <code>.wlan50</code></li>
 </ul>
 </ul>
+<h4>Adapter unifi</h4>
+<ul>
+<li><code>update_available</code>
+<ul>
+<li>state: <code>.update_available</code></li>
+</ul>
+<li><code>version</code>
+<ul>
+<li>state: <code>.version</code></li>
+</ul>
+</ul>
 <h4>Adapter zwave2</h4>
 <ul>
 <li><code>valve</code>

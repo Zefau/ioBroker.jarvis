@@ -97,6 +97,9 @@ Es werden zwei Modi unterstützt um die Adapter-Struktur zu durchsuchen:
   - [Function `calllists` of tr-064](#function-calllists-of-tr-064)
   - [Function `phonebook` of tr-064](#function-phonebook-of-tr-064)
   - [Function `states` of tr-064](#function-states-of-tr-064)
+- [unifi](#adapter-unifi)
+  - [Function `health` of unifi](#function-health-of-unifi)
+  - [Function `sysinfo` of unifi](#function-sysinfo-of-unifi)
 - [wifilight](#adapter-wifilight)
 - [yeelight-2](#adapter-yeelight-2)
 - [zigbee](#adapter-zigbee)
@@ -2335,6 +2338,126 @@ alle Datenpunkte werden übernommen
    },
    "wlan50": {
       "state": ".wlan50"
+   }
+}
+```
+
+### Adapter unifi
+
+#### Function `health` of unifi
+```
+{
+   "lan.lan_ip": {
+      "state": ".lan.lan_ip"
+   },
+   "lan.num_guest": {
+      "state": ".lan.num_guest"
+   },
+   "lan.num_iot": {
+      "state": ".lan.num_iot"
+   },
+   "lan.num_user": {
+      "state": ".lan.num_user"
+   },
+   "lan.rx_bytes": {
+      "state": ".lan.rx_bytes-r"
+   },
+   "lan.status": {
+      "state": ".lan.status"
+   },
+   "lan.subsystem": {
+      "state": ".lan.subsystem"
+   },
+   "lan.tx_bytes": {
+      "state": ".lan.tx_bytes-r"
+   },
+   "vpn.status": {
+      "state": ".vpn.status"
+   },
+   "vpn.subsystem": {
+      "state": ".vpn.subsystem"
+   },
+   "wan.wan_ip": {
+      "state": ".wan.wan_ip"
+   },
+   "wan.rx_bytes": {
+      "state": ".wan.rx_bytes-r"
+   },
+   "wan.status": {
+      "state": ".wan.status"
+   },
+   "wan.subsystem": {
+      "state": ".wan.subsystem"
+   },
+   "wan.tx_bytes": {
+      "state": ".wan.tx_bytes-r"
+   },
+   "wlan.num_guest": {
+      "state": ".wlan.num_guest"
+   },
+   "wlan.num_iot": {
+      "state": ".wlan.num_iot"
+   },
+   "wlan.num_user": {
+      "state": ".wlan.num_user"
+   },
+   "wlan.rx_bytes": {
+      "state": ".wlan.rx_bytes-r"
+   },
+   "wlan.status": {
+      "state": ".wlan.status"
+   },
+   "wlan.subsystem": {
+      "state": ".wlan.subsystem"
+   },
+   "wlan.tx_bytes": {
+      "state": ".wlan.tx_bytes-r"
+   },
+   "www.latency": {
+      "state": ".www.latency"
+   },
+   "www.rx_bytes": {
+      "state": ".www.rx_bytes-r"
+   },
+   "www.status": {
+      "state": ".www.status"
+   },
+   "www.subsystem": {
+      "state": ".www.subsystem"
+   },
+   "www.tx_bytes": {
+      "state": ".www.tx_bytes-r"
+   },
+   "www.uptime": {
+      "state": ".www.uptime"
+   },
+   "www.xput_down": {
+      "state": ".www.xput_down"
+   },
+   "www.xput_up": {
+      "state": ".www.xput_up"
+   },
+   "www.speedtest.lastrun": {
+      "state": ".www.speedtest.lastrun"
+   },
+   "www.speedtest.ping": {
+      "state": ".www.speedtest.ping"
+   },
+   "www.speedtest.status": {
+      "state": ".www.speedtest.status"
+   }
+}
+```
+
+
+#### Function `sysinfo` of unifi
+```
+{
+   "update_available": {
+      "state": ".update_available"
+   },
+   "version": {
+      "state": ".version"
    }
 }
 ```
