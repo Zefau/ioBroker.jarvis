@@ -2314,6 +2314,12 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 }</pre></td><td>-</td></tr>
 <tr><td><code>position</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"map-marker"</pre></td><td>-</td></tr>
 <tr><td><code>power</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">"power"</pre></td><td>-</td></tr>
+<tr><td><code>config</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
+   "default": "mdi-cog"
+}</pre></td><td>-</td></tr>
+<tr><td><code>connectivity</code></td><td>-</td><td>-</td><td>-</td><td><pre lang="json">{
+   "default": "mdi-wifi-arrow-left-right"
+}</pre></td><td>-</td></tr>
 <tr><td><code>reachability</code></td><td><pre lang="json">{
    "true": {
       "color": "#090"
