@@ -199,6 +199,20 @@ alle Datenpunkte werden übernommen
          "action": ".4.LEVEL"
       }
    },
+   "HM-LC-Dim1T-FM": {
+      "level": {
+         "state": ".1.LEVEL",
+         "action": ".1.LEVEL"
+      },
+      "timerOff": {
+         "state": ".1.ON_TIME",
+         "action": ".1.ON_TIME"
+      },
+      "timerOn": {
+         "state": ".1.RAMP_TIME",
+         "action": ".1.RAMP_TIME"
+      }
+   },
    "HM-LC-RGBW-WM": {
       "level": {
          "state": ".1.LEVEL",

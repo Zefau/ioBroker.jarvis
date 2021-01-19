@@ -971,6 +971,24 @@ Grundsätzlich kann durch den Benutzer in Jarvis alles frei definiert und konfig
 <li>action: <code>.4.LEVEL</code></li>
 </ul>
 </ul>
+<h5>HM-LC-Dim1T-FM</h5>
+<ul>
+<li><code>level</code>
+<ul>
+<li>state: <code>.1.LEVEL</code></li>
+<li>action: <code>.1.LEVEL</code></li>
+</ul>
+<li><code>timerOff</code>
+<ul>
+<li>state: <code>.1.ON_TIME</code></li>
+<li>action: <code>.1.ON_TIME</code></li>
+</ul>
+<li><code>timerOn</code>
+<ul>
+<li>state: <code>.1.RAMP_TIME</code></li>
+<li>action: <code>.1.RAMP_TIME</code></li>
+</ul>
+</ul>
 <h5>HM-LC-RGBW-WM</h5>
 <ul>
 <li><code>level</code>
