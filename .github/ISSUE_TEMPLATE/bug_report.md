@@ -11,15 +11,11 @@ assignees: Zefau
 
 **Prerequisites / Voraussetzungen**
 - [ ] Which jarvis version are you running / Welche Version von jarvis nutzt du? **BITTE GENAUE ANGABE!**
-- [ ] Provide your device and / or layout configuration / Bitte Geräte- und / oder Layout-Konfiguration bereitstellen (`jarvis.0.devices` / `jarvis.0.layout`)
+- [ ] Fehler / Screenshot der Browser Konsole (F12), siehe [Fehleranalyse und -Meldung](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Errors)
 
 **Describe the bug / Beschreibe den Fehler**
 A clear and concise description of what the bug / problem is.
 Eine genaue Beschreibung des Fehlers inkl. Herleitung, um diesen Nachstellen zu können.
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-Eine genaue Beschreibung wie das korrekte / erwartete Verhalten wäre.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
