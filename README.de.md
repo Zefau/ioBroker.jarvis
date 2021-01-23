@@ -29,7 +29,7 @@ jarvis ist weitaus weniger flexibel als ioBroker.vis, aber bietet dafür ein sta
 
 
 ## Installation und mehr Informationen
-[Mehr Informationen - insbesondere zur Konfiguration - gibt es im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
+[Mehr Informationen - insbesondere zur Konfiguration - gibt es im Wiki](https://zefau.gitbook.io/jarvis-de/).
 
 _____
 
