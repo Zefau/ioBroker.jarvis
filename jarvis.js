@@ -242,40 +242,6 @@ function startAdapter(options) {
 				});
 			}
 		}
-		
-		// NOTIFICATIONS
-		if (id.indexOf('.addNotification') > -1 && state.val) {
-			adapter.setState(id, '');
-			let notification = {};
-			
-			// try to parse object
-			try {
-				notification = JSON.parse(state.val);
-			}
-			catch(err) {
-				
-				// not an object, so handle a string
-				if (state.val.length < 15) {
-					notification.title = state.val;
-				}
-				else {
-					notification.content = state.val;
-				}
-			}
-			
-			// assemble notification
-			notification = {
-				title: '',
-				content: '',
-				timestamp: new Date().getTime(),
-				priority: 'normal', // low, normal, high, critical,
-				unread: true, // true, false
-				...notification
-			}
-			
-			NOTIFICATIONS.push(notification);
-			adapter.setState('notifications', JSON.stringify(NOTIFICATIONS));
-		}
 	});
 	
 	/*
