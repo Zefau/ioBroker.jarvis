@@ -5,6 +5,7 @@ const _crypto = require('crypto');
 const _got = require('got');
 const _fs = require('fs');
 const _path = require('path');
+const _schedule = require('node-schedule');
 
 
 /*
@@ -186,6 +187,11 @@ function startAdapter(options) {
 		adapter.subscribeStates('devices');
 		adapter.subscribeStates('layout');
 		adapter.subscribeStates('css');
+		
+		// EVENTS
+		_schedule.scheduleJob('0 0 0 * * *', () => {
+			adapter.setState('info.data', JSON.stringify({ 'event': 'time:midnight' }));
+		});
 	});
 
 	/*
