@@ -20,8 +20,11 @@ const Library = require('./lib/library.js');
 let adapter;
 let library;
 let unloaded;
+let notification = '';
+
 let NOTIFICATIONS = [];
 let SETTINGS = {};
+let CLIENTS = [];
 let BACKUPS = {
 	'styles': {},
 	'settings': {},
@@ -156,6 +159,8 @@ function startAdapter(options) {
 		
 		// create additional states and subscribe
 		library.set({ 'node': 'info.data', 'role': 'json', 'description': 'Data transfer to jarvis' }, '');
+		//adapter.subscribeStates('info.data');
+		
 		library.set({ 'node': 'info.log', 'role': 'text', 'description': 'Log Handler' }, '');
 		adapter.subscribeStates('info.log');
 		
@@ -176,7 +181,20 @@ function startAdapter(options) {
 			}
 		});
 		
+		// get clients
+		adapter.getState('info.connected', (err, state) => {
+			
+			try {
+				CLIENTS = JSON.parse(state.val);
+			}
+			catch(err) {}
+		});
+		
 		// listen for new notifications to add
+		adapter.getState('addNotification', (err, state) => {
+			notification = (state && state.val && JSON.parse(state.val)) || '';
+		});
+		
 		adapter.getState('notifications', (err, state) => {
 			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
 		});
@@ -205,6 +223,35 @@ function startAdapter(options) {
 			return;
 		}
 		
+		/*
+		// DATA TRANSFER
+		if (id.indexOf('.info.data') > -1 && state.val !== '') {
+			
+			try {
+				const message = JSON.parse(state.val);
+				
+				// CLIENT CONNECTED
+				if (message['client.connected']) {
+					adapter.log.info('Client connected: ' + message['client.connected']);
+					
+					if (CLIENTS.indexOf(message['client.connected']) === -1) {
+						CLIENTS.push(message['client.connected']);
+					}
+				}
+				
+				// CLIENT DISCONNECTED
+				else if (message['client.disonnected']) {
+					adapter.log.info('Client disconnected: ' + message['client.disconnected']);
+					
+					const findClient = CLIENTS.indexOf(message['client.disconnected']);
+					if (findClient > -1) {
+						CLIENTS.splice(1, findClient);
+					}
+				}
+			}
+			catch(err) {}
+		}*/
+		
 		// LOG
 		if (id.indexOf('.info.log') > -1 && state.val !== '') {
 			
@@ -213,6 +260,30 @@ function startAdapter(options) {
 				adapter.log[log.criticality || 'debug'](log.message);
 			}
 			catch(err) {}
+		}
+		
+		// NOTIFICATION
+		if (id.indexOf('.addNotification') > -1) {
+			let oldNotification = notification;
+			
+			// add notification only if jarvis didn't do that job (because it was closed)
+			// this means that the notification which was entered before (and will be overwritten due to a new notification) will be added
+			try {
+				notification = JSON.parse(state.val);
+				//adapter.log.info(JSON.stringify(oldNotification));
+				//adapter.log.info(JSON.stringify(notification));
+				
+				if (oldNotification !== '' && notification !== '') {
+					NOTIFICATIONS.push(oldNotification);
+					adapter.setState('notifications', JSON.stringify(NOTIFICATIONS));
+				}
+				else if (oldNotification !== '' && notification === '') {
+					oldNotification = '';
+				}
+			}
+			catch(err) {
+				notification = '';
+			}
 		}
 		
 		// BACKUP
