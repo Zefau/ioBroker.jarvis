@@ -1,0 +1,2 @@
+(this.webpackJsonpjarvis=this.webpackJsonpjarvis||[]).push([[40],{2070:function(e,a,t){"use strict";t.r(a);var n=t(0),r=t.n(n),s=t(1576),o=t(53),c=Object(o.a)((function(e){return{Badge:{fontSize:"0.6rem",right:-15}}}));a.default=r.a.memo((function(e){var a=e.label,t=c();return r.a.createElement(s.a,{badgeContent:"pro",color:"secondary",classes:{badge:t.Badge}},a)}))}}]);
+//# sourceMappingURL=40.c8683a1e.chunk.js.map
