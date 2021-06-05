@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-alpha.2",
+      "version": "3.0.0-alpha.3",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -101,6 +101,18 @@
             "type": "string",
             "read": true,
             "write": false,
+            "def": "{}"
+         }
+      },
+      {
+         "_id": "widgets",
+         "type": "state",
+         "common": {
+            "name": "List of widgets",
+            "role": "json",
+            "type": "string",
+            "read": true,
+            "write": true,
             "def": "{}"
          }
       },
