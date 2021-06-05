@@ -128,7 +128,7 @@ function startAdapter(options) {
 				
 				const config = {
 					'webPort': (obj && obj.native && obj.native.port) || 8082,
-					'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false
+					'socketSecure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false
 				}
 				
 				const certificates = {
@@ -140,7 +140,7 @@ function startAdapter(options) {
 				// write config to jarvis
 				if (
 						(adapter.config.certPublic !== certificates.certPublic || adapter.config.certPrivate !== certificates.certPrivate || adapter.config.certChained !== certificates.certChained) ||
-						(adapter.config.autoDetect === true && (adapter.config.webPort !== config.webPort || adapter.config.socketPort !== defaultSocketPort || adapter.config.secure !== config.secure))
+						(adapter.config.autoDetect === true && (adapter.config.webPort !== config.webPort || adapter.config.socketPort !== defaultSocketPort || adapter.config.socketSecure !== config.socketSecure))
 					) {
 					
 					adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
@@ -183,7 +183,7 @@ function startAdapter(options) {
 		// open web socket
 		Promise.all(configPromises)
 			.then(res => {
-				const certificates = adapter.config.secure ? res[1] : {};
+				const certificates = adapter.config.socketSecure ? res[1] : null;
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
