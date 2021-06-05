@@ -1,205 +1,174 @@
 {
-   "common": {
-      "name": "jarvis",
-      "version": "2.2.0",
-      "title": "jarvis - just another remarkable vis",
-      "desc": {
-         "en": "jarvis - just another remarkable vis",
-         "de": "jarvis - just another remarkable vis",
-         "ru": "jarvis - just another remarkable vis",
-         "pt": "jarvis - just another remarkable vis",
-         "nl": "jarvis - just another remarkable vis",
-         "fr": "jarvis - just another remarkable vis",
-         "it": "jarvis - just another remarkable vis",
-         "es": "jarvis - just another remarkable vis",
-         "pl": "jarvis - just another remarkable vis",
-         "zh-cn": "jarvis - just another remarkable vis"
-      },
-      "news": {
-         "2.2.0": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.2.0",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.2.0"
-         },
-         "2.1.0": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0"
-         },
-         "2.1.0-rc.4": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.4",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.4"
-         },
-         "2.1.0-rc.2": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2"
-         },
-         "2.1.0-rc.1": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.1",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.1"
-         },
-         "2.0.0": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.0.0",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.0.0"
-         },
-         "1.0.9": {
-            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.9",
-            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.9"
-         }
-      },
-      "license": "MIT",
-      "platform": "Javascript/Node.js",
-      "mode": "daemon",
-      "icon": "jarvis.png",
-      "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
-      "keywords": [
-         "vis",
-         "visualization",
-         "material",
-         "gui",
-         "ui",
-         "jarvis",
-         "interface",
-         "webapp",
-         "smarthome",
-         "react",
-         "lovelace"
-      ],
-      "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
-      "loglevel": "info",
-      "materialize": true,
-      "eraseOnUpload": true,
-      "compact": true,
-      "enabled": true,
-      "localLink": "%web_protocol%://%ip%:%webPort%/jarvis/index.html#instance=%instance%&socketHost=%socketHost%&socketPort=%socketPort%",
-      "dependencies": [
-         {
-            "web": ">=3.0.12"
-         }
-      ],
-      "messagebox": true,
-      "subscribe": "messagebox",
-      "type": "visualization",
-      "authors": [
-         {
-            "name": "Zefau",
-            "email": "zefau@mailbox.org"
-         }
-      ]
-   },
-   "native": {
-      "autoDetect": true,
-      "socketHost": "",
-      "webPort": null,
-      "socketPort": null,
-      "devices": {},
-      "settings": {},
-      "notifications": {},
-      "addNotification": "",
-      "sendUsageData": true
-   },
-   "objects": [],
-   "instanceObjects": [
+  "common": {
+    "name": "jarvis",
+    "version": "3.0.0-alpha.0",
+    "title": "jarvis - just another remarkable vis",
+    "desc": {
+      "en": "jarvis - just another remarkable vis",
+      "de": "jarvis - just another remarkable vis",
+      "ru": "jarvis - just another remarkable vis",
+      "pt": "jarvis - just another remarkable vis",
+      "nl": "jarvis - just another remarkable vis",
+      "fr": "jarvis - just another remarkable vis",
+      "it": "jarvis - just another remarkable vis",
+      "es": "jarvis - just another remarkable vis",
+      "pl": "jarvis - just another remarkable vis",
+      "zh-cn": "jarvis - just another remarkable vis"
+    },
+    "news": {
+    },
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "jarvis.png",
+    "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
+    "keywords": [
+      "vis",
+      "visualization",
+      "material",
+      "gui",
+      "ui",
+      "jarvis",
+      "interface",
+      "webapp",
+      "smarthome",
+      "react",
+      "lovelace"
+    ],
+    "readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
+    "loglevel": "info",
+    "materialize": true,
+    "eraseOnUpload": true,
+    "compact": true,
+    "enabled": true,
+    "localLink": "%web_protocol%://%ip%:%webPort%/jarvis/index.html#instance=%instance%&socketHost=%socketHost%&socketPort=%socketPort%&socketSecure=%socketSecure%",
+    "dependencies": [
       {
-         "_id": "",
-         "type": "meta",
-         "common": {
-            "name": "user files and images for jarvis",
-            "type": "meta.user"
-         },
-         "native": {}
-      },
-      {
-         "_id": "info.connected",
-         "type": "state",
-         "common": {
-            "name": "List of connected clients",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": false,
-            "def": "{}"
-         }
-      },
-      {
-         "_id": "devices",
-         "type": "state",
-         "common": {
-            "name": "List of devices",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": true,
-            "def": "{}"
-         }
-      },
-      {
-         "_id": "settings",
-         "type": "state",
-         "common": {
-            "name": "Settings",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": true,
-            "def": "{}"
-         }
-      },
-      {
-         "_id": "layout",
-         "type": "state",
-         "common": {
-            "name": "Layout",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": true,
-            "def": "[]"
-         }
-      },
-      {
-         "_id": "theme",
-         "type": "state",
-         "common": {
-            "name": "Theme",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": true,
-            "def": "{}"
-         }
-      },
-      {
-         "_id": "css",
-         "type": "state",
-         "common": {
-            "name": "Custom CSS",
-            "role": "text",
-            "type": "string",
-            "read": true,
-            "write": true,
-            "def": ""
-         }
-      },
-      {
-         "_id": "notifications",
-         "type": "state",
-         "common": {
-            "name": "Notifications",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": true
-         }
-      },
-      {
-         "_id": "addNotification",
-         "type": "state",
-         "common": {
-            "name": "Add new notification",
-            "role": "text",
-            "type": "string",
-            "read": true,
-            "write": true
-         }
+        "web": ">=3.0.12"
       }
-   ]
+    ],
+    "messagebox": true,
+    "subscribe": "messagebox",
+    "type": "visualization",
+    "authors": [
+      {
+        "name": "Zefau",
+        "email": "zefau@mailbox.org"
+      }
+    ],
+    "installedFrom": "https://github.com/Zefau/ioBroker.jarvis/tarball/6c87201eac17022d084e7bb90b8f086b2a38fa9a"
+  },
+  "native": {
+    "autoDetect": true,
+    "socketHost": "",
+    "webPort": null,
+    "socketPort": null,
+    "devices": {},
+    "settings": {},
+    "notifications": {},
+    "addNotification": "",
+    "sendUsageData": true
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "",
+      "type": "meta",
+      "common": {
+        "name": "user files and images for jarvis",
+        "type": "meta.user"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connected",
+      "type": "state",
+      "common": {
+        "name": "List of connected clients",
+        "role": "json",
+        "type": "string",
+        "read": true,
+        "write": false,
+        "def": "{}"
+      }
+    },
+    {
+      "_id": "devices",
+      "type": "state",
+      "common": {
+        "name": "List of devices",
+        "role": "json",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": "{}"
+      }
+    },
+    {
+      "_id": "settings",
+      "type": "state",
+      "common": {
+        "name": "Settings",
+        "role": "json",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": "{}"
+      }
+    },
+    {
+      "_id": "layout",
+      "type": "state",
+      "common": {
+        "name": "Layout",
+        "role": "json",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": "[]"
+      }
+    },
+    {
+      "_id": "css",
+      "type": "state",
+      "common": {
+        "name": "Custom CSS",
+        "role": "text",
+        "type": "string",
+        "read": true,
+        "write": true,
+        "def": ""
+      }
+    },
+    {
+      "_id": "notifications",
+      "type": "state",
+      "common": {
+        "name": "Notifications",
+        "role": "json",
+        "type": "string",
+        "read": true,
+        "write": true
+      }
+    },
+    {
+      "_id": "addNotification",
+      "type": "state",
+      "common": {
+        "name": "Add new notification",
+        "role": "text",
+        "type": "string",
+        "read": true,
+        "write": true
+      }
+    },
+    {
+      "_id": "clients",
+      "type": "channel",
+      "common": {
+        "name": "Clients",
+        "write": false
+      }
+    }
+  ]
 }

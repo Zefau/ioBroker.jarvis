@@ -5,13 +5,13 @@ const _crypto = require('crypto');
 const _got = require('got');
 const _fs = require('fs');
 const _path = require('path');
-const _schedule = require('node-schedule');
-
+const { v4: _uuid } = require('uuid');
 
 /*
  * internal libraries
  */
 const Library = require('./lib/library.js');
+const ioWebSocket = require('./lib/websocket.io.js');
 
 
 /*
@@ -19,12 +19,16 @@ const Library = require('./lib/library.js');
  */
 let adapter;
 let library;
+let socket;
 let unloaded;
+
 let notification = '';
+let NotificationTimer = null;
 
 let NOTIFICATIONS = [];
+
 let SETTINGS = {};
-let CLIENTS = [];
+let CLIENTS = {};
 let BACKUPS = {
 	'styles': {},
 	'settings': {},
@@ -104,65 +108,99 @@ function startAdapter(options) {
 				// load recent backups
 				else if (contents) {
 					adapter.log.info('Found Backups for ' + s.id + '.');
-					BACKUPS[s.id] = JSON.parse(contents);
+					
+					try {
+						BACKUPS[s.id] = JSON.parse(contents);
+					}
+					catch(err) {
+						adapter.log.error(err.message);
+					}
 				}
 			});
 		});
 		
-		// detect socket port
-		const portDetection = new Promise(resolve => {
-			adapter.getObjectView('system', 'instance', { 'startkey': 'system.adapter.socketio.', 'endkey': 'system.adapter.socketio.999' }, (err, instances) => {
-				const obj = (instances && instances.rows && instances.rows[0] && instances.rows[0].value) || null;
-				let res = {}
+		// detect and write web port to config
+		let configPromises = [];
+		const defaultSocketPort = 8400 + adapter.instance;
+		
+		configPromises.push(new Promise(resolve => {
+			adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
 				
-				// socket.io
-				if (obj !== null) {
-					res = {
-						'socket': (obj && obj.native && obj.native.port) || 8084,
-						'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
-					}
+				const config = {
+					'webPort': (obj && obj.native && obj.native.port) || 8082,
+					'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false
 				}
 				
-				// detect web port and - if no socket.io adapter is installed - socket port
-				adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
-					resolve({
-						'web': (obj && obj.native && obj.native.port) || 8082,
-						'socket': (obj && obj.native && obj.native.port) || 8082,
-						'secure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false,
-						...res
+				const certificates = {
+					'certPublic': obj && obj.native && obj.native.certPublic !== undefined ? obj.native.certPublic : '',
+					'certPrivate': obj && obj.native && obj.native.certPrivate !== undefined ? obj.native.certPrivate : '',
+					'certChained': obj && obj.native && obj.native.certChained !== undefined ? obj.native.certChained : '',
+				}
+				
+				// write config to jarvis
+				if (
+						(adapter.config.certPublic !== certificates.certPublic || adapter.config.certPrivate !== certificates.certPrivate || adapter.config.certChained !== certificates.certChained) ||
+						(adapter.config.autoDetect === true && (adapter.config.webPort !== config.webPort || adapter.config.socketPort !== defaultSocketPort || adapter.config.secure !== config.secure))
+					) {
+					
+					adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
+						
+						if (err || !obj || !obj.native) {
+							return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
+						}
+						
+						adapter.log.debug('Remember certificates...');
+						obj.native = {
+							...obj.native,
+							...certificates
+						}
+						
+						if (adapter.config.autoDetect === true) {
+							adapter.log.debug('Write default config to jarvis...');
+							
+							obj.native = {
+								...obj.native,
+								...config,
+								'socketPort': defaultSocketPort
+							}
+						}
+						
+						adapter.setForeignObject(obj._id, obj);
 					});
-				});
+				}
+				
+				resolve(config);
 			});
-		});
+		}));
 		
-		// write port to config
-		portDetection.then(config => {
-			adapter.log.info('Socket port detected: ' + config.socket);
-			
-			if (adapter.config.autoDetect === true && (adapter.config.webPort !== config.web || adapter.config.socketPort !== config.socket || adapter.config.socketSecure !== config.secure)) {
-				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
-					
-					if (err || !obj || !obj.native) {
-						return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
+		// get certificates
+		configPromises.push(new Promise(resolve => {
+			adapter.getCertificates(adapter.config.certPublic, adapter.config.certPrivate, adapter.config.certChained, (err, certificates, leConfig) => {
+				resolve(certificates);
+			});
+		}));
+		
+		// open web socket
+		Promise.all(configPromises)
+			.then(res => {
+				const certificates = adapter.config.secure ? res[1] : {};
+				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
+				
+				// open socket
+				socket = new ioWebSocket(adapter, { port, certificates });
+		
+				// listen for new clients
+				socket.on('client', client => {
+					CLIENTS[client.id] = CLIENTS[client.id] || {
+						'path': 'jarvis.' + adapter.instance + '.clients.' + client.id,
+						'notifications': []
 					}
-					
-					obj.native['webPort'] = config.web;
-					obj.native['socketPort'] = config.socket;
-					obj.native['socketSecure'] = config.secure;
-					adapter.setForeignObject(obj._id, obj);
 				});
-			}
-		});
-	
+			})
+			.catch(error => adapter.log.error(error.message || error));
+		
 		// all ok
 		library.set(Library.CONNECTION, true);
-		
-		// create additional states and subscribe
-		library.set({ 'node': 'info.data', 'role': 'json', 'description': 'Data transfer to jarvis' }, '');
-		//adapter.subscribeStates('info.data');
-		
-		library.set({ 'node': 'info.log', 'role': 'text', 'description': 'Log Handler' }, '');
-		adapter.subscribeStates('info.log');
 		
 		// write settings to states
 		adapter.getState('settings', (err, state) => {
@@ -176,39 +214,29 @@ function startAdapter(options) {
 				// usage data option
 				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
 				
-				adapter.setState('settings', JSON.stringify(SETTINGS));
+				adapter.setState('settings', JSON.stringify(SETTINGS), true);
 				writeSettingsToStates(SETTINGS, () => adapter.subscribeStates('settings*'));
 			}
 		});
 		
-		// get clients
-		adapter.getState('info.connected', (err, state) => {
-			
-			try {
-				CLIENTS = JSON.parse(state.val);
-			}
-			catch(err) {}
-		});
-		
-		// listen for new notifications to add
-		adapter.getState('addNotification', (err, state) => {
-			notification = (state && state.val && JSON.parse(state.val)) || '';
-		});
-		
+		// initially load notifications
 		adapter.getState('notifications', (err, state) => {
 			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
 		});
 		
-		adapter.subscribeStates('addNotification');
-		
-		// BACKUP
-		adapter.subscribeStates('devices');
-		adapter.subscribeStates('layout');
-		adapter.subscribeStates('css');
-		
-		// EVENTS
-		_schedule.scheduleJob('0 0 0 * * *', () => {
-			adapter.setState('info.data', JSON.stringify({ 'event': 'time:midnight' }));
+		// initially load available clients
+		adapter.getDevices((err, clients) => { // [{"type":"device","common":{"name":"::ffff:192.168.178.50"},"native":{},"from":"system.adapter.jarvis.0","user":"system.user.admin","ts":1621149128890,"_id":"jarvis.0.clients.ffff192-168-178-50","acl":{"object":1636,"owner":"system.user.admin","ownerGroup":"system.group.administrator"}}]
+			
+			clients.forEach(client => {
+				const clientId = client._id.substr(client._id.lastIndexOf('.')+1);
+				
+				adapter.getState(client._id + '.newNotifications', (err, state) => {
+					CLIENTS[clientId] = {
+						'path': client._id,
+						'notifications': JSON.parse((state && state.val) || '[]')
+					}
+				});
+			});
 		});
 	});
 
@@ -217,72 +245,53 @@ function startAdapter(options) {
 	 *
 	 */
 	adapter.on('stateChange', function(id, state) {
-		//adapter.log.info('State ' + id + ' has changed: ' + JSON.stringify(state));
 		
 		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
 			return;
 		}
 		
-		/*
-		// DATA TRANSFER
-		if (id.indexOf('.info.data') > -1 && state.val !== '') {
+		// NOTIFICATIONS
+		if (id.indexOf('.newNotifications') > -1) {
+			const [ , , , clientId,] = id.split('.');
 			
 			try {
-				const message = JSON.parse(state.val);
-				
-				// CLIENT CONNECTED
-				if (message['client.connected']) {
-					adapter.log.info('Client connected: ' + message['client.connected']);
-					
-					if (CLIENTS.indexOf(message['client.connected']) === -1) {
-						CLIENTS.push(message['client.connected']);
-					}
-				}
-				
-				// CLIENT DISCONNECTED
-				else if (message['client.disonnected']) {
-					adapter.log.info('Client disconnected: ' + message['client.disconnected']);
-					
-					const findClient = CLIENTS.indexOf(message['client.disconnected']);
-					if (findClient > -1) {
-						CLIENTS.splice(1, findClient);
-					}
-				}
+				CLIENTS[clientId].notifications = JSON.parse(state.val);
 			}
-			catch(err) {}
-		}*/
-		
-		// LOG
-		if (id.indexOf('.info.log') > -1 && state.val !== '') {
-			
-			try {
-				const log = JSON.parse(state.val);
-				adapter.log[log.criticality || 'debug'](log.message);
+			catch(error) {
+				CLIENTS[clientId].notifications = [];
 			}
-			catch(err) {}
 		}
 		
-		// NOTIFICATION
-		if (id.indexOf('.addNotification') > -1) {
-			let oldNotification = notification;
+		else if (id.indexOf('.addNotification') > -1 && state && state.val) {
+			adapter.setState('addNotification', '', true);
 			
-			// add notification only if jarvis didn't do that job (because it was closed)
-			// this means that the notification which was entered before (and will be overwritten due to a new notification) will be added
 			try {
-				notification = JSON.parse(state.val);
-				//adapter.log.info(JSON.stringify(oldNotification));
-				//adapter.log.info(JSON.stringify(notification));
 				
-				if (oldNotification !== '' && notification !== '') {
-					NOTIFICATIONS.push(oldNotification);
-					adapter.setState('notifications', JSON.stringify(NOTIFICATIONS));
+				// parse notification
+				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : { 'title': state.val };
+				notification.id = _uuid();
+				notification.ts = notification.ts || Date.now();
+				
+				if (notification.devices) {
+					notification.devices = Array.isArray(notification.devices) ? notification.devices : [notification.devices];
 				}
-				else if (oldNotification !== '' && notification === '') {
-					oldNotification = '';
+				
+				// add to list of all notifications
+				NOTIFICATIONS.push(notification);
+				adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
+				
+				// emit notification to clients (or add to list of unread notifications if client is not reachable)
+				for (let clientId in CLIENTS) {
+					
+					// either emit to all devices or only to specific ones
+					if (!notification.devices || notification.devices.includes(clientId)) {
+						CLIENTS[clientId].notifications.push(notification);
+						adapter.setState(CLIENTS[clientId].path + '.newNotifications', JSON.stringify(CLIENTS[clientId].notifications), true);
+					}
 				}
 			}
 			catch(err) {
-				notification = '';
+				adapter.log.error(err.message);
 			}
 		}
 		
@@ -303,7 +312,7 @@ function startAdapter(options) {
 			
 			// update settings
 			SETTINGS[setting] = state && state.val && state.val.toString().indexOf('{') > -1 && state.val.toString().indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
-			adapter.setState('settings', JSON.stringify(SETTINGS));
+			adapter.setState('settings', JSON.stringify(SETTINGS), true);
 			
 			// update adapter config
 			if (adapter.config[setting] !== undefined) {
@@ -327,81 +336,14 @@ function startAdapter(options) {
 	 */
 	adapter.on('message', function(msg) {
 		
-		// encrypt
-		if (msg.command === '_encrypt' && msg.message) {
-			const options = JSON.parse(msg.message);
-			const token = options.token;
-			
-			adapter.setState('info.data', JSON.stringify({ 'data': encrypt(options.str, options.secretKey), token }));
-		}
-		
-		// decrypt
-		else if (msg.command === '_decrypt' && msg.message) {
-			const options = JSON.parse(msg.message);
-			const token = options.token;
-			
-			adapter.setState('info.data', JSON.stringify({ 'data': decrypt(options.hash, options.secretKey), token }));
-		}
-		
-		// get file
-		else if (msg.command === '_readFile' && msg.message) {
-			const options = JSON.parse(msg.message);
-			const token = options.token;
-			
-			readFile(options.file, (err, data) => {
-				
-				if (err) {
-					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
-				}
-				else {
-					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
-				}
-			});
-		}
-		
 		// get backups
-		else if (msg.command === '_backups' && msg.message) {
+		if (msg.command === '_backups' && msg.message) {
 			library.msg(msg.from, msg.command, BACKUPS[msg.message.id], msg.callback);
 		}
 		
 		// restore
 		else if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.state && msg.message.date) {
 			restore(msg.message.id, msg.message.state, msg.message.date);
-		}
-		
-		// request
-		else if (msg.command === '_request' && msg.message) {
-			
-			try {
-				const options = JSON.parse(msg.message);
-				const token = options.token;
-				delete options.token;
-				
-				// encrypt
-				if (options._encrypt && options.body.data) {
-					options.body.data = encrypt(options.body.data, 'KutTGsNQ8HCX$hrT9Ua5beRSs2BLVeQq');
-					delete options._encrypt;
-				}
-				
-				// map body
-				if (options.json === true && options.body) {
-					options.json = options.body;
-					delete options.body;
-				}
-				
-				// request
-				_got(options)
-					.then(res => {
-						adapter.setState('info.data', JSON.stringify({ 'data': res.body || '', token }));
-					})
-					.catch(err => {
-						//adapter.log.error(err.message);
-						adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
-					});
-			}
-			catch(err) {
-				adapter.log.warn(err.message);
-			}
 		}
 	});
 	
@@ -431,50 +373,10 @@ function startAdapter(options) {
  *
  *
  */
-function readFile(file, cb) {
+function emitNotification() {
 	
-	_fs.readFile(file, 'utf8', (err, data) => {
-		if (err) {
-			cb(err);
-			return;
-		}
-		
-		cb(null, data);
-	});
 }
 
-/**
- *
- *
- */
-function encrypt(str, secretKey, algorithm = 'AES-256-CBC') {
-	
-	try {
-		const iv = _crypto.randomBytes(16).toString('hex').substr(0,16);
-		const cipher = _crypto.createCipheriv(algorithm, _crypto.createHash('sha256').update(secretKey).digest('hex').substr(0,32), iv);
-		const encrypted = Buffer.from(iv).toString('base64').substr(0,24) + cipher.update((typeof str === 'object' ? JSON.stringify(str) : str), 'utf8', 'base64') + cipher.final('base64');
-		return encrypted;
-	}
-	catch(err) {
-		return str;
-	}
-}
-
-/**
- *
- *
- */
-function decrypt(hash, secretKey, algorithm = 'AES-256-CBC') {
-	
-	try {
-		const decipher = _crypto.createDecipheriv(algorithm, _crypto.createHash('sha256').update(secretKey).digest('hex').substr(0,32), Buffer.from(hash.substr(0,24), 'base64'));
-		const decrypted = Buffer.concat([decipher.update(Buffer.from(hash.substr(24), 'base64')), decipher.final()]);
-		return decrypted.toString();
-	}
-	catch(err) {
-		return hash;
-	}
-}
 
 /**
  *
@@ -482,7 +384,7 @@ function decrypt(hash, secretKey, algorithm = 'AES-256-CBC') {
  */
 function restore(id, state, date) {
 	adapter.log.info('Restore ' + id + ' from ' + date + '..');
-	adapter.setState(state, BACKUPS[id][date]);
+	adapter.setState(state, BACKUPS[id][date], true);
 }
 
 /**

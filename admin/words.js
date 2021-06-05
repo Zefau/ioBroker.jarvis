@@ -34,6 +34,10 @@ systemDictionary = {
 		"en": "Send Configuration Data",
 		"de": "Konfigurationsdaten schicken"
 	},
+	"tab_wiki": {
+      "en":"Wiki",
+      "de":"Wiki"
+	},
    "tab_config":{
       "en":"Configuration",
       "de":"Konfiguration",
