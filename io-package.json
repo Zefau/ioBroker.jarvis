@@ -1,9 +1,9 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "1.0.0-alpha.1",
+      "version": "3.0.0-alpha.2",
       "title": "jarvis - just another remarkable vis",
-      "desc": {
+      "titleLang": {
          "en": "jarvis - just another remarkable vis",
          "de": "jarvis - just another remarkable vis",
          "ru": "jarvis - just another remarkable vis",
@@ -15,8 +15,21 @@
          "pl": "jarvis - just another remarkable vis",
          "zh-cn": "jarvis - just another remarkable vis"
       },
-      "news": {
+      "desc": {
+         "en": "jarvis - just another remarkable visualization",
+         "de": "jarvis - just another remarkable visualization",
+         "ru": "jarvis - just another remarkable visualization",
+         "pt": "jarvis - just another remarkable visualization",
+         "nl": "jarvis - just another remarkable visualization",
+         "fr": "jarvis - just another remarkable visualization",
+         "it": "jarvis - just another remarkable visualization",
+         "es": "jarvis - just another remarkable visualization",
+         "pl": "jarvis - just another remarkable visualization",
+         "zh-cn": "jarvis - just another remarkable visualization"
       },
+      "news": {},
+      "connectionType": "local",
+      "dataSource": "push",
       "license": "MIT",
       "platform": "Javascript/Node.js",
       "mode": "daemon",

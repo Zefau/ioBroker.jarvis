@@ -175,9 +175,14 @@ function startAdapter(options) {
 		
 		// get certificates
 		configPromises.push(new Promise(resolve => {
-			adapter.getCertificates(adapter.config.certPublic, adapter.config.certPrivate, adapter.config.certChained, (err, certificates, leConfig) => {
-				resolve(certificates);
-			});
+			if (!adapter.config.certPublic || !adapter.config.certPrivate) {
+				resolve(null);
+			}
+			else {
+				adapter.getCertificates(adapter.config.certPublic, adapter.config.certPrivate, adapter.config.certChained, (err, certificates, leConfig) => {
+					resolve(certificates || null);
+				});
+			}
 		}));
 		
 		// open web socket
