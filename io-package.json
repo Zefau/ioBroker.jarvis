@@ -1,9 +1,9 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-alpha.6",
+      "version": "3.0.0-alpha.7",
       "title": "jarvis - just another remarkable vis",
-      "titleLang": {
+      "desc": {
          "en": "jarvis - just another remarkable vis",
          "de": "jarvis - just another remarkable vis",
          "ru": "jarvis - just another remarkable vis",
@@ -15,21 +15,36 @@
          "pl": "jarvis - just another remarkable vis",
          "zh-cn": "jarvis - just another remarkable vis"
       },
-      "desc": {
-         "en": "jarvis - just another remarkable visualization",
-         "de": "jarvis - just another remarkable visualization",
-         "ru": "jarvis - just another remarkable visualization",
-         "pt": "jarvis - just another remarkable visualization",
-         "nl": "jarvis - just another remarkable visualization",
-         "fr": "jarvis - just another remarkable visualization",
-         "it": "jarvis - just another remarkable visualization",
-         "es": "jarvis - just another remarkable visualization",
-         "pl": "jarvis - just another remarkable visualization",
-         "zh-cn": "jarvis - just another remarkable visualization"
+      "news": {
+         "2.2.0": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.2.0",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.2.0"
+         },
+         "2.1.0": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0"
+         },
+         "2.1.0-rc.4": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.4",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.4"
+         },
+         "2.1.0-rc.2": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.2"
+         },
+         "2.1.0-rc.1": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.1",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.1.0-rc.1"
+         },
+         "2.0.0": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.0.0",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.0.0"
+         },
+         "1.0.9": {
+            "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.9",
+            "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v1.0.9"
+         }
       },
-      "news": {},
-      "connectionType": "local",
-      "dataSource": "push",
       "license": "MIT",
       "platform": "Javascript/Node.js",
       "mode": "daemon",
@@ -54,7 +69,7 @@
       "eraseOnUpload": true,
       "compact": true,
       "enabled": true,
-      "localLink": "%web_protocol%://%ip%:%webPort%/jarvis/index.html#instance=%instance%&socketHost=%socketHost%&socketPort=%socketPort%&socketSecure=%socketSecure%",
+      "localLink": "%web_protocol%://%ip%:%webPort%/jarvis/index.html#/%instance%/&socketHost=%socketHost%&socketPort=%socketPort%&socketSecure=%socketSecure%",
       "dependencies": [
          {
             "web": ">=3.0.12"
@@ -101,18 +116,6 @@
             "type": "string",
             "read": true,
             "write": false,
-            "def": "{}"
-         }
-      },
-      {
-         "_id": "widgets",
-         "type": "state",
-         "common": {
-            "name": "List of widgets",
-            "role": "json",
-            "type": "string",
-            "read": true,
-            "write": true,
             "def": "{}"
          }
       },

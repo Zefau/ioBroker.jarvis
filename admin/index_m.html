@@ -56,7 +56,7 @@
 		$('.collapsible').collapsible();
 		
 		// get backups
-		['devices', 'layout', 'settings', 'styles:css:css', 'theme'].forEach(id => {
+		['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'theme'].forEach(id => {
 			let state = id;
 			let type = 'json';
 			
@@ -222,6 +222,13 @@
 								<div class="collapsible-header"><span class="translate">Layout</span></div>
 								<div class="collapsible-body">
 								  <div class="collection" id="layout">
+								  </div>
+								</div>
+							</li>
+							<li>
+								<div class="collapsible-header"><span class="translate">Widgets</span></div>
+								<div class="collapsible-body">
+								  <div class="collection" id="widgets">
 								  </div>
 								</div>
 							</li>
