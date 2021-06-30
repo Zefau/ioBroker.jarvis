@@ -1,6 +1,5 @@
 {
   "_from": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-  "_id": "iobroker.jarvis@2.2.0-beta.26",
   "_inBundle": false,
   "_integrity": "sha512-EJ+vOrUDGyrbOBjkf7TOQUp+4lzA2CYJaBKWBumS7dI61CI1Qfgidn1zZYCfRRoJxsg2fWqycAJPDgCxS9xfdw==",
   "_location": "/iobroker.jarvis",
@@ -69,5 +68,5 @@
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
   },
-  "version": "2.2.0"
+  "version": "2.2.1"
 }
