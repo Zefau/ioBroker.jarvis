@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "title": "jarvis - just another remarkable vis",
       "desc": {
          "en": "jarvis - just another remarkable vis",
@@ -16,6 +16,10 @@
          "zh-cn": "jarvis - just another remarkable vis"
       },
       "news": {
+         "2.2.1": {
+            "de": "Bug fix with incorrect Pro error message",
+            "en": "Bug fix with incorrect Pro error message"
+         },
          "2.2.0": {
             "de": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.2.0",
             "en": "https://github.com/Zefau/ioBroker.jarvis/releases/tag/v2.2.0"

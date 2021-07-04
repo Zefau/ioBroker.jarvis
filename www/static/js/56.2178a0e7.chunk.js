@@ -1,2 +1,0 @@
-(this.webpackJsonpjarvis=this.webpackJsonpjarvis||[]).push([[56],{1393:function(i,t,a){"use strict";a.r(t),t.default={Time:"Zeit",Module:"Modul",Criticality:"Kritikalit\xe4t",Message:"Nachricht","Stack Trace":"Stack Trace"}}}]);
-//# sourceMappingURL=56.2178a0e7.chunk.js.map
