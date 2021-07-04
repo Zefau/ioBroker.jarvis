@@ -20,8 +20,8 @@
     "static/js/8.944dd67a.chunk.js": "/jarvis/static/js/8.944dd67a.chunk.js",
     "static/js/8.944dd67a.chunk.js.map": "/jarvis/static/js/8.944dd67a.chunk.js.map",
     "main.css": "/jarvis/static/css/main.d4b7edcc.chunk.css",
-    "main.js": "/jarvis/static/js/main.8b9cd42b.chunk.js",
-    "main.js.map": "/jarvis/static/js/main.8b9cd42b.chunk.js.map",
+    "main.js": "/jarvis/static/js/main.88d11915.chunk.js",
+    "main.js.map": "/jarvis/static/js/main.88d11915.chunk.js.map",
     "runtime-main.js": "/jarvis/static/js/runtime-main.25771fde.js",
     "runtime-main.js.map": "/jarvis/static/js/runtime-main.25771fde.js.map",
     "static/js/11.c78c798b.chunk.js": "/jarvis/static/js/11.c78c798b.chunk.js",
@@ -178,6 +178,6 @@
     "static/js/runtime-main.25771fde.js",
     "static/js/11.c78c798b.chunk.js",
     "static/css/main.d4b7edcc.chunk.css",
-    "static/js/main.8b9cd42b.chunk.js"
+    "static/js/main.88d11915.chunk.js"
   ]
 }
