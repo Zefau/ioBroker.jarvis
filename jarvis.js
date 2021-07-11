@@ -190,13 +190,18 @@ function startAdapter(options) {
 				
 				// open socket
 				socket = new ioWebSocket(adapter, { port, certificates });
-		
+				
 				// listen for new clients
-				socket.on('client', client => {
+				socket.on('CLIENT_NEW', client => {
 					CLIENTS[client.id] = CLIENTS[client.id] || {
 						'path': 'jarvis.' + adapter.instance + '.clients.' + client.id,
-						'notifications': []
+						'unreadNotifications': []
 					}
+				});
+				
+				// listen for client list
+				socket.on('CLIENT_LIST', clients => {
+					adapter.setState('clients.connected', JSON.stringify(clients), true);
 				});
 			})
 			.catch(error => adapter.log.error(error.message || error));
@@ -235,7 +240,7 @@ function startAdapter(options) {
 				adapter.getState(client._id + '.newNotifications', (err, state) => {
 					CLIENTS[clientId] = {
 						'path': client._id,
-						'notifications': JSON.parse((state && state.val) || '[]')
+						'unreadNotifications': []
 					}
 				});
 			});
@@ -248,23 +253,34 @@ function startAdapter(options) {
 	 */
 	adapter.on('stateChange', function(id, state) {
 		
-		if (state === undefined || state === null || state.ack === true || state.val === undefined || state.val === null) {
+		// SKIP ON INVALID STATE
+		if (state === undefined || state === null || state.val === undefined || state.val === null) {
+			return;
+		}
+		
+		// CLIENT CONNECTION STATE
+		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.connected') && state.val === true) {
+			const [ , , , clientId,] = id.split('.');
+			
+			// push unread notifications
+			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0) {
+				socket.clients[clientId].socket.emit('notification', CLIENTS[clientId].unreadNotifications);
+				CLIENTS[clientId].unreadNotifications = [];
+			}
+		}
+		
+		// SKIP ON ACK
+		if (state.ack === true) {
 			return;
 		}
 		
 		// NOTIFICATIONS
-		if (id.indexOf('.newNotifications') > -1) {
-			const [ , , , clientId,] = id.split('.');
-			
-			try {
-				CLIENTS[clientId].notifications = JSON.parse(state.val);
-			}
-			catch(error) {
-				CLIENTS[clientId].notifications = [];
-			}
+		if (id.indexOf('.notifications') > -1) {
+			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
 		}
 		
-		else if (id.indexOf('.addNotification') > -1 && state && state.val) {
+		// ADD NOTIFICATION
+		if (id.indexOf('.addNotification') > -1 && state && state.val) {
 			adapter.setState('addNotification', '', true);
 			
 			try {
@@ -275,7 +291,7 @@ function startAdapter(options) {
 				notification.ts = notification.ts || Date.now();
 				
 				if (notification.devices) {
-					notification.devices = Array.isArray(notification.devices) ? notification.devices : [notification.devices];
+					notification.devices = Array.isArray(notification.devices) ? notification.devices : [ notification.devices ];
 				}
 				
 				// add to list of all notifications
@@ -287,8 +303,20 @@ function startAdapter(options) {
 					
 					// either emit to all devices or only to specific ones
 					if (!notification.devices || notification.devices.includes(clientId)) {
-						CLIENTS[clientId].notifications.push(notification);
-						adapter.setState(CLIENTS[clientId].path + '.newNotifications', JSON.stringify(CLIENTS[clientId].notifications), true);
+						
+						// get connection state
+						adapter.getState(CLIENTS[clientId].path + '.connected', (err, state) => {
+							
+							// is connected
+							if (!err && state && state.val === true) {
+								socket.clients[clientId].socket.emit('notification', notification);
+							}
+							
+							// not connected, thus, save for later
+							else {
+								CLIENTS[clientId].unreadNotifications.push(notification);
+							}
+						});
 					}
 				}
 			}
