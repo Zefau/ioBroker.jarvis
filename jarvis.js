@@ -176,16 +176,18 @@ function startAdapter(options) {
 		}));
 		
 		// get certificates
-		configPromises.push(new Promise(resolve => {
-			adapter.getCertificates(adapter.config.certPublic, adapter.config.certPrivate, adapter.config.certChained, (err, certificates, leConfig) => {
-				resolve(certificates);
-			});
-		}));
+		if (adapter.config.certPublic && adapter.config.certPrivate) {
+			configPromises.push(new Promise(resolve => {
+				adapter.getCertificates(adapter.config.certPublic, adapter.config.certPrivate, adapter.config.certChained, (err, certificates, leConfig) => {
+					resolve(certificates);
+				});
+			}));
+		}
 		
 		// open web socket
 		Promise.all(configPromises)
 			.then(res => {
-				const certificates = adapter.config.socketSecure ? res[1] : null;
+				const certificates = adapter.config.socketSecure && res[1] ? res[1] : null;
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
