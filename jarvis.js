@@ -98,7 +98,7 @@ function startAdapter(options) {
 				// create dir
 				const dir = _path.dirname(file);
 				if (!_fs.existsSync(dir)){
-					_fs.mkdirSync(dir, { recursive: true });
+					_fs.mkdirSync(dir, { 'recursive': true });
 				}
 
 				// trigger initial backup
@@ -115,7 +115,7 @@ function startAdapter(options) {
 						BACKUPS[s.id] = JSON.parse(contents);
 					}
 					catch(err) {
-						adapter.log.error(err.message);
+						adapter.log.error('Error loading recent backups (' + s.id + '): ' + err.message);
 					}
 				}
 			});
@@ -265,7 +265,7 @@ function startAdapter(options) {
 			const [ , , , clientId,] = id.split('.');
 			
 			// push unread notifications
-			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0) {
+			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.clients[clientId].socket) {
 				socket.clients[clientId].socket.emit('notification', CLIENTS[clientId].unreadNotifications);
 				CLIENTS[clientId].unreadNotifications = [];
 			}
@@ -310,7 +310,7 @@ function startAdapter(options) {
 						adapter.getState(CLIENTS[clientId].path + '.connected', (err, state) => {
 							
 							// is connected
-							if (!err && state && state.val === true) {
+							if (!err && state && state.val === true && socket.clients[clientId].socket) {
 								socket.clients[clientId].socket.emit('notification', notification);
 							}
 							
