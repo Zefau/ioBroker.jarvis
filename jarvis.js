@@ -265,7 +265,7 @@ function startAdapter(options) {
 			const [ , , , clientId,] = id.split('.');
 			
 			// push unread notifications
-			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.clients[clientId].socket) {
+			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.clients[clientId] && socket.clients[clientId].socket) {
 				socket.clients[clientId].socket.emit('notification', CLIENTS[clientId].unreadNotifications);
 				CLIENTS[clientId].unreadNotifications = [];
 			}
@@ -286,9 +286,18 @@ function startAdapter(options) {
 			adapter.setState('addNotification', '', true);
 			
 			try {
-				
 				// parse notification
 				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : { 'title': state.val };
+				
+				if (Array.isArray(notification) && notification.length === 1) {
+					notification = notification[0];
+				}
+				else if (Array.isArray(notification) && notification.length > 1) {
+					notification = notification[0];
+					adapter.log.warn('Only single notification allowed for newly added notifications. Took first one and dropped the rest.');
+				}
+				
+				// add further information
 				notification.id = _uuid();
 				notification.ts = notification.ts || Date.now();
 				
@@ -310,7 +319,7 @@ function startAdapter(options) {
 						adapter.getState(CLIENTS[clientId].path + '.connected', (err, state) => {
 							
 							// is connected
-							if (!err && state && state.val === true && socket.clients[clientId].socket) {
+							if (!err && state && state.val === true && socket.clients[clientId] && socket.clients[clientId].socket) {
 								socket.clients[clientId].socket.emit('notification', notification);
 							}
 							
