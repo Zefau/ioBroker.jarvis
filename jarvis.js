@@ -6,6 +6,7 @@ const _got = require('got');
 const _fs = require('fs');
 const _path = require('path');
 const { v4: _uuid } = require('uuid');
+const _platform = require('platform');
 
 /*
  * internal libraries
@@ -261,14 +262,23 @@ function startAdapter(options) {
 		}
 		
 		// CLIENT CONNECTION STATE
-		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.connected') && state.val === true) {
+		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.connected') && state && state.val === true) {
 			const [ , , , clientId,] = id.split('.');
 			
 			// push unread notifications
-			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.clients[clientId] && socket.clients[clientId].socket) {
-				socket.clients[clientId].socket.emit('notification', CLIENTS[clientId].unreadNotifications);
+			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.sockets[clientId]) {
+				socket.sockets[clientId].emit('notification', CLIENTS[clientId].unreadNotifications);
 				CLIENTS[clientId].unreadNotifications = [];
 			}
+		}
+		
+		// PARSE USER AGENT
+		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.userAgent') && state && state.val) {
+			const [ , , , clientId,] = id.split('.');
+			const platform = _platform.parse(state.val);
+			
+			adapter.log.warn(JSON.stringify(platform));
+			adapter.setState(id.substr(0, id.lastIndexOf('.')) + '.userBrowser', JSON.stringify(platform), true);
 		}
 		
 		// SKIP ON ACK
@@ -311,6 +321,7 @@ function startAdapter(options) {
 				
 				// emit notification to clients (or add to list of unread notifications if client is not reachable)
 				for (let clientId in CLIENTS) {
+					adapter.log.warn(clientId);
 					
 					// either emit to all devices or only to specific ones
 					if (!notification.devices || notification.devices.includes(clientId)) {
@@ -319,8 +330,8 @@ function startAdapter(options) {
 						adapter.getState(CLIENTS[clientId].path + '.connected', (err, state) => {
 							
 							// is connected
-							if (!err && state && state.val === true && socket.clients[clientId] && socket.clients[clientId].socket) {
-								socket.clients[clientId].socket.emit('notification', notification);
+							if (!err && state && state.val === true && socket.sockets[clientId]) {
+								socket.sockets[clientId].emit('notification', notification);
 							}
 							
 							// not connected, thus, save for later
