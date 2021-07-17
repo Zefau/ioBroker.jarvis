@@ -276,8 +276,6 @@ function startAdapter(options) {
 		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.userAgent') && state && state.val) {
 			const [ , , , clientId,] = id.split('.');
 			const platform = _platform.parse(state.val);
-			
-			adapter.log.warn(JSON.stringify(platform));
 			adapter.setState(id.substr(0, id.lastIndexOf('.')) + '.userBrowser', JSON.stringify(platform), true);
 		}
 		
@@ -321,7 +319,6 @@ function startAdapter(options) {
 				
 				// emit notification to clients (or add to list of unread notifications if client is not reachable)
 				for (let clientId in CLIENTS) {
-					adapter.log.warn(clientId);
 					
 					// either emit to all devices or only to specific ones
 					if (!notification.devices || notification.devices.includes(clientId)) {
