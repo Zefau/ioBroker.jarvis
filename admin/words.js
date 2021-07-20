@@ -23,16 +23,16 @@ systemDictionary = {
 		"de": "Web Port"
 	},
 	"usageDataTitle": {
-		"en": "Send Configuration Data to the developer",
-		"de": "Dem Entwickler die Konfigurationdaten schicken"
+		"en": "Error-Reporting (via Sentry)",
+		"de": "Fehler-Reporting (via Sentry)"
 	},
 	"usageDataInfo": {
-		"en": "This options allows to send the configuration data of jarvis to the developer. This does NOT! include the values of your states and it does NOT! include private data. It inclues web adapter config jarvis device, layout and settings as well as errors that occured in the jarvis interface.",
-		"de": "Diese Option erlaubt es dem Entwickler die Konfigurationdaten zu schicken. Dies umfasst KEINE! Werte der Datenpunkte und umfasst auch KEINE! privaten Daten aus ioBroker. Es umfasst die Web Adapter Konfiguration, die jarvis Geräte, Layout und Einstellungen sowie die in jarvis aufgetretenen Fehler."
+		"en": "This option enables Sentry, which sends errors and exceptions of jarvis to the developer. This does NOT! include your configuration (devices, layout, widgets, etc.), it does NOT! include the values of your states and it does NOT! include private data. It only includes errors / exceptions, no further data.",
+		"de": "Diese Option aktiviert Sentry, wodurch Fehler in jarvis an den Entwickler geschickt werden. Dies umfasst KEINE! Konfiguration (Geräte, Layout, Widgets, etc.), umfasst KEINE! Werte der Datenpunkte und umfasst auch KEINE! privaten Daten aus ioBroker. Es umfasst NUR Fehler, die in jarvis aufgetreten sind."
 	},
 	"sendUsageData": {
-		"en": "Send Configuration Data",
-		"de": "Konfigurationsdaten schicken"
+		"en": "Enable Sentry (Error-Reporting)",
+		"de": "Sentry aktivieren (Fehler-Reporting)"
 	},
 	"tab_wiki": {
       "en":"Wiki",
