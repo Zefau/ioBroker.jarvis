@@ -279,14 +279,15 @@ function startAdapter(options) {
 			adapter.setState(id.substr(0, id.lastIndexOf('.')) + '.userBrowser', JSON.stringify(platform), true);
 		}
 		
-		// SKIP ON ACK
-		if (state.ack === true) {
-			return;
-		}
-		
 		// NOTIFICATIONS
 		if (id.indexOf('.notifications') > -1) {
 			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+		}
+		
+		
+		// SKIP ON ACK
+		if (state.ack === true) {
+			return;
 		}
 		
 		// ADD NOTIFICATION
