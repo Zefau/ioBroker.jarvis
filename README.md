@@ -24,7 +24,7 @@ jarvis is [*responsive*](https://de.wikipedia.org/wiki/Responsive_Webdesign) and
 
 The layout is flexible configurable. You may add as many tabs as prefered. Each tab may be either `fullscreen` or have as many `columns` as prefered, where each column holds the `modules` in a flexible order.
 
-Each module has its own configuration possibilities ([see Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki/de-Modules)).
+Each module has its own configuration possibilities ([see Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki)).
 
 
 ## Why jarvis?
@@ -32,7 +32,7 @@ jarvis is not as flexible as ioBroker.vis, but offers a standard design for a qu
 
 
 ## Installation and more informationen
-[More informationen - especially redarding configuration - may be found in the Wiki](https://zefau.gitbook.io/jarvis-de/).
+[More informationen - especially redarding configuration - may be found in the Wiki](https://zefau.gitbook.io/jarvis-v3/).
 
 _____
 
