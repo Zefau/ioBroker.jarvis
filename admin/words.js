@@ -2,6 +2,14 @@
 'use strict';
 
 systemDictionary = {
+	"hostWhitelist": {
+		"en": "Whitelist",
+		"de": "Whitelist"
+	},
+	"hostWhitelistInfo": {
+		"en": "List (comma separated) of allowed client IPs / identifiers (when secure connection is enabled)",
+		"de": "Liste (via Komma getrennt) erlaubter Client IPs / Host-Namen (bei gesicherterter Verbindung)"
+	},
 	"socketTitle": {
 		"en": "Settings for host / IP and port of the Socket connection (data connection), e.g. when using docker.",
 		"de": "Einstellungen des Hosts / IP und des Ports der Socket-Verbindung (Datenverbindung), z. B. wenn Docker genutzt wird."

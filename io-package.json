@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-alpha.50",
+      "version": "3.0.0-alpha.51",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -105,6 +105,17 @@
             "read": true,
             "write": false,
             "def": "{}"
+         }
+      },
+      {
+         "_id": "info.pro",
+         "type": "state",
+         "common": {
+            "name": "Pro Licence",
+            "role": "text",
+            "type": "string",
+            "read": true,
+            "def": ""
          }
       },
       {
