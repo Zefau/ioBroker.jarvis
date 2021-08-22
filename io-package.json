@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-alpha.56",
+      "version": "3.0.0-alpha.57",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -186,7 +186,8 @@
             "role": "json",
             "type": "string",
             "read": true,
-            "write": true
+            "write": true,
+            "def": "[]"
          }
       },
       {
