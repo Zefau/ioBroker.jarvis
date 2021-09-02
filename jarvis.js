@@ -385,14 +385,17 @@ function startAdapter(options) {
 	 *
 	 */
 	adapter.on('message', function(msg) {
+		adapter.log.debug('Got message: ' + JSON.stringify(msg));
 		
 		// get backups
 		if (msg.command === '_backups' && msg.message) {
+			adapter.log.debug('Get List of Backups for ' + msg.message.id);
 			library.msg(msg.from, msg.command, BACKUPS[msg.message.id], msg.callback);
 		}
 		
 		// restore
 		else if (msg.command === '_restore' && msg.message && msg.message.id && msg.message.state && msg.message.date) {
+			adapter.log.debug('Restore ' + msg.message.id);
 			restore(msg.message.id, msg.message.state, msg.message.date);
 		}
 	});

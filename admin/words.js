@@ -2,108 +2,20 @@
 'use strict';
 
 systemDictionary = {
-	"hostWhitelist": {
-		"en": "Whitelist",
-		"de": "Whitelist"
-	},
-	"hostWhitelistInfo": {
-		"en": "List (comma separated) of allowed client IPs / identifiers (when secure connection is enabled)",
-		"de": "Liste (via Komma getrennt) erlaubter Client IPs / Host-Namen (bei gesicherterter Verbindung)"
-	},
-	"socketTitle": {
-		"en": "Settings for host / IP and port of the Socket connection (data connection), e.g. when using docker.",
-		"de": "Einstellungen des Hosts / IP und des Ports der Socket-Verbindung (Datenverbindung), z. B. wenn Docker genutzt wird."
-	},
-	"socketHost": {
-		"en": "Socket Host / IP",
-		"de": "Socket Host / IP"
-	},
-	"autoDetect": {
-		"en": "Auto Detect Connection Settings",
-		"de": "Verbindungseinstellungen automatisch ermitteln"
-	},
-	"socketPort": {
-		"en": "Socket Port",
-		"de": "Socket Port"
-	},
-	"webPort": {
-		"en": "Web Port",
-		"de": "Web Port"
-	},
-	"usageDataTitle": {
-		"en": "Error-Reporting (via Sentry)",
-		"de": "Fehler-Reporting (via Sentry)"
-	},
-	"usageDataInfo": {
-		"en": "This option enables Sentry, which sends errors and exceptions of jarvis to the developer. This does NOT! include your configuration (devices, layout, widgets, etc.), it does NOT! include the values of your states and it does NOT! include private data. It only includes errors / exceptions, no further data.",
-		"de": "Diese Option aktiviert Sentry, wodurch Fehler in jarvis an den Entwickler geschickt werden. Dies umfasst KEINE! Konfiguration (Geräte, Layout, Widgets, etc.), umfasst KEINE! Werte der Datenpunkte und umfasst auch KEINE! privaten Daten aus ioBroker. Es umfasst NUR Fehler, die in jarvis aufgetreten sind."
-	},
-	"sendUsageData": {
-		"en": "Enable Sentry (Error-Reporting)",
-		"de": "Sentry aktivieren (Fehler-Reporting)"
-	},
-	"tab_wiki": {
-      "en":"Wiki",
-      "de":"Wiki"
-	},
-   "tab_config":{
-      "en":"Configuration",
-      "de":"Konfiguration",
-      "ru":"Конфигурации",
-      "pt":"Configuração",
-      "nl":"Configuratie",
-      "fr":"Configuration",
-      "it":"Configurazione",
-      "es":"Configuración",
-      "pl":"Konfiguracji",
-      "zh-cn":"配置"
-   },
-   "tab_donate":{
-      "en":"Donation",
-      "de":"Spenden",
-      "ru":"Пожертвование",
-      "pt":"Doação",
-      "nl":"Donatie",
-      "fr":"Don",
-      "it":"Donazione",
-      "es":"Donación",
-      "pl":"Darowizna",
-      "zh-cn":"捐赠"
-   },
-   "tab_info":{
-      "en":"Configuration &amp; Information",
-      "de":"Konfiguration &amp; Informationen",
-      "ru":"Информация",
-      "pt":"Informações",
-      "nl":"Informatie",
-      "fr":"Informations",
-      "it":"Informazioni",
-      "es":"Información",
-      "pl":"Informacje",
-      "zh-cn":"的信息"
-   },
-   "donateInformation":{
-      "en":"Feel free to suggest new features via Github or ioBroker forum. If you like this adapter, you very welcome to donate.",
-      "de":"Neue Funktionen / Features können gerne über Github oder das ioBroker Forum angefragt werden. Wenn dieser Adapter gefällt / nützlich ist, sind Spenden herzlich Willkommen.",
-      "ru":"Не стесняйтесь предложить новые функции через GitHub или форуме ioBroker. Если вам нравится этот адаптер, вы можете пожертвовать.",
-      "pt":"Sinta-se livre para sugerir novos recursos via Github ou ioBroker fórum. Se você gosta deste adaptador, você é muito bem-vindo para doar.",
-      "nl":"Voel je vrij om te suggereren nieuwe functies via Github of ioBroker forum. Als je van deze adapter, die je erg welkom om te doneren.",
-      "fr":"N'hésitez pas à suggérer de nouvelles fonctionnalités via Github ou ioBroker forum. Si vous aimez cet adaptateur, vous les bienvenus pour faire un don.",
-      "it":"Sentitevi liberi di suggerire nuove funzionalità tramite Github o ioBroker forum. Se ti piace questo adattatore, è molto benvenuto a donare.",
-      "es":"Siéntase libre de sugerir nuevas características a través de Github o ioBroker foro. Si te gusta este adaptador, usted muy bienvenido a donar.",
-      "pl":"Nie wahaj się zaproponować nowe funkcje poprzez GitHub lub forum ioBroker. Jeśli podoba ci się ten zasilacz, możesz podarować.",
-      "zh-cn":"随时提出新的功能，通过审查或ioBroker论坛。 如果你喜欢这个转接器，你非常受欢迎的捐赠。"
-   },
-   "donateTitle":{
-      "en":"Support the development of the jarvis Adapter!",
-      "de":"Unterstützung der Entwicklung des jarvis Adapters!",
-      "ru":"Поддержка развития Хюэ-расширенный адаптер!",
-      "pt":"Apoiar o desenvolvimento da tonalidade expandida do Adaptador!",
-      "nl":"Ondersteuning van de ontwikkeling van de jarvis Adapter!",
-      "fr":"Soutenir le développement de la teinte-extension de Carte!",
-      "it":"Sostenere lo sviluppo della tonalità esteso Adattatore!",
-      "es":"Apoyar el desarrollo de los hue-extendida Adaptador!",
-      "pl":"Wsparcie rozwoju Hue-zaawansowany zasilacz!",
-      "zh-cn":"支持发展的顺化扩展适配器!"
-   }
-}
+    "autoDetect": {                                  "en": "Auto Detect Connection Settings",                 "de": "Verbindungseinstellungen automatisch ermitteln",  "ru": "Автоопределение настроек подключения",            "pt": "Configurações de detecção automática de conexão", "nl": "Verbindingsinstellingen automatisch detecteren",  "fr": "Paramètres de connexion de détection automatique", "it": "Rileva automaticamente le impostazioni di connessione", "es": "Configuración de conexión de detección automática", "pl": "Ustawienia połączenia automatycznego wykrywania", "zh-cn": "自动检测连接设置"},
+    "donateInformation": {                           "en": "Feel free to suggest new features via Github or ioBroker forum. If you like this adapter, you very welcome to donate.", "de": "Neue Funktionen / Features können gerne über Github oder das ioBroker Forum angefragt werden. Wenn dieser Adapter gefällt / nützlich ist, sind Spenden herzlich Willkommen.", "ru": "Не стесняйтесь предложить новые функции через GitHub или форуме ioBroker. Если вам нравится этот адаптер, вы можете пожертвовать.", "pt": "Sinta-se livre para sugerir novos recursos via Github ou ioBroker fórum. Se você gosta deste adaptador, você é muito bem-vindo para doar.", "nl": "Voel je vrij om te suggereren nieuwe functies via Github of ioBroker forum. Als je van deze adapter, die je erg welkom om te doneren.", "fr": "N'hésitez pas à suggérer de nouvelles fonctionnalités via Github ou ioBroker forum. Si vous aimez cet adaptateur, vous les bienvenus pour faire un don.", "it": "Sentitevi liberi di suggerire nuove funzionalità tramite Github o ioBroker forum. Se ti piace questo adattatore, è molto benvenuto a donare.", "es": "Siéntase libre de sugerir nuevas características a través de Github o ioBroker foro. Si te gusta este adaptador, usted muy bienvenido a donar.", "pl": "Nie wahaj się zaproponować nowe funkcje poprzez GitHub lub forum ioBroker. Jeśli podoba ci się ten zasilacz, możesz podarować.", "zh-cn": "随时提出新的功能，通过审查或ioBroker论坛。 如果你喜欢这个转接器，你非常受欢迎的捐赠。"},
+    "donateTitle": {                                 "en": "Support the development of the jarvis Adapter!",  "de": "Unterstützung der Entwicklung des jarvis Adapters!", "ru": "Поддержка развития Хюэ-расширенный адаптер!",     "pt": "Apoiar o desenvolvimento da tonalidade expandida do Adaptador!", "nl": "Ondersteuning van de ontwikkeling van de jarvis Adapter!", "fr": "Soutenir le développement de la teinte-extension de Carte!", "it": "Sostenere lo sviluppo della tonalità esteso Adattatore!", "es": "Apoyar el desarrollo de los hue-extendida Adaptador!", "pl": "Wsparcie rozwoju Hue-zaawansowany zasilacz!",     "zh-cn": "支持发展的顺化扩展适配器!"},
+    "hostWhitelist": {                               "en": "Whitelist",                                       "de": "Whitelist",                                       "ru": "Белый список",                                    "pt": "Whitelist",                                       "nl": "Witte lijst",                                     "fr": "Liste blanche",                                   "it": "Lista bianca",                                    "es": "Lista blanca",                                    "pl": "Biała lista",                                     "zh-cn": "白名单"},
+    "hostWhitelistInfo": {                           "en": "List (comma separated) of allowed client IPs / identifiers (when secure connection is enabled)", "de": "Liste (via Komma getrennt) erlaubter Client IPs / Host-Namen (bei gesicherterter Verbindung)", "ru": "Список (через запятую) разрешенных IP-адресов / идентификаторов клиентов (при включенном безопасном соединении)", "pt": "Lista (separada por vírgulas) de identificadores / IPs de clientes permitidos (quando a conexão segura está ativada)", "nl": "Lijst (gescheiden door komma's) van toegestane client-IP's/-ID's (wanneer beveiligde verbinding is ingeschakeld)", "fr": "Liste (séparée par des virgules) des adresses IP / identifiants clients autorisés (lorsque la connexion sécurisée est activée)", "it": "Elenco (separato da virgole) di IP/identificatori client consentiti (quando è abilitata la connessione sicura)", "es": "Lista (separada por comas) de IP / identificadores de cliente permitidos (cuando la conexión segura está habilitada)", "pl": "Lista (oddzielona przecinkami) dozwolonych adresów IP / identyfikatorów klientów (gdy włączone jest bezpieczne połączenie)", "zh-cn": "允许的客户端 IP/标识符列表（逗号分隔）（启用安全连接时）"},
+    "sendUsageData": {                               "en": "Enable Sentry (Error-Reporting)",                 "de": "Sentry aktivieren (Fehler-Reporting)",            "ru": "Включить Sentry (сообщение об ошибках)",          "pt": "Habilitar Sentry (relatório de erros)",           "nl": "Sentry inschakelen (Foutrapportage)",             "fr": "Activer Sentry (Rapport d'erreur)",               "it": "Abilita Sentry (segnalazione errori)",            "es": "Habilitar Sentry (informe de errores)",           "pl": "Włącz Sentry (zgłaszanie błędów)",                "zh-cn": "启用哨兵（错误报告）"},
+    "socketHost": {                                  "en": "Socket Host / IP",                                "de": "Socket Host / IP",                                "ru": "Socket Host / IP",                                "pt": "Socket Host / IP",                                "nl": "Sockethost / IP",                                 "fr": "Hôte de socket / IP",                             "it": "Host socket / IP",                                "es": "Socket Host / IP",                                "pl": "Host gniazda / adres IP",                         "zh-cn": "套接字主机/IP"},
+    "socketPort": {                                  "en": "Socket Port",                                     "de": "Socket Port",                                     "ru": "Разъем Порт",                                     "pt": "Porta de soquete",                                "nl": "Socket-poort:",                                   "fr": "Port de prise",                                   "it": "Porta presa",                                     "es": "Puerto de enchufe",                               "pl": "Port gniazda",                                    "zh-cn": "插座端口"},
+    "socketTitle": {                                 "en": "Settings for host / IP and port of the Socket connection (data connection), e.g. when using docker.", "de": "Einstellungen des Hosts / IP und des Ports der Socket-Verbindung (Datenverbindung), z. B. wenn Docker genutzt wird.", "ru": "Настройки для хоста / IP и порта соединения Socket (соединение для передачи данных), например ", "pt": "Configurações para host / IP e porta da conexão Socket (conexão de dados), por exemplo ", "nl": "Instellingen voor host / IP en poort van de Socket-verbinding (dataverbinding), b.v. ", "fr": "Paramètres pour l'hôte / IP et le port de la connexion Socket (connexion de données), par ex. ", "it": "Impostazioni per host/IP e porta della connessione Socket (connessione dati), ad es. ", "es": "Configuración para host / IP y puerto de la conexión Socket (conexión de datos), p. Ej. ", "pl": "Ustawienia hosta/IP i portu połączenia Socket (połączenie danych), m.in. ", "zh-cn": "Socket 连接（数据连接）的主机/IP 和端口设置，例如"},
+    "tab_config": {                                  "en": "Configuration",                                   "de": "Konfiguration",                                   "ru": "Конфигурации",                                    "pt": "Configuração",                                    "nl": "Configuratie",                                    "fr": "Configuration",                                   "it": "Configurazione",                                  "es": "Configuración",                                   "pl": "Konfiguracji",                                    "zh-cn": "配置"},
+    "tab_donate": {                                  "en": "Donation",                                        "de": "Spenden",                                         "ru": "Пожертвование",                                   "pt": "Doação",                                          "nl": "Donatie",                                         "fr": "Don",                                             "it": "Donazione",                                       "es": "Donación",                                        "pl": "Darowizna",                                       "zh-cn": "捐赠"},
+    "tab_info": {                                    "en": "Configuration &amp; Information",                 "de": "Konfiguration &amp; Informationen",               "ru": "Информация",                                      "pt": "Informações",                                     "nl": "Informatie",                                      "fr": "Informations",                                    "it": "Informazioni",                                    "es": "Información",                                     "pl": "Informacje",                                      "zh-cn": "的信息"},
+    "tab_wiki": {                                    "en": "Wiki",                                            "de": "Wiki",                                            "ru": "Вики",                                            "pt": "Wiki",                                            "nl": "Wiki",                                            "fr": "Wiki",                                            "it": "Wiki",                                            "es": "Wiki",                                            "pl": "Wiki",                                            "zh-cn": "维基"},
+    "usageDataInfo": {                               "en": "This option enables Sentry, which sends errors and exceptions of jarvis to the developer. This does NOT! include your configuration (devices, layout, widgets, etc.), it does NOT! include the values of your states and it does NOT! include private data. It only includes errors / exceptions, no further data.", "de": "Diese Option aktiviert Sentry, wodurch Fehler in jarvis an den Entwickler geschickt werden. Dies umfasst KEINE! Konfiguration (Geräte, Layout, Widgets, etc.), umfasst KEINE! Werte der Datenpunkte und umfasst auch KEINE! privaten Daten aus ioBroker. Es umfasst NUR Fehler, die in jarvis aufgetreten sind.", "ru": "Эта опция включает Sentry, который отправляет разработчику ошибки и исключения jarvis. ", "pt": "Esta opção habilita o Sentry, que envia erros e exceções de jarvis para o desenvolvedor. ", "nl": "Deze optie schakelt Sentry in, die fouten en uitzonderingen van jarvis naar de ontwikkelaar stuurt. ", "fr": "Cette option active Sentry, qui envoie les erreurs et exceptions de jarvis au développeur. ", "it": "Questa opzione abilita Sentry, che invia errori ed eccezioni di jarvis allo sviluppatore. ", "es": "Esta opción habilita Sentry, que envía errores y excepciones de jarvis al desarrollador. ", "pl": "Ta opcja włącza Sentry, który wysyła błędy i wyjątki jarvis do programisty. ", "zh-cn": "此选项启用 Sentry，它将 jarvis 的错误和异常发送给开发人员。"},
+    "usageDataTitle": {                              "en": "Error-Reporting (via Sentry)",                    "de": "Fehler-Reporting (via Sentry)",                   "ru": "Отчеты об ошибках (через Sentry)",                "pt": "Relatório de erros (via Sentry)",                 "nl": "Foutrapportage (via Sentry)",                     "fr": "Rapport d'erreur (via Sentry)",                   "it": "Segnalazione errori (tramite Sentry)",            "es": "Informe de errores (a través de Sentry)",         "pl": "Zgłaszanie błędów (przez Sentry)",                "zh-cn": "错误报告（通过 Sentry）"},
+    "webPort": {                                     "en": "Web Port",                                        "de": "Web Port",                                        "ru": "Веб-порт",                                        "pt": "Web Port",                                        "nl": "Webpoort",                                        "fr": "Port Web",                                        "it": "Porta Web",                                       "es": "Puerto web",                                      "pl": "Port sieciowy",                                   "zh-cn": "网络端口"},
+};

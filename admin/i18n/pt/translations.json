@@ -1,0 +1,18 @@
+{
+    "autoDetect": "Configurações de detecção automática de conexão",
+    "donateInformation": "Sinta-se livre para sugerir novos recursos via Github ou ioBroker fórum. Se você gosta deste adaptador, você é muito bem-vindo para doar.",
+    "donateTitle": "Apoiar o desenvolvimento da tonalidade expandida do Adaptador!",
+    "hostWhitelist": "Whitelist",
+    "hostWhitelistInfo": "Lista (separada por vírgulas) de identificadores / IPs de clientes permitidos (quando a conexão segura está ativada)",
+    "sendUsageData": "Habilitar Sentry (relatório de erros)",
+    "socketHost": "Socket Host / IP",
+    "socketPort": "Porta de soquete",
+    "socketTitle": "Configurações para host / IP e porta da conexão Socket (conexão de dados), por exemplo ",
+    "tab_config": "Configuração",
+    "tab_donate": "Doação",
+    "tab_info": "Informações",
+    "tab_wiki": "Wiki",
+    "usageDataInfo": "Esta opção habilita o Sentry, que envia erros e exceções de jarvis para o desenvolvedor. ",
+    "usageDataTitle": "Relatório de erros (via Sentry)",
+    "webPort": "Web Port"
+}

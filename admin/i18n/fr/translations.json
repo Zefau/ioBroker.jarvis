@@ -1,0 +1,18 @@
+{
+    "autoDetect": "Paramètres de connexion de détection automatique",
+    "donateInformation": "N'hésitez pas à suggérer de nouvelles fonctionnalités via Github ou ioBroker forum. Si vous aimez cet adaptateur, vous les bienvenus pour faire un don.",
+    "donateTitle": "Soutenir le développement de la teinte-extension de Carte!",
+    "hostWhitelist": "Liste blanche",
+    "hostWhitelistInfo": "Liste (séparée par des virgules) des adresses IP / identifiants clients autorisés (lorsque la connexion sécurisée est activée)",
+    "sendUsageData": "Activer Sentry (Rapport d'erreur)",
+    "socketHost": "Hôte de socket / IP",
+    "socketPort": "Port de prise",
+    "socketTitle": "Paramètres pour l'hôte / IP et le port de la connexion Socket (connexion de données), par ex. ",
+    "tab_config": "Configuration",
+    "tab_donate": "Don",
+    "tab_info": "Informations",
+    "tab_wiki": "Wiki",
+    "usageDataInfo": "Cette option active Sentry, qui envoie les erreurs et exceptions de jarvis au développeur. ",
+    "usageDataTitle": "Rapport d'erreur (via Sentry)",
+    "webPort": "Port Web"
+}

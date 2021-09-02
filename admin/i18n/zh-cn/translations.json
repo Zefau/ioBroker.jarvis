@@ -1,0 +1,18 @@
+{
+    "autoDetect": "自动检测连接设置",
+    "donateInformation": "随时提出新的功能，通过审查或ioBroker论坛。 如果你喜欢这个转接器，你非常受欢迎的捐赠。",
+    "donateTitle": "支持发展的顺化扩展适配器!",
+    "hostWhitelist": "白名单",
+    "hostWhitelistInfo": "允许的客户端 IP/标识符列表（逗号分隔）（启用安全连接时）",
+    "sendUsageData": "启用哨兵（错误报告）",
+    "socketHost": "套接字主机/IP",
+    "socketPort": "插座端口",
+    "socketTitle": "Socket 连接（数据连接）的主机/IP 和端口设置，例如",
+    "tab_config": "配置",
+    "tab_donate": "捐赠",
+    "tab_info": "的信息",
+    "tab_wiki": "维基",
+    "usageDataInfo": "此选项启用 Sentry，它将 jarvis 的错误和异常发送给开发人员。",
+    "usageDataTitle": "错误报告（通过 Sentry）",
+    "webPort": "网络端口"
+}

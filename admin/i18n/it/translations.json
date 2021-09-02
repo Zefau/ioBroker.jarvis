@@ -1,0 +1,18 @@
+{
+    "autoDetect": "Rileva automaticamente le impostazioni di connessione",
+    "donateInformation": "Sentitevi liberi di suggerire nuove funzionalità tramite Github o ioBroker forum. Se ti piace questo adattatore, è molto benvenuto a donare.",
+    "donateTitle": "Sostenere lo sviluppo della tonalità esteso Adattatore!",
+    "hostWhitelist": "Lista bianca",
+    "hostWhitelistInfo": "Elenco (separato da virgole) di IP/identificatori client consentiti (quando è abilitata la connessione sicura)",
+    "sendUsageData": "Abilita Sentry (segnalazione errori)",
+    "socketHost": "Host socket / IP",
+    "socketPort": "Porta presa",
+    "socketTitle": "Impostazioni per host/IP e porta della connessione Socket (connessione dati), ad es. ",
+    "tab_config": "Configurazione",
+    "tab_donate": "Donazione",
+    "tab_info": "Informazioni",
+    "tab_wiki": "Wiki",
+    "usageDataInfo": "Questa opzione abilita Sentry, che invia errori ed eccezioni di jarvis allo sviluppatore. ",
+    "usageDataTitle": "Segnalazione errori (tramite Sentry)",
+    "webPort": "Porta Web"
+}

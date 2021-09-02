@@ -64,7 +64,10 @@
 				[ id, state, type ] = id.split(':');
 			}
 			
+			console.log('Get backups for ' + id + '...');
 			sendTo(null, '_backups', { 'id': id }, function(res) {
+				console.log('Got backups for ' + id + ': ', res);
+				
 				const dates = Object.keys(res);
 				dates.reverse().forEach(function(date) {
 					$('#' + id).append(

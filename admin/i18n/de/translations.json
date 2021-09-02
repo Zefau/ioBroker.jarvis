@@ -1,0 +1,18 @@
+{
+    "autoDetect": "Verbindungseinstellungen automatisch ermitteln",
+    "donateInformation": "Neue Funktionen / Features können gerne über Github oder das ioBroker Forum angefragt werden. Wenn dieser Adapter gefällt / nützlich ist, sind Spenden herzlich Willkommen.",
+    "donateTitle": "Unterstützung der Entwicklung des jarvis Adapters!",
+    "hostWhitelist": "Whitelist",
+    "hostWhitelistInfo": "Liste (via Komma getrennt) erlaubter Client IPs / Host-Namen (bei gesicherterter Verbindung)",
+    "sendUsageData": "Sentry aktivieren (Fehler-Reporting)",
+    "socketHost": "Socket Host / IP",
+    "socketPort": "Socket Port",
+    "socketTitle": "Einstellungen des Hosts / IP und des Ports der Socket-Verbindung (Datenverbindung), z. B. wenn Docker genutzt wird.",
+    "tab_config": "Konfiguration",
+    "tab_donate": "Spenden",
+    "tab_info": "Konfiguration &amp; Informationen",
+    "tab_wiki": "Wiki",
+    "usageDataInfo": "Diese Option aktiviert Sentry, wodurch Fehler in jarvis an den Entwickler geschickt werden. Dies umfasst KEINE! Konfiguration (Geräte, Layout, Widgets, etc.), umfasst KEINE! Werte der Datenpunkte und umfasst auch KEINE! privaten Daten aus ioBroker. Es umfasst NUR Fehler, die in jarvis aufgetreten sind.",
+    "usageDataTitle": "Fehler-Reporting (via Sentry)",
+    "webPort": "Web Port"
+}

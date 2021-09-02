@@ -1,0 +1,18 @@
+{
+    "autoDetect": "Verbindingsinstellingen automatisch detecteren",
+    "donateInformation": "Voel je vrij om te suggereren nieuwe functies via Github of ioBroker forum. Als je van deze adapter, die je erg welkom om te doneren.",
+    "donateTitle": "Ondersteuning van de ontwikkeling van de jarvis Adapter!",
+    "hostWhitelist": "Witte lijst",
+    "hostWhitelistInfo": "Lijst (gescheiden door komma's) van toegestane client-IP's/-ID's (wanneer beveiligde verbinding is ingeschakeld)",
+    "sendUsageData": "Sentry inschakelen (Foutrapportage)",
+    "socketHost": "Sockethost / IP",
+    "socketPort": "Socket-poort:",
+    "socketTitle": "Instellingen voor host / IP en poort van de Socket-verbinding (dataverbinding), b.v. ",
+    "tab_config": "Configuratie",
+    "tab_donate": "Donatie",
+    "tab_info": "Informatie",
+    "tab_wiki": "Wiki",
+    "usageDataInfo": "Deze optie schakelt Sentry in, die fouten en uitzonderingen van jarvis naar de ontwikkelaar stuurt. ",
+    "usageDataTitle": "Foutrapportage (via Sentry)",
+    "webPort": "Webpoort"
+}

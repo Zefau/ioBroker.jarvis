@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-alpha.61",
+      "version": "3.0.0-alpha.62",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -31,6 +31,8 @@
       "license": "MIT",
       "platform": "Javascript/Node.js",
       "mode": "daemon",
+      "connectionType": "local",
+      "dataSource": "push",
       "icon": "jarvis.png",
       "extIcon": "https://raw.githubusercontent.com/Zefau/ioBroker.jarvis/master/admin/jarvis.png",
       "keywords": [

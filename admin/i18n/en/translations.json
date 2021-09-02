@@ -1,0 +1,18 @@
+{
+    "autoDetect": "Auto Detect Connection Settings",
+    "donateInformation": "Feel free to suggest new features via Github or ioBroker forum. If you like this adapter, you very welcome to donate.",
+    "donateTitle": "Support the development of the jarvis Adapter!",
+    "hostWhitelist": "Whitelist",
+    "hostWhitelistInfo": "List (comma separated) of allowed client IPs / identifiers (when secure connection is enabled)",
+    "sendUsageData": "Enable Sentry (Error-Reporting)",
+    "socketHost": "Socket Host / IP",
+    "socketPort": "Socket Port",
+    "socketTitle": "Settings for host / IP and port of the Socket connection (data connection), e.g. when using docker.",
+    "tab_config": "Configuration",
+    "tab_donate": "Donation",
+    "tab_info": "Configuration &amp; Information",
+    "tab_wiki": "Wiki",
+    "usageDataInfo": "This option enables Sentry, which sends errors and exceptions of jarvis to the developer. This does NOT! include your configuration (devices, layout, widgets, etc.), it does NOT! include the values of your states and it does NOT! include private data. It only includes errors / exceptions, no further data.",
+    "usageDataTitle": "Error-Reporting (via Sentry)",
+    "webPort": "Web Port"
+}
