@@ -284,6 +284,12 @@ function startAdapter(options) {
 			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
 		}
 		
+		// SETTINGS
+		if (id.substr(-9) === '.settings') {
+			writeSettingsToStates(JSON.parse(state.val) || {});
+		}
+		
+		
 		
 		// SKIP ON ACK
 		if (state.ack === true) {
@@ -345,17 +351,6 @@ function startAdapter(options) {
 			}
 		}
 		
-		// BACKUP
-		const foundIndex = BACKUP_STATES.findIndex(s => s.state === id.substr(id.lastIndexOf('.')+1));
-		if (foundIndex > -1) {
-			backup(BACKUP_STATES[foundIndex], state.val);
-		}
-		
-		// SETTINGS
-		if (id.substr(-9) === '.settings') {
-			writeSettingsToStates(JSON.parse(state.val) || {});
-		}
-		
 		// SETTING
 		if (id.indexOf('.settings.') > -1) {
 			const setting = id.substr(id.lastIndexOf('.settings.')+10);
@@ -377,6 +372,12 @@ function startAdapter(options) {
 					adapter.setForeignObject(obj._id, obj);
 				});
 			}
+		}
+		
+		// BACKUP
+		const foundIndex = BACKUP_STATES.findIndex(s => s.state === id.substr(id.lastIndexOf('.')+1));
+		if (foundIndex > -1) {
+			backup(BACKUP_STATES[foundIndex], state.val);
 		}
 	});
 	
