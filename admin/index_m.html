@@ -56,28 +56,30 @@
 		$('.collapsible').collapsible();
 		
 		// get backups
-		['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'theme'].forEach(id => {
-			let state = id;
-			let type = 'json';
-			
-			if (id.indexOf(':') > -1) {
-				[ id, state, type ] = id.split(':');
-			}
-			
-			console.log('Get backups for ' + id + '...');
-			sendTo(null, '_backups', { 'id': id }, function(res) {
-				console.log('Got backups for ' + id + ': ', res);
+		setTimeout(() => {
+			['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'theme'].forEach(id => {
+				let state = id;
+				let type = 'json';
 				
-				const dates = Object.keys(res);
-				dates.reverse().forEach(function(date) {
-					$('#' + id).append(
-						$('<a href="#!" class="collection-item">' + date + '</a>').on('click', function() {
-							dialog({ id, state, type }, date, res[date]);
-						})
-					);
+				if (id.indexOf(':') > -1) {
+					[ id, state, type ] = id.split(':');
+				}
+				
+				console.log('Get backups for ' + id + '...');
+				sendTo(null, '_backups', { 'id': id }, function(res) {
+					console.log('Got backups for ' + id + ': ', res);
+					
+					const dates = Object.keys(res);
+					dates.reverse().forEach(function(date) {
+						$('#' + id).append(
+							$('<a href="#!" class="collection-item">' + date + '</a>').on('click', function() {
+								dialog({ id, state, type }, date, res[date]);
+							})
+						);
+					});
 				});
 			});
-		});
+		}, 500);
 		
 		// restore
 		$('.btn-restore').on('click', function() {
