@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-alpha.77",
+      "version": "3.0.0-alpha.78",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -76,6 +76,7 @@
       ]
    },
    "native": {
+      "hostAllow": "all",
       "autoDetect": true,
       "socketHost": "",
       "webPort": null,

@@ -2,6 +2,8 @@
     "autoDetect": "Verbindungseinstellungen automatisch ermitteln",
     "donateInformation": "Neue Funktionen / Features können gerne über Github oder das ioBroker Forum angefragt werden. Wenn dieser Adapter gefällt / nützlich ist, sind Spenden herzlich Willkommen.",
     "donateTitle": "Unterstützung der Entwicklung des jarvis Adapters!",
+    "hostAllowAll": "Erlaube Verbindungen von allen Hosts / IP Adressen",
+    "hostAllowList": "Erlaube Verbindungen nur von der Whitelist",
     "hostWhitelist": "Whitelist",
     "hostWhitelistInfo": "Liste (via Komma getrennt) erlaubter Client IPs / Host-Namen (bei gesicherterter Verbindung)",
     "sendUsageData": "Sentry aktivieren (Fehler-Reporting)",

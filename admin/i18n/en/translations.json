@@ -2,6 +2,8 @@
     "autoDetect": "Auto Detect Connection Settings",
     "donateInformation": "Feel free to suggest new features via Github or ioBroker forum. If you like this adapter, you very welcome to donate.",
     "donateTitle": "Support the development of the jarvis Adapter!",
+    "hostAllowAll": "Allow Connections from any Host / IP",
+    "hostAllowList": "Allow Connections only from Whitelist",
     "hostWhitelist": "Whitelist",
     "hostWhitelistInfo": "List (comma separated) of allowed client IPs / identifiers (when secure connection is enabled)",
     "sendUsageData": "Enable Sentry (Error-Reporting)",

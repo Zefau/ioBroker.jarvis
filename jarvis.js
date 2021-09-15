@@ -192,7 +192,7 @@ function startAdapter(options) {
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
-				socket = new ioWebSocket(adapter, { port, certificates });
+				socket = new ioWebSocket(adapter, { ...adapter.config, port, certificates });
 				
 				// listen for new clients
 				socket.on('CLIENT_NEW', client => {
@@ -257,7 +257,7 @@ function startAdapter(options) {
 	adapter.on('stateChange', function(id, state) {
 		
 		// SKIP ON INVALID STATE
-		if (state === undefined || state === null || state.val === undefined || state.val === null) {
+		if (id.startsWith('jarvis.' + adapter.instance) === false || state === undefined || state === null || state.val === undefined || state.val === null) {
 			return;
 		}
 		
@@ -477,14 +477,12 @@ function backup(s, data) {
  *
  */
 function writeSettingsToStates(s, cb = null) {
-	
 	let promises = [];
 	
 	for (let setting in s) {
-		let val = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
+		const val = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
 		
 		promises.push(new Promise((resolve, reject) => {
-			
 			library.set({
 				'node': 'settings.' + setting,
 				'description': 'Modify setting ' + setting,

@@ -2,6 +2,8 @@
     "autoDetect": "Configurações de detecção automática de conexão",
     "donateInformation": "Sinta-se livre para sugerir novos recursos via Github ou ioBroker fórum. Se você gosta deste adaptador, você é muito bem-vindo para doar.",
     "donateTitle": "Apoiar o desenvolvimento da tonalidade expandida do Adaptador!",
+    "hostAllowAll": "Permitir conexões de qualquer host / IP",
+    "hostAllowList": "Permitir conexões apenas da lista de permissões",
     "hostWhitelist": "Whitelist",
     "hostWhitelistInfo": "Lista (separada por vírgulas) de identificadores / IPs de clientes permitidos (quando a conexão segura está ativada)",
     "sendUsageData": "Habilitar Sentry (relatório de erros)",
