@@ -73,7 +73,7 @@ if (!Promise.allSettled) {
  */
 function startAdapter(options) {
 	options = options || {};
-	adapter = new utils.Adapter({ ...options, name: adapterName });
+	adapter = new utils.Adapter({ ...options, 'name': adapterName });
 	
 	/*
 	 * ADAPTER READY
@@ -128,8 +128,10 @@ function startAdapter(options) {
 		
 		configPromises.push(new Promise(resolve => {
 			adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
+				adapter.log.debug('Web Configuration: ' + JSON.stringify(obj.native));
 				
 				const config = {
+					'user': (obj && obj.native && obj.native.defaultUser) || null,
 					'webPort': (obj && obj.native && obj.native.port) || 8082,
 					'socketSecure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false
 				}
@@ -192,7 +194,7 @@ function startAdapter(options) {
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
-				socket = new ioWebSocket(adapter, { ...adapter.config, port, certificates });
+				socket = new ioWebSocket(adapter, { ...adapter.config, ...res[0], port, certificates });
 				
 				// listen for new clients
 				socket.on('CLIENT_NEW', client => {
