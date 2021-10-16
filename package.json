@@ -15,13 +15,12 @@
   ],
   "dependencies": {
     "@iobroker/adapter-core": "^2.5.1",
-    "express": "^4.17.1",
     "got": "^11.8.2",
     "ip": "^1.1.5",
     "object-hash": "^2.2.0",
     "platform": "^1.3.6",
     "semver": "^7.3.5",
-    "socket.io": "^4.2.0",
+    "socket.io": "^4.3.0",
     "uuid": "^8.3.2"
   },
   "deprecated": false,
@@ -30,7 +29,6 @@
     "@iobroker/testing": "^2.5.1",
     "axios": "^0.21.4",
     "chai": "^4.3.4",
-    "gulp": "^4.0.2",
     "mocha": "^9.1.1"
   },
   "directories": {
@@ -56,5 +54,5 @@
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
   },
-  "version": "3.0.0-alpha.91"
+  "version": "3.0.0-alpha.92"
 }
