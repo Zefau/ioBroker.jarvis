@@ -323,8 +323,10 @@ function startAdapter(options) {
 				}
 				
 				// add to list of all notifications
-				NOTIFICATIONS.push(notification);
-				adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
+				if (notification.display !== 'delete') {
+					NOTIFICATIONS.push(notification);
+					adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
+				}
 				
 				// emit notification to clients (or add to list of unread notifications if client is not reachable)
 				for (let clientId in CLIENTS) {
