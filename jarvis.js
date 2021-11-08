@@ -323,7 +323,7 @@ function startAdapter(options) {
 				}
 				
 				// add to list of all notifications
-				if (notification.display !== 'delete') {
+				if (notification.state !== 'delete') {
 					NOTIFICATIONS.push(notification);
 					adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
 				}
