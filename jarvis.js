@@ -325,7 +325,7 @@ function startAdapter(options) {
 				// add to list of all notifications
 				if (notification.state !== 'delete') {
 					NOTIFICATIONS.push(notification);
-					adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
+					adapter.setState('notifications', JSON.stringify(processNotifications(NOTIFICATIONS)), true);
 				}
 				
 				// emit notification to clients (or add to list of unread notifications if client is not reachable)
@@ -431,10 +431,16 @@ function startAdapter(options) {
  *
  *
  */
-function emitNotification() {
+function processNotifications(notifications) {
+	// max entries
+	const maxEntries = SETTINGS.maxNotifications || 1000;
+	notifications = notifications.slice(-(maxEntries + 1));
 	
+	// purge old notifications
+	//notifications = notifications.map(notification => );
+	
+	return notifications;
 }
-
 
 /**
  *
