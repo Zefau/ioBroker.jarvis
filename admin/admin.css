@@ -46,3 +46,8 @@ pre {display: inline}
 
 .m .row {margin-bottom: 0 !important}
 .m label {color: #000}
+
+.m [type=radio]:checked+span,
+.m [type=radio]:not(:checked)+span {
+	height: auto !important;
+}

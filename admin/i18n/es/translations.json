@@ -2,6 +2,8 @@
     "autoDetect": "Configuración de conexión de detección automática",
     "donateInformation": "Siéntase libre de sugerir nuevas características a través de Github o ioBroker foro. Si te gusta este adaptador, usted muy bienvenido a donar.",
     "donateTitle": "Apoyar el desarrollo de los hue-extendida Adaptador!",
+    "hostAllowAll": "Permitir conexiones desde cualquier host / IP",
+    "hostAllowList": "Permitir conexiones solo desde la lista blanca",
     "hostWhitelist": "Lista blanca",
     "hostWhitelistInfo": "Lista (separada por comas) de IP / identificadores de cliente permitidos (cuando la conexión segura está habilitada)",
     "sendUsageData": "Habilitar Sentry (informe de errores)",

@@ -145,16 +145,12 @@
 						</div>
 					</div>
 					<div class="row box">
-						<div class="col s2 m2 right-align">
-						</div>
 						<div class="col s10 m10">
 							<input class="value" id="autoDetect" type="checkbox" />
 							<label for="autoDetect" class="translate">autoDetect</label>
 						</div>
 					</div>
 					<div class="row box">
-						<div class="col s2 m2 right-align">
-						</div>
 						<div class="input-field col s2 m2">
 							<input class="value disableAutoDetection" id="socketHost" type="text" />
 							<label for="socketHost" class="translate">socketHost</label>
@@ -167,7 +163,22 @@
 							<input class="value disableAutoDetection" id="socketPort" type="number" />
 							<label for="socketPort" class="translate">socketPort</label>
 						</div>
-						<div class="input-field col s6 m6">
+						<div class="input-field col s3 m3">
+							<div>
+								<label>
+									<input class="value" name="hostAllow" id="hostAllowAll" type="radio" value="all" />
+									<span class="translate">hostAllowAll</span>
+								</label>
+							</div>
+							
+							<div>
+								<label>
+									<input class="value" name="hostAllow" id="hostAllowList" type="radio" value="list" />
+									<span class="translate">hostAllowList</span>
+								</label>
+							</div>
+						</div>
+						<div class="input-field col s5 m5">
 							<input class="value" id="hostWhitelist" type="text" />
 							<label for="hostWhitelist" class="translate">hostWhitelist</label><br />
 							<span class="translate">hostWhitelistInfo</span>
@@ -185,8 +196,6 @@
 						</div>
 					</div>
 					<div class="row box">
-						<div class="col s2 m2 right-align">
-						</div>
 						<div class="col s10 m10" style="padding-top: 10px">
 							<div style="display: block">
 								<p class="subtitle translate">usageDataInfo</p>

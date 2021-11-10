@@ -73,7 +73,7 @@ if (!Promise.allSettled) {
  */
 function startAdapter(options) {
 	options = options || {};
-	adapter = new utils.Adapter({ ...options, name: adapterName });
+	adapter = new utils.Adapter({ ...options, 'name': adapterName });
 	
 	/*
 	 * ADAPTER READY
@@ -128,8 +128,10 @@ function startAdapter(options) {
 		
 		configPromises.push(new Promise(resolve => {
 			adapter.getForeignObject('system.adapter.web.0', (err, obj) => {
+				adapter.log.debug('Web Configuration: ' + JSON.stringify(obj.native));
 				
 				const config = {
+					'user': (obj && obj.native && obj.native.defaultUser) || null,
 					'webPort': (obj && obj.native && obj.native.port) || 8082,
 					'socketSecure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false
 				}
@@ -192,7 +194,7 @@ function startAdapter(options) {
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
-				socket = new ioWebSocket(adapter, { port, certificates });
+				socket = new ioWebSocket(adapter, { ...adapter.config, ...res[0], port, certificates });
 				
 				// listen for new clients
 				socket.on('CLIENT_NEW', client => {
@@ -257,7 +259,7 @@ function startAdapter(options) {
 	adapter.on('stateChange', function(id, state) {
 		
 		// SKIP ON INVALID STATE
-		if (state === undefined || state === null || state.val === undefined || state.val === null) {
+		if (id.startsWith('jarvis.' + adapter.instance) === false || state === undefined || state === null || state.val === undefined || state.val === null) {
 			return;
 		}
 		
@@ -321,8 +323,10 @@ function startAdapter(options) {
 				}
 				
 				// add to list of all notifications
-				NOTIFICATIONS.push(notification);
-				adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
+				if (notification.state !== 'delete') {
+					NOTIFICATIONS.push(notification);
+					adapter.setState('notifications', JSON.stringify(NOTIFICATIONS), true);
+				}
 				
 				// emit notification to clients (or add to list of unread notifications if client is not reachable)
 				for (let clientId in CLIENTS) {
@@ -477,14 +481,12 @@ function backup(s, data) {
  *
  */
 function writeSettingsToStates(s, cb = null) {
-	
 	let promises = [];
 	
 	for (let setting in s) {
-		let val = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
+		const val = typeof s[setting] === 'object' ? JSON.stringify(s[setting]) : s[setting];
 		
 		promises.push(new Promise((resolve, reject) => {
-			
 			library.set({
 				'node': 'settings.' + setting,
 				'description': 'Modify setting ' + setting,

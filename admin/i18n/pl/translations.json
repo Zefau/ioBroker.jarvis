@@ -2,6 +2,8 @@
     "autoDetect": "Ustawienia połączenia automatycznego wykrywania",
     "donateInformation": "Nie wahaj się zaproponować nowe funkcje poprzez GitHub lub forum ioBroker. Jeśli podoba ci się ten zasilacz, możesz podarować.",
     "donateTitle": "Wsparcie rozwoju Hue-zaawansowany zasilacz!",
+    "hostAllowAll": "Zezwalaj na połączenia z dowolnego hosta / adresu IP",
+    "hostAllowList": "Zezwalaj na połączenia tylko z białej listy",
     "hostWhitelist": "Biała lista",
     "hostWhitelistInfo": "Lista (oddzielona przecinkami) dozwolonych adresów IP / identyfikatorów klientów (gdy włączone jest bezpieczne połączenie)",
     "sendUsageData": "Włącz Sentry (zgłaszanie błędów)",

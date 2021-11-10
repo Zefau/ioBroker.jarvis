@@ -2,6 +2,8 @@
     "autoDetect": "自动检测连接设置",
     "donateInformation": "随时提出新的功能，通过审查或ioBroker论坛。 如果你喜欢这个转接器，你非常受欢迎的捐赠。",
     "donateTitle": "支持发展的顺化扩展适配器!",
+    "hostAllowAll": "允许来自任何主机/IP 的连接",
+    "hostAllowList": "仅允许来自白名单的连接",
     "hostWhitelist": "白名单",
     "hostWhitelistInfo": "允许的客户端 IP/标识符列表（逗号分隔）（启用安全连接时）",
     "sendUsageData": "启用哨兵（错误报告）",

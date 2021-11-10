@@ -2,6 +2,8 @@
     "autoDetect": "Verbindingsinstellingen automatisch detecteren",
     "donateInformation": "Voel je vrij om te suggereren nieuwe functies via Github of ioBroker forum. Als je van deze adapter, die je erg welkom om te doneren.",
     "donateTitle": "Ondersteuning van de ontwikkeling van de jarvis Adapter!",
+    "hostAllowAll": "Sta verbindingen toe vanaf elke host / IP",
+    "hostAllowList": "Alleen verbindingen toestaan ​​vanaf witte lijst",
     "hostWhitelist": "Witte lijst",
     "hostWhitelistInfo": "Lijst (gescheiden door komma's) van toegestane client-IP's/-ID's (wanneer beveiligde verbinding is ingeschakeld)",
     "sendUsageData": "Sentry inschakelen (Foutrapportage)",
