@@ -11,11 +11,11 @@
 .box {
 	padding: 10px 5px 15px 5px !important;
 	margin: 0 !important;
-	background-color: #fff; /*#acd8fa*/
+	/*background-color: #fff;*/ /*#acd8fa*/
 }
 
 #log {
-	background-color: #fff;
+	/*background-color: #fff;*/
 	padding: 0 20px;
 }
 .log.error {color: #a00}
