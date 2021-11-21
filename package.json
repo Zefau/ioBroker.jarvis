@@ -54,5 +54,5 @@
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
   },
-  "version": "3.0.0-alpha.127"
+  "version": "3.0.0-alpha.128"
 }
