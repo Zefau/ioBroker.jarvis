@@ -1,24 +1,4 @@
 {
-  "_from": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-  "_inBundle": false,
-  "_integrity": "sha512-EJ+vOrUDGyrbOBjkf7TOQUp+4lzA2CYJaBKWBumS7dI61CI1Qfgidn1zZYCfRRoJxsg2fWqycAJPDgCxS9xfdw==",
-  "_location": "/iobroker.jarvis",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "remote",
-    "raw": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-    "rawSpec": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-    "saveSpec": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-    "fetchSpec": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-  "_shasum": "2a61a2138f21852397db556e089d809d2dc67848",
-  "_spec": "https://github.com/Zefau/ioBroker.jarvis/tarball/6feaadd8717bad8365e7f450b82d0391fb2330cf",
-  "_where": "/opt/iobroker",
   "author": {
     "name": "zefau",
     "email": "zefau@mailbox.org"
@@ -68,5 +48,5 @@
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
   },
-  "version": "2.2.2"
+  "version": "2.2.4"
 }
