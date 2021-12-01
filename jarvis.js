@@ -208,7 +208,7 @@ function startAdapter(options) {
 		
 		// EVENTS
 		_schedule.scheduleJob('0 0 0 * * *', () => {
-			adapter.setState('info.data', JSON.stringify({ 'event': 'time:midnight' }));
+			adapter.setState('info.data', JSON.stringify({ 'event': 'time:midnight' }), true);
 		});
 	});
 
@@ -332,7 +332,7 @@ function startAdapter(options) {
 			const options = JSON.parse(msg.message);
 			const token = options.token;
 			
-			adapter.setState('info.data', JSON.stringify({ 'data': encrypt(options.str, options.secretKey), token }));
+			adapter.setState('info.data', JSON.stringify({ 'data': encrypt(options.str, options.secretKey), token }), true);
 		}
 		
 		// decrypt
@@ -340,7 +340,7 @@ function startAdapter(options) {
 			const options = JSON.parse(msg.message);
 			const token = options.token;
 			
-			adapter.setState('info.data', JSON.stringify({ 'data': decrypt(options.hash, options.secretKey), token }));
+			adapter.setState('info.data', JSON.stringify({ 'data': decrypt(options.hash, options.secretKey), token }), true);
 		}
 		
 		// get file
@@ -351,10 +351,10 @@ function startAdapter(options) {
 			readFile(options.file, (err, data) => {
 				
 				if (err) {
-					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
+					adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }), true);
 				}
 				else {
-					adapter.setState('info.data', JSON.stringify({ 'data': data, token }));
+					adapter.setState('info.data', JSON.stringify({ 'data': data, token }), true);
 				}
 			});
 		}
@@ -392,11 +392,11 @@ function startAdapter(options) {
 				// request
 				_got(options)
 					.then(res => {
-						adapter.setState('info.data', JSON.stringify({ 'data': res.body || '', token }));
+						adapter.setState('info.data', JSON.stringify({ 'data': res.body || '', token }), true);
 					})
 					.catch(err => {
 						//adapter.log.error(err.message);
-						adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }));
+						adapter.setState('info.data', JSON.stringify({ 'error': { 'message': err.message }, token }), true);
 					});
 			}
 			catch(err) {
