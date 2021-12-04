@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.0-beta.7",
+      "version": "3.0.0-beta.8",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -63,7 +63,8 @@
       "localLink": "%web_protocol%://%ip%:%webPort%/jarvis/index.html#/%instance%/&socketHost=%socketHost%&socketPort=%socketPort%&socketSecure=%socketSecure%",
       "dependencies": [
          {
-            "web": ">=3.0.12"
+            "web": ">=3.0.12",
+            "js-controller": ">=2.0.0"
          }
       ],
       "messagebox": true,
@@ -75,6 +76,9 @@
             "email": "zefau@mailbox.org"
          }
       ]
+   },
+   "adminUI": {
+      "config": "materialize"
    },
    "native": {
       "hostAllow": "all",

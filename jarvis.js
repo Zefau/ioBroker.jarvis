@@ -12,7 +12,7 @@ const _platform = require('platform');
  * internal libraries
  */
 const Library = require('./lib/library.js');
-const ioWebSocket = require('./lib/websocket.io.js');
+const ioWebSocket = require('./lib/websocket.io.min.js');
 
 
 /*
