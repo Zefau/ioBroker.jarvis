@@ -95,7 +95,6 @@ function startAdapter(options) {
 			
 			const file = _path.join(__dirname, '..', '..', 'iobroker-data', 'jarvis', adapter.instance.toString(), '_BACKUP_' + s.id.toUpperCase() + '.json');
 			_fs.readFile(file, (err, contents) => {
-				
 				// create dir
 				const dir = _path.dirname(file);
 				if (!_fs.existsSync(dir)){
@@ -149,7 +148,6 @@ function startAdapter(options) {
 					) {
 					
 					adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
-						
 						if (err || !obj || !obj.native) {
 							return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
 						}
@@ -257,7 +255,6 @@ function startAdapter(options) {
 	 *
 	 */
 	adapter.on('stateChange', function(id, state) {
-		
 		// SKIP ON INVALID STATE
 		if (id.startsWith('jarvis.' + adapter.instance) === false || state === undefined || state === null || state.val === undefined || state.val === null) {
 			return;
@@ -286,11 +283,16 @@ function startAdapter(options) {
 			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
 		}
 		
-		// SETTINGS
+		// SETTINGS: write each setting to an own state
 		if (id.substr(-9) === '.settings') {
 			writeSettingsToStates(JSON.parse(state.val) || {});
 		}
 		
+		// BACKUP
+		const foundIndex = BACKUP_STATES.findIndex(s => s.state === id.substr(id.lastIndexOf('.')+1));
+		if (foundIndex > -1) {
+			backup(BACKUP_STATES[foundIndex], state.val);
+		}
 		
 		
 		// SKIP ON ACK
@@ -355,9 +357,9 @@ function startAdapter(options) {
 			}
 		}
 		
-		// SETTING
+		// SETTING: update Settings-JSON in case a settings-specific state is updated
 		if (id.indexOf('.settings.') > -1) {
-			const setting = id.substr(id.lastIndexOf('.settings.')+10);
+			const setting = id.substr(id.lastIndexOf('.settings.') + 10);
 			
 			// update settings
 			SETTINGS[setting] = state && state.val && state.val.toString().indexOf('{') > -1 && state.val.toString().indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
@@ -365,9 +367,7 @@ function startAdapter(options) {
 			
 			// update adapter config
 			if (adapter.config[setting] !== undefined) {
-				
 				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
-					
 					if (err || !obj || !obj.native) {
 						return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
 					}
@@ -376,12 +376,6 @@ function startAdapter(options) {
 					adapter.setForeignObject(obj._id, obj);
 				});
 			}
-		}
-		
-		// BACKUP
-		const foundIndex = BACKUP_STATES.findIndex(s => s.state === id.substr(id.lastIndexOf('.')+1));
-		if (foundIndex > -1) {
-			backup(BACKUP_STATES[foundIndex], state.val);
 		}
 	});
 	
@@ -458,13 +452,17 @@ function restore(id, state, date) {
 function backup(s, data) {
 	s.id = s.id || s.state;
 	
+	if (data && data.toString() !== '{}') {
+		return false;
+	}
+	
 	// add to backup
 	const date = new Date();
 	const key = date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).substr(-2) + '-' + ('0' + date.getDate()).substr(-2) + '_' + ('0' + date.getHours()).substr(-2) + '-' + ('0' + date.getMinutes()).substr(-2) + '-' + ('0' + date.getSeconds()).substr(-2);
 	BACKUPS[s.id][key] = data;
 	
 	// delete old entries
-	adapter.config.keepBackupEntries = (adapter.config.keepBackupEntries || 25)-1;
+	adapter.config.keepBackupEntries = (adapter.config.keepBackupEntries || 25) - 1;
 	const entries = Object.keys(BACKUPS[s.id]);
 	
 	if (entries.length > adapter.config.keepBackupEntries) {
