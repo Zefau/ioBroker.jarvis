@@ -452,7 +452,7 @@ function restore(id, state, date) {
 function backup(s, data) {
 	s.id = s.id || s.state;
 	
-	if (data && data.toString() !== '{}') {
+	if (!data || (data && data.toString() === '{}')) {
 		return false;
 	}
 	
