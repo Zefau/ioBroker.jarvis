@@ -268,13 +268,15 @@ function startAdapter(options) {
 		
 		// CLIENT CONNECTION STATE
 		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.connected') && state && state.val === true) {
-			const [ , , , clientId,] = id.split('.');
-			
-			// push unread notifications
-			if (CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.sockets[clientId]) {
-				socket.sockets[clientId].emit('notification', CLIENTS[clientId].unreadNotifications);
-				CLIENTS[clientId].unreadNotifications = [];
-			}
+			adapter.getState(id.substr(0, id.lastIndexOf('.')) + '.id', (error, state) => {
+				const clientId = state && state.val;
+				
+				// push unread notifications
+				if (clientId && CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.sockets[clientId]) {
+					socket.sockets[clientId].emit('notification', CLIENTS[clientId].unreadNotifications);
+					CLIENTS[clientId].unreadNotifications = [];
+				}
+			});
 		}
 		
 		// NOTIFICATIONS
@@ -489,7 +491,6 @@ function removeOldDevices() {
 			adapter.getState(object._id + '.lastSeen', (error, state) => {
 				const deviceName = object._id.substr(object._id.lastIndexOf('.') + 1);
 				const expiration = Date.now() - 7 * 24 * 3600 * 1000;
-				adapter.log.warn(!state.val || state.val < expiration);
 				
 				if (!state.val || state.val < expiration) {
 					adapter.log.info('Device ' + deviceName + ' expired and removed.');
