@@ -6,7 +6,6 @@ const _got = require('got');
 const _fs = require('fs');
 const _path = require('path');
 const { v4: _uuid } = require('uuid');
-const _platform = require('platform');
 
 /*
  * internal libraries
@@ -22,6 +21,7 @@ let adapter;
 let library;
 let socket;
 let unloaded;
+let garbage_collector;
 
 let notification = '';
 let NotificationTimer = null;
@@ -88,6 +88,12 @@ function startAdapter(options) {
 		if (version <= 6) {
 			return library.terminate('This Adapter is not compatible with your Node.js Version ' + process.version + ' (must be >= Node.js v7).', true);
 		}
+		
+		// delete old devices
+		removeOldDevices();
+		garbage_collector = setInterval(() => {
+			removeOldDevices();
+		}, 24 * 3600 * 1000); // daily
 		
 		// create backup object
 		BACKUP_STATES.forEach(s => {
@@ -204,7 +210,7 @@ function startAdapter(options) {
 				
 				// listen for client list
 				socket.on('CLIENT_LIST', clients => {
-					adapter.setState('clients.connected', JSON.stringify(clients), true);
+					adapter.setState('clients.connected', JSON.stringify(clients, null, 3), true);
 				});
 			})
 			.catch(error => adapter.log.error(error.message || error));
@@ -269,13 +275,6 @@ function startAdapter(options) {
 				socket.sockets[clientId].emit('notification', CLIENTS[clientId].unreadNotifications);
 				CLIENTS[clientId].unreadNotifications = [];
 			}
-		}
-		
-		// PARSE USER AGENT
-		if (id.startsWith('jarvis.') && id.indexOf('.clients.') > -1 && id.endsWith('.userAgent') && state && state.val) {
-			const [ , , , clientId,] = id.split('.');
-			const platform = _platform.parse(state.val);
-			adapter.setState(id.substr(0, id.lastIndexOf('.')) + '.userBrowser', JSON.stringify(platform), true);
 		}
 		
 		// NOTIFICATIONS
@@ -410,6 +409,7 @@ function startAdapter(options) {
 			
 			unloaded = true;
 			library.resetStates();
+			clearInterval(garbage_collector);
 			
 			callback();
 		}
@@ -478,6 +478,26 @@ function backup(s, data) {
 	
 	const file = _path.join(__dirname, '..', '..', 'iobroker-data', 'jarvis', adapter.instance.toString(), '_BACKUP_' + s.id.toUpperCase() + '.json');
 	_fs.writeFile(file, JSON.stringify(BACKUPS[s.id], null, 3), err => err && adapter.log.error(err));
+}
+
+/**
+ *
+ */
+function removeOldDevices() {
+	adapter.getDevices((error, objects) => {
+		objects.forEach(object => {
+			adapter.getState(object._id + '.lastSeen', (error, state) => {
+				const deviceName = object._id.substr(object._id.lastIndexOf('.') + 1);
+				const expiration = Date.now() - 7 * 24 * 3600 * 1000;
+				adapter.log.warn(!state.val || state.val < expiration);
+				
+				if (!state.val || state.val < expiration) {
+					adapter.log.info('Device ' + deviceName + ' expired and removed.');
+					adapter.delForeignObject(object._id, { 'recursive': true }, () => {});
+				}
+			});
+		});
+	});
 }
 
 /**
