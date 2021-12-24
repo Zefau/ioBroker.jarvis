@@ -492,7 +492,11 @@ function removeOldDevices() {
 				const deviceName = object._id.substr(object._id.lastIndexOf('.') + 1);
 				const expiration = Date.now() - 7 * 24 * 3600 * 1000;
 				
-				if (!state.val || state.val < expiration) {
+				if (error) {
+					adapter.log.warn(error.message || error);
+				}
+				
+				if (!state || !state.val || state.val < expiration) {
 					adapter.log.info('Device ' + deviceName + ' expired and removed.');
 					adapter.delForeignObject(object._id, { 'recursive': true }, () => {});
 				}
