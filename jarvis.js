@@ -286,7 +286,10 @@ function startAdapter(options) {
 		
 		// SETTINGS: write each setting to an own state
 		if (id.substr(-9) === '.settings') {
-			writeSettingsToStates(JSON.parse(state.val) || {});
+			const settings = JSON.parse(state.val) || {};
+			
+			SETTINGS = settings;
+			writeSettingsToStates(settings);
 		}
 		
 		// BACKUP
