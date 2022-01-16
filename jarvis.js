@@ -495,8 +495,8 @@ function removeOldDevices() {
 				const deviceName = object._id.substr(object._id.lastIndexOf('.') + 1);
 				const expiration = Date.now() - 7 * 24 * 3600 * 1000;
 				
-				if (error) {
-					adapter.log.warn(error.message || error);
+				if (error && error.message) {
+					adapter.log.warn('Error removing old devices: ' + error.message);
 				}
 				
 				if (!state || !state.val || state.val < expiration) {
