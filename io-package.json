@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.0.10-beta.1",
+      "version": "3.0.10-beta.2",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -102,6 +102,40 @@
       "compact": true,
       "enabled": true,
       "localLink": "%web_protocol%://%ip%:%webPort%/jarvis/index.html#/%instance%/&socketHost=%socketHost%&socketPort=%socketPort%&socketSecure=%socketSecure%",
+      "messages": [
+         {
+            "condition": {
+               "operand": "and",
+               "rules": [
+                  "oldVersion<3.0.0",
+                  "newVersion>=3.0.0"
+               ]
+            },
+            "title": {
+               "en": "ATTENTION, important notice!",
+               "de": "ACHTUNG, wichtiger Hinweis!"
+            },
+            "text": {
+               "en": "Please be aware that even though v3 itself does not introduce breaking changes, the new release has significant changes. This may cause some redefinement of your visualization. If you are using jarvis via iobroker.pro (online access) this will NOT WORK as of now with v3.",
+               "de": "Bitte beachten, dass auch wenn v3 selbst keine breaking changes mitbringt, das Release dennoch signifikante Änderungen hat. Insgesamt ist ggf. eine Nachjustierung der Visualisierung auf v3 notwendig - also bitte etwas Zeit und Geduld mitbringen. UNBEDINGT BEACHTEN, dass jarvis via iobroker.pro (Online Zugang) aktuell mit v3 NOCH NICHT funktioniert."
+            },
+            "link": "https://forum.iobroker.net/post/711191",
+            "level": "warn",
+            "linkText": {
+               "en": "More Information",
+               "de": "Mehr Informationen"
+            },
+            "buttons": [
+               "agree",
+               "cancel"
+            ]
+         }
+      ],
+      "globalDependencies": [
+         {
+            "admin": ">=5.1.28"
+         }
+      ],
       "dependencies": [
          {
             "web": ">=3.0.12",
