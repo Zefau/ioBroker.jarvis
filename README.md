@@ -92,7 +92,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 The CC BY-NC-ND 4.0 License
 https://creativecommons.org/licenses/by-nc-nd/4.0/
 
-Copyright (c) 2020 - 2021 Zefau <zefau@mailbox.org>
+Copyright (c) 2020 - 2022 Zefau <zefau@mailbox.org>
 
 By exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License ("Public License").
 
