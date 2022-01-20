@@ -203,7 +203,7 @@ function startAdapter(options) {
 				// listen for new clients
 				socket.on('CLIENT_NEW', client => {
 					CLIENTS[client.id] = CLIENTS[client.id] || {
-						'path': 'jarvis.' + adapter.instance + '.clients.' + client.id,
+						'path': 'jarvis.' + adapter.instance + '.clients.' + client.ns,
 						'unreadNotifications': []
 					}
 				});
@@ -242,13 +242,15 @@ function startAdapter(options) {
 		
 		// initially load available clients
 		adapter.getDevices((err, clients) => { // [{"type":"device","common":{"name":"::ffff:192.168.178.50"},"native":{},"from":"system.adapter.jarvis.0","user":"system.user.admin","ts":1621149128890,"_id":"jarvis.0.clients.ffff192-168-178-50","acl":{"object":1636,"owner":"system.user.admin","ownerGroup":"system.group.administrator"}}]
-			
 			clients.forEach(client => {
-				const clientId = client._id.substr(client._id.lastIndexOf('.')+1);
+				const path = client._id;
 				
-				adapter.getState(client._id + '.newNotifications', (err, state) => {
+				// get client id
+				adapter.getState(path + '.id', (error, state) => {
+					const clientId = state && state.val;
+					
 					CLIENTS[clientId] = {
-						'path': client._id,
+						path,
 						'unreadNotifications': []
 					}
 				});
@@ -273,6 +275,8 @@ function startAdapter(options) {
 				
 				// push unread notifications
 				if (clientId && CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.sockets[clientId]) {
+					adapter.log.debug('Client with ID ' + clientId + ' back online. Delivering saved notifications (' + CLIENTS[clientId].unreadNotifications.length + ').');
+					
 					socket.sockets[clientId].emit('notification', CLIENTS[clientId].unreadNotifications);
 					CLIENTS[clientId].unreadNotifications = [];
 				}
@@ -312,14 +316,6 @@ function startAdapter(options) {
 				// parse notification
 				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : { 'title': state.val };
 				
-				if (Array.isArray(notification) && notification.length === 1) {
-					notification = notification[0];
-				}
-				else if (Array.isArray(notification) && notification.length > 1) {
-					notification = notification[0];
-					adapter.log.warn('Only single notification allowed for newly added notifications. Took first one and dropped the rest.');
-				}
-				
 				// add further information
 				notification.id = _uuid();
 				notification.ts = notification.ts || Date.now();
@@ -345,12 +341,14 @@ function startAdapter(options) {
 							
 							// is connected
 							if (!err && state && state.val === true && socket.sockets[clientId]) {
+								adapter.log.debug('Client with ID ' + clientId + ' online. Notification delivered.');
 								socket.sockets[clientId].emit('notification', notification);
 							}
 							
 							// not connected, thus, save for later
 							else {
 								CLIENTS[clientId].unreadNotifications.push(notification);
+								adapter.log.debug('Client with ID ' + clientId + ' not online, thus saving notification for later (' + CLIENTS[clientId].unreadNotifications.length + ' saved so for).');
 							}
 						});
 					}
@@ -408,7 +406,6 @@ function startAdapter(options) {
 	 *
 	 */
 	adapter.on('unload', function(callback) {
-		
 		try {
 			adapter.log.info('Adapter stopped und unloaded.');
 			
