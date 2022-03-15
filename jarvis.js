@@ -73,7 +73,7 @@ if (!Promise.allSettled) {
  */
 function startAdapter(options) {
 	options = options || {};
-	adapter = new utils.Adapter({ ...options, 'name': adapterName });
+	adapter = new utils.Adapter({ ...options, 'systemConfig': true, 'name': adapterName });
 	
 	/*
 	 * ADAPTER READY
