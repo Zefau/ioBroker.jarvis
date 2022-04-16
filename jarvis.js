@@ -11,7 +11,7 @@ const { v4: _uuid } = require('uuid');
  * internal libraries
  */
 const Library = require('./lib/library.js');
-const ioWebSocket = require('./lib/websocket.io.min.js');
+const ioWebSocket = require('./lib/server.js');
 
 
 /*
@@ -191,6 +191,13 @@ function startAdapter(options) {
 			}));
 		}
 		
+		// get secret key
+		configPromises.push(new Promise(resolve => {
+			adapter.getForeignObject('system.config', (error, object) => {
+				resolve((object && object.native && object.native.secret) || null);
+			});
+		}));
+		
 		// open web socket
 		Promise.all(configPromises)
 			.then(res => {
@@ -198,7 +205,7 @@ function startAdapter(options) {
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
-				socket = new ioWebSocket(adapter, { ...adapter.config, ...res[0], port, certificates });
+				socket = new ioWebSocket(adapter, { ...adapter.config, ...res[0], 'encryptionKey': res[2], port, certificates });
 				
 				// listen for new clients
 				socket.on('CLIENT_NEW', client => {
@@ -277,7 +284,7 @@ function startAdapter(options) {
 				if (clientId && CLIENTS[clientId].unreadNotifications && CLIENTS[clientId].unreadNotifications.length > 0 && socket.sockets[clientId]) {
 					adapter.log.debug('Client with ID ' + clientId + ' back online. Delivering saved notifications (' + CLIENTS[clientId].unreadNotifications.length + ').');
 					
-					socket.sockets[clientId].emit('notification', CLIENTS[clientId].unreadNotifications);
+					socket.sockets[clientId].emit('notification', 'unreadNotifications', CLIENTS[clientId].unreadNotifications);
 					CLIENTS[clientId].unreadNotifications = [];
 				}
 			});
@@ -342,7 +349,7 @@ function startAdapter(options) {
 							// is connected
 							if (!err && state && state.val === true && socket.sockets[clientId]) {
 								adapter.log.debug('Client with ID ' + clientId + ' online. Notification delivered.');
-								socket.sockets[clientId].emit('notification', notification);
+								socket.sockets[clientId].emit('notification', 'newNotification', notification);
 							}
 							
 							// not connected, thus, save for later

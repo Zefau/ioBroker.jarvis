@@ -45,8 +45,8 @@
             "de": "- fixed installation inconsitency"
          },
          "3.0.5": {
-            "en": "- Sortierung in Geräteliste stimmt nicht #1454\n- Problem mit / durch Fritzbox-VPN, Fully Browser u.a. => Schalten etc. möglich, aber keine Reaktion der UI bis Reload #1433\n- Converter v2->v3 #1415",
-            "de": "- Sortierung in Geräteliste stimmt nicht #1454\n- Problem mit / durch Fritzbox-VPN, Fully Browser u.a. => Schalten etc. möglich, aber keine Reaktion der UI bis Reload #1433\n- Converter v2->v3 #1415"
+            "en": "- Sortierung in Geräteliste stimmt nicht #1454\n- Problem mit / durch Fritzbox-VPN, Fully Browser u.a., Schalten etc. möglich, aber keine Reaktion der UI bis Reload #1433\n- Converter v2-v3 #1415",
+            "de": "- Sortierung in Geräteliste stimmt nicht #1454\n- Problem mit / durch Fritzbox-VPN, Fully Browser u.a., Schalten etc. möglich, aber keine Reaktion der UI bis Reload #1433\n- Converter v2-v3 #1415"
          },
          "3.0.4": {
             "en": "-  Binding are not up-to-date after \"some time\" #1434\n-  Statelist wird bei Änderung im Gerät nicht im Frontend aktualisiert, erst mit F5 #1429\n-  Verbindungsfehler #1398\n-  Icon von SwitchAction nicht auf dem Kreis #1140\n-  Blind level stop ist deaktiviert #1093",
