@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.1.0-alpha.5",
+      "version": "3.1.0-alpha.8",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -262,6 +262,18 @@
          }
       },
       {
+         "_id": "scripts",
+         "type": "state",
+         "common": {
+            "name": "Scripts",
+            "role": "text",
+            "type": "string",
+            "read": true,
+            "write": true,
+            "def": ""
+         }
+      },
+      {
          "_id": "notifications",
          "type": "state",
          "common": {
@@ -294,8 +306,8 @@
       }
    ],
    "custom": {
-      "version": "3.1.0-alpha.5",
-      "ts": 1650317278522,
-      "date": "20220418232758"
+      "version": "3.1.0-alpha.8",
+      "ts": 1651437776477,
+      "date": "2022051224256"
    }
 }
