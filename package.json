@@ -16,7 +16,7 @@
   "dependencies": {
     "@iobroker/adapter-core": "^2.5.1",
     "date-fns": "^2.28.0",
-    "got": "^12.1.0",
+    "got": "^11.8.5",
     "ip": "^1.1.5",
     "node-ical": "^0.15.1",
     "object-hash": "^3.0.0",
@@ -59,5 +59,5 @@
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
   },
-  "version": "3.1.0-alpha.26"
+  "version": "3.1.0-alpha.27"
 }
