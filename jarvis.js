@@ -362,7 +362,7 @@ function startAdapter(options) {
 				}
 			}
 			catch(err) {
-				adapter.log.error(err.message);
+				adapter.log.error('addNotification: ' + err.message);
 			}
 		}
 		
