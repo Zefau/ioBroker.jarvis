@@ -120,8 +120,8 @@ function startAdapter(options) {
 					try {
 						BACKUPS[s.id] = JSON.parse(contents);
 					}
-					catch(err) {
-						adapter.log.error('Error loading recent backups (' + s.id + '): ' + err.message);
+					catch (error) {
+						adapter.log.error('Error loading recent backups (' + s.id + '): ' + error.message);
 					}
 				}
 			});
@@ -220,7 +220,9 @@ function startAdapter(options) {
 					adapter.setState('clients.connected', JSON.stringify(clients, null, 3), true);
 				});
 			})
-			.catch(error => adapter.log.error(error.message || error));
+			.catch(error => {
+				adapter.log.error('Error opening web socket: ' + error.message);
+			});
 		
 		// all ok
 		library.set(Library.CONNECTION, true);
@@ -229,22 +231,32 @@ function startAdapter(options) {
 		adapter.getState('settings', (err, state) => {
 			
 			if (!err && state && state.val) {
-				SETTINGS = JSON.parse(state.val) || {};
-				
-				// random token
-				SETTINGS.token = SETTINGS.token || _crypto.randomBytes(16).toString('hex');
-				
-				// usage data option
-				SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
-				
-				adapter.setState('settings', JSON.stringify(SETTINGS), true);
-				writeSettingsToStates(SETTINGS, () => adapter.subscribeStates('settings*'));
+				try {
+					SETTINGS = JSON.parse(state.val) || {};
+					
+					// random token
+					SETTINGS.token = SETTINGS.token || _crypto.randomBytes(16).toString('hex');
+					
+					// usage data option
+					SETTINGS.sendUsageData = adapter.config.sendUsageData !== undefined ? adapter.config.sendUsageData : true;
+					
+					adapter.setState('settings', JSON.stringify(SETTINGS), true);
+					writeSettingsToStates(SETTINGS, () => adapter.subscribeStates('settings*'));
+				}
+				catch (error) {
+					adapter.log.error('Error initially writing settings to states: ' + error.message);
+				}
 			}
 		});
 		
 		// initially load notifications
 		adapter.getState('notifications', (err, state) => {
-			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+			try {
+				NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+			}
+			catch (error) {
+				adapter.log.error('Error initially loading notifications: ' + error.message);
+			}
 		});
 		
 		// initially load available clients
@@ -292,15 +304,25 @@ function startAdapter(options) {
 		
 		// NOTIFICATIONS
 		if (id.indexOf('.notifications') > -1) {
-			NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+			try {
+				NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+			}
+			catch (error) {
+				adapter.log.error('Error setting notifications: ' + error.message);
+			}
 		}
 		
 		// SETTINGS: write each setting to an own state
 		if (id.substr(-9) === '.settings') {
-			const settings = JSON.parse(state.val) || {};
-			
-			SETTINGS = settings;
-			writeSettingsToStates(settings);
+			try {
+				const settings = JSON.parse(state.val) || {};
+				
+				SETTINGS = settings;
+				writeSettingsToStates(settings);
+			}
+			catch (error) {
+				adapter.log.error('Error writing settings to states: ' + error.message);
+			}
 		}
 		
 		// BACKUP
@@ -362,28 +384,33 @@ function startAdapter(options) {
 				}
 			}
 			catch(err) {
-				adapter.log.error('addNotification: ' + err.message);
+				adapter.log.error('Error adding notification: ' + err.message);
 			}
 		}
 		
 		// SETTING: update Settings-JSON in case a settings-specific state is updated
 		if (id.indexOf('.settings.') > -1) {
-			const setting = id.substr(id.lastIndexOf('.settings.') + 10);
-			
-			// update settings
-			SETTINGS[setting] = state && state.val && state.val.toString().indexOf('{') > -1 && state.val.toString().indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
-			adapter.setState('settings', JSON.stringify(SETTINGS), true);
-			
-			// update adapter config
-			if (adapter.config[setting] !== undefined) {
-				adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
-					if (err || !obj || !obj.native) {
-						return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
-					}
-					
-					obj.native[setting] = state.val;
-					adapter.setForeignObject(obj._id, obj);
-				});
+			try {
+				const setting = id.substr(id.lastIndexOf('.settings.') + 10);
+				
+				// update settings
+				SETTINGS[setting] = state && state.val && state.val.toString().indexOf('{') > -1 && state.val.toString().indexOf('}') > -1 ? JSON.parse(state.val) : state.val;
+				adapter.setState('settings', JSON.stringify(SETTINGS), true);
+				
+				// update adapter config
+				if (adapter.config[setting] !== undefined) {
+					adapter.getForeignObject('system.adapter.' + adapter.namespace, (err, obj) => {
+						if (err || !obj || !obj.native) {
+							return library.terminate('Error system.adapter.' + adapter.namespace + ' not found!');
+						}
+						
+						obj.native[setting] = state.val;
+						adapter.setForeignObject(obj._id, obj);
+					});
+				}
+			}
+			catch (error) {
+				adapter.log.error('Error updating settings: ' + error.message);
 			}
 		}
 	});
@@ -486,7 +513,7 @@ function backup(s, data) {
 	adapter.log.info('Backup ' + s.id + '..');
 	
 	const file = _path.join(__dirname, '..', '..', 'iobroker-data', 'jarvis', adapter.instance.toString(), '_BACKUP_' + s.id.toUpperCase() + '.json');
-	_fs.writeFile(file, JSON.stringify(BACKUPS[s.id], null, 3), err => err && adapter.log.error(err));
+	_fs.writeFile(file, JSON.stringify(BACKUPS[s.id], null, 3), error => error && adapter.log.error('Error saving backups to storage: ' + error.message));
 }
 
 /**
