@@ -1,1 +1,0 @@
-import{bt as o,a4 as n,aG as s,ay as r,U as t,B as p,ab as l}from"./index-d76ea5ac.js";const c=n({name:"ModuleHtmlTable"});function m(e,_,d,f,i,u){const a=s("JsonTable");return r(),t(a,p(l(e.$props)),null,16)}var $=o(c,[["render",m]]);export{$ as default};
