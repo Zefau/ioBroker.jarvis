@@ -1,3 +1,105 @@
-<!DOCTYPE html><html><head><title>jarvis</title><meta charset=utf-8><meta name=description content="jarvis - just another remarkable vis"><meta name=format-detection content="telephone=no"><meta name=msapplication-tap-highlight content=no><meta name=viewport content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"><meta http-equiv=cache-control content="no-cache, no-store, must-revalidate"><meta http-equiv=pragma content=no-cache><meta http-equiv=expires content=0><link rel=stylesheet href="/jarvis/leaflet-1.9.2.css"><meta id=theme-color name=theme-color content=""><link class=favicon rel=icon type=image/ico href="/jarvis/favicon.ico"><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=default><link class=favicon rel=apple-touch-icon type=image/png href="/jarvis/apple-touch-icon-iphone.png"><link class=favicon rel=apple-touch-icon type=image/png sizes=152x152 href="/jarvis/apple-touch-icon-ipad.png"><link class=favicon rel=apple-touch-icon type=image/png sizes=167x167 href="/jarvis/apple-touch-icon-ipad-retina.png"><link class=favicon rel=apple-touch-icon type=image/png sizes=180x180 href="/jarvis/apple-touch-icon-iphone-retina.png"><meta name=mobile-web-app-capable content=yes><link class=favicon rel="shortcut icon" sizes=128x128 href="/jarvis/icon-128.png"><link class=favicon rel="shortcut icon" sizes=196x196 href="/jarvis/icon-196.png">  <script type="module" crossorigin src="/jarvis/js/index-ec356f16.js"></script>
-  <link rel="stylesheet" href="/jarvis/css/index-cec2d967.css">
+<!DOCTYPE html><html><head><title>jarvis</title><meta charset=utf-8><meta name=description content="jarvis - just another remarkable vis"><meta name=format-detection content="telephone=no"><meta name=msapplication-tap-highlight content=no><meta name=viewport content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"><meta http-equiv=cache-control content="no-cache, no-store, must-revalidate"><meta http-equiv=pragma content=no-cache><meta http-equiv=expires content=0><link rel=stylesheet href="/jarvis/leaflet-1.9.2.css"><meta id=theme-color name=theme-color content=""><link class=favicon rel=icon type=image/ico href="/jarvis/favicon.ico"><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=default><link class=favicon rel=apple-touch-icon type=image/png href="/jarvis/apple-touch-icon-iphone.png"><link class=favicon rel=apple-touch-icon type=image/png sizes=152x152 href="/jarvis/apple-touch-icon-ipad.png"><link class=favicon rel=apple-touch-icon type=image/png sizes=167x167 href="/jarvis/apple-touch-icon-ipad-retina.png"><link class=favicon rel=apple-touch-icon type=image/png sizes=180x180 href="/jarvis/apple-touch-icon-iphone-retina.png"><meta name=mobile-web-app-capable content=yes><link class=favicon rel="shortcut icon" sizes=128x128 href="/jarvis/icon-128.png"><link class=favicon rel="shortcut icon" sizes=196x196 href="/jarvis/icon-196.png">  <script type="module" crossorigin src="/jarvis/js/vite-5a73ba2a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.quasar-78ba37d9.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.rfdc-06a2e69e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.uuid-b6f2345c.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/assets.components-16a2651a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.deepmerge-ts-439b8b51.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.engine.io-parser-57a7d82f.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.socket.io-c9c50083.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.engine.io-client-d5aef29c.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.socket.io-parser-f05aee9b.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.socket.io-client-fd03852a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.events-e8bb2ecf.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.vue-demi-c5e13d03.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.pinia-de474293.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.vue-router-7a2a9812.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.marked-ad25c3e5.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.floating-ui-24ae3fc3.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.inherits-3ebc5590.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.base64-js-9729dd8a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.ieee754-a59ebfbf.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.buffer-558fef3c.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.safe-buffer-e3670936.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.sha.js-0bffd5bc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.intlify-6f1c4d89.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.vue-i18n-e0977824.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.jsoneditor-99ae7f56.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/components-6142be1b.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.sortablejs-5c3bed78.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/composables-a7e68882.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.AdapterLogs-a907ad59.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.AdapterStatus-9517158a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.luxon-bef2801e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.object-keys-f59d6413.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.has-symbols-94e2f5bc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.function-bind-bfbfd4e0.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.has-dc842e0e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.get-intrinsic-56d4514a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.has-property-descriptors-db99a5ce.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.define-properties-de968d2e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.call-bind-f438812f.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.is-nan-275bc091.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.cron-parser-d81a89fc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.sorted-array-functions-07761bc7.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.long-timeout-eb943ffb.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.node-schedule-71e14ef3.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.date-fns-448d10fa.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.Calendar-4e095658.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.zrender-a90c0a5f.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.echarts-c3f5bfdf.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.Chart-55695550.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.sunrise-sunset-js-d6e1d758.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.DateTime-b992031b.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.DisplayImage-206af2af.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.resize-detector-10772b10.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.vue-echarts-3becd7fd.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.HistoryGraph-d4aa0309.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.HomeKitTile-40c87687.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.JsonTable-7a00d4de.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.HtmlTable-4d9c8dcd.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.iFrame-2eaaa545.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.leaflet-26bc8f17.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.Map-8f602586.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.MediaControl-9d5f612e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/assets.img-0106ff20.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.ScriptStatus-26dbedd4.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.StateHTML-0faab3cc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.StateList-525b0894.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/module.Weather-6e1e6f7a.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/modules-9c8c454f.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.source-map-439fddbe.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.atob-ac35a7b1.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.decode-uri-component-99f28025.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.source-map-resolve-05a4e8ba.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.css-d29a265e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.paypal-ab4eb9a1.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/configuration-f4a0a9e1.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/stores-22cbae97.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/functions-9f904a0e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/config-f4693115.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/assets.css-f32cb8a5.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/pages-a165c1cc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.popperjs-b4e7ed17.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.v-calendar-86e24ec8.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.vue-grid-layout-f731de65.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/boot-d33196cc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.form-data-b66b10db.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.axios-23a4eccc.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/controllers-596cf83c.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/helpers-7b53fe93.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.vue-1bbf3cb4.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/vendor.sentry-dd682f81.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/app-95b1d44e.js"></script>
+  <script type="module" crossorigin src="/jarvis/js/.quasar-ec961eda.js"></script>
+  <link rel="stylesheet" href="/jarvis/css/vendor.quasar-4b1f41b3.css">
+  <link rel="stylesheet" href="/jarvis/css/pages-fe35809a.css">
+  <link rel="stylesheet" href="/jarvis/css/functions-4e1c4d59.css">
+  <link rel="stylesheet" href="/jarvis/css/components-5342f2b3.css">
+  <link rel="stylesheet" href="/jarvis/css/vendor.sers-604d6e9a.css">
+  <link rel="stylesheet" href="/jarvis/css/vendor.jsoneditor.min-bfc7e151.css">
+  <link rel="stylesheet" href="/jarvis/css/modules-c6d4240e.css">
+  <link rel="stylesheet" href="/jarvis/css/assets.css-3df5c1e3.css">
+  <link rel="stylesheet" href="/jarvis/css/vendor.mdi-v6-68fa0e3b.css">
+  <link rel="stylesheet" href="/jarvis/css/vendor.roboto-font-9279b3ab.css">
+  <link rel="stylesheet" href="/jarvis/css/vendor.material-icons-d1286fd4.css">
 </head><body><div id=q-app></div><script src="/jarvis/iconify-api.min.js"></script></body></html>
