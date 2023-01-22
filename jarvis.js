@@ -302,16 +302,6 @@ function startAdapter(options) {
 			});
 		}
 		
-		// NOTIFICATIONS
-		if (id.indexOf('.notifications') > -1) {
-			try {
-				NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
-			}
-			catch (error) {
-				adapter.log.error('Error setting notifications: ' + error.message);
-			}
-		}
-		
 		// SETTINGS: write each setting to an own state
 		if (id.substr(-9) === '.settings') {
 			try {
@@ -322,6 +312,29 @@ function startAdapter(options) {
 			}
 			catch (error) {
 				adapter.log.error('Error writing settings to states: ' + error.message);
+			}
+		}
+		
+		// NOTIFICATIONS
+		if (id.indexOf('.notifications') !== -1) {
+			try {
+				NOTIFICATIONS = (state && state.val && JSON.parse(state.val)) || [];
+				
+				// emit notifications
+				for (let clientId in CLIENTS) {
+					// get connection state
+					adapter.getState(CLIENTS[clientId].path + '.connected', (err, state) => {
+						
+						// is connected
+						if (!err && state && state.val === true && socket.sockets[clientId]) {
+							adapter.log.debug('Client with ID ' + clientId + ' online. List of notifications updated.');
+							socket.sockets[clientId].emit('notifications', 'allNotifications', JSON.stringify(NOTIFICATIONS));
+						}
+					});
+				}
+			}
+			catch (error) {
+				adapter.log.error('Error setting notifications: ' + error.message);
 			}
 		}
 		
@@ -377,7 +390,7 @@ function startAdapter(options) {
 							// not connected, thus, save for later
 							else {
 								CLIENTS[clientId].unreadNotifications.push(notification);
-								adapter.log.debug('Client with ID ' + clientId + ' not online, thus saving notification for later (' + CLIENTS[clientId].unreadNotifications.length + ' saved so for).');
+								adapter.log.debug('Client with ID ' + clientId + ' not online, thus saving notification for later (' + CLIENTS[clientId].unreadNotifications.length + ' saved).');
 							}
 						});
 					}
