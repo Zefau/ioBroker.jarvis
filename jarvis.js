@@ -136,6 +136,7 @@ function startAdapter(options) {
 				adapter.log.debug('Web Configuration: ' + JSON.stringify(obj.native));
 				
 				const config = {
+					...obj.native,
 					'user': (obj && obj.native && obj.native.defaultUser) || null,
 					'webPort': (obj && obj.native && obj.native.port) || 8082,
 					'socketSecure': obj && obj.native && obj.native.secure !== undefined ? obj.native.secure : false
