@@ -184,12 +184,15 @@ function startAdapter(options) {
 		}));
 		
 		// get certificates
-		if (adapter.config.certPublic && adapter.config.certPrivate) {
+		if (adapter.config.socketSecure && adapter.config.certPublic && adapter.config.certPrivate) {
 			configPromises.push(new Promise(resolve => {
 				adapter.getCertificates(adapter.config.certPublic, adapter.config.certPrivate, adapter.config.certChained, (err, certificates, leConfig) => {
 					resolve(certificates);
 				});
 			}));
+		}
+		else {
+			configPromises.push(Promise.resolve(null));
 		}
 		
 		// get secret key
@@ -202,11 +205,10 @@ function startAdapter(options) {
 		// open web socket
 		Promise.all(configPromises)
 			.then(res => {
-				const certificates = adapter.config.socketSecure && res[1] ? res[1] : null;
 				const port = adapter.config.autoDetect === true ? defaultSocketPort : (adapter.config.socketPort || defaultSocketPort);
 				
 				// open socket
-				socket = new ioWebSocket(adapter, { ...adapter.config, ...res[0], 'encryptionKey': res[2], port, certificates });
+				socket = new ioWebSocket(adapter, { ...adapter.config, ...res[0], port, 'certificates': res[1], 'encryptionKey': res[2] });
 				
 				// listen for new clients
 				socket.on('CLIENT_NEW', client => {
