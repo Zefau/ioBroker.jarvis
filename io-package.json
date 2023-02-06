@@ -1,7 +1,7 @@
 {
    "common": {
       "name": "jarvis",
-      "version": "3.1.3-beta.21",
+      "version": "3.1.3-beta.26",
       "title": "jarvis - just another remarkable vis",
       "titleLang": {
          "en": "jarvis - just another remarkable vis",
@@ -306,8 +306,8 @@
       }
    ],
    "custom": {
-      "version": "3.1.3-beta.21",
-      "ts": 1675717346296,
-      "date": "2023026220226"
+      "version": "3.1.3-beta.26",
+      "ts": 1675718909301,
+      "date": "2023026222829"
    }
 }
