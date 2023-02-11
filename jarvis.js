@@ -359,7 +359,7 @@ function startAdapter(options) {
 			
 			try {
 				// parse notification
-				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : { 'title': state.val };
+				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val.replace(/(\r\n|\r|\n)/g, '<br />')) : { 'title': state.val };
 				
 				// add further information
 				notification.id = _uuid();
@@ -383,7 +383,6 @@ function startAdapter(options) {
 						
 						// get connection state
 						adapter.getState(CLIENTS[clientId].path + '.connected', (err, state) => {
-							
 							// is connected
 							if (!err && state && state.val === true && socket.sockets[clientId]) {
 								adapter.log.debug('Client with ID ' + clientId + ' online. Notification delivered.');
