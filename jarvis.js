@@ -359,7 +359,8 @@ function startAdapter(options) {
 			
 			try {
 				// parse notification
-				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val.replace(/(\r\n|\r|\n)/g, '<br />')) : { 'title': state.val };
+				notification = state.val.indexOf('{') > -1 && state.val.indexOf('}') > -1 ? JSON.parse(state.val) : { 'title': state.val };
+				notification.message = notification.message.replace(/(\r\n|\r|\n)/g, '<br />');
 				
 				// add further information
 				notification.id = _uuid();
