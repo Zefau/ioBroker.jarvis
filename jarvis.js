@@ -439,7 +439,7 @@ function startAdapter(options) {
 		adapter.log.debug('Got message: ' + JSON.stringify(msg));
 		
 		// get backups
-		if (library.msg && msg.command === '_backups' && msg.message) {
+		if (library && library.msg && msg.command === '_backups' && msg.message) {
 			adapter.log.debug('Get List of Backups for ' + msg.message.id);
 			library.msg(msg.from, msg.command, BACKUPS[msg.message.id], msg.callback);
 		}
@@ -460,7 +460,7 @@ function startAdapter(options) {
 			adapter.log.info('Adapter stopped und unloaded.');
 			
 			unloaded = true;
-			library.resetStates();
+			library && library.resetStates();
 			clearInterval(garbage_collector);
 			
 			callback();
