@@ -28,7 +28,7 @@ try {
 	const v = fields.find(f => f.name === released);
 	
 	// parse issues
-	input = input.replace(/\] \[/g, '];[').split(';');
+	input = input.replace(/\]( |\n)\[/gim, '];[').split(';');
 	input.forEach(line => {
 		const [ gid, issueId, labels ] = JSON.parse(line);
 		console.log(gid, issueId, labels);
