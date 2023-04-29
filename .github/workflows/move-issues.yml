@@ -1,0 +1,92 @@
+name: Move Issues
+
+on:
+  push:
+    paths:
+      - 'package.json'
+
+env:
+  GH_TOKEN: ${{ secrets.TOKEN }}
+
+jobs:
+  prerequisites:
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.version.outputs.VERSION }}
+    steps:
+      - uses: actions/checkout@v3
+      
+        # get version
+      - name: Get Version
+        id: version
+        run: |
+            V=$(jq .version package.json | sed 's/"//g')
+            echo "VERSION=v$V" >> $GITHUB_OUTPUT # for subsequent jobs
+            echo v$V
+  
+  move-issues:
+    needs: prerequisites
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: process-issues
+        run: |
+            minorVersion=$(echo ${{ needs.prerequisites.outputs.VERSION }} | cut -d. -f1,2).x
+            
+            gh extension install heaths/gh-merge-json
+            gh api graphql --paginate -F user=Zefau -F project=2 -f query='
+                query GetIssuesFromProject($user:String!,$project:Int!,$endCursor:String) {
+                  user(login: $user) {
+                    projectV2(number: $project) { # ProjectV2: https://docs.github.com/en/graphql/reference/objects#projectv2
+                      id,
+                      fields(first: 100) { # ProjectV2FieldConfigurationConnection
+                        totalCount
+                        nodes { # ProjectV2FieldConfiguration
+                          ... on ProjectV2SingleSelectField {
+                            id
+                            name
+                            dataType 
+                            options { id name }
+                          }
+                        }
+                      }
+                      items(first: 100, after: $endCursor) {
+                        totalCount
+                        pageInfo { endCursor hasNextPage }
+                        nodes {
+                          id,
+                          content {
+                            ... on Issue {
+                              issueId: id
+                              number
+                              title
+                              labels(first: 100) {
+                                totalCount
+                                nodes { id name }
+                              }
+                              state
+                            }
+                          }
+                          status: fieldValueByName(name: "Status") {
+                            ... on ProjectV2ItemFieldSingleSelectValue { id name updatedAt }
+                          }
+                          version: fieldValueByName(name: "Version") {
+                            ... on ProjectV2ItemFieldSingleSelectValue { id name updatedAt }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }' | gh merge-json > issues.json
+            
+            # extract issues
+            ISSUES=$(cat issues.json | jq .data.user.projectV2.items.nodes | jq --arg version "$minorVersion" -c '.[] | select(.content.state == "OPEN") | select(.status.name == "IMPLEMENTED LOCALLY") | select(.version.name == $version) | [ .id, .content.issueId, [.content.labels.nodes[].name] ]')
+            
+            # extract values of field `released`
+            FIELDS=$(cat issues.json | jq .data.user.projectV2.fields.nodes | jq -c '.[] | select(.name == "Released") | .options')
+            FIELDS=$(echo $FIELDS | cut -d' ' -f1)
+            
+            #
+            cd $GITHUB_WORKSPACE
+            cd .github && cd workflows
+            node move-issues.js "${{ needs.prerequisites.outputs.VERSION }}" "$ISSUES" "$FIELDS"
