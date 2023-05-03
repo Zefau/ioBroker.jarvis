@@ -35,14 +35,16 @@ let BACKUPS = {
 	'settings': {},
 	'layout': {},
 	'widgets': {},
-	'devices': {}
+	'devices': {},
+	'scripts': {}
 };
 
 const BACKUP_STATES = [
 	{ 'state': 'devices' },
 	{ 'state': 'layout' },
 	{ 'state': 'widgets' },
-	{ 'state': 'settings',},
+	{ 'state': 'settings' },
+	{ 'state': 'scripts' },
 	{ 'state': 'css', 'id': 'styles' }
 ];
 
@@ -98,6 +100,7 @@ function startAdapter(options) {
 		// create backup object
 		BACKUP_STATES.forEach(s => {
 			s.id = s.id || s.state;
+			BACKUPS[s.id] = {};
 			
 			const file = _path.join(__dirname, '..', '..', 'iobroker-data', 'jarvis', adapter.instance.toString(), '_BACKUP_' + s.id.toUpperCase() + '.json');
 			_fs.readFile(file, (err, contents) => {

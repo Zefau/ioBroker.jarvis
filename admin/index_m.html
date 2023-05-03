@@ -57,7 +57,7 @@
 		
 		// get backups
 		setTimeout(() => {
-			['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'theme'].forEach(id => {
+			['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'scripts'].forEach(id => {
 				let state = id;
 				let type = 'json';
 				
@@ -270,6 +270,13 @@
 								<div class="collapsible-header"><span class="translate">Styles</span></div>
 								<div class="collapsible-body">
 								  <div class="collection" id="styles">
+								  </div>
+								</div>
+							</li>
+							<li>
+								<div class="collapsible-header"><span class="translate">Scripts</span></div>
+								<div class="collapsible-body">
+								  <div class="collection" id="scripts">
 								  </div>
 								</div>
 							</li>
