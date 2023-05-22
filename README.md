@@ -20,6 +20,13 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+## v3.1.5 (2023-05-22)
+
+### :bug: bug (1 changes)
+- fixed `Nach Update auf Version 3.1.4 -> Fehler "Error: Verify Installation: Installation inconsistent"` (:exclamation: HIGH PRIORITY :exclamation:, #2369)
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.0.0
 
