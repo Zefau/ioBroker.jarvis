@@ -1,5 +1,5 @@
-## v3.1.5 (2023-05-22)
+### v3.1.6 (2023-05-22)
 
-### :bug: bug (1 changes)
-- fixed `Nach Update auf Version 3.1.4 -> Fehler "Error: Verify Installation: Installation inconsistent"` (:exclamation: HIGH PRIORITY :exclamation:, #2369)
+#### :bug: bug (1 changes)
+- fixed `v3.1.5 wird als v3.1.3-beta.40 angezeigt` ([#2370](https://github.com/Zefau/ioBroker.jarvis/issues/2370))
 
