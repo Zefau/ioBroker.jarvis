@@ -20,6 +20,16 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.1.9-beta.3 (2023-09-21)
+
+#### :bug: bug (1 changes)
+- fixed `Kalendervorschau zum nächsten Monat` (Module Calendar, [#2380](https://github.com/Zefau/ioBroker.jarvis/issues/2380))
+
+#### :star2: feature (1 changes)
+- added `Add Mode to quickly sort devices in widgets` ([#2432](https://github.com/Zefau/ioBroker.jarvis/issues/2432))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.1.9-beta.2 (2023-05-30)
 
 #### :bug: bug (3 changes)
