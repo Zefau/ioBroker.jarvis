@@ -20,6 +20,15 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.1 (2023-09-24)
+
+#### :star2: feature (3 changes)
+- added `Support iPad 2 and older devices / browsers (using older socket-io version)` (core, pro, [#866](https://github.com/Zefau/ioBroker.jarvis/issues/866))
+- added `Manually trigger Socket reconnect...` ([#2418](https://github.com/Zefau/ioBroker.jarvis/issues/2418))
+- added `Move from socket.io to WebSocket` ([#2438](https://github.com/Zefau/ioBroker.jarvis/issues/2438))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.1.9-beta.3 (2023-09-21)
 
 #### :bug: bug (1 changes)
