@@ -2,6 +2,7 @@
     "autoDetect": "Paramètres de connexion de détection automatique",
     "donateInformation": "N'hésitez pas à suggérer de nouvelles fonctionnalités via Github ou ioBroker forum. Si vous aimez cet adaptateur, vous les bienvenus pour faire un don.",
     "donateTitle": "Soutenir le développement de la teinte-extension de Carte!",
+    "hashedTokenInfo": "Utilisez votre token pour vous connecter en ligne. ",
     "hostAllowAll": "Autoriser les connexions depuis n'importe quel hôte/IP",
     "hostAllowList": "Autoriser les connexions uniquement à partir de la liste blanche",
     "hostWhitelist": "Liste blanche",
@@ -16,5 +17,7 @@
     "tab_wiki": "Wiki",
     "usageDataInfo": "Cette option active Sentry, qui envoie les erreurs et exceptions de jarvis au développeur. ",
     "usageDataTitle": "Rapport d'erreur (via Sentry)",
+    "useOnlineService": "Utilisez le service en ligne via www.zefau.net (uniquement avec Pro-Licence)",
+    "useOnlineServiceInfo": "Toutes les données requises (par exemple, États, liste des adaptateurs, journaux, objets) sont envoyées au serveur en ligne (www.zefau.net) pour visualiser votre jarvis individuel en ligne.",
     "webPort": "Port Web"
 }

@@ -2,6 +2,7 @@
     "autoDetect": "Verbindingsinstellingen automatisch detecteren",
     "donateInformation": "Voel je vrij om te suggereren nieuwe functies via Github of ioBroker forum. Als je van deze adapter, die je erg welkom om te doneren.",
     "donateTitle": "Ondersteuning van de ontwikkeling van de jarvis Adapter!",
+    "hashedTokenInfo": "Gebruik uw token om online in te loggen. ",
     "hostAllowAll": "Sta verbindingen toe vanaf elke host / IP",
     "hostAllowList": "Alleen verbindingen toestaan ​​vanaf witte lijst",
     "hostWhitelist": "Witte lijst",
@@ -16,5 +17,7 @@
     "tab_wiki": "Wiki",
     "usageDataInfo": "Deze optie schakelt Sentry in, die fouten en uitzonderingen van jarvis naar de ontwikkelaar stuurt. ",
     "usageDataTitle": "Foutrapportage (via Sentry)",
+    "useOnlineService": "Online-Service gebruiken via www.zefau.net (alleen met Pro-licentie)",
+    "useOnlineServiceInfo": "Alle benodigde gegevens (bijvoorbeeld statussen, lijst met adapters, logs, objecten) worden naar de online server (www.zefau.net) gestuurd om uw individuele jarvis online te visualiseren.",
     "webPort": "Webpoort"
 }

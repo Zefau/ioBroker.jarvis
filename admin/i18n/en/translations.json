@@ -2,6 +2,7 @@
     "autoDetect": "Auto Detect Connection Settings",
     "donateInformation": "Feel free to suggest new features via Github or ioBroker forum. If you like this adapter, you very welcome to donate.",
     "donateTitle": "Support the development of the jarvis Adapter!",
+    "hashedTokenInfo": "Use your token to login online. This is your password - do not share it! Sharing the token allows others to access your data!",
     "hostAllowAll": "Allow Connections from any Host / IP",
     "hostAllowList": "Allow Connections only from Whitelist",
     "hostWhitelist": "Whitelist",
@@ -16,5 +17,7 @@
     "tab_wiki": "Wiki",
     "usageDataInfo": "This option enables Sentry, which sends errors and exceptions of jarvis to the developer. This does NOT! include your configuration (devices, layout, widgets, etc.), it does NOT! include the values of your states and it does NOT! include private data. It only includes errors / exceptions, no further data.",
     "usageDataTitle": "Error-Reporting (via Sentry)",
+    "useOnlineService": "Use Online-Service via www.zefau.net (only with Pro-Licence)",
+    "useOnlineServiceInfo": "All required data (e.g. States, List of adapters, Logs, Objects) are sent to the Online-Server (www.zefau.net) to visualize your individual jarvis online.",
     "webPort": "Web Port"
 }

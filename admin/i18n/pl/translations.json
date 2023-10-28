@@ -2,6 +2,7 @@
     "autoDetect": "Ustawienia połączenia automatycznego wykrywania",
     "donateInformation": "Nie wahaj się zaproponować nowe funkcje poprzez GitHub lub forum ioBroker. Jeśli podoba ci się ten zasilacz, możesz podarować.",
     "donateTitle": "Wsparcie rozwoju Hue-zaawansowany zasilacz!",
+    "hashedTokenInfo": "Użyj swojego tokena, aby zalogować się online. ",
     "hostAllowAll": "Zezwalaj na połączenia z dowolnego hosta / adresu IP",
     "hostAllowList": "Zezwalaj na połączenia tylko z białej listy",
     "hostWhitelist": "Biała lista",
@@ -16,5 +17,7 @@
     "tab_wiki": "Wiki",
     "usageDataInfo": "Ta opcja włącza Sentry, który wysyła błędy i wyjątki jarvis do programisty. ",
     "usageDataTitle": "Zgłaszanie błędów (przez Sentry)",
+    "useOnlineService": "Korzystanie z usługi online poprzez www.zefau.net (tylko z licencją Pro)",
+    "useOnlineServiceInfo": "Wszystkie wymagane dane (np. Stany, Lista adapterów, Logi, Obiekty) są przesyłane do Serwera Online (www.zefau.net) w celu wizualizacji Twojego indywidualnego Jarvisa online.",
     "webPort": "Port sieciowy"
 }

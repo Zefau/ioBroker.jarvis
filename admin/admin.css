@@ -51,3 +51,7 @@ pre {display: inline}
 .m [type=radio]:not(:checked)+span {
 	height: auto !important;
 }
+
+.input-field {
+	margin: 0 !important;
+}

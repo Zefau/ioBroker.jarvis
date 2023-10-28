@@ -2,6 +2,7 @@
     "autoDetect": "Configuración de conexión de detección automática",
     "donateInformation": "Siéntase libre de sugerir nuevas características a través de Github o ioBroker foro. Si te gusta este adaptador, usted muy bienvenido a donar.",
     "donateTitle": "Apoyar el desarrollo de los hue-extendida Adaptador!",
+    "hashedTokenInfo": "Utilice su token para iniciar sesión en línea. ",
     "hostAllowAll": "Permitir conexiones desde cualquier host / IP",
     "hostAllowList": "Permitir conexiones solo desde la lista blanca",
     "hostWhitelist": "Lista blanca",
@@ -16,5 +17,7 @@
     "tab_wiki": "Wiki",
     "usageDataInfo": "Esta opción habilita Sentry, que envía errores y excepciones de jarvis al desarrollador. ",
     "usageDataTitle": "Informe de errores (a través de Sentry)",
+    "useOnlineService": "Utilice el servicio en línea a través de www.zefau.net (solo con licencia Pro)",
+    "useOnlineServiceInfo": "Todos los datos necesarios (por ejemplo, estados, lista de adaptadores, registros, objetos) se envían al servidor en línea (www.zefau.net) para visualizar su jarvis individual en línea.",
     "webPort": "Puerto web"
 }

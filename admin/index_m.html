@@ -22,6 +22,11 @@
 		//$('.disableAutoDetection').prop('disabled', settings.autoDetect);
 		
 		// auto detect checkbox
+		$('body').on('change', '#useOnlineService', function(e) {
+			$('.disableOnlineService').prop('disabled', !e.target.checked);
+		});
+		
+		// auto detect checkbox
 		$('body').on('change', '#autoDetect', function(e) {
 			$('.disableAutoDetection').prop('disabled', e.target.checked);
 		});
@@ -55,8 +60,20 @@
 		$('.modal').modal();
 		$('.collapsible').collapsible();
 		
-		// get backups
 		setTimeout(() => {
+			// get pro data
+			sendTo(null, '_getProData', {}, function(res) {
+				if (!res.licence) {
+					$('.disableNoPro').prop('disabled', true);
+				}
+				else {
+					for (const key in res) {
+						$('#' + key).text(res[key]);
+					}
+				}
+			});
+			
+			// get backups
 			['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'scripts'].forEach(id => {
 				let state = id;
 				let type = 'json';
@@ -147,6 +164,34 @@
 			<!-- Socket IP und Port -->
 			<div class="row">
 				<div class="col s12 m12">
+					<div class="row" style="margin-bottom: 0">
+						<div class="col s12 m12">
+							<p class="translate title">onlineSocketTitle</p>
+						</div>
+					</div>
+					<div class="row box">
+						<div class="col s10 m10">
+							<input class="value disableNoPro" id="useOnlineService" type="checkbox" />
+							<label for="useOnlineService" class="translate">useOnlineService</label>
+						</div>
+					</div>
+					<div class="row box">
+						<div class="input-field col s6 m6">
+							<ul style="margin: 0; word-break: break-all;">
+								<li><strong>Lizenz (Signature):</strong> <span id="licenceSignature">-</span></li>
+								<li><strong>ioBroker ID:</strong> <span id="ioBrokerId">-</span></li>
+								<li><strong>Adapter Instance:</strong> <span id="adapterInstance">-</span></li>
+							</ul>
+						</div>
+						<div class="input-field col s2 m2">
+							<a class="value disableOnlineService waves-effect waves-light btn">Get Access Token</a>
+						</div>
+						<div class="input-field col s4 m4">
+							<input class="value disableOnlineService" readonly id="hashedToken" type="text" />
+							<label for="hashedToken" class="translate">hashedToken</label><br />
+							<span class="translate">hashedTokenInfo</span>
+						</div>
+					</div>
 					<div class="row" style="margin-bottom: 0">
 						<div class="col s12 m12">
 							<p class="translate title">socketTitle</p>

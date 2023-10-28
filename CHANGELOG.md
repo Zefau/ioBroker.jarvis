@@ -1,3 +1,10 @@
+### v3.2.0-alpha.2 (2023-10-28)
+
+#### :star2: feature (3 changes)
+- added `add option in Device configuration to add state to ioBroker.iot` (quick to implement, [#599](https://github.com/Zefau/ioBroker.jarvis/issues/599))
+- added `add option in Device configuration to add state to any history adapter` (quick to implement, [#600](https://github.com/Zefau/ioBroker.jarvis/issues/600))
+- added `Layout: Add Widgets at any place within layout (not only at the end)` ([#2452](https://github.com/Zefau/ioBroker.jarvis/issues/2452))
+
 ### v3.2.0-alpha.1 (2023-09-24)
 
 #### :star2: feature (3 changes)

@@ -2,6 +2,7 @@
     "autoDetect": "Verbindungseinstellungen automatisch ermitteln",
     "donateInformation": "Neue Funktionen / Features können gerne über Github oder das ioBroker Forum angefragt werden. Wenn dieser Adapter gefällt / nützlich ist, sind Spenden herzlich Willkommen.",
     "donateTitle": "Unterstützung der Entwicklung des jarvis Adapters!",
+    "hashedTokenInfo": "Benutze den Token zum Online-Login. Dieser ist dein Passwort. Eine Weitergabe führt dazu, dass Fremde auf deine Daten zugreifen können!",
     "hostAllowAll": "Erlaube Verbindungen von allen Hosts / IP Adressen",
     "hostAllowList": "Erlaube Verbindungen nur von der Whitelist",
     "hostWhitelist": "Whitelist",
@@ -16,5 +17,7 @@
     "tab_wiki": "Wiki",
     "usageDataInfo": "Diese Option aktiviert Sentry, wodurch Fehler in jarvis an den Entwickler geschickt werden. Dies umfasst KEINE! Konfiguration (Geräte, Layout, Widgets, etc.), umfasst KEINE! Werte der Datenpunkte und umfasst auch KEINE! privaten Daten aus ioBroker. Es umfasst NUR Fehler, die in jarvis aufgetreten sind.",
     "usageDataTitle": "Fehler-Reporting (via Sentry)",
+    "useOnlineService": "Benutze Online-Service via www.zefau.net (nur via Pro-Lizenz)",
+    "useOnlineServiceInfo": "Alle notwendigen Daten (u.a. Datenpunkte, Adapter-Liste, Protokolle, Objekt-Daten) werden an den Online-Server (www.zefau.net) übertragen, um diese Online in deinem persönlichen jarvis Zugang darzustellen.",
     "webPort": "Web Port"
 }
