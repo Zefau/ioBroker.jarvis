@@ -1,3 +1,15 @@
+### v3.2.0-alpha.6 (2023-11-07)
+
+#### :star2: feature (5 changes)
+- added `add option in Device configuration to add state to ioBroker.iot` (quick to implement, [#599](https://github.com/Zefau/ioBroker.jarvis/issues/599))
+- added `v3: Geräten Räumen zuweisen` ([#911](https://github.com/Zefau/ioBroker.jarvis/issues/911))
+- added `Schalter Entwicklung ` (quick to implement, [#2409](https://github.com/Zefau/ioBroker.jarvis/issues/2409))
+- added `Support import of devices from ioBroker.roborock` ([#2455](https://github.com/Zefau/ioBroker.jarvis/issues/2455))
+- added `Karte (Map widget) in der Ausrichtung  drehen` (Module Map, quick to implement, [#2162](https://github.com/Zefau/ioBroker.jarvis/issues/2162))
+
+#### :bug: bug (1 changes)
+- fixed `v3.1.0-beta.35 Speicherung der Änderungen läuft teilweise nicht ` ([#2070](https://github.com/Zefau/ioBroker.jarvis/issues/2070))
+
 ### v3.2.0-alpha.2 (2023-10-28)
 
 #### :star2: feature (3 changes)
