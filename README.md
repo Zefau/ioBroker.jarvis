@@ -20,6 +20,19 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.7 (2023-11-08)
+
+#### :star2: feature (2 changes)
+- added `v3: Geräten Räumen zuweisen` ([#911](https://github.com/Zefau/ioBroker.jarvis/issues/911))
+- added `Schalter Entwicklung ` (quick to implement, [#2409](https://github.com/Zefau/ioBroker.jarvis/issues/2409))
+
+#### :bug: bug (3 changes)
+- fixed `v3.2.0-alpha.6 Filterung funktioniert nicht mehr korrekt` ([#2466](https://github.com/Zefau/ioBroker.jarvis/issues/2466))
+- fixed `v3.2.0-alpha.6 Unterschiedliche Darstellung der Elemente in der Geräte-Übersicht` ([#2467](https://github.com/Zefau/ioBroker.jarvis/issues/2467))
+- fixed `Seit 3.2.0 absolut keine Socketverbindung mehr` ([#2468](https://github.com/Zefau/ioBroker.jarvis/issues/2468))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.6 (2023-11-07)
 
 #### :star2: feature (5 changes)

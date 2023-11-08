@@ -28,7 +28,8 @@
     "semver": "^7.5.0",
     "sha.js": "^2.4.11",
     "socket.io": "^4.3.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "ws": "^8.14.2"
   },
   "deprecated": false,
   "description": "jarvis - just another remarkable vis",
@@ -59,6 +60,5 @@
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
-  },
-  "version": "3.2.0-alpha.6"
+  }
 }
