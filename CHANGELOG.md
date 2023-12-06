@@ -1,3 +1,8 @@
+### v3.2.0-alpha.10 (2023-12-06)
+
+#### :star2: feature (1 changes)
+- added `Dynamic Lists for StateList` ([#2480](https://github.com/Zefau/ioBroker.jarvis/issues/2480))
+
 ### v3.2.0-alpha.7 (2023-11-08)
 
 #### :star2: feature (2 changes)
