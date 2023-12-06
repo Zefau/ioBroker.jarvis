@@ -20,6 +20,13 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.11 (2023-12-06)
+
+#### :star2: feature (1 changes)
+- added `Dynamic Lists for StateList` ([#2480](https://github.com/Zefau/ioBroker.jarvis/issues/2480))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.10 (2023-12-06)
 
 #### :star2: feature (1 changes)
