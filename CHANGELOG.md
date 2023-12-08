@@ -1,3 +1,12 @@
+### v3.2.0-alpha.12 (2023-12-08)
+
+#### :star2: feature (1 changes)
+- added `Dynamic Lists for StateList` ([#2480](https://github.com/Zefau/ioBroker.jarvis/issues/2480))
+
+#### :bug: bug (2 changes)
+- fixed `v3.2.0-alpha.11 Einige Fehler Anzeigen` ([#2481](https://github.com/Zefau/ioBroker.jarvis/issues/2481))
+- fixed `v3.2.0-alpha.11 StateList Geräte hinzufügen nicht auswählbar` ([#2482](https://github.com/Zefau/ioBroker.jarvis/issues/2482))
+
 ### v3.2.0-alpha.11 (2023-12-06)
 
 #### :star2: feature (1 changes)
