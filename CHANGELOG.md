@@ -1,3 +1,8 @@
+### v3.2.0-alpha.13 (2023-12-09)
+
+#### :bug: bug (1 changes)
+- fixed `v3.2.0-alpha.12 Geräte Liste ist leer` ([#2484](https://github.com/Zefau/ioBroker.jarvis/issues/2484))
+
 ### v3.2.0-alpha.12 (2023-12-08)
 
 #### :star2: feature (1 changes)
