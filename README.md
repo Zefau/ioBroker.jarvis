@@ -20,6 +20,13 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.20 (2023-12-18)
+
+#### :star2: feature (1 changes)
+- added `Refactor ioBroker.jarvis backend` ([#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.13 (2023-12-09)
 
 #### :bug: bug (1 changes)
