@@ -1,3 +1,17 @@
+SyntaxError: Unexpected token t in JSON at position 142
+    at JSON.parse (<anonymous>)
+    at /home/runner/work/jarvis/jarvis/scripts/changelog.generate.js:21:56
+    at Array.forEach (<anonymous>)
+    at Object.<anonymous> (/home/runner/work/jarvis/jarvis/scripts/changelog.generate.js:20:9)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 [
+  `["PVTI_lAHOANtAK84AAVGnzgLeFb0","I_kwDODbcoCM56PNH4",[":bug: bug"],2493,"3.2.0-alpha.21 - TypeError: Cannot read properties of null (reading ts)"]`
+]
+
 ### v3.2.0-alpha.21 (2023-12-19)
 
 #### :bug: bug (1 changes)
