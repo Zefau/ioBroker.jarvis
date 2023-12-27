@@ -1,3 +1,8 @@
+### v3.2.0-alpha.26 (2023-12-27)
+
+#### :star2: feature (1 changes)
+- added `Refactor ioBroker.jarvis backend` (core, binding, [#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
+
 SyntaxError: Unexpected token t in JSON at position 142
     at JSON.parse (<anonymous>)
     at /home/runner/work/jarvis/jarvis/scripts/changelog.generate.js:21:56
