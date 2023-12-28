@@ -1,3 +1,14 @@
+### v3.2.0-alpha.27 (2023-12-28)
+
+#### :star2: feature (2 changes)
+- added `v3: icon Auswahl` ([#902](https://github.com/Zefau/ioBroker.jarvis/issues/902))
+- added `Refactor ioBroker.jarvis backend` (core, binding, [#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
+
+#### :bug: bug (3 changes)
+- fixed `Dezimaltrennzeichen bei negativen Werten Punkt statt Komma` ([#2498](https://github.com/Zefau/ioBroker.jarvis/issues/2498))
+- fixed `[v3.2.0-alpha.26] Jarvis sehr langsam` ([#2500](https://github.com/Zefau/ioBroker.jarvis/issues/2500))
+- fixed `[v3.2.0-alpha.26] Geräteliste plötzlich leer` ([#2501](https://github.com/Zefau/ioBroker.jarvis/issues/2501))
+
 ### v3.2.0-alpha.26 (2023-12-27)
 
 #### :star2: feature (1 changes)
