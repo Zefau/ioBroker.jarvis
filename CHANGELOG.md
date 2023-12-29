@@ -1,3 +1,8 @@
+### v3.2.0-alpha.30 (2023-12-29)
+
+#### :star2: feature (1 changes)
+- added `Refactor ioBroker.jarvis backend` (core, binding, [#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
+
 ### v3.2.0-alpha.28 (2023-12-29)
 
 #### :bug: bug (1 changes)
