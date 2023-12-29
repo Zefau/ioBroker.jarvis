@@ -1,3 +1,8 @@
+### v3.2.0-alpha.28 (2023-12-29)
+
+#### :bug: bug (1 changes)
+- fixed `[v3.2.0-alpha.27] Kalender funktioniert nicht richtig` (Module Calendar, [#2503](https://github.com/Zefau/ioBroker.jarvis/issues/2503))
+
 ### v3.2.0-alpha.27 (2023-12-28)
 
 #### :star2: feature (2 changes)
