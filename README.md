@@ -20,6 +20,13 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.34 (2024-01-01)
+
+#### feature :star2: (1 changes)
+- added `Multiple Trigger` (pro, [#695](https://github.com/Zefau/ioBroker.jarvis/issues/695))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.30 (2023-12-29)
 
 #### :star2: feature (1 changes)

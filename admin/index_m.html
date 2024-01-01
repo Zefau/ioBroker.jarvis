@@ -44,8 +44,7 @@
 	function dialog(s, date, contents) {
 		console.log(date, contents);
 		restore = {
-			id: s.id,
-			state: s.state,
+			id: s.state,
 			date
 		}
 		
@@ -83,7 +82,7 @@
 				}
 				
 				console.log('Get backups for ' + id + '...');
-				sendTo(null, '_backups', { 'id': id }, function(res) {
+				sendTo(null, '_backups', { 'id': state }, function(res) {
 					console.log('Got backups for ' + id + ': ', res);
 					
 					const dates = Object.keys(res);
@@ -101,7 +100,7 @@
 		// restore
 		$('.btn-restore').on('click', function() {
 			console.log('Restore ' + restore.id + ' from ' + restore.date + '..');
-			sendTo(null, '_restore', { 'id': restore.id, 'state': restore.state, 'date': restore.date }, function(res) {});
+			sendTo(null, '_restore', { 'id': restore.id, 'date': restore.date }, function(res) {});
 			
 			alert('Backup restored!');
 			window.location = '#tab-intro';

@@ -37,7 +37,7 @@ try {
 		let comment = 'Die Version `' + version + '` sollte den Fehler beheben - bitte einmal prüfen. Sofern es behoben ist, gerne das Issue schließen.<br /><hr />The version `' + version + '` should fix the bug - please verify. If the bug has been solved, you may close the issue.';
 		
 		// comment for FEATURE REQUEST
-		if (labels.includes(':star2: feature') && !labels.includes(':bug: bug')) {
+		if (labels.includes('feature :star2:') && !labels.includes('bug :bug:')) {
 			comment = 'Dieser Feature Request wurde mit `' + version + '` implementiert. Bitte bestätigen und auf Fehler prüfen. Wenn alles in Ordnung ist, gerne das Issue schließen.<br /><hr />This feature request has been implemented with `' + version + '`. Please verify and test the feature for any bugs. If everything works as expected, you may close the issue.';
 		}
 		
@@ -70,6 +70,18 @@ try {
 				}) { \
 					clientMutationId \
 					subject { id } \
+				} \
+			}'", execFn);
+		
+		// add label
+		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
+			mutation UpdateIssue_AddLabel($issueId: ID!, $labelId: ID!) { \
+				addLabelsToLabelable(input: { \
+					labelIds: [ $labelId ] \
+					labelableId: $issueId \
+				}) { \
+					clientMutationId \
+					labels(first: 100) { nodes { name }} \
 				} \
 			}'", execFn);
 		
