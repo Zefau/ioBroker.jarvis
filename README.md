@@ -20,6 +20,16 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.36 (2024-01-02)
+
+#### bug :bug: (4 changes)
+- fixed `v3.2.0-alpha.30 DesignFehler Layout` (#status: implemented-locally :hammer_and_wrench:, [#2510](https://github.com/Zefau/ioBroker.jarvis/issues/2510))
+- fixed `v3.2.0-alpha.34 Fehler` (alpha / beta :construction:, [#2511](https://github.com/Zefau/ioBroker.jarvis/issues/2511))
+- fixed `[v3.2.0-alpha.30] Bodystilfehler` (binding :link:, alpha / beta :construction:, [#2512](https://github.com/Zefau/ioBroker.jarvis/issues/2512))
+- fixed `v3.2.0-alpha.35 Einstellungen Fehler` (alpha / beta :construction:, [#2513](https://github.com/Zefau/ioBroker.jarvis/issues/2513))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.34 (2024-01-01)
 
 #### feature :star2: (1 changes)
