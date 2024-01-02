@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: ":star2: feature"
+labels: "feature :star2:"
 assignees: Zefau
 
 ---
