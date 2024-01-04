@@ -20,6 +20,18 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.37 (2024-01-04)
+
+#### bug :bug: (6 changes)
+- fixed `Bindings im Datenpunkt Stil funktionieren nicht` (binding :link:, [#2487](https://github.com/Zefau/ioBroker.jarvis/issues/2487))
+- fixed `[v3.2.0-alpha.27] Anzeigevariante zum ausblenden vom Wert greift nicht im Secondary State` (binding :link:, alpha / beta :construction:, [#2505](https://github.com/Zefau/ioBroker.jarvis/issues/2505))
+- fixed `v3.2.0-alpha.35 Einstellungen Fehler` (alpha / beta :construction:, [#2513](https://github.com/Zefau/ioBroker.jarvis/issues/2513))
+- fixed `[v3.2.0-alpha.36] Darkmode` (alpha / beta :construction:, [#2515](https://github.com/Zefau/ioBroker.jarvis/issues/2515))
+- fixed `[v3.2.0-alpha.36] Kalender` (Module Calendar, alpha / beta :construction:, [#2516](https://github.com/Zefau/ioBroker.jarvis/issues/2516))
+- fixed `[v3.2.0-alpha.36] Keine DPs mehr übernehmen` (alpha / beta :construction:, [#2517](https://github.com/Zefau/ioBroker.jarvis/issues/2517))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.36 (2024-01-02)
 
 #### bug :bug: (4 changes)
