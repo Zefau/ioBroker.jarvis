@@ -37,57 +37,57 @@ jobs:
             gh extension install heaths/gh-merge-json
             
             # get issues from project
-#            gh api graphql --paginate -F user=Zefau -F project=2 -f query='
-#                query GetIssuesFromProject($user:String!,$project:Int!,$endCursor:String) {
-#                  user(login: $user) {
-#                    projectV2(number: $project) { # ProjectV2: https://docs.github.com/en/graphql/reference/objects#projectv2
-#                      id,
-#                      fields(first: 100) { # ProjectV2FieldConfigurationConnection
-#                        totalCount
-#                        nodes { # ProjectV2FieldConfiguration
-#                          ... on ProjectV2SingleSelectField {
-#                            id
-#                            name
-#                            dataType 
-#                            options { id name }
-#                          }
-#                        }
-#                      }
-#                      items(first: 100, after: $endCursor) {
-#                        totalCount
-#                        pageInfo { endCursor hasNextPage }
-#                        nodes {
-#                          id,
-#                          content {
-#                            ... on Issue {
-#                              issueId: id
-#                              number
-#                              title
-#                              labels(first: 100) {
-#                                totalCount
-#                                nodes { id name }
-#                              }
-#                              state
-#                            }
-#                          }
-#                          status: fieldValueByName(name: "Status") {
-#                            ... on ProjectV2ItemFieldSingleSelectValue { id name updatedAt }
-#                          }
-#                          version: fieldValueByName(name: "Version") {
-#                            ... on ProjectV2ItemFieldSingleSelectValue { id name updatedAt }
-#                          }
-#                        }
-#                      }
-#                    }
-#                  }
-#                }' | gh merge-json > issues.json
+            # gh api graphql --paginate -F user=Zefau -F project=2 -f query='
+                # query GetIssuesFromProject($user:String!,$project:Int!,$endCursor:String) {
+                  # user(login: $user) {
+                    # projectV2(number: $project) { # ProjectV2: https://docs.github.com/en/graphql/reference/objects#projectv2
+                      # id,
+                     # fields(first: 100) { # ProjectV2FieldConfigurationConnection
+                        # totalCount
+                        # nodes { # ProjectV2FieldConfiguration
+                          # ... on ProjectV2SingleSelectField {
+                            # id
+                            # name
+                            # dataType 
+                            # options { id name }
+                          # }
+                        # }
+                      # }
+                      # items(first: 100, after: $endCursor) {
+                        # totalCount
+                        # pageInfo { endCursor hasNextPage }
+                        # nodes {
+                          # id,
+                          # content {
+                            # ... on Issue {
+                              # issueId: id
+                              # number
+                              # title
+                              # labels(first: 100) {
+                                # totalCount
+                                # nodes { id name }
+                              # }
+                              # state
+                            # }
+                          # }
+                          # status: fieldValueByName(name: "Status") {
+                            # ... on ProjectV2ItemFieldSingleSelectValue { id name updatedAt }
+                          # }
+                          # version: fieldValueByName(name: "Version") {
+                            # ... on ProjectV2ItemFieldSingleSelectValue { id name updatedAt }
+                          # }
+                        # }
+                      # }
+                    # }
+                  # }
+                # }' | gh merge-json > issues.json
             
             # extract issues (open issue in the project-status "IMPLEMENTED LOCALLY" matching the given version
-#            ISSUES=$(cat issues.json | jq .data.user.projectV2.items.nodes | jq --arg version "$minorVersion" -c '.[] | select(.content.state == "OPEN") | select(.status.name == "IMPLEMENTED LOCALLY") | select(.version.name == $version) | [ .id, .content.issueId, [.content.labels.nodes[].name] ]')
+            # ISSUES=$(cat issues.json | jq .data.user.projectV2.items.nodes | jq --arg version "$minorVersion" -c '.[] | select(.content.state == "OPEN") | select(.status.name == "IMPLEMENTED LOCALLY") | select(.version.name == $version) | [ .id, .content.issueId, [.content.labels.nodes[].name] ]')
             
             # extract values of field `released`
-#            FIELDS=$(cat issues.json | jq .data.user.projectV2.fields.nodes | jq -c '.[] | select(.name == "Released") | .options')
-#            FIELDS=$(echo $FIELDS | cut -d' ' -f1)
+            # FIELDS=$(cat issues.json | jq .data.user.projectV2.fields.nodes | jq -c '.[] | select(.name == "Released") | .options')
+            # FIELDS=$(echo $FIELDS | cut -d' ' -f1)
             
             # get issues
             gh issue list --json id,labels,number,state,title > issues.json
@@ -98,5 +98,5 @@ jobs:
             #
             cd $GITHUB_WORKSPACE
             cd .github && cd workflows
-#            node move-issues.js "${{ needs.prerequisites.outputs.VERSION }}" "$ISSUES" "$FIELDS"
+            # node move-issues.js "${{ needs.prerequisites.outputs.VERSION }}" "$ISSUES" "$FIELDS"
             node move-issues.js "${{ needs.prerequisites.outputs.VERSION }}" "$ISSUES"
