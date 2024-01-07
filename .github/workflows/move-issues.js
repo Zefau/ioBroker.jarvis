@@ -59,11 +59,11 @@ try {
 		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfBUbZQ' -f query=' \
 			mutation UpdateIssue_RemoveLabel($issueId: ID!, $labelId: ID!) { \
 				removeLabelsFromLabelable(input: { \
-					labelIds: [ $labelId ] \
+					labelIds: [ $labelId ], \
 					labelableId: $issueId \
 				}) { \
-					clientMutationId \
-					labels(first: 100) { nodes { name }} \
+					clientMutationId, \
+					labelable { labels (first: 100) { nodes { name }} } \
 				} \
 			}'", execFn);
 		
@@ -71,11 +71,11 @@ try {
 		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
 			mutation UpdateIssue_AddLabel($issueId: ID!, $labelId: ID!) { \
 				addLabelsToLabelable(input: { \
-					labelIds: [ $labelId ] \
+					labelIds: [ $labelId ], \
 					labelableId: $issueId \
 				}) { \
-					clientMutationId \
-					labels(first: 100) { nodes { name }} \
+					clientMutationId, \
+					labelable { labels (first: 100) { nodes { name }} } \
 				} \
 			}'", execFn);
 		
