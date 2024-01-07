@@ -23,9 +23,11 @@ const execFn = (error, stdout, stderr) => {
 
 try {
 	// parse fields
+	/*
 	const fields = JSON.parse(f);
 	const released = version.indexOf('-') !== -1 ? version.substr(0, version.indexOf('-')) : version;
 	const v = fields.find(f => f.name === released);
+	*/
 	
 	// parse issues
 	input = input.replace(/\]( |\n)\[/gim, '];[').split(';');
@@ -41,7 +43,44 @@ try {
 			comment = 'Dieser Feature Request wurde mit `' + version + '` implementiert. Bitte bestätigen und auf Fehler prüfen. Wenn alles in Ordnung ist, gerne das Issue schließen.<br /><hr />This feature request has been implemented with `' + version + '`. Please verify and test the feature for any bugs. If everything works as expected, you may close the issue.';
 		}
 		
-		// change field `status` to "IN TEST"
+		// add comment
+		exec("gh api graphql -F issueId='" + issueId + "' -F comment='" + comment + "' -f query=' \
+			mutation UpdateIssue_AddComment($issueId: ID!, $comment: String!) { \
+				addComment(input: { \
+					body: $comment \
+					subjectId: $issueId \
+				}) { \
+					clientMutationId \
+					subject { id } \
+				} \
+			}'", execFn);
+		
+		// remove label "#status: implemented-locally" (LA_kwDODbcoCM8AAAABfBUbZQ)
+		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfBUbZQ' -f query=' \
+			mutation UpdateIssue_RemoveLabel($issueId: ID!, $labelId: ID!) { \
+				removeLabelsFromLabelable(input: { \
+					labelIds: [ $labelId ] \
+					labelableId: $issueId \
+				}) { \
+					clientMutationId \
+					labels(first: 100) { nodes { name }} \
+				} \
+			}'", execFn);
+		
+		// add label "#status: ready-to-test" (LA_kwDODbcoCM8AAAABfA96zA)
+		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
+			mutation UpdateIssue_AddLabel($issueId: ID!, $labelId: ID!) { \
+				addLabelsToLabelable(input: { \
+					labelIds: [ $labelId ] \
+					labelableId: $issueId \
+				}) { \
+					clientMutationId \
+					labels(first: 100) { nodes { name }} \
+				} \
+			}'", execFn);
+		
+		// change project-field `status` to "IN TEST"
+		/*
 		exec("gh api graphql -F gid='" + gid + "' -F projectId='PVT_kwHOANtAK84AAVGn' -F fieldId='PVTSSF_lAHOANtAK84AAVGnzgALPn8' -F singleSelectOptionId='81737ac4' -f query=' \
 			mutation UpdateIssue_ChangeStatus($gid: ID!, $projectId: ID!, $fieldId: ID!, $singleSelectOptionId: String) { \
 				updateProjectV2ItemFieldValue(input: { \
@@ -60,32 +99,10 @@ try {
 					} \
 				} \
 			}'", execFn);
+		*/
 		
-		// add comment
-		exec("gh api graphql -F issueId='" + issueId + "' -F comment='" + comment + "' -f query=' \
-			mutation UpdateIssue_AddComment($issueId: ID!, $comment: String!) { \
-				addComment(input: { \
-					body: $comment \
-					subjectId: $issueId \
-				}) { \
-					clientMutationId \
-					subject { id } \
-				} \
-			}'", execFn);
-		
-		// add label
-		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
-			mutation UpdateIssue_AddLabel($issueId: ID!, $labelId: ID!) { \
-				addLabelsToLabelable(input: { \
-					labelIds: [ $labelId ] \
-					labelableId: $issueId \
-				}) { \
-					clientMutationId \
-					labels(first: 100) { nodes { name }} \
-				} \
-			}'", execFn);
-		
-		// change released
+		// change project-field `released`
+		/*
 		exec("gh api graphql -F gid='" + gid + "' -F projectId='PVT_kwHOANtAK84AAVGn' -F fieldId='PVTSSF_lAHOANtAK84AAVGnzgILha8' -F singleSelectOptionId='" + v.id + "' -f query=' \
 			mutation UpdateIssue_ChangeReleased($gid: ID!, $projectId: ID!, $fieldId: ID!, $singleSelectOptionId: String) { \
 				updateProjectV2ItemFieldValue(input: { \
@@ -104,6 +121,7 @@ try {
 					} \
 				} \
 			}'", execFn);
+		*/
 	});
 }
 catch (error) {

@@ -20,6 +20,16 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
 
+### v3.2.0-alpha.39 (2024-01-07)
+
+#### bug :bug: (4 changes)
+- fixed `[v3.2.0-alpha.36] Darkmode` (alpha / beta :construction:, #status: implemented-locally :hammer_and_wrench:, v3.2, [#2515](https://github.com/Zefau/ioBroker.jarvis/issues/2515))
+- fixed `[v3.2.0-alpha.36] Keine DPs mehr übernehmen` (alpha / beta :construction:, #status: implemented-locally :hammer_and_wrench:, v3.2, [#2517](https://github.com/Zefau/ioBroker.jarvis/issues/2517))
+- fixed `v3.2.0-alpha.37 Fehlermeldungen` (alpha / beta :construction:, #status: implemented-locally :hammer_and_wrench:, v3.2, [#2518](https://github.com/Zefau/ioBroker.jarvis/issues/2518))
+- fixed `[v3.2.0-alpha.37] invalid time value im ioBroker Log` (Module Calendar, alpha / beta :construction:, #status: implemented-locally :hammer_and_wrench:, v3.2, [#2519](https://github.com/Zefau/ioBroker.jarvis/issues/2519))
+
+Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 ### v3.2.0-alpha.37 (2024-01-04)
 
 #### bug :bug: (6 changes)
