@@ -44,7 +44,7 @@ try {
 		}
 		
 		// add comment
-		exec("gh api graphql -F issueId='" + issueId + "' -F comment='" + comment + "' -f query=' \
+		exec("gh api graphql -F issueId='" + gid + "' -F comment='" + comment + "' -f query=' \
 			mutation UpdateIssue_AddComment($issueId: ID!, $comment: String!) { \
 				addComment(input: { \
 					body: $comment \
@@ -56,7 +56,7 @@ try {
 			}'", execFn);
 		
 		// remove label "#status: implemented-locally" (LA_kwDODbcoCM8AAAABfBUbZQ)
-		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfBUbZQ' -f query=' \
+		exec("gh api graphql -F issueId='" + gid + "' -F labelId='LA_kwDODbcoCM8AAAABfBUbZQ' -f query=' \
 			mutation UpdateIssue_RemoveLabel($issueId: ID!, $labelId: ID!) { \
 				removeLabelsFromLabelable(input: { \
 					labelIds: [ $labelId ], \
@@ -68,7 +68,7 @@ try {
 			}'", execFn);
 		
 		// add label "#status: ready-to-test" (LA_kwDODbcoCM8AAAABfA96zA)
-		exec("gh api graphql -F issueId='" + issueId + "' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
+		exec("gh api graphql -F issueId='" + gid + "' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
 			mutation UpdateIssue_AddLabel($issueId: ID!, $labelId: ID!) { \
 				addLabelsToLabelable(input: { \
 					labelIds: [ $labelId ], \
