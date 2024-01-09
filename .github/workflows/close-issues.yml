@@ -4,6 +4,9 @@ on:
   issues:
     types: [closed]
 
+env:
+  GH_TOKEN: ${{ secrets.TOKEN }}
+
 jobs:
   remove-label:
     runs-on: ubuntu-latest
