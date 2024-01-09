@@ -90,7 +90,7 @@ jobs:
             # FIELDS=$(echo $FIELDS | cut -d' ' -f1)
             
             # get issues
-            gh issue list --json id,labels,number,state,title > issues.json
+            gh issue list -L 9999 --json id,labels,number,state,title > issues.json
             
             # extract issues [ by label "#status: implemented-locally" (LA_kwDODbcoCM8AAAABfBUbZQ) matching the given version by a dedicated label ]
             ISSUES=$(cat issues.json | jq -c '.[] | select(.labels[].name == "#status: implemented-locally :hammer_and_wrench:") | select(.labels[].name == "v3.2") | [ .id, .number, [ .labels[].name ]]')
