@@ -18,7 +18,7 @@ jobs:
             issues="$(gh issue list -s closed -l "#status: ready-to-test :heavy_check_mark:" --json id --jq '.[] | .id')"
 
             # process issues
-            for issueId in `cat issues`; do
+            for issueId in $(issues); do
               gh api graphql -F issueId='$(issueId)' -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query=' \
             			mutation UpdateIssue_RemoveLabel($issueId: ID!, $labelId: ID!) { \
             				removeLabelsFromLabelable(input: { \
