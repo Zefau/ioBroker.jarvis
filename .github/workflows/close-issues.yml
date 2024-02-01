@@ -19,10 +19,10 @@ jobs:
 
             # process issues
             for issueId in $issues; do
-              gh api graphql -F issueId=$issueId -F labelId='LA_kwDODbcoCM8AAAABfA96zA' -f query='
-            			mutation UpdateIssue_RemoveLabel($issueId: ID!, $labelId: ID!) {
+              gh api graphql -F issueId=$issueId -f query='
+            			mutation UpdateIssue_RemoveLabel($issueId: ID!) {
             				removeLabelsFromLabelable(input: {
-            					labelIds: [ $labelId ],
+            					labelIds: [ 'LA_kwDODbcoCM8AAAABfBUdOw', 'LA_kwDODbcoCM8AAAABfA96zA' ],
             					labelableId: $issueId
             				}) {
             					clientMutationId,
