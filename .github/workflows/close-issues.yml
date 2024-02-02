@@ -11,7 +11,7 @@ jobs:
   remove-label:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Remove `ready-to-test` Label
         run: |
             # get closed issue with label "ready-to-test"
@@ -22,7 +22,7 @@ jobs:
               gh api graphql -F issueId=$issueId -f query='
             			mutation UpdateIssue_RemoveLabel($issueId: ID!) {
             				removeLabelsFromLabelable(input: {
-            					labelIds: [ 'LA_kwDODbcoCM8AAAABfBUdOw', 'LA_kwDODbcoCM8AAAABfA96zA' ],
+            					labelIds: [ "LA_kwDODbcoCM8AAAABfBUdOw", "LA_kwDODbcoCM8AAAABfA96zA" ],
             					labelableId: $issueId
             				}) {
             					clientMutationId,
