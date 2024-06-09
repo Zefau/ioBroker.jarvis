@@ -7,14 +7,14 @@ console.log(version, input, f);
 
 // no input given
 if (!input) {
-	return;
+	process.exit();
 }
 
 // exec callback
 const execFn = (error, stdout, stderr) => {
 	if (error) {
 		console.error(`exec error: ${error}`);
-		return;
+		process.exit();
 	}
 	
 	console.log(`stdout: ${stdout}`);
