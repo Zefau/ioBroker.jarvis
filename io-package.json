@@ -176,25 +176,7 @@
    "adminUI":{
       "config":"materialize"
    },
-   "native":{
-     "secure": null,
-      "hostAllow":"all",
-      "autoDetect":true,
-      "socketHost":"",
-      "webPort":null,
-      "socketPort":null,
-      "devices":{
-         
-      },
-      "settings":{
-         
-      },
-      "notifications":{
-         
-      },
-      "addNotification":"",
-      "sendUsageData":true
-   },
+   "native":{   },
    "objects":[
       
    ],
