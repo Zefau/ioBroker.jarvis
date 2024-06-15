@@ -122,7 +122,7 @@
       "eraseOnUpload":true,
       "compact":true,
       "enabled":true,
-      "localLink":"%web_protocol%://%ip%:%port%/jarvis/index.html#/&socketHost=%socketHost%&socketPort=%socketPort%&socketSecure=%socketSecure%",
+        "localLink": "%webProtocol%://%ip%:%socketPort%/jarvis/index.html#/&socketHost=%socketHost%&socketSecure=%socketSecure%",
       "messages":[
          {
             "condition":{
