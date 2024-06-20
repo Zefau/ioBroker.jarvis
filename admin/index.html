@@ -1,0 +1,705 @@
+<html>
+<head>
+	<!-- -->
+	<script type="text/javascript" src="lib/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
+	
+	<!-- these files have to be included -->
+	<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="../../js/translate.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+	<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+	
+	<!-- -->
+	<script type="text/javascript" src="words.js"></script>
+	<script type="text/javascript">
+	<!--
+	let glbSettings = {};
+	
+	/**
+	 *
+	 */
+	function ucFirst(str) {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	}
+	
+	/**
+	 *
+	 */
+	function uploadConfig() {
+		var input = document.createElement('input');
+		input.setAttribute('type', 'file');
+		input.setAttribute('id', 'files');
+		input.setAttribute('opacity', 0);
+		input.addEventListener('change', function (e) {
+			handleFileSelect(e, function () {});
+		}, false);
+		
+		(input.click)();
+	}
+	
+	/**
+	 *
+	 */
+	function downloadConfig() {
+		save(function (native, cmn) {
+			var result = {
+				_id: 'system.adapter.' + common.name + '.' + instance,
+				common: JSON.parse(JSON.stringify(common)),
+				native: native,
+			};
+			// remove unimportant information
+			if (result.common.news) {
+				delete result.common.news;
+			}
+			if (result.common.titleLang) {
+				delete result.common.titleLang;
+			}
+			if (result.common.desc) {
+				delete result.common.desc;
+			}
+			if (cmn) {
+				for (var b in cmn) {
+					if (cmn.hasOwnProperty(b)) {
+						result.common[b] = cmn[b];
+					}
+				}
+			}
+
+			// window.open('data:application/iobroker; content-disposition=attachment; filename=' + result._id + '.json,' + JSON.stringify(result, null, 2));
+			generateFile(result._id + '.json', result);
+		});
+	}
+	
+	/**
+	 *
+	 */
+	function load(settings, onChange) {
+		glbSettings = settings;
+		
+		if (!settings) {
+			return;
+		}
+		
+		// toggle with checkboxes
+		$('body').on('change', '#useOnlineService', function(e) {
+			$('.disableOnlineService').prop('disabled', !e.target.checked);
+		});
+		
+		// toggle with checkbox
+		$('body').on('change', '#autoDetect', function(e) {
+			$('.disableAutoDetection').prop('disabled', e.target.checked);
+		});
+		
+		// toggle with checkbox
+		$('body').on('change', '#socketSecure', function(e) {
+			$('.disableSelectCertificate').addClass('disabled').prop('disabled', !e.target.checked);
+			
+			if (e.target.checked) {
+				$('.disableSelectCertificate').removeClass('disabled');
+			}
+			
+			$('[name=authentication], [name=authenticationConfiguration]').each(function() {
+				$('#' + this.id.replace('Option', '')).prop('disabled', true);
+				
+				if (e.target.checked && this.checked) {
+					$('#' + this.id.replace('Option', '')).prop('disabled', false);
+				}
+			});
+		});
+		
+		// disable secure option
+		$('.disableSelectCertificate').prop('disabled', !settings.socketSecure);
+		
+		// toggle with checkbox
+		$('body').on('change', '[name=authentication]', function(e) {
+			$('#authenticationPassword').prop('disabled', this.value !== 'password');
+			$('#authenticationGroup').prop('disabled', this.value !== 'group');
+		});
+		
+		// disable authentication option
+		$('#authenticationOptionNone').prop('checked', !settings.authentication || settings.authentication === 'none');
+		$('#authenticationPassword').prop('disabled', settings.authentication !== 'password');
+		$('#authenticationGroup').prop('disabled', settings.authentication !== 'group');
+		
+		// toggle with checkbox
+		$('body').on('change', '[name=authenticationConfiguration]', function(e) {
+			$('#authenticationConfigurationPassword').prop('disabled', this.value !== 'password');
+			$('#authenticationConfigurationGroup').prop('disabled', this.value !== 'group');
+		});
+		
+		// disable authentication option
+		$('#authenticationConfigurationOptionNone').prop('checked', !settings.authenticationConfiguration || settings.authenticationConfiguration === 'none');
+		$('#authenticationConfigurationPassword').prop('disabled', settings.authenticationConfiguration !== 'password');
+		$('#authenticationConfigurationGroup').prop('disabled', settings.authenticationConfiguration !== 'group');
+		
+		// assign values to input-fields
+		Object.keys(settings).forEach(settingKey => {
+			const setting = settings[settingKey];
+			const elements = document.querySelectorAll('[name=' + settingKey + ']');
+			
+			if (elements.length > 0) {
+				elements.forEach(element => {
+					const el = $(element);
+					const type = el.attr('type') || el.prop('tagName').toLowerCase();
+					console.log('jarvis', 'Load setting "' + settingKey + '" (' + type + ') with value:', setting, el);
+					
+					// load certificates
+					if (el.attr('data-select') === 'certificate') {
+						fillSelectCertificates('#' + settingKey, el.attr('data-type') || '', setting);
+					}
+					
+					// load settings
+					if (type === 'checkbox') {
+						el
+							.prop('checked', setting)
+							//.trigger('change')
+							.on('change', onChange);
+					}
+					
+					else if (type === 'radio') {
+						el
+							.prop('checked', setting == el.val())
+							//.trigger('change')
+							.on('change', onChange);
+					}
+					
+					else {
+						el
+							.val(setting)
+							.on('change', onChange)
+							.on('keyup', onChange);
+					}
+				});
+				
+			}
+		});
+		
+		onChange(false);
+	}
+	
+	/**
+	 *
+	 */
+	function save(callback, obj) {
+		obj = obj !== undefined ? obj : {};
+		
+		$('.value').each(function() {
+			var $this = $(this);
+			var id = $this.attr('id');
+			
+			// save checkboxes
+			if ($this.attr('type') === 'checkbox')
+				obj[id] = $this.prop('checked');
+			
+			else if ($this.attr('type') === 'radio' && $this.prop('checked'))
+				obj[$this.attr('name')] = $this.val();
+			
+			// save certificates
+			else if ($this.attr('data-select') === "certificate")
+			{
+				socket.emit('getObject', 'system.certificates', function (err, res) {
+					if (res.native.certificates !== undefined)
+					{
+						obj[id] = $this.val();
+						obj[id + 'Val'] = res.native.certificates[$this.val()];
+					}
+				});
+			}
+			
+			// save settings
+			else
+				obj[id] = obj[id] ? obj[id] : $this.val();
+		});
+		
+		obj.webProtocol = obj.socketSecure ? 'https' : 'http';
+		
+		callback(obj);
+	}
+	
+	/**
+	 *
+	 */
+	function getColorMode(url) {
+		url = url || window.location.search; // e.g. ?0&newReact=true&0&react=dark
+		
+		// get color mode
+		const parts = url.replace('?', '').split('&');
+		for (part of parts) {
+			const [ key, value ] = part.split('=');
+			
+			if (key === 'react') {
+				return value;
+				break;
+			}
+		}
+		
+		return 'white';
+	}
+	
+	/**
+	 *
+	 */
+	function setColorMode(colorMode) {
+		colorMode = colorMode || getColorMode();
+		
+		// set color mode
+		$('body').removeClass('white dark blue');
+		$('body').addClass(colorMode);
+		$('body').attr('data-bs-theme', colorMode === 'blue' ? 'dark' : colorMode);
+	}
+	
+	/**
+	 *
+	 */
+	let restore = null;
+	let modal = null;
+	
+	function dialog(s, date, contents) {
+		console.log(date, contents);
+		restore = {
+			id: s.state,
+			date
+		}
+		
+		$('#json').text(s.type === 'json' ? JSON.stringify(JSON.parse(contents), null, 3) : contents);
+		modal.show();
+	}
+	
+	// page loaded
+	//$(window).on('load', function() {
+	$(document).ready(function () {
+		modal = new bootstrap.Modal(document.getElementById('restoreModal'), {});
+		setColorMode();
+		translateAll();
+		
+		socket.on('connect', function() {
+			setTimeout(() => {
+				// get users and groups
+				sendTo(null, 'get-users', {}, function(res) {
+					const { users, groups } = res;
+					
+					groups.forEach(function(group) {
+						$('#authenticationGroup').append($('<option value="' + group.value._id + '" selected="' + (glbSettings.authenticationGroup && glbSettings.authenticationGroup.includes(group.value._id) ? 'true' : '') + '">' + group.value._id + '</option>'));
+						$('#authenticationConfigurationGroup').append($('<option value="' + group.value._id + '" selected="' + (glbSettings.authenticationConfigurationGroup && glbSettings.authenticationConfigurationGroup.includes(group.value._id) ? 'true' : '') + '">' + group.value._id + '</option>'));
+					});
+				});
+				
+				// get pro data
+				sendTo(null, 'get-pro-status', {}, function(res) {
+					if (!res.licence) {
+						$('.disableNoPro').prop('disabled', true);
+					}
+					else {
+						for (const key in res) {
+							$('#' + key).text(res[key]);
+						}
+					}
+				});
+				
+				// get backups
+				['devices', 'layout', 'widgets', 'settings', 'styles:css:css', 'scripts'].forEach(id => {
+					let state = id;
+					let type = 'json';
+					
+					if (id.indexOf(':') > -1) {
+						[ id, state, type ] = id.split(':');
+					}
+					
+					console.log('Get backups for "' + id + '"...');
+					sendTo(null, 'get-backups', { 'id': state }, function(res) {
+						console.log('Got backups for "' + id + '".');
+						
+						const dates = Object.keys(res);
+						$('#backups-' + id + ' .badge').text(dates.length);
+						
+						dates.reverse().forEach(function(date) {
+							$('#backups-' + id + ' .list-group').append(
+								$('<a href="#" class="list-group-item list-group-item-action collection-item">' + date + '</a>').on('click', function() {
+									dialog({ id, state, type }, date, res[date]);
+								})
+							);
+						});
+					});
+				});
+			}, 500);
+		});
+		
+		// restore
+		$('.btn-restore').on('click', function() {
+			console.log('Restore ' + restore.id + ' from ' + restore.date + '..');
+			sendTo(null, 'restore', { 'id': restore.id, 'date': restore.date }, function(res) {});
+			
+			alert('Backup restored!');
+			window.location = '#tab-intro';
+		});
+	});
+	// -->
+	</script>
+	<style type="text/css">
+	body.dark {
+		background-color: rgb(30, 30, 30);
+	}
+	
+	body.blue {
+		background-color: rgb(33, 41, 44);
+	}
+	
+	.jarvis-header {
+		background-color: #842FA3;
+		color: #fff;
+	}
+	
+	.nav-tabs .active {
+		background-color: #842FA3 !important;
+		color: #fff !important;
+	}
+	
+	.tab-pane {
+		border-left: var(--bs-border-width) solid var(--bs-border-color);
+		padding: var(--bs-gutter-x);
+	}
+	
+	.collection-item {
+		cursor: pointer;
+		text-decoration: none !important;
+	}
+	
+	fieldset {
+		border: 1px solid var(--bs-border-color);
+		padding: 8px;
+		margin: 12px 0;
+	}
+	
+	body.dark fieldset legend {
+		background-color: rgb(30, 30, 30);
+	}
+	
+	body.blue fieldset legend {
+		background-color: rgb(33, 41, 44);
+	}
+	
+	fieldset legend {
+		font-size: 1rem;
+		margin-top: -22px;
+		padding: 0 8px;
+		width: auto;
+	}
+	
+	label:disabled, .disabled {
+		color: #666 !important;
+	}
+	</style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<div class="jarvis-header container-fluid px-0">
+	<div class="row">
+		<div class="col-auto">
+			<img class="logo" src="jarvis.png" style="height: 120px">
+		</div>
+		<div class="col">
+			<div>
+				<h1 class="display-3">jarvis</h1>
+				<small class="text-white text-body-secondary">just another remarkable visualisation</small>
+			</div>
+		</div>
+		<div class="col-auto">
+			<div class="help-link d-flex align-self-end m-1">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-outline text-white" onClick="uploadConfig()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"></path>
+						</svg>
+						<span class="translate">Upload Configuration</span>
+					</button>
+					
+					<button type="button" class="btn btn-outline text-white" onClick="downloadConfig()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-down" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M3.646 4.146a.5.5 0 0 1 .708 0L8 7.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708M1 11.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"></path>
+						</svg>
+						<span class="translate">Download Configuration</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- TABS -->
+<div class="container-fluid">
+	<div class="row mt-3">
+		<div class="col-12">
+			<ul class="nav nav-tabs">
+				<li class="nav-item"><button class="nav-link translate active" id="config-tab" data-bs-toggle="tab" data-bs-target="#config-tab-pane" type="button" role="tab" aria-controls="config-tab-pane" aria-selected="true">tab_config</button>
+				<li class="nav-item"><button class="nav-link translate" id="backup-tab" data-bs-toggle="tab" data-bs-target="#backup-tab-pane" type="button" role="tab" aria-controls="backup-tab-pane" aria-selected="true">tab_backup</button>
+				<li class="nav-item"><a target="_blank" class="nav-link translate" href="https://github.com/Zefau/ioBroker.jarvis/wiki">tab_wiki</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- CONFIG -->
+	<div class="row">
+		<div class="col tab-content">
+			<div id="config-tab-pane" class="tab-pane active">
+				<!--
+				<div class="row">
+					<div class="col-12">
+					
+					
+						<div class="row" style="margin-bottom: 0">
+							<div class="col s12 m12">
+								<p class="translate title">onlineSocketTitle</p>
+							</div>
+						</div>
+						<div class="row box">
+							<div class="col s10 m10">
+								<input class="value disableNoPro" id="useOnlineService" type="checkbox" />
+								<label for="useOnlineService" class="translate disableNoPro">useOnlineService</label>
+							</div>
+						</div>
+						<div class="row box">
+							<div class="input-field col s6 m6">
+								<ul style="margin: 0; word-break: break-all;">
+									<li><strong>Lizenz (Signature):</strong> <span id="licenceSignature">-</span></li>
+									<li><strong>ioBroker ID:</strong> <span id="ioBrokerId">-</span></li>
+									<li><strong>Adapter Instance:</strong> <span id="adapterInstance">-</span></li>
+								</ul>
+							</div>
+							<div class="input-field col s2 m2">
+								<a class="value disableOnlineService waves-effect waves-light btn">Get Access Token</a>
+							</div>
+							<div class="input-field col s4 m4">
+								<input class="value disableOnlineService" readonly id="hashedToken" type="text" />
+								<label for="hashedToken" class="translate disableOnlineService">hashedToken</label><br />
+								<span class="translate disableOnlineService">hashedTokenInfo</span>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				-->
+				
+				<!-- Port -->
+				<div class="row">
+					<div class="col-4">
+						<div class="mb-3">
+							<label for="socketPort" class="form-label translate">port</label>
+							<input type="number" class="form-control value" id="socketPort" name="socketPort">
+						</div>
+					</div>
+				</div>
+				
+				<!-- Certificates -->
+				<div class="row">
+					<div class="col-4">
+						<fieldset>
+							<legend class="translate">secureConnection</legend>
+							
+							<div class="mb-3 form-check">
+								<input class="form-check-input value" type="checkbox" value="" id="socketSecure" name="socketSecure">
+								<label class="form-check-label translate" for="socketSecure">useSecureConnection</label>
+							</div>
+							
+							<div class="mx-4 mb-3">
+								<label for="certPublic" class="disableSelectCertificate form-label translate">certPublic</label>
+								<select name="certPublic" id="certPublic" class="value form-select disableSelectCertificate" data-select="certificate" data-type="public"></select>
+							</div>
+							
+							<div class="mx-4 mb-3">
+								<label for="certPrivate" class="disableSelectCertificate form-label translate">certPrivate</label>
+								<select name="certPrivate" id="certPrivate" class="value form-select disableSelectCertificate" data-select="certificate" data-type="private"></select>
+							</div>
+							
+							<div class="mx-4 mb-3">
+								<label for="certChained" class="disableSelectCertificate form-label translate">certChained</label>
+								<select name="certChained" id="certChained" class="value form-select disableSelectCertificate" data-select="certificate" data-type="chain"></select>
+							</div>
+						</fieldset>
+					</div>
+					
+					<!--
+					<div class="col-5">
+						<div class="mb-3 form-check">
+							<input class="form-check-input value" type="radio" name="hostAllow" id="hostAllowAll" value="all">
+							<label class="form-check-label translate" for="hostAllowAll">hostAllowAll</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input value" type="radio" name="hostAllow" id="hostAllowList" value="all">
+							<label class="form-check-label translate" for="hostAllowList">hostAllowList</label>
+						</div>
+						<div class="mx-4 mb-3">
+							<input type="text" class="form-control value" id="hostWhitelist">
+							<span class="translate" style="font-size: 80%">hostWhitelistInfo</span>
+						</div>
+					</div>
+					-->
+					
+				</div>
+				
+				<!-- Authentication -->
+				<div class="row">
+					<div class="col-4">
+						<fieldset>
+							<legend class="translate">authentication</legend>
+							
+							<div class="mb-3 form-check">
+								<input class="form-check-input disableSelectCertificate value" type="radio" name="authentication" id="authenticationOptionNone" value="none">
+								<label class="form-check-label disableSelectCertificate translate" for="authenticationOptionNone">authenticationOptionNone</label>
+							</div>
+							<div class="mb-3 form-check">
+								<input class="form-check-input disableSelectCertificate value" type="radio" name="authentication" id="authenticationOptionPassword" value="password">
+								<label class="form-check-label disableSelectCertificate translate" for="authenticationOptionPassword">authenticationOptionPassword</label>
+							</div>
+							<div class="mx-4 mb-3">
+								<input type="password" class="form-control value" id="authenticationPassword" name="authenticationPassword">
+							</div>
+							<div class="form-check">
+								<input class="form-check-input disableSelectCertificate value" type="radio" name="authentication" id="authenticationOptionGroup" value="group">
+								<label class="form-check-label disableSelectCertificate translate" for="authenticationOptionGroup">authenticationOptionGroup</label>
+							</div>
+							<div class="mx-4 mb-3">
+								<select name="authenticationGroup" id="authenticationGroup" multiple size="5" class="value form-select"></select>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				
+				<!-- Authentication Configuration -->
+				<div class="row">
+					<div class="col-4">
+						<fieldset>
+							<legend class="translate">authenticationConfiguration</legend>
+							
+							<div class="mb-3 form-check">
+								<input class="form-check-input disableSelectCertificate value" type="radio" name="authenticationConfiguration" id="authenticationConfigurationOptionNone" value="none">
+								<label class="form-check-label disableSelectCertificate translate" for="authenticationConfigurationOptionNone">authenticationOptionNone</label>
+							</div>
+							<div class="mb-3 form-check">
+								<input class="form-check-input disableSelectCertificate value" type="radio" name="authenticationConfiguration" id="authenticationConfigurationOptionPassword" value="password">
+								<label class="form-check-label disableSelectCertificate translate" for="authenticationConfigurationOptionPassword">authenticationOptionPassword</label>
+							</div>
+							<div class="mx-4 mb-3">
+								<input type="password" class="form-control value" id="authenticationConfigurationPassword" name="authenticationConfigurationPassword">
+							</div>
+							<div class="form-check">
+								<input class="form-check-input disableSelectCertificate value" type="radio" name="authenticationConfiguration" id="authenticationConfigurationOptionGroup" value="group">
+								<label class="form-check-label disableSelectCertificate translate" for="authenticationConfigurationOptionGroup">authenticationOptionGroup</label>
+							</div>
+							<div class="mx-4 mb-3">
+								<select name="authenticationConfigurationGroup" id="authenticationConfigurationGroup" multiple size="5" class="value form-select"></select>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+			
+			<!-- BACKUPS -->
+			<!-- Backup Dialog / Modal -->
+			<div class="modal" id="restoreModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title translate">Restore</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<pre id="json"></pre>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-danger btn-cancel translate" data-bs-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-success btn-restore translate">Restore</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Backup Lists -->
+			<div id="backup-tab-pane" class="tab-pane">
+				<div class="alert alert-warning translate" role="alert">Please be aware that backups will be deleted when the adapter is updated.</div>
+				
+				<ul class="list-group">
+					<!-- DEVICES -->
+					<li class="list-group-item" id="backups-devices">
+						<div class="d-flex justify-content-between align-items-center">
+							<a class="btn translate" data-bs-toggle="collapse" href="#collapsible-devices" role="button" aria-expanded="false" aria-controls="collapsible-devices">Devices</a>
+							<span class="badge text-bg-primary rounded-pill">0</span>
+						</div>
+						
+						<div class="collapse" id="collapsible-devices">
+							<ul class="list-group list-group-flush"></ul>
+						</div>
+					</li>
+					
+					<!-- LAYOUT -->
+					<li class="list-group-item" id="backups-layout">
+						<div class="d-flex justify-content-between align-items-center">
+							<a class="btn translate" data-bs-toggle="collapse" href="#collapsible-layout" role="button" aria-expanded="false" aria-controls="collapsible-layout">Layout</a>
+							<span class="badge text-bg-primary rounded-pill">0</span>
+						</div>
+						
+						<div class="collapse" id="collapsible-layout">
+							<ul class="list-group list-group-flush"></ul>
+						</div>
+					</li>
+					
+					<!-- WIDGETS -->
+					<li class="list-group-item" id="backups-widgets">
+						<div class="d-flex justify-content-between align-items-center">
+							<a class="btn translate" data-bs-toggle="collapse" href="#collapsible-widgets" role="button" aria-expanded="false" aria-controls="collapsible-widgets">Widgets</a>
+							<span class="badge text-bg-primary rounded-pill">0</span>
+						</div>
+						
+						<div class="collapse" id="collapsible-widgets">
+							<ul class="list-group list-group-flush"></ul>
+						</div>
+					</li>
+					
+					<!-- SETTINGS -->
+					<li class="list-group-item" id="backups-settings">
+						<div class="d-flex justify-content-between align-items-center">
+							<a class="btn translate" data-bs-toggle="collapse" href="#collapsible-settings" role="button" aria-expanded="false" aria-controls="collapsible-settings">Settings</a>
+							<span class="badge text-bg-primary rounded-pill">0</span>
+						</div>
+						
+						<div class="collapse" id="collapsible-settings">
+							<ul class="list-group list-group-flush"></ul>
+						</div>
+					</li>
+					
+					<!-- STYLES -->
+					<li class="list-group-item" id="backups-styles">
+						<div class="d-flex justify-content-between align-items-center">
+							<a class="btn translate" data-bs-toggle="collapse" href="#collapsible-styles" role="button" aria-expanded="false" aria-controls="collapsible-styles">Styles</a>
+							<span class="badge text-bg-primary rounded-pill">0</span>
+						</div>
+						
+						<div class="collapse" id="collapsible-styles">
+							<ul class="list-group list-group-flush"></ul>
+						</div>
+					</li>
+					
+					<!-- SCRIPTS -->
+					<li class="list-group-item" id="backups-scripts">
+						<div class="d-flex justify-content-between align-items-center">
+							<a class="btn translate" data-bs-toggle="collapse" href="#collapsible-scripts" role="button" aria-expanded="false" aria-controls="collapsible-scripts">Scripts</a>
+							<span class="badge text-bg-primary rounded-pill">0</span>
+						</div>
+						
+						<div class="collapse" id="collapsible-scripts">
+							<ul class="list-group list-group-flush"></ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
