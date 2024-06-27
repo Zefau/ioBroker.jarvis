@@ -101,6 +101,10 @@
 			if (e.target.checked) {
 				$('.disableSelectCertificate').removeClass('disabled');
 			}
+			else {
+				$('#authenticationOptionNone').prop('checked', true);
+				$('#authenticationConfigurationOptionNone').prop('checked', true);
+			}
 			
 			$('[name=authentication], [name=authenticationConfiguration]').each(function() {
 				$('#' + this.id.replace('Option', '')).prop('disabled', true);
@@ -121,7 +125,7 @@
 		});
 		
 		// disable authentication option
-		$('#authenticationOptionNone').prop('checked', !settings.authentication || settings.authentication === 'none');
+		$('#authenticationOptionNone').prop('checked', !settings.socketSecure || !settings.authentication || settings.authentication === 'none');
 		$('#authenticationPassword').prop('disabled', settings.authentication !== 'password');
 		$('#authenticationGroup').prop('disabled', settings.authentication !== 'group');
 		
@@ -132,7 +136,7 @@
 		});
 		
 		// disable authentication option
-		$('#authenticationConfigurationOptionNone').prop('checked', !settings.authenticationConfiguration || settings.authenticationConfiguration === 'none');
+		$('#authenticationConfigurationOptionNone').prop('checked', !settings.socketSecure || !settings.authenticationConfiguration || settings.authenticationConfiguration === 'none');
 		$('#authenticationConfigurationPassword').prop('disabled', settings.authenticationConfiguration !== 'password');
 		$('#authenticationConfigurationGroup').prop('disabled', settings.authenticationConfiguration !== 'group');
 		
