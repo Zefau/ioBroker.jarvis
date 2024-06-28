@@ -57,5 +57,6 @@
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
-  }
+  },
+  "version": "3.2.0-beta.39"
 }
