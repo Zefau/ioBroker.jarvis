@@ -93,7 +93,11 @@
 		"adminUI": {
 			"config": "html"
 		},
-		"license": "MIT",
+		"licenseInformation": {
+			"type": "limited",
+			"license": "CC-BY-NC-ND-4.0",
+			"url": "https://github.com/Zefau/ioBroker.jarvis/discussions/891"
+		},
 		"platform": "Javascript/Node.js",
 		"logTransporter": true,
 		"mode": "daemon",
