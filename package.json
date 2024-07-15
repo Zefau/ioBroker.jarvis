@@ -44,7 +44,7 @@
     "yarn": ">= 1.21.1"
   },
   "homepage": "https://github.com/Zefau/ioBroker.jarvis",
-  "license": "MIT",
+  "license": "CC-BY-NC-ND-4.0",
   "main": "jarvis.min.js",
   "name": "iobroker.jarvis",
   "repository": {
