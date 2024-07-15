@@ -96,7 +96,7 @@
 		"licenseInformation": {
 			"type": "limited",
 			"license": "CC-BY-NC-ND-4.0",
-			"url": "https://github.com/Zefau/ioBroker.jarvis/discussions/891"
+			"link": "https://github.com/Zefau/ioBroker.jarvis/discussions/891"
 		},
 		"platform": "Javascript/Node.js",
 		"logTransporter": true,
