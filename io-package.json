@@ -2,7 +2,6 @@
 	"common": {
 		"name": "jarvis",
 		"version": "3.2.0-beta.55",
-		"title": "jarvis - just another remarkable vis",
 		"titleLang": {
 			"en": "jarvis - just another remarkable vis",
 			"uk": "jarvis - just another remarkable vis",
@@ -107,11 +106,10 @@
 		],
 		"readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
 		"loglevel": "info",
-		"materialize": true,
 		"eraseOnUpload": true,
 		"compact": true,
 		"enabled": true,
-		"localLink": "%webProtocol%://%ip%:%socketPort%/jarvis/index.html",
+		"localLinks": { "_default": "%webProtocol%://%ip%:%socketPort%/jarvis/index.html" },
 		"messages": [
 			{
 				"condition": {
