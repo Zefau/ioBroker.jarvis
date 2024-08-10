@@ -1,7 +1,7 @@
 {
 	"common": {
 		"name": "jarvis",
-		"version": "3.2.0-beta.55",
+		"version": "3.2.0-beta.56",
 		"titleLang": {
 			"en": "jarvis - just another remarkable vis",
 			"uk": "jarvis - just another remarkable vis",
@@ -109,7 +109,9 @@
 		"eraseOnUpload": true,
 		"compact": true,
 		"enabled": true,
-		"localLinks": { "_default": "%webProtocol%://%ip%:%socketPort%/jarvis/index.html" },
+		"localLinks": {
+			"_default": "%webProtocol%://%ip%:%socketPort%/jarvis/index.html"
+		},
 		"messages": [
 			{
 				"condition": {
@@ -310,8 +312,8 @@
 		}
 	],
 	"custom": {
-		"version": "3.2.0-beta.55",
-		"ts": "1723284834",
+		"version": "3.2.0-beta.56",
+		"ts": "1723318632",
 		"date": "2024-08-10"
 	}
 }
