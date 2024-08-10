@@ -145,8 +145,7 @@
 		],
 		"dependencies": [
 			{
-				"web": ">=3.0.12",
-				"js-controller": ">=2.0.0"
+				"js-controller": ">=4.0.24"
 			}
 		],
 		"messagebox": true,
