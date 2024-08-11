@@ -13,23 +13,23 @@
     }
   ],
   "keywords": [
-    "vis",
-    "visualization",
-    "modern",
-    "material",
-    "gui",
-    "ui",
-    "jarvis",
-    "interface",
-    "webapp",
-    "smarthome",
-    "home",
-    "assistant",
-    "control",
-    "react",
-    "vue",
-    "lovelace"
-  ],
+			"vis",
+			"visualization",
+			"modern",
+			"material",
+			"gui",
+			"ui",
+			"jarvis",
+			"interface",
+			"webapp",
+			"smarthome",
+			"home",
+			"assistant",
+			"control",
+			"react",
+			"vue",
+			"lovelace"
+		],
   "dependencies": {
     "@electron/asar": "^3.2.4",
     "@iobroker/adapter-core": "^3.1.6",
@@ -75,6 +75,5 @@
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
-  },
-  "version": "3.2.0-beta.56"
+  }
 }
