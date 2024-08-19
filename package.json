@@ -13,6 +13,7 @@
     }
   ],
   "keywords": [
+    "ioBroker",
     "vis",
     "visualization",
     "modern",
@@ -33,6 +34,7 @@
   "dependencies": {
     "@electron/asar": "^3.2.4",
     "@iobroker/adapter-core": "^3.1.6",
+    "axios": "^1.7.4",
     "date-fns": "^3.6.0",
     "ip": "^2.0.1",
     "node-ical": "^0.18.0",
@@ -43,7 +45,7 @@
     "rrule": "^2.8.1",
     "semver": "^7.6.2",
     "uuid": "^10.0.0",
-    "ws": "^8.17.1"
+    "ws": "^8.18.0"
   },
   "deprecated": false,
   "description": "jarvis - just another remarkable vis",
@@ -75,6 +77,5 @@
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "translate": "gulp translateAndUpdateWordsJS"
-  },
-  "version": "3.2.0-beta.57"
+  }
 }
