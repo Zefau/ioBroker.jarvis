@@ -232,6 +232,18 @@
 			}
 		},
 		{
+			"_id": "theme",
+			"type": "state",
+			"common": {
+				"name": "Theme",
+				"role": "json",
+				"type": "string",
+				"read": true,
+				"write": true,
+				"def": "{}"
+			}
+		},
+		{
 			"_id": "settings",
 			"type": "state",
 			"common": {
