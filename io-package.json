@@ -161,7 +161,15 @@
 			}
 		]
 	},
-	"native": {},
+	"native": {
+		"versions": {
+			"devices": 3.2,
+			"layout": 3,
+			"widgets": 3.1,
+			"scripts": 3.2,
+			"css": 3.2
+		}
+	},
 	"objects": [],
 	"instanceObjects": [
 		{
@@ -216,7 +224,7 @@
 				"type": "string",
 				"read": true,
 				"write": true,
-				"def": "{}"
+				"def": "{\"version\":3.1,\"signature\":7813676603462119,\"widgets\":{}}"
 			}
 		},
 		{
@@ -228,7 +236,7 @@
 				"type": "string",
 				"read": true,
 				"write": true,
-				"def": "{}"
+				"def": "{\"version\":3.2,\"signature\":7813676603462119,\"devices\":{}}"
 			}
 		},
 		{
@@ -264,7 +272,7 @@
 				"type": "string",
 				"read": true,
 				"write": true,
-				"def": "[]"
+				"def": "{\"version\":3,\"signature\":5946306953645214,\"layout\":[]}"
 			}
 		},
 		{
@@ -273,10 +281,10 @@
 			"common": {
 				"name": "Custom CSS",
 				"role": "text",
-				"type": "string",
+				"type": "json",
 				"read": true,
 				"write": true,
-				"def": ""
+				"def": "{\"version\":3.2,\"signature\":7813676603462119,\"css\":{}}"
 			}
 		},
 		{
@@ -285,10 +293,10 @@
 			"common": {
 				"name": "Scripts",
 				"role": "text",
-				"type": "string",
+				"type": "json",
 				"read": true,
 				"write": true,
-				"def": ""
+				"def": "{\"version\":3.2,\"signature\":7813676603462119,\"scripts\":{}}"
 			}
 		},
 		{
