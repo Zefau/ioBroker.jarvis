@@ -4,6 +4,7 @@
 	<script type="text/javascript" src="lib/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="lib/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
+	<!-- <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script> -->
 	
 	<!-- these files have to be included -->
 	<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
@@ -196,18 +197,18 @@
 			var id = $this.attr('id');
 			
 			// save checkboxes
-			if ($this.attr('type') === 'checkbox')
+			if ($this.attr('type') === 'checkbox') {
 				obj[id] = $this.prop('checked');
+			}
 			
-			else if ($this.attr('type') === 'radio' && $this.prop('checked'))
+			else if ($this.attr('type') === 'radio' && $this.prop('checked')) {
 				obj[$this.attr('name')] = $this.val();
+			}
 			
 			// save certificates
-			else if ($this.attr('data-select') === "certificate")
-			{
+			else if ($this.attr('data-select') === "certificate") {
 				socket.emit('getObject', 'system.certificates', function (err, res) {
-					if (res.native.certificates !== undefined)
-					{
+					if (res.native.certificates !== undefined) {
 						obj[id] = $this.val();
 						obj[id + 'Val'] = res.native.certificates[$this.val()];
 					}
@@ -215,8 +216,9 @@
 			}
 			
 			// save settings
-			else
+			else {
 				obj[id] = obj[id] ? obj[id] : $this.val();
+			}
 		});
 		
 		obj.webProtocol = obj.socketSecure ? 'https' : 'http';
@@ -276,20 +278,48 @@
 	// page loaded
 	//$(window).on('load', function() {
 	$(document).ready(function () {
+		// modal
 		modal = new bootstrap.Modal(document.getElementById('restoreModal'), {});
+		
+		// restore
+		$('.btn-restore').on('click', function() {
+			console.log('Restore ' + restore.id + ' from ' + restore.date + '..');
+			sendTo(null, 'restore', { 'id': restore.id, 'date': restore.date }, function(res) {});
+			
+			alert('Backup restored!');
+			window.location = '#tab-intro';
+		});
+		
+		//
 		setColorMode();
 		translateAll();
 		
+		// connect to socket
 		socket.on('connect', function() {
-			setTimeout(() => {
+			const messageBroker = () => {
+				let timeoutMessageBroker = setTimeout(() => {
+					console.log('Message broker query failed! Try again...');
+					messageBroker();
+				}, 3 * 1000); // try every 5 seconds
+				
 				// get users and groups
 				sendTo(null, 'get-users', {}, function(res) {
+					console.log('Message broker queried succesfully.');
+					clearTimeout(timeoutMessageBroker);
+					
+					if (!glbSettings.init) {
+						window.location.reload();
+					}
+					
 					const { users, groups } = res;
 					
 					groups.forEach(function(group) {
 						$('#authenticationGroup').append($('<option value="' + group.value._id + '" selected="' + (glbSettings.authenticationGroup && glbSettings.authenticationGroup.includes(group.value._id) ? 'true' : '') + '">' + group.value._id + '</option>'));
 						$('#authenticationConfigurationGroup').append($('<option value="' + group.value._id + '" selected="' + (glbSettings.authenticationConfigurationGroup && glbSettings.authenticationConfigurationGroup.includes(group.value._id) ? 'true' : '') + '">' + group.value._id + '</option>'));
 					});
+					
+					$('.hidden').removeClass('hidden');
+					$('.loading').addClass('hidden');
 				});
 				
 				// get pro data
@@ -329,21 +359,18 @@
 						});
 					});
 				});
-			}, 500);
-		});
-		
-		// restore
-		$('.btn-restore').on('click', function() {
-			console.log('Restore ' + restore.id + ' from ' + restore.date + '..');
-			sendTo(null, 'restore', { 'id': restore.id, 'date': restore.date }, function(res) {});
+			};
 			
-			alert('Backup restored!');
-			window.location = '#tab-intro';
+			messageBroker();
 		});
 	});
 	// -->
 	</script>
 	<style type="text/css">
+	.hidden {
+		display: none;
+	}
+	
 	body.dark {
 		background-color: rgb(30, 30, 30);
 	}
@@ -451,6 +478,16 @@
 	<div class="row">
 		<div class="col tab-content">
 			<div id="config-tab-pane" class="tab-pane active">
+				<div class="row loading">
+					<div class="col-xl-1 col-lg-1 col-sm-2 text-right" style="text-align: right;">
+						<div class="spinner-border text-primary" role="status">
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-5 col-sm-10" style="margin: auto 0;">
+						Loading...
+					</div>
+				</div>
+				
 				<!--
 				<div class="row">
 					<div class="col-12">
@@ -490,7 +527,7 @@
 				-->
 				
 				<!-- Port -->
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-xl-4 col-lg-6 col-sm-12">
 						<div class="mb-3">
 							<label for="socketPort" class="form-label translate">port</label>
@@ -500,7 +537,7 @@
 				</div>
 				
 				<!-- Certificates -->
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-xl-4 col-lg-6 col-sm-12">
 						<fieldset>
 							<legend class="translate">secureConnection</legend>
@@ -547,7 +584,7 @@
 				</div>
 				
 				<!-- Authentication -->
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-xl-4 col-lg-6 col-sm-12">
 						<fieldset>
 							<legend class="translate">authentication</legend>
@@ -575,7 +612,7 @@
 				</div>
 				
 				<!-- Authentication Configuration -->
-				<div class="row">
+				<div class="row hidden">
 					<div class="col-xl-4 col-lg-6 col-sm-12">
 						<fieldset>
 							<legend class="translate">authenticationConfiguration</legend>
