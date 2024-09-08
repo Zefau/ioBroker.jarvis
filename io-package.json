@@ -106,7 +106,7 @@
 		],
 		"readme": "https://github.com/Zefau/ioBroker.jarvis/blob/master/README.md",
 		"loglevel": "info",
-		"eraseOnUpload": true,
+		"eraseOnUpload": false,
 		"compact": true,
 		"enabled": true,
 		"localLinks": {
