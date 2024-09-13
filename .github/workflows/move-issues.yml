@@ -14,7 +14,7 @@ jobs:
     outputs:
       VERSION: ${{ steps.version.outputs.VERSION }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
         # get version
       - name: Get Version
@@ -28,7 +28,7 @@ jobs:
     needs: prerequisites
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: process-issues
         run: |
             minorVersion=$(echo ${{ needs.prerequisites.outputs.VERSION }} | cut -d. -f1,2).x
