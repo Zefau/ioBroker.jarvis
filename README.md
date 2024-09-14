@@ -4,12 +4,11 @@ jarvis - just another remarkable vis
 
 ![Number of Installations](https://iobroker.live/badges/jarvis-installed.svg)
 ![Stable Version](https://iobroker.live/badges/jarvis-stable.svg)
+[![Downloads](https://nodei.co/npm/iobroker.jarvis.png?downloads=true)](https://nodei.co/npm/iobroker.jarvis/)
+
 [![NPM Version](http://img.shields.io/npm/v/iobroker.jarvis.svg)](https://www.npmjs.com/package/iobroker.jarvis)
 [![Commits since last release](https://img.shields.io/github/commits-since/Zefau/ioBroker.jarvis/latest.svg)](https://github.com/Zefau/ioBroker.jarvis/releases/latest)
-[![Travis CI](https://travis-ci.com/Zefau/ioBroker.jarvis.svg?branch=master)](https://travis-ci.com/Zefau/ioBroker.jarvis)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.jarvis.svg)](https://www.npmjs.com/package/iobroker.jarvis)
-
-[![NPM](https://nodei.co/npm/iobroker.jarvis.png?downloads=true)](https://nodei.co/npm/iobroker.jarvis/) 
+[![npm publish](https://github.com/Zefau/ioBroker.jarvis/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/Zefau/ioBroker.jarvis/actions/workflows/publish-npm.yml)
 
 
 ## Anleitung / Installation / Hilfe
