@@ -1,51 +1,51 @@
 {
-	"author":{
-		"name":"zefau",
-		"email":"zefau@mailbox.org"
+	"author": {
+		"name": "zefau",
+		"email": "zefau@mailbox.org"
 	},
-	"bugs":{
-		"url":"https://github.com/Zefau/ioBroker.jarvis/issues"
+	"bugs": {
+		"url": "https://github.com/Zefau/ioBroker.jarvis/issues"
 	},
-	"contributors":[
+	"contributors": [
 		{
-			"name":"zefau",
-			"email":"zefau@mailbox.org"
+			"name": "zefau",
+			"email": "zefau@mailbox.org"
 		}
 	],
-	"dependencies":{
-		"@electron/asar":"^3.2.13",
-		"@iobroker/adapter-core":"^3.1.6",
-		"axios":"^1.7.7",
-		"date-fns":"^3.6.0",
-		"ip":"^2.0.1",
-		"node-ical":"^0.19.0",
-		"node-schedule":"^2.1.1",
-		"ohash":"^1.1.3",
-		"platform":"^1.3.6",
-		"rfdc":"^1.4.1",
-		"rrule":"^2.8.1",
-		"semver":"^7.6.2",
-		"uuid":"^10.0.0",
-		"ws":"^8.18.0"
+	"dependencies": {
+		"@electron/asar": "^3.2.13",
+		"@iobroker/adapter-core": "^3.1.6",
+		"axios": "^1.7.7",
+		"date-fns": "^3.6.0",
+		"ip": "^2.0.1",
+		"node-ical": "^0.19.0",
+		"node-schedule": "^2.1.1",
+		"ohash": "^1.1.3",
+		"platform": "^1.3.6",
+		"rfdc": "^1.4.1",
+		"rrule": "^2.8.1",
+		"semver": "^7.6.2",
+		"uuid": "^10.0.0",
+		"ws": "^8.18.0"
 	},
-	"deprecated":false,
-	"description":"jarvis - just another remarkable vis",
-	"devDependencies":{
-		"@iobroker/adapter-dev":"^1.3.0",
-		"@iobroker/testing":"^4.1.3",
-		"chai":"^5.1.1",
-		"gulp":"^5.0.0",
-		"mocha":"^10.0.0"
+	"deprecated": false,
+	"description": "jarvis - just another remarkable vis",
+	"devDependencies": {
+		"@iobroker/adapter-dev": "^1.3.0",
+		"@iobroker/testing": "^4.1.3",
+		"chai": "^5.1.1",
+		"gulp": "^5.0.0",
+		"mocha": "^10.0.0"
 	},
-	"directories":{
-		"lib":"lib"
+	"directories": {
+		"lib": "lib"
 	},
-	"engines":{
-		"node":">= 20",
-		"npm":">= 9.3.1",
-		"yarn":">= 1.21.1"
+	"engines": {
+		"node": ">= 20",
+		"npm": ">= 9.3.1",
+		"yarn": ">= 1.21.1"
 	},
-	"files":[
+	"files": [
 		"LICENSE",
 		"README.md",
 		"io-package.json",
@@ -55,8 +55,8 @@
 		"test",
 		"admin"
 	],
-	"homepage":"https://github.com/Zefau/ioBroker.jarvis",
-	"keywords":[
+	"homepage": "https://github.com/Zefau/ioBroker.jarvis",
+	"keywords": [
 		"ioBroker",
 		"vis",
 		"visualization",
@@ -75,18 +75,19 @@
 		"vue",
 		"lovelace"
 	],
-	"license":"CC-BY-NC-ND-4.0",
-	"main":"jarvis.min.js",
-	"name":"iobroker.jarvis",
-	"repository":{
-		"type":"git",
-		"url":"git+https://github.com/Zefau/ioBroker.jarvis.git"
+	"license": "CC-BY-NC-ND-4.0",
+	"main": "jarvis.min.js",
+	"name": "iobroker.jarvis",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Zefau/ioBroker.jarvis.git"
 	},
-	"scripts":{
-		"test":"npm run test:package && npm run test:unit",
-		"test:integration":"mocha test/integration --exit",
-		"test:package":"mocha test/package --exit",
-		"test:unit":"mocha test/unit --exit",
-		"translate":"translate-adapter"
-	}
+	"scripts": {
+		"test": "npm run test:package && npm run test:unit",
+		"test:integration": "mocha test/integration --exit",
+		"test:package": "mocha test/package --exit",
+		"test:unit": "mocha test/unit --exit",
+		"translate": "translate-adapter"
+	},
+	"version": "3.2.0-rc.4"
 }
