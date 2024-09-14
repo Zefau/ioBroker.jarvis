@@ -162,13 +162,6 @@
 		]
 	},
 	"native": {
-		"versions": {
-			"devices": 3.2,
-			"layout": 3,
-			"widgets": 3.1,
-			"scripts": 3.2,
-			"css": 3.2
-		}
 	},
 	"objects": [],
 	"instanceObjects": [
