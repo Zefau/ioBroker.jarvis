@@ -2,13 +2,17 @@
 # ioBroker.jarvis
 jarvis - just another remarkable vis
 
-![Number of Installations](https://iobroker.live/badges/jarvis-installed.svg)
-![Stable Version](https://iobroker.live/badges/jarvis-stable.svg)
-[![Downloads](https://nodei.co/npm/iobroker.jarvis.png?downloads=true)](https://nodei.co/npm/iobroker.jarvis/)
+![github](https://img.shields.io/github/package-json/v/Zefau/ioBroker.jarvis/master?color=orange&label=github)
+![latest](https://img.shields.io/npm/v/iobroker.jarvis.svg?color=blue&label=latest)
+![stable](https://iobroker.live/badges/jarvis-stable.svg)
+![installed](https://iobroker.live/badges/jarvis-installed.svg)
 
-[![NPM Version](http://img.shields.io/npm/v/iobroker.jarvis.svg)](https://www.npmjs.com/package/iobroker.jarvis)
 [![Commits since last release](https://img.shields.io/github/commits-since/Zefau/ioBroker.jarvis/latest.svg)](https://github.com/Zefau/ioBroker.jarvis/releases/latest)
 [![npm publish](https://github.com/Zefau/ioBroker.jarvis/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/Zefau/ioBroker.jarvis/actions/workflows/publish-npm.yml)
+
+[![open feature requests](https://img.shields.io/github/issues-search/Zefau/ioBroker.jarvis?query=is%3Aissue%20is%3Aopen%20label%3A%22feature%20%3Astar2%3A%22%20&label=open%20feature%20requests&color=purple)](https://github.com/Zefau/ioBroker.jarvis/issues?q=is%3Aissue+is%3Aopen+label%3A%22feature+%3Astar2%3A%22+-label%3A%22%23status%3A+ready-to-test+%3Aheavy_check_mark%3A%22+-label%3A%22%23status%3A+waiting-for-feedback+%3Ahourglass%3A%22+)
+[![open bugs](https://img.shields.io/github/issues-search/Zefau/ioBroker.jarvis?query=is%3Aissue%20is%3Aopen%20label%3A%22bug%20%3Abug%3A%22%20-label%3A%22%23status%3A%20ready-to-test%20%3Aheavy_check_mark%3A%22%20-label%3A%22%23status%3A%20waiting-for-feedback%20%3Ahourglass%3A%22%20&label=open%20bugs&color=red)](https://github.com/Zefau/ioBroker.jarvis/issues?q=is%3Aissue+is%3Aopen+label%3A%22bug+%3Abug%3A%22+-label%3A%22%23status%3A+ready-to-test+%3Aheavy_check_mark%3A%22+-label%3A%22%23status%3A+waiting-for-feedback+%3Ahourglass%3A%22+)
+[![in testing or waiting for feedback](https://img.shields.io/github/issues-search/Zefau/ioBroker.jarvis?query=is%3Aissue%20is%3Aopen%20label%3A%22%23status%3A%20ready-to-test%20%3Aheavy_check_mark%3A%22%2C%22%23status%3A%20waiting-for-feedback%20%3Ahourglass%3A%22%20&label=in%20testing%20or%20waiting%20for%20feedback&color=green)](https://github.com/Zefau/ioBroker.jarvis/issues?q=is%3Aissue+is%3Aopen+label%3A%22%23status%3A+ready-to-test+%3Aheavy_check_mark%3A%22%2C%22%23status%3A+waiting-for-feedback+%3Ahourglass%3A%22+)
 
 
 ## Anleitung / Installation / Hilfe
@@ -17,7 +21,7 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 ## Changelog
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.39 (2024-01-07)
 
@@ -27,7 +31,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `v3.2.0-alpha.37 Fehlermeldungen` (alpha / beta :construction:, #status: implemented-locally :hammer_and_wrench:, v3.2, [#2518](https://github.com/Zefau/ioBroker.jarvis/issues/2518))
 - fixed `[v3.2.0-alpha.37] invalid time value im ioBroker Log` (Module Calendar, alpha / beta :construction:, #status: implemented-locally :hammer_and_wrench:, v3.2, [#2519](https://github.com/Zefau/ioBroker.jarvis/issues/2519))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.37 (2024-01-04)
 
@@ -39,7 +43,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `[v3.2.0-alpha.36] Kalender` (Module Calendar, alpha / beta :construction:, [#2516](https://github.com/Zefau/ioBroker.jarvis/issues/2516))
 - fixed `[v3.2.0-alpha.36] Keine DPs mehr übernehmen` (alpha / beta :construction:, [#2517](https://github.com/Zefau/ioBroker.jarvis/issues/2517))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.36 (2024-01-02)
 
@@ -49,28 +53,28 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `[v3.2.0-alpha.30] Bodystilfehler` (binding :link:, alpha / beta :construction:, [#2512](https://github.com/Zefau/ioBroker.jarvis/issues/2512))
 - fixed `v3.2.0-alpha.35 Einstellungen Fehler` (alpha / beta :construction:, [#2513](https://github.com/Zefau/ioBroker.jarvis/issues/2513))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.34 (2024-01-01)
 
 #### feature :star2: (1 changes)
 - added `Multiple Trigger` (pro, [#695](https://github.com/Zefau/ioBroker.jarvis/issues/695))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.30 (2023-12-29)
 
 #### :star2: feature (1 changes)
 - added `Refactor ioBroker.jarvis backend` (core, binding, [#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.28 (2023-12-29)
 
 #### :bug: bug (1 changes)
 - fixed `[v3.2.0-alpha.27] Kalender funktioniert nicht richtig` (Module Calendar, [#2503](https://github.com/Zefau/ioBroker.jarvis/issues/2503))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.27 (2023-12-28)
 
@@ -83,14 +87,14 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `[v3.2.0-alpha.26] Jarvis sehr langsam` ([#2500](https://github.com/Zefau/ioBroker.jarvis/issues/2500))
 - fixed `[v3.2.0-alpha.26] Geräteliste plötzlich leer` ([#2501](https://github.com/Zefau/ioBroker.jarvis/issues/2501))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.26 (2023-12-27)
 
 #### :star2: feature (1 changes)
 - added `Refactor ioBroker.jarvis backend` (core, binding, [#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 SyntaxError: Unexpected token t in JSON at position 142
     at JSON.parse (<anonymous>)
@@ -106,7 +110,7 @@ SyntaxError: Unexpected token t in JSON at position 142
   `["PVTI_lAHOANtAK84AAVGnzgLeFb0","I_kwDODbcoCM56PNH4",[":bug: bug"],2493,"3.2.0-alpha.21 - TypeError: Cannot read properties of null (reading ts)"]`
 ]
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.21 (2023-12-19)
 
@@ -116,21 +120,21 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 #### :star2: feature (1 changes)
 - added `Refactor ioBroker.jarvis backend` ([#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.20 (2023-12-18)
 
 #### :star2: feature (1 changes)
 - added `Refactor ioBroker.jarvis backend` ([#2490](https://github.com/Zefau/ioBroker.jarvis/issues/2490))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.13 (2023-12-09)
 
 #### :bug: bug (1 changes)
 - fixed `v3.2.0-alpha.12 Geräte Liste ist leer` ([#2484](https://github.com/Zefau/ioBroker.jarvis/issues/2484))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.12 (2023-12-08)
 
@@ -141,21 +145,21 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `v3.2.0-alpha.11 Einige Fehler Anzeigen` ([#2481](https://github.com/Zefau/ioBroker.jarvis/issues/2481))
 - fixed `v3.2.0-alpha.11 StateList Geräte hinzufügen nicht auswählbar` ([#2482](https://github.com/Zefau/ioBroker.jarvis/issues/2482))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.11 (2023-12-06)
 
 #### :star2: feature (1 changes)
 - added `Dynamic Lists for StateList` ([#2480](https://github.com/Zefau/ioBroker.jarvis/issues/2480))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.10 (2023-12-06)
 
 #### :star2: feature (1 changes)
 - added `Dynamic Lists for StateList` ([#2480](https://github.com/Zefau/ioBroker.jarvis/issues/2480))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.7 (2023-11-08)
 
@@ -168,7 +172,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `v3.2.0-alpha.6 Unterschiedliche Darstellung der Elemente in der Geräte-Übersicht` ([#2467](https://github.com/Zefau/ioBroker.jarvis/issues/2467))
 - fixed `Seit 3.2.0 absolut keine Socketverbindung mehr` ([#2468](https://github.com/Zefau/ioBroker.jarvis/issues/2468))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.6 (2023-11-07)
 
@@ -182,7 +186,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 #### :bug: bug (1 changes)
 - fixed `v3.1.0-beta.35 Speicherung der Änderungen läuft teilweise nicht ` ([#2070](https://github.com/Zefau/ioBroker.jarvis/issues/2070))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.2 (2023-10-28)
 
@@ -191,7 +195,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - added `add option in Device configuration to add state to any history adapter` (quick to implement, [#600](https://github.com/Zefau/ioBroker.jarvis/issues/600))
 - added `Layout: Add Widgets at any place within layout (not only at the end)` ([#2452](https://github.com/Zefau/ioBroker.jarvis/issues/2452))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.2.0-alpha.1 (2023-09-24)
 
@@ -200,7 +204,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - added `Manually trigger Socket reconnect...` ([#2418](https://github.com/Zefau/ioBroker.jarvis/issues/2418))
 - added `Move from socket.io to WebSocket` ([#2438](https://github.com/Zefau/ioBroker.jarvis/issues/2438))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.1.9-beta.3 (2023-09-21)
 
@@ -210,7 +214,7 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 #### :star2: feature (1 changes)
 - added `Add Mode to quickly sort devices in widgets` ([#2432](https://github.com/Zefau/ioBroker.jarvis/issues/2432))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.1.9-beta.2 (2023-05-30)
 
@@ -219,14 +223,14 @@ Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases
 - fixed `Automatische Übersetzung vom Widgetnamen?` ([#2361](https://github.com/Zefau/ioBroker.jarvis/issues/2361))
 - fixed `v3.1.8 Fehler in Kalender-Anzeige` (Module Calendar, [#2371](https://github.com/Zefau/ioBroker.jarvis/issues/2371))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 ### v3.1.6 (2023-05-22)
 
 #### :bug: bug (1 changes)
 - fixed `v3.1.5 wird als v3.1.3-beta.40 angezeigt` ([#2370](https://github.com/Zefau/ioBroker.jarvis/issues/2370))
 
-Please also see [release page](https://github.com/Zefau/ioBroker.jarvis/releases) for changelog and detailed information.
+
 
 
 ### v3.0.0
