@@ -13,7 +13,7 @@
 		}
 	],
 	"dependencies": {
-		"@electron/asar": "^3.2.13",
+		"@electron/asar": "^3.2.14",
 		"@iobroker/adapter-core": "^3.1.6",
 		"axios": "^1.7.7",
 		"date-fns": "^3.6.0",
