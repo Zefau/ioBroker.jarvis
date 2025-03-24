@@ -20,12 +20,12 @@
 		"ip": "^2.0.1",
 		"node-ical": "^0.20.1",
 		"node-schedule": "^2.1.1",
-		"ohash": "^1.1.4",
+		"ohash": "^2.0.11",
 		"platform": "^1.3.6",
 		"rfdc": "^1.4.1",
 		"rrule": "^2.8.1",
 		"semver": "^7.6.2",
-		"uuid": "^10.0.0",
+		"uuid": "^11.1.0",
 		"ws": "^8.18.0"
 	},
 	"deprecated": false,
@@ -34,7 +34,7 @@
 		"@iobroker/adapter-dev": "^1.3.0",
 		"@iobroker/testing": "^5.0.0",
 		"chai": "^5.1.1",
-		"mocha": "^10.0.0"
+		"mocha": "^11.1.0"
 	},
 	"directories": {
 		"lib": "lib"
@@ -87,6 +87,5 @@
 		"test:package": "mocha test/package --exit",
 		"test:unit": "mocha test/unit --exit",
 		"translate": "translate-adapter"
-	},
-	"version": "3.2.0-rc.14"
+	}
 }
