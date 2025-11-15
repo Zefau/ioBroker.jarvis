@@ -86,5 +86,6 @@
 		"test:package": "mocha test/package --exit",
 		"test:unit": "mocha test/unit --exit",
 		"translate": "translate-adapter"
-	}
+	},
+	"version": "4.0.0-alpha.10"
 }
