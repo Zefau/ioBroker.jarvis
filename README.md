@@ -304,7 +304,7 @@ SyntaxError: Unexpected token t in JSON at position 142
 The CC BY-NC-ND 4.0 License
 https://creativecommons.org/licenses/by-nc-nd/4.0/
 
-Copyright (c) 2020 - 2024 Zefau <zefau@mailbox.org>
+Copyright (c) 2020-2026 Zefau <zefau@mailbox.org>
 
 By exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License ("Public License").
 
