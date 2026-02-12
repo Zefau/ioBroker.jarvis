@@ -15,7 +15,7 @@
 	"dependencies": {
 		"@electron/asar": "^4.0.1",
 		"@iobroker/adapter-core": "^3.3.2",
-		"axios": "^1.13.2",
+		"axios": "^1.13.5",
 		"date-fns": "^4.1.0",
 		"ip": "^2.0.1",
 		"node-ical": "^0.22.1",
