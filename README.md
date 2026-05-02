@@ -23,6 +23,9 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 
 
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### v3.2.0-alpha.39 (2024-01-07)
 
 #### bug :bug: (4 changes)
