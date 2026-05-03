@@ -299,6 +299,7 @@ SyntaxError: Unexpected token t in JSON at position 142
 #### :bug: fixed bugs
 - Many many many bugs fixed, [see list of fixed bugs](https://github.com/Zefau/ioBroker.jarvis/issues?q=is%3Aissue+project%3AZefau%2FioBroker.jarvis%2F4+label%3A%22%3Abug%3A+bug%22+)
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## License
 The CC BY-NC-ND 4.0 License
