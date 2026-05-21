@@ -23,6 +23,10 @@ Siehe [Linksammlung im Wiki](https://github.com/Zefau/ioBroker.jarvis/wiki).
 
 
 
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### v3.2.0-alpha.39 (2024-01-07)
 
 #### bug :bug: (4 changes)
