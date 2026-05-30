@@ -1,91 +1,92 @@
 {
-	"author": {
-		"name": "zefau",
-		"email": "zefau@mailbox.org"
-	},
-	"bugs": {
-		"url": "https://github.com/Zefau/ioBroker.jarvis/issues"
-	},
-	"contributors": [
-		{
-			"name": "zefau",
-			"email": "zefau@mailbox.org"
-		}
-	],
-	"dependencies": {
-		"@electron/asar": "^4.0.1",
-		"@iobroker/adapter-core": "^3.3.2",
-		"axios": "^1.13.2",
-		"date-fns": "^4.1.0",
-		"ip": "^2.0.1",
-		"node-ical": "^0.22.1",
-		"node-schedule": "^2.1.1",
-		"platform": "^1.3.6",
-		"rfdc": "^1.4.1",
-		"rrule": "^2.8.1",
-		"semver": "^7.7.3",
-		"uuid": "^13.0.0",
-		"ws": "^8.18.3"
-	},
-	"deprecated": false,
-	"description": "jarvis - just another remarkable vis",
-	"devDependencies": {
-		"@iobroker/adapter-dev": "^1.5.0",
-		"@iobroker/testing": "^5.2.2",
-		"chai": "^6.2.1",
-		"mocha": "^11.7.5"
-	},
-	"directories": {
-		"lib": "lib"
-	},
-	"engines": {
-		"node": ">= 20",
-		"npm": ">= 9.3.1",
-		"yarn": ">= 1.21.1"
-	},
-	"files": [
-		"LICENSE",
-		"README.md",
-		"io-package.json",
-		"jarvis.min.js",
-		"www",
-		"lib",
-		"test",
-		"admin"
-	],
-	"homepage": "https://github.com/Zefau/ioBroker.jarvis",
-	"keywords": [
-		"ioBroker",
-		"vis",
-		"visualization",
-		"modern",
-		"material",
-		"gui",
-		"ui",
-		"jarvis",
-		"interface",
-		"webapp",
-		"smarthome",
-		"home",
-		"assistant",
-		"control",
-		"react",
-		"vue",
-		"lovelace"
-	],
-	"license": "CC-BY-NC-ND-4.0",
-	"main": "jarvis.min.js",
-	"name": "iobroker.jarvis",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Zefau/ioBroker.jarvis.git"
-	},
-	"scripts": {
-		"test": "npm run test:package && npm run test:unit",
-		"test:integration": "mocha test/integration --exit",
-		"test:package": "mocha test/package --exit",
-		"test:unit": "mocha test/unit --exit",
-		"translate": "translate-adapter"
-	},
-	"version": "4.0.0-alpha.13"
+  "author": {
+    "name": "zefau",
+    "email": "zefau@mailbox.org"
+  },
+  "bugs": {
+    "url": "https://github.com/Zefau/ioBroker.jarvis/issues"
+  },
+  "contributors": [
+    {
+      "name": "zefau",
+      "email": "zefau@mailbox.org"
+    }
+  ],
+  "dependencies": {
+    "@electron/asar": "^4.0.1",
+    "@iobroker/adapter-core": "^3.3.2",
+    "axios": "^1.13.2",
+    "date-fns": "^4.1.0",
+    "ip": "^2.0.1",
+    "node-ical": "^0.22.1",
+    "node-schedule": "^2.1.1",
+    "platform": "^1.3.6",
+    "rfdc": "^1.4.1",
+    "rrule": "^2.8.1",
+    "semver": "^7.7.3",
+    "uuid": "^13.0.0",
+    "ws": "^8.18.3"
+  },
+  "deprecated": false,
+  "description": "jarvis - just another remarkable vis",
+  "devDependencies": {
+    "@iobroker/adapter-dev": "^1.5.0",
+    "@iobroker/testing": "^5.2.2",
+    "@tsconfig/node20": "^20.1.9",
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "engines": {
+    "node": ">= 20",
+    "npm": ">= 9.3.1",
+    "yarn": ">= 1.21.1"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "io-package.json",
+    "jarvis.min.js",
+    "www",
+    "lib",
+    "test",
+    "admin"
+  ],
+  "homepage": "https://github.com/Zefau/ioBroker.jarvis",
+  "keywords": [
+    "ioBroker",
+    "vis",
+    "visualization",
+    "modern",
+    "material",
+    "gui",
+    "ui",
+    "jarvis",
+    "interface",
+    "webapp",
+    "smarthome",
+    "home",
+    "assistant",
+    "control",
+    "react",
+    "vue",
+    "lovelace"
+  ],
+  "license": "CC-BY-NC-ND-4.0",
+  "main": "jarvis.min.js",
+  "name": "iobroker.jarvis",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zefau/ioBroker.jarvis.git"
+  },
+  "scripts": {
+    "test": "npm run test:package && npm run test:unit",
+    "test:integration": "mocha test/integration --exit",
+    "test:package": "mocha test/package --exit",
+    "test:unit": "mocha test/unit --exit",
+    "translate": "translate-adapter"
+  },
+  "version": "4.0.0-alpha.13"
 }
